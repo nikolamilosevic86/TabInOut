@@ -21,7 +21,7 @@ if __name__=="__main__":
     for row in results:
         articleIds.append(row[0])
     del results
-    #articleIds = [1237]
+    #articleIds = [2418]
     for id in articleIds:
         results = queryclass.getArticleTablesWithPragmatic(id,"AdverseEvent")
         tables = []
@@ -46,6 +46,7 @@ if __name__=="__main__":
             for res in resa:
                 if(first):
                     lastColN = res[5]
+                    first = False
                 colum.append(res[5])
                 flagged[res[0]]=1
                 if(lastColN!=res[5]):
@@ -63,7 +64,7 @@ if __name__=="__main__":
                     continue
                 event = res[9].replace("'","").replace("?","").lower().replace(".","")
                 event = re.sub(r'[^\x00-\x7F]',' ',event)
-                if(res[9]=="" or "other" in res[9].lower() or "total" in res[9].lower() or "none" in res[9].lower() or "any" in res[9].lower() or "mg" in res[9].lower() or "p=" in res[9].lower() or "yes" in  res[9].lower() or "no" in res[9].lower() or 
+                if(res[9]=="" or "other" in res[9].lower() or "total" in res[9].lower() or "none" in res[9].lower() or "any" in res[9].lower() or "mg" in res[9].lower() or "p=" in res[9].lower() or "yes" in  res[9].lower() or "toxicity" in res[9].lower() or 
                    "variable" in  res[9].lower() or "event" in  res[9].lower() or "arm" in  res[9].lower() or "range" in  res[9].lower() or "month" in  res[9].lower()or "overall" in  res[9].lower() or '\xe2' in res[9].lower() or 'men' in res[9].lower()
                    or 'n'==res[9].lower()or 'baseline' in res[9].lower()or 'missing' in res[9].lower()or 'patient' in res[9].lower()):
                     continue

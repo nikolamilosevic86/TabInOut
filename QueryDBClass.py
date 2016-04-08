@@ -48,6 +48,13 @@ class QueryDBCalss:
         results = cursor.fetchall()
         return results
     
+    def getCellsInRow(self,tableID,RowN):
+        cursor = self.db.cursor()
+        sql = "SELECT * FROM cell inner join cellroles on idCell=Cell_idCell where Table_idTable='%d' and RowN='%d'" % (tableID,RowN)
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        return results
+    
     def getNonHeaderCellsInColumn(self,tableID,columnN):
         cursor = self.db.cursor()
         sql = "SELECT * FROM cell inner join cellroles on idCell=Cell_idCell where Table_idTable='%d' and CellRole_idCellRole<>'1' and ColumnN='%d'" % (tableID,columnN)

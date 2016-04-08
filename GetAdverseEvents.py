@@ -21,7 +21,7 @@ if __name__=="__main__":
     for row in results:
         articleIds.append(row[0])
     del results
-  #  articleIds = [1334]
+    #articleIds = [1237]
     for id in articleIds:
         results = queryclass.getArticleTablesWithPragmatic(id,"AdverseEvent")
         tables = []
@@ -57,18 +57,20 @@ if __name__=="__main__":
                     if counter[el]>maxC:
                         lastColN = el 
             resa = queryclass.getNonHeaderCellsInColumn(table.tableId,lastColN)
+            processed = []
             for res in resa:
+                if res[0] in processed:
+                    continue
                 event = res[9].replace("'","").replace("?","").lower().replace(".","")
+                event = re.sub(r'[^\x00-\x7F]',' ',event)
                 if(res[9]=="" or "other" in res[9].lower() or "total" in res[9].lower() or "none" in res[9].lower() or "any" in res[9].lower() or "mg" in res[9].lower() or "p=" in res[9].lower() or "yes" in  res[9].lower() or "no" in res[9].lower() or 
                    "variable" in  res[9].lower() or "event" in  res[9].lower() or "arm" in  res[9].lower() or "range" in  res[9].lower() or "month" in  res[9].lower()or "overall" in  res[9].lower() or '\xe2' in res[9].lower() or 'men' in res[9].lower()
-                   or 'n'==res[9].lower()or 'baseline' in res[9].lower()or 'missing' in res[9].lower()):
+                   or 'n'==res[9].lower()or 'baseline' in res[9].lower()or 'missing' in res[9].lower()or 'patient' in res[9].lower()):
                     continue
                 if(res[4]==0):
                     continue
-                if('\xb5g' in res[9]):
-                    continue
-
-                m = re.search('^[(\d)%()/<>=\. *-]+$',event)
+                
+                m = re.search('^[(\d)%()/<>=\. *-g]+$',event)
                 if(m<>None and m<>''):
                     continue
                 isflagged = 0
@@ -77,6 +79,54 @@ if __name__=="__main__":
                 
                 print str(id)+"    "+table.tableOrder+"    "+str(table.tableId)+"    "+event+"    "+str(isflagged)
                 queryclass.SaveAnnotation(id, table.tableOrder, table.tableId, event, isflagged)
+                processed.append(res[0])
+                
+          #For rows  
+            resa = queryclass.getCellsAnnotated(table.tableId, ["%sosy%","%dsyn%"])
+            lastRowN = -999
+            i = 0
+            flagged = {}
+            row = []
+            sameRow = True
+            first = True
+            for res in resa:
+                if(first):
+                    lastRowN = res[4]
+                row.append(res[4])
+                flagged[res[0]]=1
+                if(lastRowN!=res[4]):
+                    sameRow=False
+            if(not sameRow):
+                counter = Counter(row)
+                maxR =2
+                for el in counter.elements():
+                    if counter[el]>maxR:
+                        lastRowN = el 
+            resa = queryclass.getCellsInRow(table.tableId,lastRowN)
+            processed = []
+            for res in resa:
+                if(res[0] in processed):
+                    continue
+                if(res[5]==0):
+                    continue
+                event = res[9].replace("'","").replace("?","").lower().replace(".","")
+                event = re.sub(r'[^\x00-\x7F]',' ',event)
+                if(res[9]=="" or "other" in res[9].lower() or "total" in res[9].lower() or "none" in res[9].lower() or "any" in res[9].lower() or "mg" in res[9].lower() or "p=" in res[9].lower() or "yes" in  res[9].lower() or "no" in res[9].lower() or 
+                   "variable" in  res[9].lower() or "event" in  res[9].lower() or "arm" in  res[9].lower() or "range" in  res[9].lower() or "month" in  res[9].lower()or "overall" in  res[9].lower() or '\xe2' in res[9].lower() or 'men' in res[9].lower()
+                   or 'n'==res[9].lower()or 'baseline' in res[9].lower()or 'missing' in res[9].lower()or 'patient' in res[9].lower()):
+                    continue
+
+                m = re.search('^[(\d)%()/<>=\. *-g]+$',event)
+                if(m<>None and m<>''):
+                    continue
+                isflagged = 0
+                processed.append(res[0])
+                if(res[0] in flagged):
+                    isflagged = 1
+                
+                print str(id)+"    "+table.tableOrder+"    "+str(table.tableId)+"    "+event+"    "+str(isflagged)
+                queryclass.SaveAnnotation(id, table.tableOrder, table.tableId, event, isflagged)
+                
     print "Done!"
                 
                 

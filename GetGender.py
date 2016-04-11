@@ -1,5 +1,5 @@
 '''
-Created on 2 Mar 2016
+Created on 11 Apr 2016
 
 @author: mbaxkhm4
 
@@ -32,30 +32,16 @@ if __name__=="__main__":
             table.hasXML = t[6]
             table.articleId = t[7]
             tables.append(table)
-            resulta = queryclass.getCellsContainingInStubListOR(table.tableId, ['BMI','bmi','body mass index','Body Mass Index','Body mass index'])
+            resulta = queryclass.getCellsContainingInStubListOR(table.tableId, ['gender','Gender','male','female'])
             for res in resulta:
-                m2 = re.search('[\d\.]+',res[9])
+                m2 = re.search('(\d)+',res[9])
                 if(m2==None):
                     continue
-                totalNum = float(m2.group(0))
+                totalNum = int(m2.group(0))
                 if "range" in res[10].lower():
                     continue
                 if(totalNum>12 and totalNum<50):
-                    print 'BMI:'+str(totalNum)
+                    print 'Gender:'+str(totalNum) #add @male or @female to database
                     armid = queryclass.SaveArm(res[10], id,table.tableId) 
                     queryclass.SaveAttribute(armid, "BMI", totalNum)  
-            resulta = queryclass.getCellsContainingInSuperRowListOR(table.tableId, ['BMI','bmi','body mass index','Body Mass Index','Body mass index'])
-            for res in resulta:
-                m2 = re.search('[\d\.]+',res[9])
-                if(m2==None or m2.group(0)=='.'):
-                    continue
-                if(res[11].lower()=='range'):
-                    continue
-                totalNum = float(m2.group(0))
-                if "range" in res[10].lower():
-                    continue
-                if(totalNum>12 and totalNum<50):
-                    print 'BMI:'+str(totalNum)
-                    armid = queryclass.SaveArm(res[10], id,table.tableId) 
-                    queryclass.SaveAttribute(armid, "BMI", totalNum) 
     print "Done"

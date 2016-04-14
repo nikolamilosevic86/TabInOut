@@ -1,0 +1,359 @@
+@relation LearningDatasetNumPatients2-weka.filters.unsupervised.attribute.Remove-R1-4
+
+@attribute CellContent String
+@attribute Header String
+@attribute Stub String
+@attribute SuperRow String
+@attribute rowN numeric
+@attribute columnN numeric
+@attribute function numeric
+@attribute ContainsNumberOfPatient {yes,no}
+
+@data
+xx,?,Number,?,0,1,3,yes
+'Stretching (xx)','Intervention group (number of subjects) ; ','Stretching (xx)',None,1,0,2,yes
+'Strength (xx)','Intervention group (number of subjects) ; ','Strength (xx)',None,2,0,2,yes
+'Vibration (xx)','Intervention group (number of subjects) ; ','Vibration (xx)',None,3,0,2,yes
+xx,'N ; ','Group x',None,1,1,3,yes
+xx,'N ; ','Group x',None,2,1,3,yes
+x,'N ; ',Controls,None,3,1,3,yes
+xx,'N ; ','TOTAL COHORT',None,4,1,3,yes
+'xx (xx)','Celecoxib Dose ;  ; xxx mg twice daily ;  ; NAF (plasma) ; ',Samples,?,5,1,3,yes
+'xx (xxx','Celecoxib Dose ;  ; xxx mg twice daily ;  ; NAF(plasma) ; ',Samples,?,5,2,3,yes
+xx,?,Total,None,0,1,1,yes
+xx,'No ; ',Total,?,1,1,3,yes
+xx,?,'Number of patients',None,0,1,1,yes
+xx,'No. of patients ; ',Characteristics,None,1,1,1,yes
+xx,'n (\%) ; ','Patients enrolled',?,1,1,3,yes
+'Patients (N=xx)',?,Characteristics,?,0,1,3,yes
+xx,'EMP & VBL ; ',n=,None,1,1,1,yes
+xx,'EMP alone ; ',n=,None,1,2,1,yes
+xx,'No. of patients ; ',Total,?,1,1,3,yes
+xx,'na (\%) ; ',Patients,?,1,1,3,yes
+'Steatohepatitis (n xx)',?,?,None,0,1,1,yes
+'Diffuse Steatosis(n xx)',?,?,None,0,2,1,yes
+'Focal Fatty Liver (n x)',?,?,None,0,3,1,yes
+'Controls (n xx)',?,?,None,0,4,1,yes
+'Healthy Participants (n = xx; xx men)',?,?,None,0,1,1,yes
+'Healthy Participants (n = xx; xx men)','Healthy Participants (n = xx; xx men) ; ',?,None,1,1,1,yes
+'CBT+TAU Group (n = xx, xx men)','Patients ; ',?,None,1,2,1,yes
+'TAU-Alone Group (n = xx, xx men)','Patients ; ',?,None,1,3,1,yes
+xxx,'Gefitinib ; No ;  ; ',None,None,3,1,?,yes
+xx,'Erlotinib ; No ;  ; ',None,None,3,3,?,yes
+'(n = xx)','Males ; ',None,None,1,1,?,yes
+'(n = xx)','Females ; ',None,None,1,2,?,yes
+xx,'Total ; ','Total Participants',None,1,1,3,yes
+xx,'Phase x - treatment ; ','Total Participants',None,1,2,3,yes
+xx,'Phase x - placebo ; ','Total Participants',None,1,3,3,yes
+xxx,'All patients ; ','Patient number',None,1,1,3,yes
+xx,'Subgroup A ; ','Patient number',None,1,2,3,yes
+xx,'Subgroup B ; ','Patient number',None,1,3,3,yes
+xx,'Subgroup C ; ','Patient number',None,1,4,3,yes
+xxx,' ;  ; N ; ',Overall,?,3,1,3,yes
+xxx,' ;  ; N ; ',Overall,?,3,1,3,yes
+xxx,' ;  ; N ; ',Overall,?,3,1,3,yes
+xxx,' ;  ; N ; ',Overall,?,3,1,3,yes
+xx,'Total ; ','Enrolled, no.',None,1,1,1,yes
+xx,'x.x ?g ; ','Enrolled, no.',None,1,2,1,yes
+xx,'xx ?g ; ','Enrolled, no.',None,1,3,1,yes
+x,'xxx ?g ; ','Enrolled, no.',None,1,4,1,yes
+'Sunitinib (Nÿ=ÿxxx)',?,'Patient characteristics',None,0,1,1,yes
+'Capecitabine (Nÿ=ÿxxx)',?,'Patient characteristics',None,0,2,1,yes
+'Intervention Groupn = xx',?,None,None,0,1,?,yes
+'ControlGroupn = xxx',?,None,None,0,2,?,yes
+xx,?,None,None,0,2,?,yes
+xx,?,?Total,None,1,1,1,yes
+xx,?,?Evaluable,None,2,1,1,yes
+'Intervention group, N?=?xx',?,None,None,0,0,12,yes
+'Intervention group, N?=?xx',?,'Intervention group, N?=?xx',None,0,1,1,yes
+'Intervention group, N?=?xx',?,'Intervention group, N?=?xx',None,0,2,1,yes
+'Control group, N?=?xx',?,'Intervention group, N?=?xx',None,0,3,1,yes
+'Control group, N?=?xx',?,'Intervention group, N?=?xx',None,0,4,1,yes
+'No. patients (nÿ=ÿxx)',?,Characteristics,None,0,1,1,yes
+'Canakinumab xxx mg SC qxwk, n = xx',?,None,None,0,1,?,yes
+'Canakinumab xxx mg SC qxwk, n = xx',?,None,None,0,2,?,yes
+'Canakinumab xxx mg SC qxwk + xxx mg IV loading dose, n = xx',?,None,None,0,3,?,yes
+'Placebo, n = xx',?,None,None,0,4,?,yes
+xx(xxx),'Number(percent) ; ',None,None,1,1,?,yes
+'Iobitridol xxx (n?=?xx)',?,?,None,0,1,1,yes
+'Iodixanol xxx (n?=?xx)',?,?,None,0,2,1,yes
+'Total (n?=?xxx)',?,?,None,0,3,1,yes
+xx,'Number of patients ; ',Patients,?,1,1,3,yes
+xxx,'COPD Subjects ; ',None,None,1,2,?,yes
+xx,'Smoker Controls ; ',None,None,1,3,?,yes
+xx,'Non-smoker Controls ; ',None,None,1,4,?,yes
+N?=?xxx,'ISSAAC ; ',?,None,1,1,1,yes
+N?=?xxx,'INSECT ; ',?,None,1,2,1,yes
+xx,'Value ; ','Number of patients, n',?,1,1,3,yes
+xxx,'Study sites ;  ; High transmission ;  ; Ampasimanjeva ; ',None,None,5,1,?,yes
+xxx,'Study sites ;  ; High transmission ;  ; Vohimasy ; ',None,None,5,2,?,yes
+xxx,'Study sites ;  ; Low transmission ;  ; Ampasimpotsy ; ',None,None,5,3,?,yes
+xxx,'Study sites ;  ; Low transmission ;  ; Andasibe ; ',None,None,5,4,?,yes
+xx,'No. of patients ; ','Total no.',?,1,1,3,yes
+'Febuxostat xx mgN = xxx',?,Variable,None,0,1,1,yes
+'Febuxostat xx mgN = xxx',?,Variable,None,0,2,1,yes
+'Allopurinol xxx/xxx mgN = xxx',?,Variable,None,0,3,1,yes
+(Nÿ=ÿxx),'Lapatinib plus bevacizumab ; ',?,None,1,1,1,yes
+'AHI<x n=xx','OSA ; snorers ; ',?,None,2,1,1,yes
+'AHI x ? xx n=xx',' ; mild/moderate ; ',?,None,2,2,1,yes
+'AHI?xx n=xx',' ; severe ; ',?,None,2,3,1,yes
+'Values (N?=?xx)',?,Characteristics,None,0,1,1,yes
+'Group x (N?=?xx)',?,Characteristics,None,0,1,1,yes
+'Group x (N?=?xx)',?,Characteristics,None,0,2,1,yes
+'Efavirenz arm (n?=?xx)',?,Parameter,None,0,1,1,yes
+'Nevirapine arm (n?=?xx)',?,Parameter,None,0,2,1,yes
+N?=?xxx,'Group A ; (XELIRI-Bev) ; ',?,None,2,1,1,yes
+N?=?xxx,'Group B ; (FOLFIRI-Bev) ; ',?,None,2,2,1,yes
+'Cohort x (xxx mg of posaconazole), n?=?xx',?,?,None,0,1,1,yes
+'Cohort x (xxx mg of posaconazole), n?=?x',?,?,None,0,2,1,yes
+'Placebo, n?=?x',?,?,None,0,3,1,yes
+'All subjects, n?=?xx',?,?,None,0,4,1,yes
+'Diabetes mellitus, n?=?xx',?,?,None,0,1,1,yes
+'No diabetes mellitus, n?=?xxx',?,?,None,0,2,1,yes
+'ITT xx (xxx.xÿ\%)',?,?,None,0,1,1,yes
+'PP xx (xxx.xÿ\%)',?,?,None,0,2,1,yes
+'xx Gy step (n?=?xx)',?,?,None,0,1,1,yes
+'xx Gy step (n?=?xx)',?,?,None,0,2,1,yes
+'xx Gy (n?=?xx)',?,Characteristic,None,0,2,1,yes
+'xx Gy (n?=?xx patients, xx tumors)',?,Characteristic,None,0,3,1,yes
+'xx Gy (n?=?xx patients, xx tumors)',?,Characteristic,None,0,4,1,yes
+?,'Characteristic ; ',None,None,1,0,12,yes
+'Group B (n?=?x)',?,?,None,0,1,1,yes
+'Group BT (n?=?x)',?,?,None,0,2,1,yes
+'Total (N?=?xxx)',?,?,None,0,1,1,yes
+'Total (N?=?xxx)',?,?,None,0,1,1,yes
+xxx,'N ; ','Overall ease of use',None,1,1,3,yes
+xxx,'N ; ','Overall ease of use',None,1,1,3,yes
+xx,'Cohort x ; Lapatinib x,xxxÿmgÿ+ÿplacebo ; ','Modified intent-to-treat population, n',?,2,1,3,yes
+xx,'Cohort x ; Lapatinib x,xxxÿmgÿ+ÿpazopanib xxxÿmg ; ','Modified intent-to-treat population, n',?,2,2,3,yes
+xx,'Cohort x ; Lapatinib x,xxxÿmgÿ+ÿplacebo ; ','Modified intent-to-treat population, n',?,2,3,3,yes
+xx,'Cohort x ; Lapatinib x,xxxÿmgÿ+ÿpazopanib xxxÿmg ; ','Modified intent-to-treat population, n',?,2,4,3,yes
+xx,'Cohort x ; Pazopanib xxxÿmg ; ','Modified intent-to-treat population, n',?,2,5,3,yes
+'Cilengitide xxxÿmg/mxn?=?xx',?,Characteristics,None,0,1,1,yes
+'Cilengitide xxxÿmg/mxn?=?xx',?,Characteristics,None,0,2,1,yes
+'Cilengitide xxxÿmg/mxn?=?xx',?,Characteristics,None,0,3,1,yes
+'Docetaxel xxÿmg/mxn?=?xx',?,Characteristics,None,0,4,1,yes
+'Total n?=?xxx',?,Characteristics,None,0,5,1,yes
+'A (n = xx)','Group ; ','A (n = xx)',None,1,0,2,yes
+'B (n = xx)','Group ; ','B (n = xx)',None,2,0,2,yes
+'C (n = x)','Group ; ','C (n = x)',None,3,0,2,yes
+'Entire group (n = xx)','Group ; ','Entire group (n = xx)',None,4,0,2,yes
+'xx (xxx.x)','Total patient population ; ','Total treated',?,2,1,2,yes
+'Moderate (nÿ=ÿx)',?,?,None,0,1,1,yes
+'Moderate (nÿ=ÿx)',?,?,None,0,2,1,yes
+'High (nÿ=ÿxx)',?,?,None,0,3,1,yes
+'High (nÿ=ÿxx)',?,?,None,0,4,1,yes
+'Manic n?=?xx',?,?,None,0,1,1,yes
+'Hypomanic n?=?xx',?,?,None,0,2,1,yes
+'Mixed n?=?xx',?,?,None,0,3,1,yes
+'Depressive n?=?xx',?,?,None,0,4,1,yes
+'Global N?=?xxx',?,?,None,0,5,1,yes
+'n = x','pts. ; ','L. GG',None,1,1,3,yes
+'n = x','pts. ; ',Placebo,None,2,1,3,yes
+'n = xx',?,'n = xx',?,4,0,2,yes
+'n = xx',?,'n = xx',?,6,0,24,yes
+'n = xx',?,'n = xx',?,9,0,24,yes
+'n = x',?,'n = x',?,12,0,24,yes
+'n = xx',?,'n = xx',?,15,0,24,yes
+'n = xx',?,'n = xx',?,24,0,24,yes
+'n = xx',?,'n = xx',?,27,0,24,yes
+x,'Duration of dialysis (years) ; x ;  ; x ;  ; x ;  ; x ;  ; ',None,None,9,3,?,no
+'xxx (xx.x)','Febuxostat xx mgN = xxx ; ',No,' Tophi present, n (\%)',39,2,3,no
+'Metastatic sites','No. of patients ; xx ; ','Metastatic sites',None,20,1,43,no
+?Unknown,' ;  ;  ; TOTAL ;  ; ',?Unknown,?,23,0,?,no
+?,'Allopurinol xxx/xxx mgN = xxx ; ',None,None,18,3,3,no
++,'RT ; ',' x',?,8,8,3,no
+'Mean Canadian cardiovascular Class','Variables ; ','Mean Canadian cardiovascular Class',None,16,0,2,no
+'xx (xx)','Group A ; (XELIRI-Bev) ; N?=?xxx ; ',Yes,' Previous adjuvant chemotherapy',30,1,3,no
+'x.x (x.x)','Mixed n?=?xx ; ','Number of episodes lifetime (mean, SD)',?,12,3,3,no
+?,' ; ',?,' Tumor size (cm)',6,0,2,no
+'Previous surgery','No ; ','Previous surgery',?,28,1,43,no
+xx.xxÿ(x.xx),'Patients ; TAU-Alone Group (n = xx, xx men) ; ',?,' Accuracy (\%; Chance Performance = xx\%)',9,3,3,no
+'x.x (xx/xx)','TUmax/BG: baseline ; ',xx,' Patients without obvious tumour at baseline followed by tumour recurrence',10,8,3,no
+x,?,?,?,28,7,3,no
+Histology,'Characteristic ; ',None,None,8,0,24,no
+?,'Characteristic ; ',?,?,17,0,2,no
+?,'P* ;  ; x.x ;  ; <x.xxx ; ',None,None,5,3,?,no
+?,' ; ',?,' Performance status (ECOG)',15,0,2,no
+?hypertension+hyperlipidemia,'Characteristics ; ',?hypertension+hyperlipidemia,' Age, mean ñ SD (years)',19,0,?,no
+'xx.x ñ x.x','Event-free Survival ñ SE (\%) ;  ; xx-yr EFS ; ',?,' Age at Diagnosis',19,3,3,no
+'Total MotorASIA **',?,'Total MotorASIA **',None,7,0,2,no
+xx,'Cohort x ; Lapatinib x,xxxÿmgÿ+ÿplacebo ; ','Modified intent-to-treat population, n',?,2,1,3,yes
+'CES-D score','Characteristic ; Number ;  ; Age (yrs) ;  ; Male (\%) ;  ; Smoking, pack-years ;  ; FEVx \% predicted ;  ; \% Low attenuation area on CT (< -xxxHU) ;  ; < x\% emphysema ;  ; x-xx\% emphysema ;  ; xx-xx\% emphysema ;  ; > xx\% emphysema ;  ; \% reversibility FEVx ;  ; BMI ;  ; Fat free mass index ;  ; ','CES-D score',?,41,1,?,no
+xx,'NAd ; ',xx,None,11,6,3,no
+?x,' ; ',?x,' WHO performance status',19,0,2,no
+?,'Gefitinib ; No ;  ; xxx ;  ; ',None,None,30,1,?,no
+xx,'THC treatment ; Total days ; ',x,None,3,5,3,no
+'xx\%','COPD Subjects ; xxx ;  ; xx.x (x.x) ;  ; xx\% ;  ; xx.x (xx.x) ;  ; xx.x (xx.x) ;  ; xx.x (xx.x) ;  ; xx\% ;  ; xx\% ;  ; xx\% ;  ; xx\% ;  ; x.x (xx.x) ;  ; xx.x (x.x) ;  ; xx.x (x.x) ;  ; ','Number of exacerbations in year prior to enrollment in ECLIPSE',?,27,2,?,no
+'RF (kIU/L), mean (SD)','Variable ; Female sex, n (\%) ;  ; Age, mean (SD) years ;  ; Duration of RA, mean (SD) years ;  ; ','RF (kIU/L), mean (SD)',?,17,0,?,no
+xx,?,?No,' Prior hormonal therapy',15,1,3,no
+'Atrial fibrillation','Variables ; ','Atrial fibrillation',None,13,0,2,no
+?,' ;  ; Age ;  ; Height (m) ;  ; Weight (kg) ;  ; BMI (kg/mx) ;  ; K&L Grade x ; ',None,None,11,0,?,no
+'xx\%','xx Gy step (n?=?xx) ; ',x,' Scarff & Bloom histology grade',11,1,3,no
+x.x,'Mean ; ','xg. Changing the dose when the doctor changes the prescriptionx',None,8,2,3,no
+N,' ;  ; ',Protocol,None,2,1,1,no
+x.x-x.x,'Range ; ','xc. Mixing the medicine',None,4,6,3,no
+?,'Patient Characteristics ; Total patients ;  ; ',None,None,6,0,?,no
+'\%','Trastuzumab ; ',Parameter,None,1,2,1,no
+'x (x)','Group A ; (XELIRI-Bev) ; N?=?xxx ; ','Rectosigmoid and cecum',' Primary location',20,1,3,no
+x,'RIT cycles ; ',xx,' Patients without obvious tumour at baseline followed by tumour recurrence',2,4,3,no
+x,'x.x ?g ; xx ; ',???x,' Advanced disease ?No. of visceral organs involved ??x (subcutaneous, nodal)',31,2,3,no
+?,'Denuded apices ; ','group x vs group x',None,10,12,3,no
+?Positive,'Characteristics ; ',?Positive,' EGFR mutation status',27,0,2,no
+HG,'Histotype ; ',xx,?,34,4,3,no
+xx,'Patients ; Percentage of irradiated bone marrow volume ; ',x,None,10,5,3,no
+?Unknown,'Characteristics ; ',?Unknown,' EGFR mutation status',29,0,2,no
+?,'Cell inhomogeneity ; ','group x vs group x',None,7,3,3,no
+x,'x.x ?g ; xx ; ',???x,' Advanced disease ?No. of visceral organs involved ??x (subcutaneous, nodal)',31,2,3,no
+'xx (xx)','n (\%) ; ','?Prior pancreatic surgery',' Prior therapy',21,1,3,no
+M,'Gender ; F ;  ; F ;  ; F ;  ; ',None,None,7,2,?,no
+Chemotherapy,?,None,None,36,0,24,no
+'xx,xxx','Heparin, IU/xx hours ; ',x,None,1,5,3,no
+'xxx ñ xx,x','Systolic blood pressure (mm Hg) ; ','Vibration (xx)',None,3,4,3,no
+'xx.x ñ x.x','Overall Survival ñ SE (\%) ;  ; x-yr OS ; ',?,' WBC (? xxx/L)',24,6,3,no
+'?Lymph nodes','Characteristic ; ',?=high,' Motzer risk factor',16,4,3,no
+?,'Trastuzumab ; \% ; ',None,None,14,2,3,no
+'FIGO stage','Intervention group, N?=?xx ; ','FIGO stage',None,8,0,2,no
+x,'Duration of dialysis (years) ; x ;  ; x ;  ; x ;  ; ',None,None,7,3,?,no
+?,'Age (year) ; xx ; ',None,None,2,1,?,no
+?,'Gefitinib ; \% ;  ;  ;  ; ',None,None,27,2,?,no
+x.xx,'Control(mean) ; ',?,?,21,2,3,no
+IV,'WHO ; ',xx,' Serial FET PET monitoring during and after RIT',8,2,3,no
+(xx.x),'(\%) ;  ;  ; ',?,?,17,7,3,no
+'xx (x.x\%)','Floor (\%) ; ','xj. Knowing when the injection pen has finished injecting the medicine',None,11,4,3,no
+?,'Characteristic ; Number ;  ; Age (yrs) ;  ; Male (\%) ;  ; Smoking, pack-years ;  ; FEVx \% predicted ;  ; \% Low attenuation area on CT (< -xxxHU) ;  ; < x\% emphysema ;  ; x-xx\% emphysema ; ',None,None,16,1,?,no
+?,'Flattened cells ; ','group x vs group x',None,6,13,3,no
+'xxx (xx)','Sunitinib (Nÿ=ÿxxx) ; ',?,' Prior taxane treatment, n (\%)a',32,1,3,no
+x,?,?,?,28,15,3,no
+mild/moderate,' ; ',?,None,1,2,1,no
+'Overall Survival ñ SE (\%)',?,?,None,0,6,1,no
+xx.xx,'Fluoroscopy time (min) ; ',xx,None,15,2,3,no
+'ECOG PS','No. of patients ; xx ; ','ECOG PS',None,8,1,43,no
+x,'Prior CT agents ; ',xx,None,1,3,3,no
+x,?,'n = xx',?,18,4,43,no
+'xx (xx.x\%)',?,?x,' Number of sites of disease',30,1,3,no
+?,'Overall Survival ñ SE (\%) ;  ; xx-yr OS ; ',Immunophenotype,None,4,8,43,no
+x,'LVL fluoroscopy (min) ; ',x,None,2,3,3,no
+F,'Sex ; ',xx,None,11,2,3,no
+'Age years',' ; ','Age years',?,1,0,2,no
+x,?,?,?,28,5,3,no
+xx,'Baseline CA xx.x ; ',xx,None,1,9,3,no
+xx,'Diabetes mellitus, n?=?xx ; ',Smokers,?,3,1,3,no
+'SD (x,x)','Cell inhomogeneity ; ','group x vs group x',None,10,3,3,no
+?,' ;  ;  ; ',None,None,24,1,?,no
+x,?,'n = xx',?,27,20,43,no
+Median,?,'Group x',?,2,1,3,no
+xx,'Procedure time (min) ; ',x,None,2,1,3,no
+xx.x,'TIV (\%) ; ',Cancer,?,26,2,3,no
+'Patients with small residual tumour at baseline followed by tumour progression','Age (yrs) ; ',None,None,12,0,24,no
+xx,'TFTF ; ',xx,?,24,10,3,no
+x,'Duration surgery (hr) ; ',xx,None,11,4,3,no
+xx.x,'PASI Baseline ; x.x ;  ; x.x ;  ; xx.x ;  ; xx.x ;  ; xx.x ;  ; xx.x ;  ; x.x ;  ; xx.x ;  ; xx.x ;  ; xx.x ;  ; xx.x ;  ; xx.x ;  ; ',None,None,25,5,?,no
+?,'Febuxostat xx mgN = xxx ; ',None,None,62,2,3,no
+'Patient ID',?,None,None,0,0,12,no
+?female,'Characteristics ; ',?female,' Age, mean ñ SD (years)',6,0,?,no
+?,'Characteristics ;  ;  ; ',?,?,17,0,2,no
+xx,'n ; ',?,' Sex',46,1,3,no
+f,'Sex ; ',xx,' Serial FET PET monitoring during and after RIT',7,1,3,no
+?,'Erlotinib ; \% ;  ;  ;  ; ',None,None,20,4,?,no
+x,?,?,?,22,9,3,no
+x,'PFS (months) ; ',f,None,6,13,3,no
+A,'First line ; ',xx,?,21,5,3,no
+'xx.x (xx.x)','Global N?=?xxx ; ','Duration of illness in years (mean, SD)',?,11,5,3,no
+'VEGF-A (pg/mL)','Min ; ','VEGF-A (pg/mL)',None,10,5,43,no
+?,' ; ',?,' M category (AJCC)',17,0,2,no
+'xx\%','Subgroup A ; ','Primary in-situ at study entry',None,5,2,3,no
+xx,'Age (yrs) ; ',xx,' Patients with small residual tumour at baseline followed by tumour progression',15,0,2,no
+?,'Event-free Survival ñ SE (\%) ;  ; p-value ; ',?,' Immunophenotype',7,5,3,no
+'Total days','THC treatment ; ',Patient,None,1,5,1,no
+xx,'n ; ',?,' Alcohol consumption',50,1,3,no
+?,'Canakinumab xxx mg SC qxwk + xxx mg IV loading dose, n = xx ; xx (xx.x) ;  ; xx.xx (xx.xxx) ;  ; x.xx (x.xxx) ; ',None,None,6,3,?,no
+x,?,'n = xx',?,6,5,43,no
+'Procedure time (min)',?,'Patient number',None,0,1,1,no
+xx,'Number ; ',?Radiotherapy,' Previous therapies',19,1,3,no
+x.xxx,'p value* ; ',?,' EPHXx c.xxx',23,3,3,no
+?,'Canakinumab xxx mg SC qxwk, n = xx ; xx (xx.x) ;  ; xx.xx (xx.xxx) ;  ; xx.xx (x.xxx) ;  ; ',None,None,14,2,?,no
+xx.x,'\% ; xxx ; ','?Pleural effusion or seeding',' Metastatic sites',24,2,3,no
+Tumors,' ; ',None,None,13,0,24,no
+?Range,'Characteristic ; ',?Range,' Age, years',5,0,2,no
+'xx.x ñ xx.x','Overall Survival ñ SE (\%) ;  ; xx-yr OS ; ',?,' Age at Diagnosis',18,8,3,no
+x.xÿñÿx.x,'Moderate (nÿ=ÿx) ; POST ; ','Peripheral PWV (m/s)',None,11,2,3,no
+?,'Plicae ; ','group x vs group x',None,14,20,3,no
+xxx,' ;  ; N ; ',?,' Sex',15,1,3,no
+??Male?,'Variable ; ',??Male?,' Sex, n (\%) ',3,0,2,no
+'xx.x ñ x.x','Overall Survival ñ SE (\%) ;  ; xx-yr OS ; ',?,' MRD Day xx**',47,6,3,no
+'SD (x.x,x)','Cell inhomogeneity ; ','group x vs group x',None,13,3,3,no
+xx,'Baseline insulin requirement (IU/day) ; Baseline insulin requirement (IU/day) ; ',x,None,7,1,3,no
+'xxx.x ñ xx.x','Diffuse Steatosis(n xx) ; ','Cholesterol (mg\\dl)',None,6,2,3,no
+'Person responsible for giving the shot, n (\%)',' ; ','Person responsible for giving the shot, n (\%)',None,17,0,2,no
+?x,?,?x,' Performance statusa',6,0,2,no
+?,' ; ',?,' Tumors',16,0,2,no
+x.x,'TTP ; ',xx,None,6,11,3,no
+'Old age, severe ischemic cardiopathy-Diastolic dysfunction','Risks factors for dialysis hypotension ; Long duration of dialysis (x years), SLE still active treated by stero‹ds and ciclosporin - Diastolic dysfunction ;  ; Very old age, severe ischemic cardiopathy - Diastolic dysfunction ;  ; Cardiac graft for ten years-Diastolic dysfunction ;  ; Very old age, severe ischemic cardiopathy-Diastolic dysfunction ;  ; Old age, diabetes, pace-maker, panhypotuitarism - Diastolic dvsfunction ;  ; Very old age, severe ischemic and valvular cardiopathy - Diastolic dysfunction ;  ; ',None,None,13,7,?,no
+?,'Overall Survival ñ SE (\%) ; ',?,None,1,7,1,no
+'xx.x (x.x?xxx.x)','x.xxxxÿmg dose ; ','Daily caffeine intake (mean (range), mg)',?,4,2,3,no
+'xx\%','Study sites ;  ; High transmission ;  ; Vohimasy ; xxx ;  ; xx.x ;  ; x.xx ;  ; xxx ;  ; xx\% ;  ; ','Microscopy + (\%)',?,15,2,?,no
+'Metastasis sites','No. of patients ; ','Metastasis sites',None,13,1,43,no
+x/x,'Relapse ; ','L. GG',None,1,6,3,no
+'xx.x ñ xx.x','Overall Survival ñ SE (\%) ;  ; x-yr OS ; ',?,' Age at Diagnosis',18,6,3,no
+x,?,'Group x',?,11,4,3,no
+'BMI (kgÿm?x)',?,Patients,None,0,2,1,no
+Characteristics,?,None,None,0,0,12,no
+?,'First line ; ',xx,?,35,5,3,no
+R,'Failure ; ',xx,?,10,9,3,no
+x,'xx ?g ; xx ; ',?x,' Prior treatment: no. of regimens',11,3,3,no
+?,' ;  ; Protocol ; ',?,' WBC',23,0,2,no
+?,'Duration of dialysis (years) ; x ;  ; x ; ',None,None,4,3,?,no
+xx,' ; Time from second surgery to death (wk) ; ',x,None,2,9,3,no
+xx,'Number of patients ; ',?x,' Performance status',13,1,3,no
+'x (xx.xx)','Result ; ','??Liver cancer?',' Primary tumor, n (\%) ',9,1,3,no
+x,'OPS (ECOG) ; ',m,None,9,6,3,no
+xx.xx,'SD ; ','On-treatment samples',' TGF-?x(ng/mL)',9,4,3,no
+?Liver,'Parameter ; ',?Liver,' Site of disease',9,0,2,no
+x,'No ; ',?x=intermediate,' Motzer risk factor',15,5,3,no
+xx,'Age (y) ; ',xx,None,12,1,3,no
+'SD (x,x)','Deflated cells ; ','group x vs group x',None,2,14,3,no
+'Surgical treatment (yes/no)','Characteristics ; ','Surgical treatment (yes/no)',?,5,0,2,no
+'xx (xx)','Cohort x ; Lapatinib x,xxxÿmgÿ+ÿplacebo ; ','Prior biologic therapy, n (\%)',' Stage, n (\%)',13,1,3,no
+?,'Event-free Survival ñ SE (\%) ;  ; xx-yr EFS ; ',T-lineage?,None,11,3,43,no
+tomotherapy,' ; ',tomotherapy,?,10,0,2,no
+Unknown,'Causative organism ; ',x,None,1,6,3,no
+x.xx,'p-value ; ',?,?,8,4,3,no
+'Length of illness (yr.)',' ; ','Length of illness (yr.)',?,24,0,?,no
+x,?,'n = x',?,12,20,43,no
+xx,'n ; ',?,' Concomitant medication',60,1,3,no
+?,'PASI Baseline ; x.x ;  ; x.x ;  ; xx.x ; ',None,None,6,5,?,no
+Median,?,'(Group x)',?,8,1,3,no
+x,'Patients ; x ;  ; x ;  ; x ;  ; x ;  ; x ;  ; x ;  ; ',None,None,13,0,?,no
+'?ER negative/PR positive',' ; Parameter ; ','?ER negative/PR positive',' Hormone receptor status',18,0,2,no
+x,?,?,?,13,13,3,no
+'Diuresis (ml/kg/hr)x',?,Nox,None,0,9,1,no
+xx,'Lapatinib ; No. ; ',?Gx,' Grading',12,3,3,no
+xx.x,'TIV (\%) ; ','Chronic obstructive pulmonary disease',?,23,2,3,no
+xx,'Patient ; ',xx,None,16,0,2,no
+'?Invasive lobular',?,'?Invasive lobular',' Histologic type',9,0,2,no
+'Triacetate (TRICEAxxx-Baxter)','Dialysis membrane ; Polysufone (ARYLANE Hx - Hospal) ;  ; Diacetate (DICEAxxx-Baxter) ;  ; PMMA (BKFxx-Toray) ;  ; Diacetate (DICEA xxx-Baxter) ;  ; ',None,None,9,5,?,no
+'x.xx (x.xx?x.xx)','Daily phenprocoumon dose, mg ; ',?,' Fx c.-xxx',30,2,3,no
+PD,'OR ; ',xx,?,16,11,3,no
+?,'x.x ?g ; xx ; ',None,None,24,2,3,no
+?,' ;  ; Protocol ; ',?,' CNS leukemia',27,0,2,no
+xx,?,' Sitting Height  (cm) ',None,4,6,3,no
+x,?,'Group x',?,11,4,3,no
+xxx,' ;  ; N ; ',?,' TEL/AMLx*',41,1,3,no
+xx.xx,'Mean ; ','On-treatment samples',' VEGF-A (pg/mL)',12,2,3,no
+'x pt',?,?,?,12,2,3,no
+Undifferentiated,' ; ',Undifferentiated,?,7,0,?,no
+'xx (xx.x)','Febuxostat xx mgN = xxx ; ',Yes,?,43,2,3,no
+x,' ;  ; N ; ',?,' CNS leukemia',26,1,3,no
+?,'Cohort x (xxx mg of posaconazole), n?=?x ; ',None,None,1,2,3,no
+?,'Overall Survival ñ SE (\%) ;  ; p-value ; ','WBC (? xxx/L)',None,20,9,43,no
+'x (x.x\%)','Floor (\%) ; ','xf. Setting the dose',None,7,4,3,no
+M,'Sex ; ',VOS,None,4,1,3,no
+'x (xx\%)','n(\%) ; ','?P. S x',' Age (years)',6,1,3,no
+'xx.x ñ x.x','Event-free Survival ñ SE (\%) ;  ; x-yr EFS ; ',?,' Age at Diagnosis',19,2,3,no
+?,' ;  ; Protocol ; ',?,' DFCI Risk Group',32,0,2,no
+'xx.x (x.x)','R-UPDRS OFF meds/stim ; ','PD FOG',None,3,5,3,no
+?,'Parkinson?s disease duration (years) ; ','Healthy controls',None,1,3,3,no
+'x (x.x)','Total patient population ; ',?,' Type of cancer',21,1,3,no
+?,'Febuxostat xx mgN = xxx ; ',None,None,37,1,3,no
+x.x,'SD ; ','xc. Mixing the medicine',None,4,3,3,no

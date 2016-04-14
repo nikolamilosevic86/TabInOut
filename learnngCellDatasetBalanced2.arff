@@ -1,0 +1,331 @@
+@relation 'learnngCellDatasetBalanced-weka.filters.unsupervised.attribute.Remove-R1,3-4'
+
+@attribute PMCid numeric
+@attribute CellContent String
+@attribute Header String
+@attribute Stub String
+@attribute SuperRow String
+@attribute rowN numeric
+@attribute columnN numeric
+@attribute function numeric
+@attribute hasValue {yes,no}
+
+@data
+1131894,xx,?,Number,?,0,1,3,yes
+1885552,'Stretching (xx)','Intervention group (number of subjects) ; ','Stretching (xx)',None,1,0,2,yes
+1885552,'Strength (xx)','Intervention group (number of subjects) ; ','Strength (xx)',None,2,0,2,yes
+1885552,'Vibration (xx)','Intervention group (number of subjects) ; ','Vibration (xx)',None,3,0,2,yes
+2204057,xx,'N ; ','Group x',None,1,1,3,yes
+2204057,xx,'N ; ','Group x',None,2,1,3,yes
+2204057,x,'N ; ',Controls,None,3,1,3,yes
+2204057,xx,'N ; ','TOTAL COHORT',None,4,1,3,yes
+2259321,'xx (xx)','Celecoxib Dose ;  ; xxx mg twice daily ;  ; NAF (plasma) ; ',Samples,?,5,1,3,yes
+2259321,'xx (xxx','Celecoxib Dose ;  ; xxx mg twice daily ;  ; NAF(plasma) ; ',Samples,?,5,2,3,yes
+2359721,xx,?,Total,None,0,1,1,yes
+2360042,xx,'No ; ',Total,?,1,1,3,yes
+2360595,xx,?,'Number of patients',None,0,1,1,yes
+2360764,xx,'No. of patients ; ',Characteristics,None,1,1,1,yes
+2361378,xx,'n (\%) ; ','Patients enrolled',?,1,1,3,yes
+2361889,'Patients (N=xx)',?,Characteristics,?,0,1,3,yes
+2395315,xx,'EMP & VBL ; ',n=,None,1,1,1,yes
+2395315,xx,'EMP alone ; ',n=,None,1,2,1,yes
+2441954,xx,'No. of patients ; ',Total,?,1,1,3,yes
+2527821,xx,'na (\%) ; ',Patients,?,1,1,3,yes
+2656521,'Steatohepatitis (n xx)',?,?,None,0,1,1,yes
+2656521,'Diffuse Steatosis(n xx)',?,?,None,0,2,1,yes
+2656521,'Focal Fatty Liver (n x)',?,?,None,0,3,1,yes
+2656521,'Controls (n xx)',?,?,None,0,4,1,yes
+2734077,'Healthy Participants (n = xx; xx men)',?,?,None,0,1,1,yes
+2734077,'Healthy Participants (n = xx; xx men)','Healthy Participants (n = xx; xx men) ; ',?,None,1,1,1,yes
+2758901,xxx,'Gefitinib ; No ;  ; ',None,None,3,1,?,yes
+2758901,xx,'Erlotinib ; No ;  ; ',None,None,3,3,?,yes
+2765955,'(n = xx)','Males ; ',None,None,1,1,?,yes
+2765955,'(n = xx)','Females ; ',None,None,1,2,?,yes
+2774660,xx,'Total ; ','Total Participants',None,1,1,3,yes
+2774660,xx,'Phase x - treatment ; ','Total Participants',None,1,2,3,yes
+2774660,xx,'Phase x - placebo ; ','Total Participants',None,1,3,3,yes
+2816665,xxx,'All patients ; ','Patient number',None,1,1,3,yes
+2816665,xx,'Subgroup A ; ','Patient number',None,1,2,3,yes
+2816665,xx,'Subgroup B ; ','Patient number',None,1,3,3,yes
+2816665,xx,'Subgroup C ; ','Patient number',None,1,4,3,yes
+2820141,xxx,' ;  ; N ; ',Overall,?,3,1,3,yes
+2820141,xxx,' ;  ; N ; ',Overall,?,3,1,3,yes
+2820141,xxx,' ;  ; N ; ',Overall,?,3,1,3,yes
+2820141,xxx,' ;  ; N ; ',Overall,?,3,1,3,yes
+2855860,'Sunitinib (N = xxx)',?,'Patient characteristics',None,0,1,1,yes
+2855860,'Capecitabine (N = xxx)',?,'Patient characteristics',None,0,2,1,yes
+2894785,'Intervention Groupn = xx',?,None,None,0,1,?,yes
+2894785,'ControlGroupn = xxx',?,None,None,0,2,?,yes
+2902493,xx,?,None,None,0,2,?,yes
+2990606,xx,?,?Total,None,1,1,1,yes
+2990606,xx,?,?Evaluable,None,2,1,1,yes
+3102212,'No. patients (n = xx)',?,Characteristics,None,0,1,1,yes
+3165084,xx(xxx),'Number(percent) ; ',None,None,1,1,?,yes
+3195264,'Iobitridol xxx (n?=?xx)',?,?,None,0,1,1,yes
+3195264,'Iodixanol xxx (n?=?xx)',?,?,None,0,2,1,yes
+3195264,'Total (n?=?xxx)',?,?,None,0,3,1,yes
+3208500,xx,'Number of patients ; ',Patients,?,1,1,3,yes
+3247194,xxx,'COPD Subjects ; ',None,None,1,2,?,yes
+3247194,xx,'Smoker Controls ; ',None,None,1,3,?,yes
+3247194,xx,'Non-smoker Controls ; ',None,None,1,4,?,yes
+3281202,N?=?xxx,'ISSAAC ; ',?,None,1,1,1,yes
+3281202,N?=?xxx,'INSECT ; ',?,None,1,2,1,yes
+3338391,xxx,'Study sites ;  ; High transmission ;  ; Ampasimanjeva ; ',None,None,5,1,?,yes
+3338391,xxx,'Study sites ;  ; High transmission ;  ; Vohimasy ; ',None,None,5,2,?,yes
+3338391,xxx,'Study sites ;  ; Low transmission ;  ; Ampasimpotsy ; ',None,None,5,3,?,yes
+3338391,xxx,'Study sites ;  ; Low transmission ;  ; Andasibe ; ',None,None,5,4,?,yes
+3349177,xx,'No. of patients ; ','Total no.',?,1,1,3,yes
+3368715,'Febuxostat xx mgN = xxx',?,Variable,None,0,1,1,yes
+3368715,'Febuxostat xx mgN = xxx',?,Variable,None,0,2,1,yes
+3368715,'Allopurinol xxx/xxx mgN = xxx',?,Variable,None,0,3,1,yes
+3397213,(N = xx),'Lapatinib plus bevacizumab ; ',?,None,1,1,1,yes
+3414800,'AHI<x n=xx','OSA ; snorers ; ',?,None,2,1,1,yes
+3414800,'AHI x – xx n=xx',' ; mild/moderate ; ',?,None,2,2,1,yes
+3414800,'AHI?xx n=xx',' ; severe ; ',?,None,2,3,1,yes
+3427446,'Values (N?=?xx)',?,Characteristics,None,0,1,1,yes
+3427446,'Group x (N?=?xx)',?,Characteristics,None,0,1,1,yes
+3427446,'Group x (N?=?xx)',?,Characteristics,None,0,2,1,yes
+3465101,'Efavirenz arm (n?=?xx)',?,Parameter,None,0,1,1,yes
+3465101,'Nevirapine arm (n?=?xx)',?,Parameter,None,0,2,1,yes
+3466131,N?=?xxx,'Group A ; (XELIRI-Bev) ; ',?,None,2,1,1,yes
+3466131,N?=?xxx,'Group B ; (FOLFIRI-Bev) ; ',?,None,2,2,1,yes
+3493663,'ITT xx (xxx.x \%)',?,?,None,0,1,1,yes
+3493663,'PP xx (xxx.x \%)',?,?,None,0,2,1,yes
+3502482,'xx Gy step (n?=?xx)',?,?,None,0,1,1,yes
+3502482,'xx Gy step (n?=?xx)',?,?,None,0,2,1,yes
+3502482,'xx Gy (n?=?xx)',?,Characteristic,None,0,2,1,yes
+3502482,?,'Characteristic ; ',None,None,1,0,12,yes
+3511174,'Group B (n?=?x)',?,?,None,0,1,1,yes
+3511174,'Group BT (n?=?x)',?,?,None,0,2,1,yes
+3519573,'Total (N?=?xxx)',?,?,None,0,1,1,yes
+3519573,'Total (N?=?xxx)',?,?,None,0,1,1,yes
+3519573,xxx,'N ; ','Overall ease of use',None,1,1,3,yes
+3519573,xxx,'N ; ','Overall ease of use',None,1,1,3,yes
+3553405,'Cilengitide xxx mg/mxn?=?xx',?,Characteristics,None,0,1,1,yes
+3553405,'Cilengitide xxx mg/mxn?=?xx',?,Characteristics,None,0,2,1,yes
+3553405,'Cilengitide xxx mg/mxn?=?xx',?,Characteristics,None,0,3,1,yes
+3553405,'Docetaxel xx mg/mxn?=?xx',?,Characteristics,None,0,4,1,yes
+3553405,'Total n?=?xxx',?,Characteristics,None,0,5,1,yes
+3588608,'A (n = xx)','Group ; ','A (n = xx)',None,1,0,2,yes
+3588608,'B (n = xx)','Group ; ','B (n = xx)',None,2,0,2,yes
+3588608,'C (n = x)','Group ; ','C (n = x)',None,3,0,2,yes
+3588608,'Entire group (n = xx)','Group ; ','Entire group (n = xx)',None,4,0,2,yes
+3589659,'xx (xxx.x)','Total patient population ; ','Total treated',?,2,1,2,yes
+3599166,'Moderate (n = x)',?,?,None,0,1,1,yes
+3599166,'Moderate (n = x)',?,?,None,0,2,1,yes
+3599166,'High (n = xx)',?,?,None,0,3,1,yes
+3599166,'High (n = xx)',?,?,None,0,4,1,yes
+3600043,'Manic n?=?xx',?,?,None,0,1,1,yes
+3600043,'Hypomanic n?=?xx',?,?,None,0,2,1,yes
+3600043,'Mixed n?=?xx',?,?,None,0,3,1,yes
+3600043,'Depressive n?=?xx',?,?,None,0,4,1,yes
+3600043,'Global N?=?xxx',?,?,None,0,5,1,yes
+394324,'n = x','pts. ; ','L. GG',None,1,1,3,yes
+394324,'n = x','pts. ; ',Placebo,None,2,1,3,yes
+420259,'n = xx',?,'n = xx',?,4,0,2,yes
+420259,'n = xx',?,'n = xx',?,6,0,24,yes
+420259,'n = xx',?,'n = xx',?,9,0,24,yes
+420259,'n = x',?,'n = x',?,12,0,24,yes
+420259,'n = xx',?,'n = xx',?,15,0,24,yes
+420259,'n = xx',?,'n = xx',?,24,0,24,yes
+420259,'n = xx',?,'n = xx',?,27,0,24,yes
+3231981,x,'Duration of dialysis (years) ; x ;  ; x ;  ; x ;  ; x ;  ; ',None,None,9,3,?,no
+3368715,'xxx (xx.x)','Febuxostat xx mgN = xxx ; ',No,' Tophi present, n (\%)',39,2,3,no
+2360764,'Metastatic sites','No. of patients ; xx ; ','Metastatic sites',None,20,1,43,no
+2758901,?Unknown,' ;  ;  ; TOTAL ;  ; ',?Unknown,?,23,0,?,no
+3368715,?,'Allopurinol xxx/xxx mgN = xxx ; ',None,None,18,3,3,no
+2360092,+,'RT ; ',' x',?,8,8,3,no
+1586008,'Mean Canadian cardiovascular Class','Variables ; ','Mean Canadian cardiovascular Class',None,16,0,2,no
+3466131,'xx (xx)','Group A ; (XELIRI-Bev) ; N?=?xxx ; ',Yes,' Previous adjuvant chemotherapy',30,1,3,no
+3600043,'x.x (x.x)','Mixed n?=?xx ; ','Number of episodes lifetime (mean, SD)',?,12,3,3,no
+2905428,?,' ; ',?,' Tumor size (cm)',6,0,2,no
+2360042,'Previous surgery','No ; ','Previous surgery',?,28,1,43,no
+2734077,xx.xx (x.xx),'Patients ; TAU-Alone Group (n = xx, xx men) ; ',?,' Accuracy (\%; Chance Performance = xx\%)',9,3,3,no
+1998889,'x.x (xx/xx)','TUmax/BG: baseline ; ',xx,' Patients without obvious tumour at baseline followed by tumour recurrence',10,8,3,no
+420259,x,?,?,?,28,7,3,no
+1488867,Histology,'Characteristic ; ',None,None,8,0,24,no
+2360042,?,'Characteristic ; ',?,?,17,0,2,no
+2765955,?,'P* ;  ; x.x ;  ; <x.xxx ; ',None,None,5,3,?,no
+3493663,?,' ; ',?,' Performance status (ECOG)',15,0,2,no
+2894785,?hypertension+hyperlipidemia,'Characteristics ; ',?hypertension+hyperlipidemia,' Age, mean ± SD (years)',19,0,?,no
+2820141,'xx.x ± x.x','Event-free Survival ± SE (\%) ;  ; xx-yr EFS ; ',?,' Age at Diagnosis',19,3,3,no
+3321091,'Total MotorASIA **',?,'Total MotorASIA **',None,7,0,2,no
+3539065,xx,'Cohort x ; Lapatinib x,xxx mg + placebo ; ','Modified intent-to-treat population, n',?,2,1,3,yes
+3247194,'CES-D score','Characteristic ; Number ;  ; Age (yrs) ;  ; Male (\%) ;  ; Smoking, pack-years ;  ; FEVx \% predicted ;  ; \% Low attenuation area on CT (< -xxxHU) ;  ; < x\% emphysema ;  ; x-xx\% emphysema ;  ; xx-xx\% emphysema ;  ; > xx\% emphysema ;  ; \% reversibility FEVx ;  ; BMI ;  ; Fat free mass index ;  ; ','CES-D score',?,41,1,?,no
+2481444,xx,'NAd ; ',xx,None,11,6,3,no
+2527821,?x,' ; ',?x,' WHO performance status',19,0,2,no
+2758901,?,'Gefitinib ; No ;  ; xxx ;  ; ',None,None,30,1,?,no
+2360617,xx,'THC treatment ; Total days ; ',x,None,3,5,3,no
+3247194,'xx\%','COPD Subjects ; xxx ;  ; xx.x (x.x) ;  ; xx\% ;  ; xx.x (xx.x) ;  ; xx.x (xx.x) ;  ; xx.x (xx.x) ;  ; xx\% ;  ; xx\% ;  ; xx\% ;  ; xx\% ;  ; x.x (xx.x) ;  ; xx.x (x.x) ;  ; xx.x (x.x) ;  ; ','Number of exacerbations in year prior to enrollment in ECLIPSE',?,27,2,?,no
+3152943,'RF (kIU/L), mean (SD)','Variable ; Female sex, n (\%) ;  ; Age, mean (SD) years ;  ; Duration of RA, mean (SD) years ;  ; ','RF (kIU/L), mean (SD)',?,17,0,?,no
+2359721,xx,?,?No,' Prior hormonal therapy',15,1,3,no
+1586008,'Atrial fibrillation','Variables ; ','Atrial fibrillation',None,13,0,2,no
+2765955,?,' ;  ; Age ;  ; Height (m) ;  ; Weight (kg) ;  ; BMI (kg/mx) ;  ; K&L Grade x ; ',None,None,11,0,?,no
+3502482,'xx\%','xx Gy step (n?=?xx) ; ',x,' Scarff & Bloom histology grade',11,1,3,no
+3519573,x.x,'Mean ; ','xg. Changing the dose when the doctor changes the prescriptionx',None,8,2,3,no
+2820141,N,' ;  ; ',Protocol,None,2,1,1,no
+3519573,x.x-x.x,'Range ; ','xc. Mixing the medicine',None,4,6,3,no
+3165084,?,'Patient Characteristics ; Total patients ;  ; ',None,None,6,0,?,no
+3464767,'\%','Trastuzumab ; ',Parameter,None,1,2,1,no
+3466131,'x (x)','Group A ; (XELIRI-Bev) ; N?=?xxx ; ','Rectosigmoid and cecum',' Primary location',20,1,3,no
+1998889,x,'RIT cycles ; ',xx,' Patients without obvious tumour at baseline followed by tumour recurrence',2,4,3,no
+2835652,x,'x.x ?g ; xx ; ',???x,' Advanced disease ?No. of visceral organs involved ??x (subcutaneous, nodal)',31,2,3,no
+420259,?,'Denuded apices ; ','group x vs group x',None,10,12,3,no
+3208500,?Positive,'Characteristics ; ',?Positive,' EGFR mutation status',27,0,2,no
+2360092,HG,'Histotype ; ',xx,?,34,4,3,no
+2822223,xx,'Patients ; Percentage of irradiated bone marrow volume ; ',x,None,10,5,3,no
+3208500,?Unknown,'Characteristics ; ',?Unknown,' EGFR mutation status',29,0,2,no
+420259,?,'Cell inhomogeneity ; ','group x vs group x',None,7,3,3,no
+2835652,x,'x.x ?g ; xx ; ',???x,' Advanced disease ?No. of visceral organs involved ??x (subcutaneous, nodal)',31,2,3,no
+2361378,'xx (xx)','n (\%) ; ','?Prior pancreatic surgery',' Prior therapy',21,1,3,no
+3231981,M,'Gender ; F ;  ; F ;  ; F ;  ; ',None,None,7,2,?,no
+2837631,Chemotherapy,?,None,None,36,0,24,no
+2481444,'xx,xxx','Heparin, IU/xx hours ; ',x,None,1,5,3,no
+1885552,'xxx ± xx,x','Systolic blood pressure (mm Hg) ; ','Vibration (xx)',None,3,4,3,no
+2820141,'xx.x ± x.x','Overall Survival ± SE (\%) ;  ; x-yr OS ; ',?,' WBC (× xxx/L)',24,6,3,no
+2360042,'?Lymph nodes','Characteristic ; ',?=high,' Motzer risk factor',16,4,3,no
+3464767,?,'Trastuzumab ; \% ; ',None,None,14,2,3,no
+3097354,'FIGO stage','Intervention group, N?=?xx ; ','FIGO stage',None,8,0,2,no
+3231981,x,'Duration of dialysis (years) ; x ;  ; x ;  ; x ;  ; ',None,None,7,3,?,no
+3231981,?,'Age (year) ; xx ; ',None,None,2,1,?,no
+2758901,?,'Gefitinib ; \% ;  ;  ;  ; ',None,None,27,2,?,no
+2894820,x.xx,'Control(mean) ; ',?,?,21,2,3,no
+1998889,IV,'WHO ; ',xx,' Serial FET PET monitoring during and after RIT',8,2,3,no
+3176247,(xx.x),'(\%) ;  ;  ; ',?,?,17,7,3,no
+3519573,'xx (x.x\%)','Floor (\%) ; ','xj. Knowing when the injection pen has finished injecting the medicine',None,11,4,3,no
+3247194,?,'Characteristic ; Number ;  ; Age (yrs) ;  ; Male (\%) ;  ; Smoking, pack-years ;  ; FEVx \% predicted ;  ; \% Low attenuation area on CT (< -xxxHU) ;  ; < x\% emphysema ;  ; x-xx\% emphysema ; ',None,None,16,1,?,no
+420259,?,'Flattened cells ; ','group x vs group x',None,6,13,3,no
+2855860,'xxx (xx)','Sunitinib (N = xxx) ; ',?,' Prior taxane treatment, n (\%)a',32,1,3,no
+420259,x,?,?,?,28,15,3,no
+3414800,mild/moderate,' ; ',?,None,1,2,1,no
+2820141,'Overall Survival ± SE (\%)',?,?,None,0,6,1,no
+2517161,xx.xx,'Fluoroscopy time (min) ; ',xx,None,15,2,3,no
+2360764,'ECOG PS','No. of patients ; xx ; ','ECOG PS',None,8,1,43,no
+2361304,x,'Prior CT agents ; ',xx,None,1,3,3,no
+420259,x,?,'n = xx',?,18,4,43,no
+2361889,'xx (xx.x\%)',?,?x,' Number of sites of disease',30,1,3,no
+2820141,?,'Overall Survival ± SE (\%) ;  ; xx-yr OS ; ',Immunophenotype,None,4,8,43,no
+2517161,x,'LVL fluoroscopy (min) ; ',x,None,2,3,3,no
+3494535,F,'Sex ; ',xx,None,11,2,3,no
+3483202,'Age years',' ; ','Age years',?,1,0,2,no
+420259,x,?,?,?,28,5,3,no
+2361304,xx,'Baseline CA xx.x ; ',xx,None,1,9,3,no
+3483202,xx,'Diabetes mellitus, n?=?xx ; ',Smokers,?,3,1,3,no
+420259,'SD (x,x)','Cell inhomogeneity ; ','group x vs group x',None,10,3,3,no
+2902493,?,' ;  ;  ; ',None,None,24,1,?,no
+420259,x,?,'n = xx',?,27,20,43,no
+420259,Median,?,'Group x',?,2,1,3,no
+2517161,xx,'Procedure time (min) ; ',x,None,2,1,3,no
+3447603,xx.x,'TIV (\%) ; ',Cancer,?,26,2,3,no
+1998889,'Patients with small residual tumour at baseline followed by tumour progression','Age (yrs) ; ',None,None,12,0,24,no
+2360092,xx,'TFTF ; ',xx,?,24,10,3,no
+2599890,x,'Duration surgery (hr) ; ',xx,None,11,4,3,no
+2831811,xx.x,'PASI Baseline ; x.x ;  ; x.x ;  ; xx.x ;  ; xx.x ;  ; xx.x ;  ; xx.x ;  ; x.x ;  ; xx.x ;  ; xx.x ;  ; xx.x ;  ; xx.x ;  ; xx.x ;  ; ',None,None,25,5,?,no
+3368715,?,'Febuxostat xx mgN = xxx ; ',None,None,62,2,3,no
+1389847,'Patient ID',?,None,None,0,0,12,no
+2894785,?female,'Characteristics ; ',?female,' Age, mean ± SD (years)',6,0,?,no
+3176247,?,'Characteristics ;  ;  ; ',?,?,17,0,2,no
+3291838,xx,'n ; ',?,' Sex',46,1,3,no
+1998889,f,'Sex ; ',xx,' Serial FET PET monitoring during and after RIT',7,1,3,no
+2758901,?,'Erlotinib ; \% ;  ;  ;  ; ',None,None,20,4,?,no
+420259,x,?,?,?,22,9,3,no
+3493663,x,'PFS (months) ; ',f,None,6,13,3,no
+2360092,A,'First line ; ',xx,?,21,5,3,no
+3600043,'xx.x (xx.x)','Global N?=?xxx ; ','Duration of illness in years (mean, SD)',?,11,5,3,no
+3466131,'VEGF-A (pg/mL)','Min ; ','VEGF-A (pg/mL)',None,10,5,43,no
+3493663,?,' ; ',?,' M category (AJCC)',17,0,2,no
+2816665,'xx\%','Subgroup A ; ','Primary in-situ at study entry',None,5,2,3,no
+1998889,xx,'Age (yrs) ; ',xx,' Patients with small residual tumour at baseline followed by tumour progression',15,0,2,no
+2820141,?,'Event-free Survival ± SE (\%) ;  ; p-value ; ',?,' Immunophenotype',7,5,3,no
+2360617,'Total days','THC treatment ; ',Patient,None,1,5,1,no
+3291838,xx,'n ; ',?,' Alcohol consumption',50,1,3,no
+3152943,?,'Canakinumab xxx mg SC qxwk + xxx mg IV loading dose, n = xx ; xx (xx.x) ;  ; xx.xx (xx.xxx) ;  ; x.xx (x.xxx) ; ',None,None,6,3,?,no
+420259,x,?,'n = xx',?,6,5,43,no
+2517161,'Procedure time (min)',?,'Patient number',None,0,1,1,no
+2361304,xx,'Number ; ',?Radiotherapy,' Previous therapies',19,1,3,no
+3291838,x.xxx,'p value* ; ',?,' EPHXx c.xxx',23,3,3,no
+3152943,?,'Canakinumab xxx mg SC qxwk, n = xx ; xx (xx.x) ;  ; xx.xx (xx.xxx) ;  ; xx.xx (x.xxx) ;  ; ',None,None,14,2,?,no
+2360764,xx.x,'\% ; xxx ; ','?Pleural effusion or seeding',' Metastatic sites',24,2,3,no
+3195264,Tumors,' ; ',None,None,13,0,24,no
+2360042,?Range,'Characteristic ; ',?Range,' Age, years',5,0,2,no
+2820141,'xx.x ± xx.x','Overall Survival ± SE (\%) ;  ; xx-yr OS ; ',?,' Age at Diagnosis',18,8,3,no
+3599166,x.x ± x.x,'Moderate (n = x) ; POST ; ','Peripheral PWV (m/s)',None,11,2,3,no
+420259,?,'Plicae ; ','group x vs group x',None,14,20,3,no
+2820141,xxx,' ;  ; N ; ',?,' Sex',15,1,3,no
+3407730,??Male?,'Variable ; ',??Male?,' Sex, n (\%) ',3,0,2,no
+2820141,'xx.x ± x.x','Overall Survival ± SE (\%) ;  ; xx-yr OS ; ',?,' MRD Day xx**',47,6,3,no
+420259,'SD (x.x,x)','Cell inhomogeneity ; ','group x vs group x',None,13,3,3,no
+2551676,xx,'Baseline insulin requirement (IU/day) ; Baseline insulin requirement (IU/day) ; ',x,None,7,1,3,no
+2656521,'xxx.x ± xx.x','Diffuse Steatosis(n xx) ; ','Cholesterol (mg\\dl)',None,6,2,3,no
+3519573,'Person responsible for giving the shot, n (\%)',' ; ','Person responsible for giving the shot, n (\%)',None,17,0,2,no
+2361889,?x,?,?x,' Performance statusa',6,0,2,no
+3195264,?,' ; ',?,' Tumors',16,0,2,no
+2361304,x.x,'TTP ; ',xx,None,6,11,3,no
+3231981,'Old age, severe ischemic cardiopathy-Diastolic dysfunction','Risks factors for dialysis hypotension ; Long duration of dialysis (x years), SLE still active treated by steroïds and ciclosporin - Diastolic dysfunction ;  ; Very old age, severe ischemic cardiopathy - Diastolic dysfunction ;  ; Cardiac graft for ten years-Diastolic dysfunction ;  ; Very old age, severe ischemic cardiopathy-Diastolic dysfunction ;  ; Old age, diabetes, pace-maker, panhypotuitarism - Diastolic dvsfunction ;  ; Very old age, severe ischemic and valvular cardiopathy - Diastolic dysfunction ;  ; ',None,None,13,7,?,no
+2820141,?,'Overall Survival ± SE (\%) ; ',?,None,1,7,1,no
+2718192,'xx.x (x.x–xxx.x)','x.xxxx mg dose ; ','Daily caffeine intake (mean (range), mg)',?,4,2,3,no
+3338391,'xx\%','Study sites ;  ; High transmission ;  ; Vohimasy ; xxx ;  ; xx.x ;  ; x.xx ;  ; xxx ;  ; xx\% ;  ; ','Microscopy + (\%)',?,15,2,?,no
+3349177,'Metastasis sites','No. of patients ; ','Metastasis sites',None,13,1,43,no
+394324,x/x,'Relapse ; ','L. GG',None,1,6,3,no
+2820141,'xx.x ± xx.x','Overall Survival ± SE (\%) ;  ; x-yr OS ; ',?,' Age at Diagnosis',18,6,3,no
+420259,x,?,'Group x',?,11,4,3,no
+3195264,'BMI (kg m?x)',?,Patients,None,0,2,1,no
+3553405,Characteristics,?,None,None,0,0,12,no
+2360092,—,'First line ; ',xx,?,35,5,3,no
+2360092,R,'Failure ; ',xx,?,10,9,3,no
+2835652,x,'xx ?g ; xx ; ',?x,' Prior treatment: no. of regimens',11,3,3,no
+2820141,?,' ;  ; Protocol ; ',?,' WBC',23,0,2,no
+3231981,?,'Duration of dialysis (years) ; x ;  ; x ; ',None,None,4,3,?,no
+2360617,xx,' ; Time from second surgery to death (wk) ; ',x,None,2,9,3,no
+3208500,xx,'Number of patients ; ',?x,' Performance status',13,1,3,no
+3407730,'x (xx.xx)','Result ; ','??Liver cancer?',' Primary tumor, n (\%) ',9,1,3,no
+3493663,x,'OPS (ECOG) ; ',m,None,9,6,3,no
+3466131,xx.xx,'SD ; ','On-treatment samples',' TGF-?x(ng/mL)',9,4,3,no
+2361304,?Liver,'Parameter ; ',?Liver,' Site of disease',9,0,2,no
+2360042,x,'No ; ',?x=intermediate,' Motzer risk factor',15,5,3,no
+2599890,xx,'Age (y) ; ',xx,None,12,1,3,no
+420259,'SD (x,x)','Deflated cells ; ','group x vs group x',None,2,14,3,no
+3427446,'Surgical treatment (yes/no)','Characteristics ; ','Surgical treatment (yes/no)',?,5,0,2,no
+3539065,'xx (xx)','Cohort x ; Lapatinib x,xxx mg + placebo ; ','Prior biologic therapy, n (\%)',' Stage, n (\%)',13,1,3,no
+2820141,?,'Event-free Survival ± SE (\%) ;  ; xx-yr EFS ; ',T-lineage†,None,11,3,43,no
+3080287,tomotherapy,' ; ',tomotherapy,?,10,0,2,no
+2481444,Unknown,'Causative organism ; ',x,None,1,6,3,no
+2894820,x.xx,'p-value ; ',?,?,8,4,3,no
+1090597,'Length of illness (yr.)',' ; ','Length of illness (yr.)',?,24,0,?,no
+420259,x,?,'n = x',?,12,20,43,no
+3291838,xx,'n ; ',?,' Concomitant medication',60,1,3,no
+2831811,?,'PASI Baseline ; x.x ;  ; x.x ;  ; xx.x ; ',None,None,6,5,?,no
+420259,Median,?,'(Group x)',?,8,1,3,no
+2831811,x,'Patients ; x ;  ; x ;  ; x ;  ; x ;  ; x ;  ; x ;  ; ',None,None,13,0,?,no
+3464767,'?ER negative/PR positive',' ; Parameter ; ','?ER negative/PR positive',' Hormone receptor status',18,0,2,no
+420259,x,?,?,?,13,13,3,no
+2599890,'Diuresis (ml/kg/hr)x',?,Nox,None,0,9,1,no
+3464767,xx,'Lapatinib ; No. ; ',?Gx,' Grading',12,3,3,no
+3447603,xx.x,'TIV (\%) ; ','Chronic obstructive pulmonary disease',?,23,2,3,no
+2481444,xx,'Patient ; ',xx,None,16,0,2,no
+2837631,'?Invasive lobular',?,'?Invasive lobular',' Histologic type',9,0,2,no
+3231981,'Triacetate (TRICEAxxx-Baxter)','Dialysis membrane ; Polysufone (ARYLANE Hx - Hospal) ;  ; Diacetate (DICEAxxx-Baxter) ;  ; PMMA (BKFxx-Toray) ;  ; Diacetate (DICEA xxx-Baxter) ;  ; ',None,None,9,5,?,no
+3291838,'x.xx (x.xx–x.xx)','Daily phenprocoumon dose, mg ; ',?,' Fx c.-xxx',30,2,3,no
+2360092,PD,'OR ; ',xx,?,16,11,3,no
+2835652,?,'x.x ?g ; xx ; ',None,None,24,2,3,no
+2820141,?,' ;  ; Protocol ; ',?,' CNS leukemia',27,0,2,no
+3321091,xx,?,' Sitting Height  (cm) ',None,4,6,3,no
+420259,x,?,'Group x',?,11,4,3,no
+2820141,xxx,' ;  ; N ; ',?,' TEL/AMLx*',41,1,3,no
+3466131,xx.xx,'Mean ; ','On-treatment samples',' VEGF-A (pg/mL)',12,2,3,no
+3080287,'x pt',?,?,?,12,2,3,no
+1090597,Undifferentiated,' ; ',Undifferentiated,?,7,0,?,no
+3368715,'xx (xx.x)','Febuxostat xx mgN = xxx ; ',Yes,?,43,2,3,no
+2820141,x,' ;  ; N ; ',?,' CNS leukemia',26,1,3,no
+3468079,?,'Cohort x (xxx mg of posaconazole), n?=?x ; ',None,None,1,2,3,no
+2820141,?,'Overall Survival ± SE (\%) ;  ; p-value ; ','WBC (× xxx/L)',None,20,9,43,no
+3519573,'x (x.x\%)','Floor (\%) ; ','xf. Setting the dose',None,7,4,3,no
+3488983,M,'Sex ; ',VOS,None,4,1,3,no
+1488867,'x (xx\%)','n(\%) ; ','?P. S x',' Age (years)',6,1,3,no
+2820141,'xx.x ± x.x','Event-free Survival ± SE (\%) ;  ; x-yr EFS ; ',?,' Age at Diagnosis',19,2,3,no
+2820141,?,' ;  ; Protocol ; ',?,' DFCI Risk Group',32,0,2,no
+3338924,'xx.x (x.x)','R-UPDRS OFF meds/stim ; ','PD FOG',None,3,5,3,no
+3338924,?,'Parkinson’s disease duration (years) ; ','Healthy controls',None,1,3,3,no
+3589659,'x (x.x)','Total patient population ; ',?,' Type of cancer',21,1,3,no
+3368715,?,'Febuxostat xx mgN = xxx ; ',None,None,37,1,3,no
+3519573,x.x,'SD ; ','xc. Mixing the medicine',None,4,3,3,no

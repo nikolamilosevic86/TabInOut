@@ -403,6 +403,29 @@ class QueryDBCalss:
         results = cursor.fetchall()
         return results
     
+    def getDataForTrainingDataset(self,):
+        cursor = self.db.cursor()
+        sql = """ SELECT idArticle,article.PMCID,idTable,TableOrder,SpecPragmatic,idCell,CellType,RowN,ColumnN,Content,WholeHeader,WholeStub,WholeSuperRow FROM article inner join arttable on arttable.Article_idArticle=article.idArticle 
+ inner join cell on cell.Table_idTable=arttable.idTable 
+ where idArticle in (19,25,164,166,215,309,449,715,1118,1233,1273,1283,1287,1291,1359,1362,1376,1410,1423,1446,1504,1985,2165,2207,2230,
+2246,2269,2370,2478,2486,2656,2688,2737,2809,2811,2834,2864,3023,3030,3044,3085,3088,3094,3097,3105,3162,3275,3276,
+3291,3308,3324,3561,3652,3950,3974,4011,4024,4113,4185,4246,4305,4375,4428,4539,4585,4713,4733,4744,4861,4908,4914,
+4958,5055,5162,5267,5330,5383,5469,5558,5561,5569,5578,5636,5637,5666,5696,5704,5758,5807,5842,5842,5937,6034,6191,
+6195,6286,6311,6382,6405,6540) and SpecPragmatic='BaselineCharacteristic' """ 
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        return results
+    
+    def getCellRole(self,idCell):
+        cursor = self.db.cursor()
+        sql = "select CellRole_idCellRole from cell inner join cellroles on cell.idCell=cellroles.Cell_idCell where idCell='"+str(idCell)+"'"
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        return results
+        
+        
+        
+    
     def getCellsAnnotated(self,tableID,stringList):
         cursor = self.db.cursor()
         sql = "SELECT * FROM cell inner join annotation on cell.idCell = annotation.Cell_idCell where Table_idTable = '"+str(tableID)+"' and ("

@@ -1,0 +1,319 @@
+ArticleId,PMCid,TableName,SpecPragmatics,CellContent,Header,Stub,SuperRow,rowN,columnN,function,hasValue
+25,1131894,Table 3,BaselineCharacteristic,xx,,Number,,0,1,3,yes
+449,1885552,Table 1,BaselineCharacteristic,Stretching (xx),Intervention group (number of subjects) ; ,Stretching (xx),None,1,0,2,yes
+449,1885552,Table 1,BaselineCharacteristic,Strength (xx),Intervention group (number of subjects) ; ,Strength (xx),None,2,0,2,yes
+449,1885552,Table 1,BaselineCharacteristic,Vibration (xx),Intervention group (number of subjects) ; ,Vibration (xx),None,3,0,2,yes
+1118,2204057,Table 1,BaselineCharacteristic,xx,N ; ,Group x,None,1,1,3,yes
+1118,2204057,Table 1,BaselineCharacteristic,xx,N ; ,Group x,None,2,1,3,yes
+1118,2204057,Table 1,BaselineCharacteristic,x,N ; ,Controls,None,3,1,3,yes
+1118,2204057,Table 1,BaselineCharacteristic,xx,N ; ,TOTAL COHORT,None,4,1,3,yes
+1233,2259321,Table 1,BaselineCharacteristic,xx (xx),Celecoxib Dose ;  ; xxx mg twice daily ;  ; NAF (plasma) ; ,Samples,,5,1,3,yes
+1233,2259321,Table 1,BaselineCharacteristic,xx (xxx,Celecoxib Dose ;  ; xxx mg twice daily ;  ; NAF(plasma) ; ,Samples,,5,2,3,yes
+1273,2359721,Table 1,BaselineCharacteristic,xx,,Total,None,0,1,1,yes
+1287,2360042,Table 1,BaselineCharacteristic,xx,No ; ,Total,,1,1,3,yes
+1359,2360595,Table 1,BaselineCharacteristic,xx,,Number of patients,None,0,1,1,yes
+1376,2360764,Table 1,BaselineCharacteristic,xx,No. of patients ; ,Characteristics,None,1,1,1,yes
+1423,2361378,Table 1,BaselineCharacteristic,xx,n (%) ; ,Patients enrolled,,1,1,3,yes
+1504,2361889,Table 1,BaselineCharacteristic,Patients (N=xx),,Characteristics,,0,1,3,yes
+1985,2395315,Table 1,BaselineCharacteristic,xx,EMP & VBL ; ,n=,None,1,1,1,yes
+1985,2395315,Table 1,BaselineCharacteristic,xx,EMP alone ; ,n=,None,1,2,1,yes
+2165,2441954,Table 1,BaselineCharacteristic,xx,No. of patients ; ,Total,,1,1,3,yes
+2246,2527821,Table 1,BaselineCharacteristic,xx,na (%) ; ,Patients,,1,1,3,yes
+2478,2656521,Table 1,BaselineCharacteristic,Steatohepatitis (n xx),,,None,0,1,1,yes
+2478,2656521,Table 1,BaselineCharacteristic,Diffuse Steatosis(n xx),,,None,0,2,1,yes
+2478,2656521,Table 1,BaselineCharacteristic,Focal Fatty Liver (n x),,,None,0,3,1,yes
+2478,2656521,Table 1,BaselineCharacteristic,Controls (n xx),,,None,0,4,1,yes
+2737,2734077,Table 1,BaselineCharacteristic,Healthy Participants (n = xx; xx men),,,None,0,1,1,yes
+2737,2734077,Table 1,BaselineCharacteristic,Healthy Participants (n = xx; xx men),Healthy Participants (n = xx; xx men) ; ,,None,1,1,1,yes
+2811,2758901,Table 1,BaselineCharacteristic,xxx,Gefitinib ; No ;  ; ,None,None,3,1,,yes
+2811,2758901,Table 1,BaselineCharacteristic,xx,Erlotinib ; No ;  ; ,None,None,3,3,,yes
+2834,2765955,Table 1,BaselineCharacteristic,(n = xx),Males ; ,None,None,1,1,,yes
+2834,2765955,Table 1,BaselineCharacteristic,(n = xx),Females ; ,None,None,1,2,,yes
+2864,2774660,Table 1,BaselineCharacteristic,xx,Total ; ,Total Participants,None,1,1,3,yes
+2864,2774660,Table 1,BaselineCharacteristic,xx,Phase x - treatment ; ,Total Participants,None,1,2,3,yes
+2864,2774660,Table 1,BaselineCharacteristic,xx,Phase x - placebo ; ,Total Participants,None,1,3,3,yes
+3023,2816665,Table 1,BaselineCharacteristic,xxx,All patients ; ,Patient number,None,1,1,3,yes
+3023,2816665,Table 1,BaselineCharacteristic,xx,Subgroup A ; ,Patient number,None,1,2,3,yes
+3023,2816665,Table 1,BaselineCharacteristic,xx,Subgroup B ; ,Patient number,None,1,3,3,yes
+3023,2816665,Table 1,BaselineCharacteristic,xx,Subgroup C ; ,Patient number,None,1,4,3,yes
+3030,2820141,Table 5,BaselineCharacteristic,xxx, ;  ; N ; ,Overall,,3,1,3,yes
+3030,2820141,Table 6,BaselineCharacteristic,xxx, ;  ; N ; ,Overall,,3,1,3,yes
+3030,2820141,Table 7,BaselineCharacteristic,xxx, ;  ; N ; ,Overall,,3,1,3,yes
+3030,2820141,Table 8,BaselineCharacteristic,xxx, ;  ; N ; ,Overall,,3,1,3,yes
+3162,2855860,Table 1,BaselineCharacteristic,Sunitinib (N = xxx),,Patient characteristics,None,0,1,1,yes
+3162,2855860,Table 1,BaselineCharacteristic,Capecitabine (N = xxx),,Patient characteristics,None,0,2,1,yes
+3275,2894785,Table 1,BaselineCharacteristic,Intervention Groupn = xx,,None,None,0,1,,yes
+3275,2894785,Table 1,BaselineCharacteristic,ControlGroupn = xxx,,None,None,0,2,,yes
+3291,2902493,Table 1,BaselineCharacteristic,xx,,None,None,0,2,,yes
+3561,2990606,Table 1,BaselineCharacteristic,xx,,?Total,None,1,1,1,yes
+3561,2990606,Table 1,BaselineCharacteristic,xx,,?Evaluable,None,2,1,1,yes
+4024,3102212,Table 2,BaselineCharacteristic,No. patients (n = xx),,Characteristics,None,0,1,1,yes
+4246,3165084,Table 1,BaselineCharacteristic,xx(xxx),Number(percent) ; ,None,None,1,1,,yes
+4375,3195264,Table 1,BaselineCharacteristic,Iobitridol xxx (n?=?xx),,,None,0,1,1,yes
+4375,3195264,Table 1,BaselineCharacteristic,Iodixanol xxx (n?=?xx),,,None,0,2,1,yes
+4375,3195264,Table 1,BaselineCharacteristic,Total (n?=?xxx),,,None,0,3,1,yes
+4428,3208500,Table 1,BaselineCharacteristic,xx,Number of patients ; ,Patients,,1,1,3,yes
+4585,3247194,Table 1,BaselineCharacteristic,xxx,COPD Subjects ; ,None,None,1,2,,yes
+4585,3247194,Table 1,BaselineCharacteristic,xx,Smoker Controls ; ,None,None,1,3,,yes
+4585,3247194,Table 1,BaselineCharacteristic,xx,Non-smoker Controls ; ,None,None,1,4,,yes
+4713,3281202,Table 3,BaselineCharacteristic,N?=?xxx,ISSAAC ; ,,None,1,1,1,yes
+4713,3281202,Table 3,BaselineCharacteristic,N?=?xxx,INSECT ; ,,None,1,2,1,yes
+4908,3338391,Table 1,BaselineCharacteristic,xxx,Study sites ;  ; High transmission ;  ; Ampasimanjeva ; ,None,None,5,1,,yes
+4908,3338391,Table 1,BaselineCharacteristic,xxx,Study sites ;  ; High transmission ;  ; Vohimasy ; ,None,None,5,2,,yes
+4908,3338391,Table 1,BaselineCharacteristic,xxx,Study sites ;  ; Low transmission ;  ; Ampasimpotsy ; ,None,None,5,3,,yes
+4908,3338391,Table 1,BaselineCharacteristic,xxx,Study sites ;  ; Low transmission ;  ; Andasibe ; ,None,None,5,4,,yes
+4958,3349177,Table 1,BaselineCharacteristic,xx,No. of patients ; ,Total no.,,1,1,3,yes
+5055,3368715,Table 1,BaselineCharacteristic,Febuxostat xx mgN = xxx,,Variable,None,0,1,1,yes
+5055,3368715,Table 1,BaselineCharacteristic,Febuxostat xx mgN = xxx,,Variable,None,0,2,1,yes
+5055,3368715,Table 1,BaselineCharacteristic,Allopurinol xxx/xxx mgN = xxx,,Variable,None,0,3,1,yes
+5162,3397213,Table 1,BaselineCharacteristic,(N = xx),Lapatinib plus bevacizumab ; ,,None,1,1,1,yes
+5330,3414800,Table 1,BaselineCharacteristic,AHI<x n=xx,OSA ; snorers ; ,,None,2,1,1,yes
+5330,3414800,Table 1,BaselineCharacteristic,AHI x – xx n=xx, ; mild/moderate ; ,,None,2,2,1,yes
+5330,3414800,Table 1,BaselineCharacteristic,AHI?xx n=xx, ; severe ; ,,None,2,3,1,yes
+5383,3427446,Table 1,BaselineCharacteristic,Values (N?=?xx),,Characteristics,None,0,1,1,yes
+5383,3427446,Table 2,BaselineCharacteristic,Group x (N?=?xx),,Characteristics,None,0,1,1,yes
+5383,3427446,Table 2,BaselineCharacteristic,Group x (N?=?xx),,Characteristics,None,0,2,1,yes
+5561,3465101,Table 1.,BaselineCharacteristic,Efavirenz arm (n?=?xx),,Parameter,None,0,1,1,yes
+5561,3465101,Table 1.,BaselineCharacteristic,Nevirapine arm (n?=?xx),,Parameter,None,0,2,1,yes
+5569,3466131,Table 1,BaselineCharacteristic,N?=?xxx,Group A ; (XELIRI-Bev) ; ,,None,2,1,1,yes
+5569,3466131,Table 1,BaselineCharacteristic,N?=?xxx,Group B ; (FOLFIRI-Bev) ; ,,None,2,2,1,yes
+5696,3493663,Table 1,BaselineCharacteristic,ITT xx (xxx.x %),,,None,0,1,1,yes
+5696,3493663,Table 1,BaselineCharacteristic,PP xx (xxx.x %),,,None,0,2,1,yes
+5758,3502482,Table 1,BaselineCharacteristic,xx Gy step (n?=?xx),,,None,0,1,1,yes
+5758,3502482,Table 1,BaselineCharacteristic,xx Gy step (n?=?xx),,,None,0,2,1,yes
+5758,3502482,Table 2,BaselineCharacteristic,xx Gy (n?=?xx),,Characteristic,None,0,2,1,yes
+5758,3502482,Table 2,BaselineCharacteristic,,Characteristic ; ,None,None,1,0,12,yes
+5807,3511174,Table 1,BaselineCharacteristic,Group B (n?=?x),,,None,0,1,1,yes
+5807,3511174,Table 1,BaselineCharacteristic,Group BT (n?=?x),,,None,0,2,1,yes
+5842,3519573,Table 1,BaselineCharacteristic,Total (N?=?xxx),,,None,0,1,1,yes
+5842,3519573,Table 2,BaselineCharacteristic,Total (N?=?xxx),,,None,0,1,1,yes
+5842,3519573,Table 7,BaselineCharacteristic,xxx,N ; ,Overall ease of use,None,1,1,3,yes
+5842,3519573,Table 8,BaselineCharacteristic,xxx,N ; ,Overall ease of use,None,1,1,3,yes
+6034,3553405,Table 1,BaselineCharacteristic,Cilengitide xxx mg/mxn?=?xx,,Characteristics,None,0,1,1,yes
+6034,3553405,Table 1,BaselineCharacteristic,Cilengitide xxx mg/mxn?=?xx,,Characteristics,None,0,2,1,yes
+6034,3553405,Table 1,BaselineCharacteristic,Cilengitide xxx mg/mxn?=?xx,,Characteristics,None,0,3,1,yes
+6034,3553405,Table 1,BaselineCharacteristic,Docetaxel xx mg/mxn?=?xx,,Characteristics,None,0,4,1,yes
+6034,3553405,Table 1,BaselineCharacteristic,Total n?=?xxx,,Characteristics,None,0,5,1,yes
+6191,3588608,Table 1,BaselineCharacteristic,A (n = xx),Group ; ,A (n = xx),None,1,0,2,yes
+6191,3588608,Table 1,BaselineCharacteristic,B (n = xx),Group ; ,B (n = xx),None,2,0,2,yes
+6191,3588608,Table 1,BaselineCharacteristic,C (n = x),Group ; ,C (n = x),None,3,0,2,yes
+6191,3588608,Table 1,BaselineCharacteristic,Entire group (n = xx),Group ; ,Entire group (n = xx),None,4,0,2,yes
+6195,3589659,Table 1,BaselineCharacteristic,xx (xxx.x),Total patient population ; ,Total treated,,2,1,2,yes
+6286,3599166,Table 1,BaselineCharacteristic,Moderate (n = x),,,None,0,1,1,yes
+6286,3599166,Table 1,BaselineCharacteristic,Moderate (n = x),,,None,0,2,1,yes
+6286,3599166,Table 1,BaselineCharacteristic,High (n = xx),,,None,0,3,1,yes
+6286,3599166,Table 1,BaselineCharacteristic,High (n = xx),,,None,0,4,1,yes
+6311,3600043,Table 1,BaselineCharacteristic,Manic n?=?xx,,,None,0,1,1,yes
+6311,3600043,Table 1,BaselineCharacteristic,Hypomanic n?=?xx,,,None,0,2,1,yes
+6311,3600043,Table 1,BaselineCharacteristic,Mixed n?=?xx,,,None,0,3,1,yes
+6311,3600043,Table 1,BaselineCharacteristic,Depressive n?=?xx,,,None,0,4,1,yes
+6311,3600043,Table 1,BaselineCharacteristic,Global N?=?xxx,,,None,0,5,1,yes
+6382,394324,Table 1,BaselineCharacteristic,n = x,pts. ; ,L. GG,None,1,1,3,yes
+6382,394324,Table 1,BaselineCharacteristic,n = x,pts. ; ,Placebo,None,2,1,3,yes
+6405,420259,Table 3,BaselineCharacteristic,n = xx,,n = xx,,4,0,2,yes
+6405,420259,Table 3,BaselineCharacteristic,n = xx,,n = xx,,6,0,24,yes
+6405,420259,Table 3,BaselineCharacteristic,n = xx,,n = xx,,9,0,24,yes
+6405,420259,Table 3,BaselineCharacteristic,n = x,,n = x,,12,0,24,yes
+6405,420259,Table 3,BaselineCharacteristic,n = xx,,n = xx,,15,0,24,yes
+6405,420259,Table 3,BaselineCharacteristic,n = xx,,n = xx,,24,0,24,yes
+6405,420259,Table 3,BaselineCharacteristic,n = xx,,n = xx,,27,0,24,yes
+4185,3152943,Table 1,BaselineCharacteristic,Variable,,None,None,0,0,,no
+4185,3152943,Table 1,BaselineCharacteristic,,"Placebo, n = xx ; xx (xx.x) ;  ; xx.xx (xx.xxx) ;  ; x.xx (x.xxx) ;  ; ",None,None,14,4,,no
+3094,2831811,Table 1,BaselineCharacteristic,,Response ; NR ;  ; NR ;  ; NR ;  ; NR ;  ; NR ;  ; NR ;  ; NR ;  ; R ;  ; R ;  ; R ;  ; R ;  ; R ;  ; R ; ,None,None,26,4,,no
+4585,3247194,Table 1,BaselineCharacteristic,,Non-smoker Controls ; xx ;  ; xx.x (x.x) ;  ; xx% ;  ; x.x (x.x) ;  ; xxx.x (xx.x) ;  ; x.x (x.x) ;  ; xx% ;  ; x ;  ; x% ;  ; x ;  ; x.x (x.x) ;  ; xx.x (x.x) ;  ; xx.x (x.x) ;  ; ,None,None,44,4,,no
+3097,2835652,Table 1,BaselineCharacteristic,xx,Total ; xx ; ,Lung alone,,34,1,3,no
+3097,2835652,Table 1,BaselineCharacteristic,,xxx ?g ; x ; ,Brain alone,,36,4,3,no
+1985,2395315,Table 1,BaselineCharacteristic,EMP alone,,,None,0,2,1,no
+1410,2361304,Table 1,BaselineCharacteristic,?Lung,Parameter ; ,?Lung, Site of disease,10,0,2,no
+4539,3231981,Table 1,BaselineCharacteristic,,Modality of dialysis ; x h × x/Week ;  ; x h × x/Week ;  ; x h × x/Week ;  ; x h × x/Week ;  ; x h × x/Week ;  ; x hxx × x/Week ; ,None,None,12,6,,no
+1291,2360092,Table 1,BaselineCharacteristic,,Duration ; ,xx,,14,12,3,no
+4744,3291838,Table 3,BaselineCharacteristic,PROC c.-xxx,"Daily phenprocoumon dose, mg ; ",PROC c.-xxx,None,40,2,43,no
+3561,2990606,Table 1,BaselineCharacteristic,?Peritoneum,,?Peritoneum, Sites of metastasis,39,0,2,no
+3030,2820141,Table 7,BaselineCharacteristic,xx, ;  ; N ; ,, Immunophenotype,6,1,3,no
+5558,3464767,Table 1,BaselineCharacteristic,Tumour size,Trastuzumab ; % ; ,Tumour size,None,2,2,43,no
+3030,2820141,Table 7,BaselineCharacteristic,,Event-free Survival ± SE (%) ;  ; p-value ; ,Doxorubicin (HR only),None,43,5,43,no
+3030,2820141,Table 8,BaselineCharacteristic,,Overall Survival ± SE (%) ;  ; x-yr OS ; ,DFCI Risk Group,None,48,5,43,no
+5578,3468079,Table 1.,BaselineCharacteristic,xxx (xxx–xxx),"Cohort x (xxx mg of posaconazole), n?=?x ; ",?median (range)," Height, cm",15,2,3,no
+3097,2835652,Table 1,BaselineCharacteristic,x,xx ?g ; xx ; ,Stage IV disease,,53,3,3,no
+3291,2902493,Table 1,BaselineCharacteristic,Dose Prescription:,Number of patients ; Age [years](median and range) ;  ; ,None,None,25,0,,no
+19,1090597,Table 1,BaselineCharacteristic,Inpatients, ; ,Inpatients,,11,0,,no
+4585,3247194,Table 1,BaselineCharacteristic,Non-smoker Controls,,None,None,0,4,,no
+3030,2820141,Table 5,BaselineCharacteristic,Protocol, ;  ; ,None,None,2,0,12,no
+2207,2481444,Table 1,BaselineCharacteristic,xx,APACHE II score ; ,x,None,7,4,3,no
+4585,3247194,Table 1,BaselineCharacteristic,% Low attenuation area on CT (< -xxxHU),"Characteristic ; Number ;  ; Age (yrs) ;  ; Male (%) ;  ; Smoking, pack-years ;  ; FEVx % predicted ;  ; ",None,None,11,1,,no
+3030,2820141,Table 8,BaselineCharacteristic,, ;  ; Protocol ; ,, Age at Diagnosis,20,0,2,no
+2370,2599890,Table 1,BaselineCharacteristic,x.x (x.x–x.x),Mean (range) lactate (mmol/l)x ; ,xx,None,11,11,3,no
+3030,2820141,Table 8,BaselineCharacteristic,, ;  ; Protocol ; ,, Randomizations Doxurubicin (HR only),57,0,2,no
+2370,2599890,Table 1,BaselineCharacteristic,x.x (x.x–x.x),Mean (range) lactate (mmol/l)x ; ,xx,None,17,11,3,no
+3030,2820141,Table 8,BaselineCharacteristic,,Event-free Survival ± SE (%) ;  ; xx-yr EFS ; ,Down Syndrome,None,32,3,43,no
+5267,3407730,Table 2,BaselineCharacteristic,x.x (x–xx),Result ; ,??Mean (range)?, Length of hospital stay (days) ,20,1,3,no
+715,1998889,Table 1,BaselineCharacteristic,xx (l.c.),Survival (mo.) post surgery ; ,xx, Serial FET PET monitoring started after the end of RIT,4,11,3,no
+5842,3519573,Table 4,BaselineCharacteristic,x.x,Mean ; ,xk. Handling the injection pen while preparing and injecting the medicine,None,12,2,3,no
+4744,3291838,Table 1,BaselineCharacteristic,Nicotine habitsa,Parameter ; ,None,None,13,0,24,no
+4585,3247194,Table 1,BaselineCharacteristic,x%,Non-smoker Controls ; xx ;  ; xx.x (x.x) ;  ; xx% ;  ; x.x (x.x) ;  ; xxx.x (xx.x) ;  ; x.x (x.x) ;  ; xx% ;  ; x ;  ; x% ;  ; x ;  ; x.x (x.x) ;  ; xx.x (x.x) ;  ; xx.x (x.x) ;  ; ,,,29,4,,no
+1504,2361889,Table 1,BaselineCharacteristic,xx (xx.x%),,?x, Performance statusa,6,1,3,no
+4585,3247194,Table 1,BaselineCharacteristic,,Non-smoker Controls ; xx ;  ; xx.x (x.x) ;  ; xx% ;  ; x.x (x.x) ;  ; xxx.x (xx.x) ;  ; x.x (x.x) ;  ; xx% ;  ; x ;  ; x% ;  ; x ;  ; x.x (x.x) ;  ; xx.x (x.x) ; ,None,None,24,4,,no
+166,1389847,Table I.,BaselineCharacteristic,Diseaseat study entry,,PatientID,None,0,7,1,no
+4011,3097354,Table 1,BaselineCharacteristic,x,"Control group, N?=?xx ; ",Primary RT (Grays),None,28,4,3,no
+3030,2820141,Table 7,BaselineCharacteristic,xx.x ± xx.x,Event-free Survival ± SE (%) ;  ; x-yr EFS ; ,, Age at Diagnosis,18,2,3,no
+6311,3600043,Table 1,BaselineCharacteristic,"YMRS total score (mean, SD)", ; ,"YMRS total score (mean, SD)",,23,0,2,no
+1291,2360092,Table 1,BaselineCharacteristic,x,PS ; ,xx,,17,3,3,no
+3275,2894785,Table 1,BaselineCharacteristic,,ControlGroupn = xxx ; ,None,None,12,2,,no
+4113,3128267,Table 1,BaselineCharacteristic,Posterior (Kocher-Langenbeck),Patient II ; ,Surgical approach,None,3,2,3,no
+6405,420259,Table 3,BaselineCharacteristic,x,,n = xx,,6,21,43,no
+3094,2831811,Table 1,BaselineCharacteristic,Caucasian,Ethnicity ; Caucasian ;  ; Caucasian ;  ; Hispanic ;  ; Caucasian ;  ; Caucasian ;  ; Caucasian ;  ; Caucasian ;  ; ,None,None,15,3,,no
+3030,2820141,Table 8,BaselineCharacteristic,,Overall Survival ± SE (%) ;  ; p-value ; ,Down Syndrome,None,32,7,43,no
+3308,2905428,Table 1,BaselineCharacteristic,xx (xx.x),No (%) ; ,, T classification,10,2,3,no
+5569,3466131,Table 3,BaselineCharacteristic,OPN (ng/mL),Max ; ,OPN (ng/mL),None,4,6,43,no
+5055,3368715,Table 1,BaselineCharacteristic,,Allopurinol xxx/xxx mgN = xxx ; ,None,None,6,3,3,no
+3030,2820141,Table 7,BaselineCharacteristic,,Event-free Survival ± SE (%) ;  ; x-yr EFS ; ,Immunophenotype,None,4,2,43,no
+4958,3349177,Table 1,BaselineCharacteristic,Prior gastrectomy, ; ,Prior gastrectomy,,23,0,2,no
+3162,2855860,Table 1,BaselineCharacteristic,xxx (xx),Sunitinib (N = xxx) ; ,," Number of involved sites, n (%)a",20,1,3,no
+5055,3368715,Table 1,BaselineCharacteristic,Mean ± SD,Variable ; ,Mean ± SD, Serum urate (mg/dL),31,0,2,no
+3162,2855860,Table 1,BaselineCharacteristic,xxx (xx),Sunitinib (N = xxx) ; ,," ECOG PS, n (%)a",5,1,3,no
+1985,2395315,Table 1,BaselineCharacteristic,,EMP alone ; xx ; ,Degree of pain from metastases,None,10,2,43,no
+2207,2481444,Table 2,BaselineCharacteristic,"xx,xxx","Heparin, IU/xx hours ; ",x,None,7,5,3,no
+6405,420259,Table 2,BaselineCharacteristic,"SD (x.x,x)",Single cilium ; ,group x vs group x,None,15,7,3,no
+715,1998889,Table 2,BaselineCharacteristic,xx (†),Survival (mo.) post surgery ; ,xx, Patients without obvious tumour at baseline followed by tumour recurrence,4,10,3,no
+4305,3176247,Table 1,BaselineCharacteristic,x,First-line ;  ; No ; ,ECOG PS,,6,2,43,no
+5558,3464767,Table 1,BaselineCharacteristic,Clinical nodal status,Lapatinib ; No. ; ,Clinical nodal status,None,21,3,43,no
+3030,2820141,Table 8,BaselineCharacteristic,,Overall Survival ± SE (%) ;  ; p-value ; ,, B-lineage†,10,7,3,no
+5636,3483202,Table 1,BaselineCharacteristic,Previous renal graft %, ; ,Previous renal graft %, Comorbidity,17,0,2,no
+3291,2902493,Table 1,BaselineCharacteristic,Dose Prescription:,Number of patients ; Age [years](median and range) ;  ; ,None,None,25,0,,no
+6405,420259,Table 2,BaselineCharacteristic,,Apical membrane defects ; ,group x vs group x,None,15,10,3,no
+5842,3519573,Table 1,BaselineCharacteristic,Growth hormone deficiency, ; ,Growth hormone deficiency,None,21,0,2,no
+1291,2360092,Table 1,BaselineCharacteristic,x.x,Survival ; ,xx,,25,13,3,no
+5055,3368715,Table 1,BaselineCharacteristic,xx (xx.x),Febuxostat xx mgN = xxx ; ,Hyperlipidemia," Medical History, n (%)",66,1,3,no
+3030,2820141,Table 5,BaselineCharacteristic,xx, ;  ; N ; ,, DFCI Risk Group,32,1,3,no
+4908,3338391,Table 1,BaselineCharacteristic,xx%,Study sites ;  ; Low transmission ;  ; Andasibe ; xxx ;  ; xx.x ;  ; x.xx ;  ; xx ;  ; xx% ;  ; ,Microscopy + (%),,15,4,,no
+5758,3502482,Table 1,BaselineCharacteristic,xx%,xx Gy step (n?=?xx) ; ,Invasive ductal carcinoma (IDC), Histology,4,2,3,no
+4744,3291838,Table 3,BaselineCharacteristic,Concomitant medication,"Daily phenprocoumon dose, mg ; ",Concomitant medication,None,55,2,43,no
+5704,3494535,Table 1,BaselineCharacteristic,x,Donors ; ,x,None,5,0,2,no
+3030,2820141,Table 8,BaselineCharacteristic,xxx, ;  ; N ; ,, Randomizations Asparaginase,54,1,3,no
+3030,2820141,Table 7,BaselineCharacteristic,,Overall Survival ± SE (%) ;  ; xx-yr OS ; ,t(x;xx),None,30,8,43,no
+5842,3519573,Table 8,BaselineCharacteristic,xx.x,SD ; ,Total IPAQ score,None,6,3,3,no
+5055,3368715,Table 1,BaselineCharacteristic,xxx (xx.x),Allopurinol xxx/xxx mgN = xxx ; ,Male," Gender, n (%)",2,3,3,no
+4246,3165084,Table 1,BaselineCharacteristic,xx–xx,Number(percent) ; xx(xxx) ;  ; ,,,4,1,,no
+6405,420259,Table 3,BaselineCharacteristic,x,,Group x,,11,19,3,no
+4305,3176247,Table 1,BaselineCharacteristic,x,All patients ;  ;  ; ,,,18,6,3,no
+5758,3502482,Table 2,BaselineCharacteristic,x,xx Gy (n?=?xx) ; Median ; ,Vxx Gy (%), Ipsilateral lung,18,1,3,no
+2370,2599890,Table 1,BaselineCharacteristic,x.x,Diuresis (ml/kg/hr)x ; ,xx,None,14,9,3,no
+3030,2820141,Table 6,BaselineCharacteristic,xxx.x ± x.x,Event-free Survival ± SE (%) ;  ; xx-yr EFS ; ,, CNS leukemia,29,3,3,no
+3162,2855860,Table 1,BaselineCharacteristic,xxx (xx),Sunitinib (N = xxx) ; ,," Most commonly affected sites, n (%)",24,1,3,no
+6405,420259,Table 3,BaselineCharacteristic,x,,n = xx,,21,4,43,no
+6405,420259,Table 3,BaselineCharacteristic,x,,Group x,,20,10,3,no
+3950,3080287,Table 1,BaselineCharacteristic,,,None,None,20,0,2,no
+4744,3291838,Table 3,BaselineCharacteristic,x.xx (x.xx–x.xx),"Daily phenprocoumon dose, mg ; ",, PROC c.-xxx,41,2,3,no
+5267,3407730,Table 1,BaselineCharacteristic,x (xx.xx),Result ; ,??Multiple co-morbidities?," Reasons for no surgery, n (%) ",18,1,3,no
+3561,2990606,Table 1,BaselineCharacteristic,x (x–x),,"Number of trastuzumab-containing regimens after metastasis, median (range)",,29,1,3,no
+5162,3397213,Table 1,BaselineCharacteristic,"ER/PR status, n (%)", ;  ; ,"ER/PR status, n (%)",None,11,0,2,no
+3030,2820141,Table 8,BaselineCharacteristic,,Event-free Survival ± SE (%) ;  ; xx-yr EFS ; ,CNS-directed therapy(SR only),None,58,3,43,no
+4024,3102212,Table 2,BaselineCharacteristic,x,No. patients (n = xx) ; ,None,None,13,1,3,no
+5842,3519573,Table 3,BaselineCharacteristic,xx (xx.x%),Ceiling (%) ; ,xa. Attaching and removing the needle,None,2,5,3,no
+5696,3493663,Table 2,BaselineCharacteristic,xx+,PFS (months) ; ,m,None,2,13,3,no
+2207,2481444,Table 2,BaselineCharacteristic,x.x,Glcc ; ,xx,None,10,4,3,no
+3291,2902493,Table 2,BaselineCharacteristic,x MV (xx/xx),RA ; ,Beam energy,None,3,1,3,no
+4024,3102212,Table 2,BaselineCharacteristic,,Characteristics ; ,None,None,17,0,2,no
+5055,3368715,Table 1,BaselineCharacteristic,xxx (xx.x),Febuxostat xx mgN = xxx ; ,Any cardiovascular diseased," Medical History, n (%)",59,2,3,no
+3030,2820141,Table 6,BaselineCharacteristic,,Overall Survival ± SE (%) ;  ; xx-yr OS ; ,Sex,None,14,8,43,no
+4428,3208500,Table 1,BaselineCharacteristic,Number of previous chemotherapy regimens,Characteristics ; ,None,None,31,0,24,no
+6405,420259,Table 3,BaselineCharacteristic,Minimum,,n = xx,,24,1,43,no
+5637,3483844,Table 1.,BaselineCharacteristic,x (xx.x%),Value ; ,?None, Chemotherapy n,21,1,3,no
+1291,2360092,Table 1,BaselineCharacteristic,x.x,Duration ; ,xx,,11,12,3,no
+715,1998889,Table 1,BaselineCharacteristic,xx/xx–xx/xx,RIT ; ,xx, Serial FET PET monitoring started after the end of RIT,5,6,3,no
+2165,2441954,Table 1,BaselineCharacteristic,?Median, ; ,?Median, Age (years),7,0,2,no
+715,1998889,Table 2,BaselineCharacteristic,xx,Age (yrs) ; ,xx, Patients without obvious tumour at baseline followed by tumour recurrence,9,0,2,no
+1291,2360092,Table 1,BaselineCharacteristic,R,Failure ; ,xx,,28,9,3,no
+5055,3368715,Table 1,BaselineCharacteristic,Range,Variable ; ,Range,,36,0,2,no
+6405,420259,Table 3,BaselineCharacteristic,x,,n = xx,,24,7,43,no
+2486,2659603,Table 1,BaselineCharacteristic,x.x,LAD (cm) ; ,x,None,5,2,3,no
+1359,2360595,Table 1,BaselineCharacteristic,xx,xx ; ,?Leiomyosarcoma, Sarcoma type,11,1,3,no
+6405,420259,Table 1,BaselineCharacteristic,xx. Uterodomes – shape (see Uterodome Assessment),Epithelial Characteristics – Graded x–x ; ,x. Cilia groups – the relative number of ciliated cells clustered together,None,6,1,3,no
+4908,3338391,Table 1,BaselineCharacteristic,,P ;  ;  ;  ;  ;  ;  ; x.xxx ;  ; NS ;  ; ,None,None,11,5,,no
+4305,3176247,Table 1,BaselineCharacteristic,(xx.x),(%) ;  ;  ; ,Metastatic,,20,7,3,no
+3030,2820141,Table 5,BaselineCharacteristic,x.xxxx,Event-free Survival ± SE (%) ;  ; p-value ; ,, WBC (× xxx/L),21,5,3,no
+3030,2820141,Table 5,BaselineCharacteristic,xx.x ± x.x,Overall Survival ± SE (%) ;  ; xx-yr OS ; ,, Age at Diagnosis,18,7,3,no
+5578,3468079,Table 1.,BaselineCharacteristic,"Ethnicity, n (%)","Placebo, n?=?x ; ","Ethnicity, n (%)",None,5,3,43,no
+5842,3519573,Table 4,BaselineCharacteristic,Floor (%),,,None,0,4,1,no
+1985,2395315,Table 1,BaselineCharacteristic,xx (xx.x%),EMP alone ; xx ; ,?xxx–xxxx × normal, Pretreatment PSA,31,2,3,no
+2230,2517161,Table 1,BaselineCharacteristic,x.xx,LVL fluoroscopy (min) ; ,x,None,5,3,3,no
+2269,2551676,TABLE 1,BaselineCharacteristic,xx,Recipient  ; x ; ,Daily insulin (IU/day),None,7,7,3,no
+1287,2360042,Table 1,BaselineCharacteristic,Motzer risk factor,No ; ,Motzer risk factor,,13,1,43,no
+5704,3494535,Table 1,BaselineCharacteristic,No,Smoking ; ,xx,None,15,3,3,no
+3097,2835652,Table 1,BaselineCharacteristic,,xx ?g ; xx ; ,Prior treatment: no. of regimens,None,8,3,43,no
+4375,3195264,Table 4,BaselineCharacteristic,#NAME?,Relative variation in creatinine clearance (%) ; ,#x, Iobitridol,2,4,3,no
+6405,420259,Table 2,BaselineCharacteristic,,Cell separation ; ,group x vs group x,None,3,11,3,no
+3030,2820141,Table 8,BaselineCharacteristic,,Event-free Survival ± SE (%) ;  ; x-yr EFS ; ,MRD Day xx**,None,45,2,43,no
+5055,3368715,Table 1,BaselineCharacteristic,,Febuxostat xx mgN = xxx ; ,None,None,25,1,3,no
+1359,2360595,Table 1,BaselineCharacteristic,?Bone,Number of patients ; ,?Bone, Tumour location,35,0,2,no
+3950,3080287,Table 1,BaselineCharacteristic,ameloblastic carcinoma,,,,12,1,3,no
+2165,2441954,Table 1,BaselineCharacteristic,,,None,None,0,0,12,no
+6405,420259,Table 3,BaselineCharacteristic,x,,,,10,20,3,no
+5055,3368715,Table 1,BaselineCharacteristic,xx-xx,Febuxostat xx mgN = xxx ; ,Range,,20,1,3,no
+2370,2599890,Table 1,BaselineCharacteristic,xx (xx–xx),Mean (range) MAP (mmHg)x ; ,xx,None,14,10,3,no
+4428,3208500,Table 1,BaselineCharacteristic,?x,Characteristics ; ,?x, Number of previous chemotherapy regimens,32,0,2,no
+1359,2360595,Table 1,BaselineCharacteristic,?Synoviosarcoma,Number of patients ; ,?Synoviosarcoma, Sarcoma type,19,0,2,no
+2269,2551676,TABLE 3,BaselineCharacteristic,x,Total transplantations ; Total transplantations ; ,x,None,3,2,3,no
+4185,3152943,Table 1,BaselineCharacteristic,,"Canakinumab xxx mg SC qxwk + xxx mg IV loading dose, n = xx ; xx (xx.x) ;  ; xx.xx (xx.xxx) ;  ; x.xx (x.xxx) ;  ; ",None,None,16,3,,no
+715,1998889,Table 1,BaselineCharacteristic,Serial FET PET monitoring started after the end of RIT,Sex ; ,Serial FET PET monitoring started after the end of RIT,None,1,1,43,no
+3030,2820141,Table 5,BaselineCharacteristic,xx.x ± x.x,Overall Survival ± SE (%) ;  ; xx-yr OS ; ,Overall,,3,7,3,no
+3308,2905428,Table 1,BaselineCharacteristic,Radiation therapy, ; ,None,None,26,0,24,no
+164,1386704,Table 1,BaselineCharacteristic,"FEVx%pred, x ± SD",,"FEVx%pred, x ± SD",None,3,0,2,no
+5696,3493663,Table 2,BaselineCharacteristic,Positive,Survivin-specific T-cell reactivity vaccination sites ; ,f,None,4,10,3,no
+1446,2361514,Table 2,BaselineCharacteristic,,,None,None,0,0,12,no
+6540,60660,Table 1,BaselineCharacteristic,xx.x ± x.x (x.x–xx)*,Tx ; ,UV exposed,None,1,3,3,no
+3030,2820141,Table 8,BaselineCharacteristic,x.xxx,Overall Survival ± SE (%) ;  ; p-value ; ,, DNA Index,36,7,3,no
+4585,3247194,Table 1,BaselineCharacteristic,x,Smoker Controls ; xx ;  ; xx.x (x.x) ;  ; xx% ;  ; xx.x (xx.x) ;  ; xxx.x (xx.x) ;  ; x.x (x.x) ;  ; xx% ;  ; x% ;  ; x ;  ; x ;  ; x.x (x.x) ;  ; xx.x (x.x) ;  ; xx.x (x.x) ;  ; ,,,33,3,,no
+2370,2599890,Table 1,BaselineCharacteristic,Early complicationsx,,Nox,None,0,6,1,no
+1291,2360092,Table 1,BaselineCharacteristic,Failure,,Patient,None,0,9,1,no
+2737,2734077,Table 1,BaselineCharacteristic,xx.xx (x.xx),Patients Only ; TAU-alone Group Mean (SD) ; Follow-up ; ,bPositive Symptoms,None,5,5,3,no
+2370,2599890,Table 1,BaselineCharacteristic,xx,Age (y) ; ,x,None,3,1,3,no
+4305,3176247,Table 1,BaselineCharacteristic,xx,All patients ;  ;  ; ,,,7,6,3,no
+2811,2758901,Table 1,BaselineCharacteristic,x.xx,Gefitinib ; No ;  ; xxx ;  ; ,Avg. ECOG,,41,1,,no
+4305,3176247,Table 1,BaselineCharacteristic,(xx),Second-line ;  ; (%) ; ,Liver,,21,5,3,no
+1287,2360042,Table 1,BaselineCharacteristic,,No ; ,,,17,1,3,no
+3030,2820141,Table 6,BaselineCharacteristic,xx.x ± x.x,Overall Survival ± SE (%) ;  ; x-yr OS ; ,, Age at Diagnosis,20,6,3,no
+3088,2829127,Table 1,BaselineCharacteristic,Symptom,,No,None,0,3,1,no
+6191,3588608,Table 1,BaselineCharacteristic,xx.xx ± xx.xx,Age means ± SD (years) ; ,B (n = xx),None,2,1,3,no
+5162,3397213,Table 1,BaselineCharacteristic,White, ;  ; ,White,None,4,0,2,no
+3030,2820141,Table 8,BaselineCharacteristic,xx.x ± x.x,Event-free Survival ± SE (%) ;  ; x-yr EFS ; ,, Randomizations Asparaginase,53,2,3,no
+4713,3281202,Table 3,BaselineCharacteristic,p value,p value ; ,,None,1,3,1,no
+5267,3407730,Table 2,BaselineCharacteristic,Length of hospital stay (days),Result ; ,Length of hospital stay (days),None,19,1,43,no
+1410,2361304,Table 2,BaselineCharacteristic,x,Number of cycles ; ,xx,None,5,8,3,no
+4744,3291838,Table 1,BaselineCharacteristic,x.xx (x.xx–x.xx),Value ; ,"BSA, mx",,6,1,3,no
+3030,2820141,Table 6,BaselineCharacteristic,,Overall Survival ± SE (%) ;  ; p-value ; ,Immunophenotype,None,4,9,43,no
+3276,2894820,Table 4,BaselineCharacteristic,, ; ,,,4,0,2,no
+1291,2360092,Table 1,BaselineCharacteristic,x.x,Duration ; , x,,2,12,3,no
+3094,2831811,Table 1,BaselineCharacteristic,,Response ; NR ;  ; NR ;  ; NR ; ,None,None,6,4,,no
+2207,2481444,Table 1,BaselineCharacteristic,x,Patient ; ,x,None,5,0,2,no
+3097,2835652,Table 1,BaselineCharacteristic,xx,xxx ?g ; x ; ,"Median age (range), years",,3,4,3,no
+3291,2902493,Table 1,BaselineCharacteristic,Nx, ;  ;  ; ,,,8,1,,no
+2370,2599890,Table 1,BaselineCharacteristic,xxx,Fluid in (ml/kg)x ; ,xx,None,10,8,3,no
+3030,2820141,Table 5,BaselineCharacteristic,,Overall Survival ± SE (%) ;  ; p-value ; ,CNS leukemia,None,25,9,43,no
+4713,3281202,Table 3,BaselineCharacteristic,Gender,ISSAAC ; N?=?xxx ; ,Gender,None,5,1,43,no
+5696,3493663,Table 1,BaselineCharacteristic,Median age/years (range), ; ,Median age/years (range), Gender,4,0,2,no
+4539,3231981,Table 1,BaselineCharacteristic,,Age (year) ; xx ;  ; xx ; ,None,None,4,1,,no
+3094,2831811,Table 1,BaselineCharacteristic,NR,Response ; NR ;  ; ,None,None,3,4,,no
+5758,3502482,Table 2,BaselineCharacteristic,Ipsilateral lung,xx Gy (n?=?xx) ; Median ; ,Ipsilateral lung,None,16,1,43,no
+1376,2360764,Table 1,BaselineCharacteristic,xx,No. of patients ; xx ; ,?Brain, Metastatic sites,22,1,3,no
+3030,2820141,Table 8,BaselineCharacteristic,xx.x ± x.x,Event-free Survival ± SE (%) ;  ; xx-yr EFS ; ,, DNA Index,38,3,3,no
+19,1090597,Table 1,BaselineCharacteristic,, ; ,None,None,19,0,,no
+4428,3208500,Table 1,BaselineCharacteristic,?Adenocarcinoma,Characteristics ; ,?Adenocarcinoma, Histology,22,0,2,no
+1376,2360764,Table 1,BaselineCharacteristic,,No. of patients ; xx ; ,None,None,19,1,3,no
+4375,3195264,Table 4,BaselineCharacteristic,#x,Patients ; ,#x, Iodixanol,6,0,2,no
+5330,3414800,Table 1,BaselineCharacteristic,,,,None,0,2,1,no
+2370,2599890,Table 1,BaselineCharacteristic,x,Duration surgery (hr) ; ,x,None,1,4,3,no
+3030,2820141,Table 6,BaselineCharacteristic,,Event-free Survival ± SE (%) ; ,,None,1,5,1,no
+5055,3368715,Table 1,BaselineCharacteristic,x (x.x),Allopurinol xxx/xxx mgN = xxx ; ,Other,,12,3,3,no
+3291,2902493,Table 1,BaselineCharacteristic,xx+x Gy, ;  ;  ; ,Group A,,26,1,,no
+2269,2551676,TABLE 2,BaselineCharacteristic,xx,Weight of pancreas (g) ; ,????x, Patient x   ,11,4,3,no
+5842,3519573,Table 7,BaselineCharacteristic,x (x.x%),Floor (%) ; ,Setting the dose,None,3,4,3,no
+5696,3493663,Table 2,BaselineCharacteristic,Ax,HLA type ; ,m,None,9,4,3,no
+5758,3502482,Table 2,BaselineCharacteristic,xx,"xx Gy (n?=?xx patients, xx tumors) ; Median ; ",Vxx Gy (%), Ipsilateral breast,9,3,3,no
+5558,3464767,Table 1,BaselineCharacteristic,pCR,Lapatinib ; No. ; ,pCR,None,26,3,43,no
+5696,3493663,Table 2,BaselineCharacteristic,xx,Number of vaccinations (ELISPOT)a ; ,f,None,6,9,3,no
+715,1998889,Table 1,BaselineCharacteristic,"x,xxx/xxxI",Cum. activity (MBq)/nuclide ; ,xx, Serial FET PET monitoring started after the end of RIT,3,5,3,no
+1287,2360042,Table 1,BaselineCharacteristic,,Characteristic ; ,,,17,0,2,no
+4305,3176247,Table 1,BaselineCharacteristic,xx,All patients ;  ;  ; ,,,7,6,3,no
+3030,2820141,Table 7,BaselineCharacteristic,,Overall Survival ± SE (%) ;  ; xx-yr OS ; ,DFCI Risk Group,None,33,8,43,no
+3030,2820141,Table 8,BaselineCharacteristic,DFCI Risk Group, ;  ; Protocol ; ,None,None,48,0,24,no

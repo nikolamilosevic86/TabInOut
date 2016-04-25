@@ -505,19 +505,11 @@ class QueryDBCalss:
     
     def CreateAdditionalTables(self):
         cursor = self.db.cursor()
-        sql = "Create table if not exists PatientGroup (id int NOT NULL AUTO_INCREMENT,GroupName varchar(255), tableID int, articleID int, PRIMARY KEY (id), Foreign key (articleID) REFERENCES  article(idArticle))"
-        cursor.execute(sql)
-        sql = "Create table if not exists PatientGroupIEAttributes (id int NOT NULL AUTO_INCREMENT,AttributeName varchar(255), StringValue varchar(255),IntValue DOUBLE, GroupID int, PRIMARY KEY (id), Foreign key (GroupID) REFERENCES  PatientGroup(id))"
+        sql = "Create table if not exists IEAttribute (id int NOT NULL AUTO_INCREMENT,documentId INT, PMC varchar(255),idTable int,TableName varchar(200),Class varchar(255),SubClass varchar(255),VOption varchar(255),Target varchar(255), StringValue varchar(255),IntValue DOUBLE, Unit varchar(255), PRIMARY KEY (id))"
         cursor.execute(sql)
         sql = "Create table if not exists AdverseEventNames (id int NOT NULL AUTO_INCREMENT,idArticle int, PMC varchar(255),TableName varchar(255), idTable int, EventName varchar(255), AnnotationFlag int, PRIMARY KEY (id))"
         cursor.execute(sql)
         
-    def SaveArm(self,groupName,articleId, tableId):
-        cursor = self.db.cursor()
-        sql = "INSERT into PatientGroup (GroupName,ArticleID,tableID) values (%s,%s,%s)" 
-        cursor.execute(sql,(groupName,articleId,tableId))
-        self.db.commit()
-        return cursor.lastrowid
     
     def SaveAnnotation(self,idArticle,tableName, tableId,Event,AnnotationFlag):
         cursor = self.db.cursor()
@@ -526,15 +518,15 @@ class QueryDBCalss:
         self.db.commit()
         return cursor.lastrowid
     
-    def SaveAttribute(self,groupId,AttributeName,AttributeValue):
+    def SaveAttribute(self,documentID,Option,tableId,TableName,PMC,AttributeName,AttributeSubClass,AttributeValue,Unit,Target):
         cursor = self.db.cursor()
         intValue = -999
         try:
             intValue = int(AttributeValue)
         except:
             intValue = None
-        sql = "INSERT into patientgroupieattributes (groupID,AttributeName,StringValue,IntValue) values (%s,%s,%s,%s)"
-        cursor.execute(sql,(groupId,AttributeName,AttributeValue,intValue))
+        sql = "INSERT into IEAttribute (documentId, PMC,idTable,TableName,Class,SubClass,VOption,Target, StringValue,IntValue, Unit) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        cursor.execute(sql,(documentID,PMC,tableId,TableName,AttributeName,AttributeSubClass,Option,Target,AttributeValue,intValue,Unit))
         self.db.commit()
         return cursor.lastrowid
     
@@ -546,12 +538,15 @@ class QueryDBCalss:
         sql = "Drop table if exists patientgroup"
         cursor.execute(sql)
         self.db.commit()
+        sql = "Drop table if exists IEAttribute"
+        cursor.execute(sql)
+        self.db.commit()
         sql = "Drop table if exists AdverseEventNames"
         cursor.execute(sql)
         self.db.commit()
         
     def DeleteAttribute(self,attributeName):
         cursor = self.db.cursor()
-        sql = "Delete from patientgroupieattributes where AttributeName='"+attributeName+"'"
+        sql = "Delete from IEAttribute where Class='"+attributeName+"'"
         cursor.execute(sql)
         self.db.commit()

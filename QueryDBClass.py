@@ -507,7 +507,7 @@ class QueryDBCalss:
         cursor = self.db.cursor()
         intValue = -999
         try:
-            intValue = int(AttributeValue)
+            intValue = float(AttributeValue)
         except:
             intValue = None
         sql = "INSERT into patientgroupieattributes (groupID,AttributeName,StringValue,IntValue) values (%s,%s,%s,%s)"

@@ -18,6 +18,7 @@ if __name__=="__main__":
     for row in results:
         articleIds.append(row[0])
     del results
+    #articleIds = [1501]
     for id in articleIds:
         results = queryclass.getArticleTables(id)
         tables = []
@@ -49,7 +50,7 @@ if __name__=="__main__":
                 m2 = re.search('[\d\.]+',res[9])
                 if(m2==None or m2.group(0)=='.'):
                     continue
-                if(res[11].lower()=='range'):
+                if('range' in res[11].lower() or '%' in res[11].lower()):
                     continue
                 totalNum = float(m2.group(0))
                 if "range" in res[10].lower():

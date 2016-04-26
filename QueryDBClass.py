@@ -403,6 +403,29 @@ class QueryDBCalss:
         results = cursor.fetchall()
         return results
     
+    def getDataForTrainingDataset(self,):
+        cursor = self.db.cursor()
+        sql = """ SELECT idArticle,article.PMCID,idTable,TableOrder,SpecPragmatic,idCell,CellType,RowN,ColumnN,Content,WholeHeader,WholeStub,WholeSuperRow FROM article inner join arttable on arttable.Article_idArticle=article.idArticle 
+ inner join cell on cell.Table_idTable=arttable.idTable 
+ where idArticle in (19,25,164,166,215,309,449,715,1118,1233,1273,1283,1287,1291,1359,1362,1376,1410,1423,1446,1504,1985,2165,2207,2230,
+2246,2269,2370,2478,2486,2656,2688,2737,2809,2811,2834,2864,3023,3030,3044,3085,3088,3094,3097,3105,3162,3275,3276,
+3291,3308,3324,3561,3652,3950,3974,4011,4024,4113,4185,4246,4305,4375,4428,4539,4585,4713,4733,4744,4861,4908,4914,
+4958,5055,5162,5267,5330,5383,5469,5558,5561,5569,5578,5636,5637,5666,5696,5704,5758,5807,5842,5842,5937,6034,6191,
+6195,6286,6311,6382,6405,6540) and SpecPragmatic='BaselineCharacteristic' """ 
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        return results
+    
+    def getCellRole(self,idCell):
+        cursor = self.db.cursor()
+        sql = "select CellRole_idCellRole from cell inner join cellroles on cell.idCell=cellroles.Cell_idCell where idCell='"+str(idCell)+"'"
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        return results
+        
+        
+        
+    
     def getCellsAnnotated(self,tableID,stringList):
         cursor = self.db.cursor()
         sql = "SELECT * FROM cell inner join annotation on cell.idCell = annotation.Cell_idCell where Table_idTable = '"+str(tableID)+"' and ("
@@ -482,19 +505,11 @@ class QueryDBCalss:
     
     def CreateAdditionalTables(self):
         cursor = self.db.cursor()
-        sql = "Create table if not exists PatientGroup (id int NOT NULL AUTO_INCREMENT,GroupName varchar(255), tableID int, articleID int, PRIMARY KEY (id), Foreign key (articleID) REFERENCES  article(idArticle))"
-        cursor.execute(sql)
-        sql = "Create table if not exists PatientGroupIEAttributes (id int NOT NULL AUTO_INCREMENT,AttributeName varchar(255), StringValue varchar(255),IntValue DOUBLE, GroupID int, PRIMARY KEY (id), Foreign key (GroupID) REFERENCES  PatientGroup(id))"
+        sql = "Create table if not exists IEAttribute (id int NOT NULL AUTO_INCREMENT,documentId INT, PMC varchar(255),idTable int,TableName varchar(200),Class varchar(255),SubClass varchar(255),VOption varchar(255),Target varchar(255), StringValue varchar(255),IntValue DOUBLE, Unit varchar(255), PRIMARY KEY (id))"
         cursor.execute(sql)
         sql = "Create table if not exists AdverseEventNames (id int NOT NULL AUTO_INCREMENT,idArticle int, PMC varchar(255),TableName varchar(255), idTable int, EventName varchar(255), AnnotationFlag int, PRIMARY KEY (id))"
         cursor.execute(sql)
         
-    def SaveArm(self,groupName,articleId, tableId):
-        cursor = self.db.cursor()
-        sql = "INSERT into PatientGroup (GroupName,ArticleID,tableID) values (%s,%s,%s)" 
-        cursor.execute(sql,(groupName,articleId,tableId))
-        self.db.commit()
-        return cursor.lastrowid
     
     def SaveAnnotation(self,idArticle,tableName, tableId,Event,AnnotationFlag):
         cursor = self.db.cursor()
@@ -503,15 +518,15 @@ class QueryDBCalss:
         self.db.commit()
         return cursor.lastrowid
     
-    def SaveAttribute(self,groupId,AttributeName,AttributeValue):
+    def SaveAttribute(self,documentID,Option,tableId,TableName,PMC,AttributeName,AttributeSubClass,AttributeValue,Unit,Target):
         cursor = self.db.cursor()
         intValue = -999
         try:
             intValue = float(AttributeValue)
         except:
             intValue = None
-        sql = "INSERT into patientgroupieattributes (groupID,AttributeName,StringValue,IntValue) values (%s,%s,%s,%s)"
-        cursor.execute(sql,(groupId,AttributeName,AttributeValue,intValue))
+        sql = "INSERT into IEAttribute (documentId, PMC,idTable,TableName,Class,SubClass,VOption,Target, StringValue,IntValue, Unit) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        cursor.execute(sql,(documentID,PMC,tableId,TableName,AttributeName,AttributeSubClass,Option,Target,AttributeValue,intValue,Unit))
         self.db.commit()
         return cursor.lastrowid
     
@@ -523,12 +538,15 @@ class QueryDBCalss:
         sql = "Drop table if exists patientgroup"
         cursor.execute(sql)
         self.db.commit()
+        sql = "Drop table if exists IEAttribute"
+        cursor.execute(sql)
+        self.db.commit()
         sql = "Drop table if exists AdverseEventNames"
         cursor.execute(sql)
         self.db.commit()
         
     def DeleteAttribute(self,attributeName):
         cursor = self.db.cursor()
-        sql = "Delete from patientgroupieattributes where AttributeName='"+attributeName+"'"
+        sql = "Delete from IEAttribute where Class='"+attributeName+"'"
         cursor.execute(sql)
         self.db.commit()

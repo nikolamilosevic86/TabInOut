@@ -16,9 +16,12 @@ if __name__=="__main__":
     queryclass.CreateAdditionalTables()
     results = queryclass.getArticles()
     articleIds = []
+    PMCs = []
     for row in results:
         articleIds.append(row[0])
+        PMCs.append(row[1])
     del results
+    l=0
     #articleIds = [5531]
     for id in articleIds:
         results = queryclass.getArticleTablesWithPragmatic(id,"BaselineCharacteristic")
@@ -45,8 +48,9 @@ if __name__=="__main__":
                     totalNum = int(m2.group(0))
                     if(totalNum>0):
                         print totalNum
-                        armid = queryclass.SaveArm("Total", id,table.tableId) 
-                        queryclass.SaveAttribute(armid, "Number of Patients", totalNum)  
+                        Num = totalNum
+                        queryclass.SaveAttribute(id,"Total",table.tableId,table.tableOrder,PMCs[l],"Number of Patients","",Num,"Persons","Total") 
+                
             m = re.search('\\b(n[? ]{0,1}[^\x00-\x7F]{0,1}=[^\x00-\x7F]{0,1}[? ]{0,1}[0-9]*)\\b',table.tableCaption.lower())
             if(m<>None and m<>''):
                 pat = m.group(0)
@@ -58,8 +62,7 @@ if __name__=="__main__":
                 if Num=='' or Num==0:
                     continue
                 print Num 
-                armid = queryclass.SaveArm(armname, id,table.tableId) 
-                queryclass.SaveAttribute(armid, "Number of Patients", Num)
+                queryclass.SaveAttribute(id,"Total",table.tableId,table.tableOrder,PMCs[l],"Number of Patients","",Num,"Persons",armname) 
                 hasValueInCaption = True
                 
             if(hasValuesInCaption):
@@ -84,8 +87,8 @@ if __name__=="__main__":
                         continue
                     print Num 
                     armnamedupl = res[10]+" "+res[9]
-                    armid = queryclass.SaveArm(armname, id,table.tableId) 
-                    queryclass.SaveAttribute(armid, "Number of Patients", Num)
+                    queryclass.SaveAttribute(id,"Total",table.tableId,table.tableOrder,PMCs[l],"Number of Patients","",Num,"Persons",armname) 
+                
                     hasValueInHeader = True
             if(hasValueInHeader):
                 continue
@@ -102,8 +105,8 @@ if __name__=="__main__":
                     continue
                 print Num 
                 armnamedupl = res[10]+" "+res[9]
-                armid = queryclass.SaveArm(armname, id,table.tableId) 
-                queryclass.SaveAttribute(armid, "Number of Patients", Num)
+                queryclass.SaveAttribute(id,"Total",table.tableId,table.tableOrder,PMCs[l],"Number of Patients","",Num,"Persons",armname) 
+                
                 hasValueInHeader = True
 
             if(hasValueInHeader):
@@ -140,9 +143,8 @@ if __name__=="__main__":
                     armname = armname.replace("()","")
                 if armname == '' or  armname == ' ':
                     armname = 'Total'
-                armid = queryclass.SaveArm(armname, id,table.tableId) 
-                queryclass.SaveAttribute(armid, "Number of Patients", Num)
-            
+                queryclass.SaveAttribute(id,"Total",table.tableId,table.tableOrder,PMCs[l],"Number of Patients","",Num,"Persons",armname) 
+                
             
             #armnamedupl = ''
             #resultas = queryclass.getCellsContainingInHeaderListOR(table.tableId, ["%umber of patients","%n%","%N%"])
@@ -162,7 +164,7 @@ if __name__=="__main__":
             #    print Num 
             #    armid = queryclass.SaveArm(armname, id,table.tableId) 
             #    queryclass.SaveAttribute(armid, "Number of Patients", Num)
-    
+        l=l+1
 
     print "Done"
     

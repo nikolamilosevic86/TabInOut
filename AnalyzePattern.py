@@ -56,7 +56,7 @@ def GetMean(value,res):
         res["min"] = range_min
         res["max"] = range_max
         return res
-    m = re.search(ur"(\d+\.*\d*)[ ±]{1,}[ ]{0,}(\d+\.*\d*)",value) 
+    m = re.search(ur"(\d+\.*\d*)[  ]{0,}[±]{1,}[  ]{0,}(\d+\.*\d*)",value) 
     if(m!=None):
         mean = m.group(1)
         sd = m.group(2)
@@ -97,3 +97,4 @@ def GetRange(value,res):
         res["min"] = range_min
         res["max"] = range_max
         return res
+    return res

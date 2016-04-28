@@ -23,12 +23,11 @@ if __name__=="__main__":
         articleIds.append(row[0])
         PMCs.append(row[1])
     del results
-    #articleIds = [192]
+    #articleIds = [469]
     l = 0
     for id in articleIds:
         results = queryclass.getArticleTablesWithPragmatic(id,"BaselineCharacteristic")
         tables = []
-        m2 = {}
         for t in results:
             table = Table()
             table.tableId = t[0]
@@ -42,6 +41,7 @@ if __name__=="__main__":
             tables.append(table)
             resulta = queryclass.getCellsContainingInStubListOR(table.tableId, ['%Age%','%age%'])
             for res in resulta:
+                m2 = {}
                 #m2 = re.search('[\d\.]+',res[9])
                 m2 = GetMean(res[9],m2)
                 m2 = GetRange(res[9],m2)
@@ -86,7 +86,11 @@ if __name__=="__main__":
                     queryclass.SaveAttribute(id,"Range:Minimum",table.tableId,table.tableOrder,PMCs[l],"Age","",float(m2["min"]),unit,res[10]) 
                 if("max" in m2.keys()):
                     queryclass.SaveAttribute(id,"Range:Maximum",table.tableId,table.tableOrder,PMCs[l],"Age","",float(m2["max"]),unit,res[10])  
+                    
+                    
+                    
             resulta = queryclass.getCellsContainingInSuperRowListOR(table.tableId, ['Age','age'])
+            m2 = {}
             for res in resulta:
                 m2 = GetMean(res[9],m2)
                 m2 = GetRange(res[9],m2)
@@ -99,8 +103,7 @@ if __name__=="__main__":
                     continue
                 content = re.sub(r'[^\x00-\x7F]','[spec]',res[9])
                 content = content.replace('?','[spec]')
-                if('<' in content or '>' in content or '=' in content or '?' in content or '<' in res[11] or '>' in res[11] or '=' in res[11]
-                   ):
+                if('<' in content or '>' in content or '=' in content or '?' in content or '<' in res[11] or '>' in res[11] or '=' in res[11] or '<' in res[12] or '>' in res[12] or '=' in res[12]):
                     continue
                 unit = 'years'
                 if("months" in res[11].lower() or "months" in res[9].lower()):

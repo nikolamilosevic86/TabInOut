@@ -11,7 +11,7 @@ import MySQLdb
 class QueryDBCalss:
     db = None
     def __init__(self,host,username,password,database):
-        self.db = MySQLdb.connect(host,username,password,database)
+        self.db = MySQLdb.connect(host,username,password,database,charset='utf8')
         
     def __del__(self):
         try:

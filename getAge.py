@@ -23,7 +23,7 @@ if __name__=="__main__":
         articleIds.append(row[0])
         PMCs.append(row[1])
     del results
-    #articleIds = [469]
+    #articleIds = [6311]
     l = 0
     for id in articleIds:
         results = queryclass.getArticleTablesWithPragmatic(id,"BaselineCharacteristic")
@@ -45,12 +45,14 @@ if __name__=="__main__":
                 #m2 = re.search('[\d\.]+',res[9])
                 m2 = GetMean(res[9],m2)
                 m2 = GetRange(res[9],m2)
+                if(m2!=None and "mean" in m2.keys() and "min" in m2.keys() and m2["mean"]==m2["min"]):
+                    del m2["mean"]
                 if(m2==None):
                     continue
                 m3 = re.search('\\b(age)\\b',res[11].lower())
                 if m3==None:
                     continue
-                if(m2==None or "mean" not in m2.keys() or m2["mean"]=='.'or m2["mean"]=='..'):
+                if(m2==None or ("mean" in m2.keys() and (m2["mean"]=='.'or m2["mean"]=='..'))):
                     continue
                 content = re.sub(r'[^\x00-\x7F]','[spec]',res[9])
                 content = content.replace('?','[spec]')
@@ -60,7 +62,10 @@ if __name__=="__main__":
                 if("sd" in res[10].lower() and 'mean' not in res[10].lower()) or "p-value" in res[10].lower() or "p" ==res[10].lower():
                     continue
                 m3 = re.search('\\b(p)\\b',res[10].lower())
-                if m3!=None:
+                m4 = re.search('\\b[\/](p)\\b',res[10].lower())
+                if m3!=None and m4==None:
+                    continue
+                if("onset" in res[11].lower()):
                     continue
                 if('%' in content or 'day' in content or 'min' in content or '<' in content or '>' in content or '=' in content or '?' in content or '<' in res[11] or '>' in res[11] or '=' in res[11]or '?' in res[11] or 'min' in res[11].lower() or 'max' in res[11].lower()):
                     continue
@@ -90,16 +95,21 @@ if __name__=="__main__":
                     
                     
             resulta = queryclass.getCellsContainingInSuperRowListOR(table.tableId, ['Age','age'])
-            m2 = {}
+            
             for res in resulta:
+                m2 = {}
                 m2 = GetMean(res[9],m2)
                 m2 = GetRange(res[9],m2)
-                if(m2==None or "mean" not in m2.keys() or m2["mean"]=='.'):
+                if(m2!=None and "mean" in m2.keys() and "min" in m2.keys() and m2["mean"]==m2["min"]):
+                    del m2["mean"]
+                if(m2==None or ("mean" in m2.keys() and m2["mean"]=='.')):
                     continue
                 m3 = re.search('\\b(age)\\b',res[12].lower())
                 if m3==None:
                     continue
-                if("sd" in res[11].lower() and "mean" not in  res[11].lower() ) or "%" in res[11].lower():
+                if("sd" in res[11].lower() and "mean" not in  res[11].lower() ) or "%" in res[11].lower() or "onset" in res[11].lower():
+                    continue
+                if("sd" in res[10].lower() and 'mean' not in res[10].lower()) or "p-value" in res[10].lower() or "p" ==res[10].lower():
                     continue
                 content = re.sub(r'[^\x00-\x7F]','[spec]',res[9])
                 content = content.replace('?','[spec]')

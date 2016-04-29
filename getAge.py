@@ -113,7 +113,7 @@ if __name__=="__main__":
                     #totalNum = totalNum/52
                     unit = 'weeks'
                 if "range" in res[10].lower():
-                    m2 = GetRange(res[9])
+                    m2 = GetRange(res[9],m2)
                 if "sd" in res[10].lower() or "p-value" in res[10].lower() or "p" ==res[10].lower():
                     continue
                 totalNum = 0.0

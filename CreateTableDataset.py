@@ -143,17 +143,20 @@ if __name__=="__main__":
 8071,8107,8117,8139,8148, 293, 653, 1048,1658,1862,2466,2467,4127,4868,4901,4951,5292,5602,6186,6857,7052,7103,7104,7105,7506,7507,7508,7509,
 7961,8163,8446,9505,11072,12375,12465,12466,12519,12559,61,68,140,257,314,439,486,492,627,742,3297,3296,3317,653]
     
-    target = open("learnng2.csv", 'w')                                                                                          
-    target.write("tableid,NoRows,NoColumn,TotalCellNo,CellEmpty,CellNumeric,CellSemiNumeric,CellText,ContainsAdverse,containsAge,containsBaseline,containsCharacteristicCap,containsDemographic,ContainsExclusion,ContainsInclusion,containsN,containsPatientsCap,containsPatientsCell,ContainsSideEffect,ContainsSignOrSymptomAnnotation,containsEglibility,containsToxicity,containsInclusionExclusionCell,containsHaematologic,containsCriteria,containsTrialCap,clas\n")
-    for table in adverseEventsTables:
-        target.write(processTable(table,"AdverseEvent"))
-    for table in inclusionExclusionTables:
-        target.write(processTable(table,"InclusionExclusion"))
-    for table in nonInterestingTables:
-        target.write(processTable(table,"Other"))
-    for table in dmeographicTables:
-        target.write(processTable(table,"BaselineCharacteristic"))
-    target.close()
-    
+   # target = open("learnng2.csv", 'w')                                                                                          
+   # target.write("tableid,NoRows,NoColumn,TotalCellNo,CellEmpty,CellNumeric,CellSemiNumeric,CellText,ContainsAdverse,containsAge,containsBaseline,containsCharacteristicCap,containsDemographic,ContainsExclusion,ContainsInclusion,containsN,containsPatientsCap,containsPatientsCell,ContainsSideEffect,ContainsSignOrSymptomAnnotation,containsEglibility,containsToxicity,containsInclusionExclusionCell,containsHaematologic,containsCriteria,containsTrialCap,clas\n")
+   # for table in adverseEventsTables:
+   #     target.write(processTable(table,"AdverseEvent"))
+   # for table in inclusionExclusionTables:
+   #     target.write(processTable(table,"InclusionExclusion"))
+   # for table in nonInterestingTables:
+   #     target.write(processTable(table,"Other"))
+   # for table in dmeographicTables:
+   #     target.write(processTable(table,"BaselineCharacteristic"))
+   # target.close()
+    print len(dmeographicTables)
+    print len(nonInterestingTables)
+    print len(inclusionExclusionTables)
+    print len(adverseEventsTables)
    #add like haematological 
     

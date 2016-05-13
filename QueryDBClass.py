@@ -415,6 +415,15 @@ class QueryDBCalss:
         cursor.execute(sql)
         results = cursor.fetchall()
         return results
+    def getDataForDevDataset(self,):
+        cursor = self.db.cursor()
+        sql = """ SELECT idArticle,article.PMCID,idTable,TableOrder,SpecPragmatic,idCell,CellType,RowN,ColumnN,Content,WholeHeader,WholeStub,WholeSuperRow FROM article inner join arttable on arttable.Article_idArticle=article.idArticle 
+ inner join cell on cell.Table_idTable=arttable.idTable 
+ where idArticle in (5505,2012,4000,2650,1988,2001,1443,1355,4275,1377,3417,1906,1976,2528,352,2536,1345,1437,3559,2748,4021,2866,3898,3448,6443,3566,1939,4680,2011,4593,1347,1348,1888,3424,3512,1388,3490,6042,1318,1911,2995,3950,3036,4321,5225,5859,4928,3781,4688,2787,2012,6342,1941,1134,1424,3787,1176,4295,2308,1345,3304,2602,5127,3596,3777,6425,3654,5228,3503,3713,1939,4689,6148,2472,5504,1351,3162,1386,5767,1762,6312,5937,1269,1769,1433,3496,2307,2011,5153,4156,5354,2529,3716,4282,4604,3424,2979,2062,2880,2848
+) and SpecPragmatic='BaselineCharacteristic' """ 
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        return results
     
     def getCellRole(self,idCell):
         cursor = self.db.cursor()

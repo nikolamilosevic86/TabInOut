@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
 '''
 Created on Apr 14, 2016
 
@@ -11,9 +13,9 @@ from  Data.Table import Table
 import re
 if __name__=="__main__":
     queryclass = QueryDBCalss("localhost","root","","table_db" )
-    results = queryclass.getDataForTrainingDataset()
-    target = open("learnngCellDataset.csv", 'w')                                                                                          
-    target.write("ArticleId,PMCid,TableName,SpecPragmatics,CellContent,Header,Stub,SuperRow,rowN,columnN,function\n")
+    results = queryclass.getDataForDevDataset()
+    target = open("developmentCellDataset.csv", 'w')                                                                                          
+    target.write("ArticleId,PMCid,TableName,SpecPragmatics,CellContent,Header,Stub,SuperRow,rowN,columnN,function,class\n")
     for res in results:
         idArticle = res[0]
         PMCid = res[1]
@@ -44,9 +46,12 @@ if __name__=="__main__":
         if(SuperRow!=None):
             SuperRow = SuperRow.replace("'","\'").replace("\n"," ")
             SuperRow = re.sub(r'\d','x',SuperRow)
-        target.write(str(idArticle)+","+str(PMCid)+","+str(TableOrder)+","+str(SpecPragmatic)+",\""+str(Content)+
+        try:
+            target.write(str(idArticle)+","+str(PMCid)+","+str(TableOrder)+","+str(SpecPragmatic)+",\""+str(Content)+
                      "\",\""+str(Header)+"\",\""+str(Stub)+"\",\""+str(SuperRow)+"\","+str(RowN)+","+str(ColumnN)
-                     +","+str(CellRole)+"\n")
+                     +","+str(CellRole)+",?"+"\n")
+        except:
+            print "ascii err"
         
     target.close()
     print "Done"

@@ -64,9 +64,9 @@ if __name__=="__main__":
                     continue
                 event = res[9].replace("'","").replace("?","").lower().replace(".","")
                 event = re.sub(r'[^\x00-\x7F]',' ',event)
-                if(res[9]=="" or "other" in res[9].lower() or "total" in res[9].lower() or "none" in res[9].lower() or "any" in res[9].lower() or "mg" in res[9].lower() or "p=" in res[9].lower() or "yes" in  res[9].lower() or "toxicity" in res[9].lower() or 
-                   "variable" in  res[9].lower() or "event" in  res[9].lower() or "arm" in  res[9].lower() or "range" in  res[9].lower() or "month" in  res[9].lower()or "overall" in  res[9].lower() or '\xe2' in res[9].lower() or 'men' in res[9].lower()
-                   or 'n'==res[9].lower()or 'baseline' in res[9].lower()or 'missing' in res[9].lower()or 'patient' in res[9].lower()):
+                if(event=="" or "other" in event or "total" in event or "none" in event or "any" in event or "mg" in event or "p=" in event or "yes" in  event or "toxicity" in event or 
+                   "variable" in  event or "event" in  event or "arm" in  event or "range" in  event or "month" in  event or "overall" in event or  'men' in event
+                   or 'n'==event or 'baseline' in event or 'missing' in event or 'patient' in event):
                     continue
                 if(res[4]==0):
                     continue
@@ -113,7 +113,7 @@ if __name__=="__main__":
                 event = res[9].replace("'","").replace("?","").lower().replace(".","")
                 event = re.sub(r'[^\x00-\x7F]',' ',event)
                 if(res[9]=="" or "other" in res[9].lower() or "total" in res[9].lower() or "none" in res[9].lower() or "any" in res[9].lower() or "mg" in res[9].lower() or "p=" in res[9].lower() or "yes" in  res[9].lower() or "no" in res[9].lower() or 
-                   "variable" in  res[9].lower() or "event" in  res[9].lower() or "arm" in  res[9].lower() or "range" in  res[9].lower() or "month" in  res[9].lower()or "overall" in  res[9].lower() or '\xe2' in res[9].lower() or 'men' in res[9].lower()
+                   "variable" in  res[9].lower() or "event" in  res[9].lower() or "arm" in  res[9].lower() or "range" in  res[9].lower() or "month" in  res[9].lower()or "overall" in  res[9].lower() or  'men' in res[9].lower()
                    or 'n'==res[9].lower()or 'baseline' in res[9].lower()or 'missing' in res[9].lower()or 'patient' in res[9].lower()):
                     continue
 

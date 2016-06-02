@@ -27,8 +27,18 @@ def CreateProjectCfgFileIfNotExist(Folder):
         f.write('Host:127.0.0.1\n') # python will convert \n to os.linesep
         f.write('Port:3306\n')
         f.write('User:root\n')
-        f.write('Pass:')
+        f.write('Pass:\n')
+        f.write('Database:table_db')
         f.close() # you can omit in most cases as the destructor will call it
+
+def SaveToConfigFile(project_name,hostname,port,user,pasword,database):
+    f = open("Projects/"+project_name+"/Config.cfg",'w')
+    f.write('Host:'+hostname+'\n') # python will convert \n to os.linesep
+    f.write('Port:'+port+'\n')
+    f.write('User:'+user+'\n')
+    f.write('Pass:'+pasword+'\n')
+    f.write('Database:'+database+'\n')
+    f.close()
         
 #CreateFolderStructure()
 #print readProjects()

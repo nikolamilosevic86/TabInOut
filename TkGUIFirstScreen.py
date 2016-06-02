@@ -46,42 +46,108 @@ def MoveRuleDown():
     except IndexError:
         pass
 
-def AddEditRule():
-    add = Tk()
+def AddEditRule(project_name):
+    add = Toplevel()
     add.title("Add/Edit Rule")
     add.geometry('{}x{}'.format(200, 200))
     itemsFrame = Frame(add,height=130)
     itemsFrame.pack()
-    leftFrame = Frame(itemsFrame,height=130)
-    leftFrame.pack(side=LEFT)
-    rightFrame = Frame(itemsFrame,height=130)
-    rightFrame.pack(side=LEFT)
-    editWhiteList = Button(leftFrame,text="Edit White List")
-    editWhiteList.pack()
-    editBlackList = Button(leftFrame,text="Edit White List")
-    editBlackList.pack()
+
+    namerule_label = Label(itemsFrame,text="Name of the rule").grid(row=0,column=0,sticky='w')
+    vRuleName = StringVar()
+    rulename_entry = Entry(itemsFrame,textvariable=vRuleName).grid(row=0,column=1,sticky='w')
+    rule_name = vRuleName.get()
+    editWhiteList = Button(itemsFrame,text="Edit White List",command=lambda:WhiteListWindow(project_name,rule_name)).grid(row=1,column=0,sticky='w')
+    editBlackList = Button(itemsFrame,text="Edit Black List").grid(row=2,column=0,sticky='w')
     text_of_where_to_look = StringVar()
-    where_to_look = Label(rightFrame,text="Where to look?").grid(row=0,sticky='w')
-    HeaderCB = Checkbutton(rightFrame,text="Header").grid(row=1,sticky='w')
-    StubCB = Checkbutton(rightFrame,text="Stub").grid(row=2,sticky='w')
-    SuperRowCB = Checkbutton(rightFrame,text="Super-row").grid(row=3,sticky='w')
-    DataCB = Checkbutton(rightFrame,text="Data").grid(row=4,sticky='w')
-    EverywhereCB = Checkbutton(rightFrame,text="Everywhere").grid(row=5,sticky='w')
-    bottomframe2 = Frame(add,height=1)
-    bottomframe2.pack(side=BOTTOM)
-    bottomframe = Frame(add,height=40)
-    bottomframe.pack(side=BOTTOM)
-    save = Button(bottomframe, text="Save", fg="black")
-    save.pack()
+    where_to_look = Label(itemsFrame,text="Where to look?").grid(row=1,column=1,sticky='w')
+    HeaderCB = Checkbutton(itemsFrame,text="Header").grid(row=2,column=1,sticky='w')
+    StubCB = Checkbutton(itemsFrame,text="Stub").grid(row=3,column=1,sticky='w')
+    SuperRowCB = Checkbutton(itemsFrame,text="Super-row").grid(row=4,column=1,sticky='w')
+    DataCB = Checkbutton(itemsFrame,text="Data").grid(row=5,column=1,sticky='w')
+    EverywhereCB = Checkbutton(itemsFrame,text="Everywhere").grid(row=6,column=1,sticky='w')
+    save = Button(itemsFrame, text="Save", fg="black").grid(row=7,column=1,sticky='w')
     
 
-def AddRule():
-    AddEditRule()
+def AddRule(project_name):
+    AddEditRule(project_name)
     pass
+
+def WhiteListWindow(project_name,rule_name):
+    WhiteListWindow =Toplevel()
+    WhiteListWindow.title("Edit White List")
+    WhiteListWindow.geometry('{}x{}'.format(450, 250))
+    itemsFrame = Frame(WhiteListWindow)
+    itemsFrame.pack()
+    namerule_label = Label(itemsFrame,text="List of terms in whitelsit").grid(row=0,sticky='w')
+    list = Text(itemsFrame,height=10,width=50).grid(row=1,sticky='w')
+    saveButton = Button(itemsFrame,text="Save",fg="black").grid(row=2,sticky='w')
+    
+    
+    
 
 def EditRule():
     AddEditRule()
     pass
+
+def ConfigureDatabaseScreen(project_name):
+    DataConfig = Toplevel()
+    db_host = ""
+    db_port = ""
+    db_user = ""
+    db_pass = ""
+    db_database = ""
+    with open("Projects/"+project_name+"/"+"Config.cfg") as f:
+        content = f.readlines()
+    for line in content:
+        split = line.split(":")
+        split[0] = split[0].replace('\n','')
+        split[1] = split[1].replace('\n','')
+        if(split[0]=="Host"):
+            db_host = split[1]
+        if(split[0]=="Port"):
+            db_port = split[1]
+        if(split[0]=="User"):
+            db_user = split[1]
+        if(split[0]=="Pass"):
+            db_pass = split[1]
+        if(split[0]=="Database"):
+            db_database = split[1]
+    DataConfig.title("Database configuration")
+    Host = Label(DataConfig,text="Host Name").grid(row=0,column=0,sticky='w')
+    vHost = StringVar()
+    HostName = Entry(DataConfig,textvariable=vHost).grid(row=0,column=1,sticky='w')
+    vHost.set(db_host)
+    
+    Port = Label(DataConfig,text="Port Name").grid(row=1,column=0,sticky='w')
+    vPort = StringVar()
+    PortName = Entry(DataConfig,textvariable=vPort).grid(row=1,column=1,sticky='w')
+    vPort.set(db_port)
+    User = Label(DataConfig,text="User Name").grid(row=2,column=0,sticky='w')
+    vUser = StringVar()
+    UserName = Entry(DataConfig,textvariable=vUser).grid(row=2,column=1,sticky='w')
+    vUser.set(db_user)
+    Pass = Label(DataConfig,text="Password").grid(row=3,column=0,sticky='w')
+    vPass = StringVar()
+    PassName = Entry(DataConfig,show="*",textvariable=vPass).grid(row=3,column=1,sticky='w')
+    vPass.set(db_pass)
+    Database = Label(DataConfig,text="Database Name").grid(row=4,column=0,sticky='w')
+    vDatabase = StringVar()
+    DatabaseName = Entry(DataConfig,textvariable=vDatabase).grid(row=4,column=1,sticky='w')
+    vDatabase.set(db_database)
+    Save = Button(DataConfig, text="Save", bg="green",command=lambda: SaveDBSettings(vHost,vPort,vUser,vPass,vDatabase,DataConfig,project_name)).grid(row=5,column=1,sticky='w')
+    
+def SaveDBSettings(HostName,PortName,UserName,PassName,DatabaseName,DataConfig,project_name):
+    
+    hostname = HostName.get()
+    portname = PortName.get()
+    username = UserName.get()
+    passname = PassName.get()
+    database = DatabaseName.get()
+    DataConfig.withdraw()
+    FileManipulationHelper.SaveToConfigFile(project_name,hostname,portname,username,passname,database)
+    pass
+
 
 def LoadFirstCfGScreen(project_name):
     top = Toplevel()
@@ -105,9 +171,11 @@ def LoadFirstCfGScreen(project_name):
     label_name = Label(frame,textvariable=name)
     name.set("Name of task:")
     label_name.pack(side = LEFT)
-    E1 = Entry(frame, bd =5)
-    E1.pack(side = LEFT)
-    ConfigureDB = Button(frame, text="Configure Database", fg="black")
+    name2 = StringVar()
+    label_name2 = Label(frame,textvariable=name2)
+    name2.set(project_name)
+    label_name2.pack(side = LEFT)
+    ConfigureDB = Button(frame, text="Configure Database", fg="black",command=lambda: ConfigureDatabaseScreen(project_name))
     ConfigureDB.pack( side = LEFT)
     clearTable = Button(frame, text="Clear DB Table", fg="black")
     clearTable.pack( side = LEFT)
@@ -123,7 +191,7 @@ def LoadFirstCfGScreen(project_name):
 
 
 
-    AddRules = Button(bottomframe, text="Add Rule", fg="black",command=AddRule)
+    AddRules = Button(bottomframe, text="Add Rule", fg="black",command=lambda:AddRule(project_name))
     AddRules.pack( side = LEFT)
     DeleteRule = Button(bottomframe, text="Delete Rule", fg="black",command=RemoveRule)
     DeleteRule.pack( side = LEFT)

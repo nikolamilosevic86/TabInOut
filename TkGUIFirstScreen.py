@@ -14,7 +14,7 @@ Lb3 = None
 currentWhiteList = []
 currentBlackList = []
 
-def RemoveRule():
+def RemoveRule(Lb1):
     try:
         # get selected line index
         index = Lb1.curselection()[0]
@@ -22,7 +22,7 @@ def RemoveRule():
     except IndexError:
         pass
 
-def MoveRuleUp():
+def MoveRuleUp(Lb1):
     try:
         pos = Lb1.curselection()[0]
         # get selected line index
@@ -35,7 +35,7 @@ def MoveRuleUp():
     except IndexError:
         pass
 
-def MoveRuleDown():
+def MoveRuleDown(Lb1):
     try:
         pos = Lb1.curselection()[0]
         # get selected line index
@@ -48,9 +48,12 @@ def MoveRuleDown():
     except IndexError:
         pass
 
-def AddEditRule(project_name,vRuleName,RuleNameView):
+def AddEditRule(project_name,vRuleName,RuleNameView,RulesListBox):
+    global currentWhiteList
+    global currentBlackList
     currentWhiteList = []
     currentBlackList = []
+    
     RuleNameView.withdraw()
     add = Toplevel()
     add.title("Add/Edit Rule")
@@ -76,29 +79,30 @@ def AddEditRule(project_name,vRuleName,RuleNameView):
     DataCB = Checkbutton(itemsFrame,text="Data",variable = look_data).grid(row=5,column=1,sticky='w')
     look_all = IntVar()
     EverywhereCB = Checkbutton(itemsFrame,text="Everywhere",variable=look_all).grid(row=6,column=1,sticky='w')
-    save = Button(itemsFrame, text="Save", fg="black",command=lambda:SaveRule(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add)).grid(row=7,column=1,sticky='w')
+    save = Button(itemsFrame, text="Save", fg="black",command=lambda:SaveRule(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add,RulesListBox)).grid(row=7,column=1,sticky='w')
 
-def SaveRule(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add):
+def SaveRule(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add,RulesListBox):
+    global currentWhiteList
+    global currentBlackList
     rule_path = "Projects/"+project_name+"/"+rule_name
     FileManipulationHelper.CreateFoderIfNotExist(rule_path)
     FileManipulationHelper.SaveWhiteList(rule_path, currentWhiteList)
     FileManipulationHelper.SaveBlackList(rule_path, currentBlackList)
     FileManipulationHelper.MakeRuleCFGFile(rule_path, look_head, look_stub, look_super, look_data, look_all) 
-    add.withdraw()
-    
-    
+    RulesListBox.insert(RulesListBox.size(),rule_name)
+    add.withdraw()   
     
   
-def SetRuleName(project_name):
+def SetRuleName(project_name,RulesListBox):
     RuleNameView = Toplevel()
     RuleNameView.title("Set rule name") 
     RuleNameLabel = Label(RuleNameView,text="Name of the rule").grid(row=0,sticky='w')
     vRuleName = StringVar()
     RuleNameEntry = Entry(RuleNameView,textvariable=vRuleName).grid(row=1,sticky='w')
-    RuleNameButton = Button(RuleNameView,text="Next ->>",command=lambda:AddEditRule(project_name,vRuleName,RuleNameView)).grid(row=2,sticky='w')
+    RuleNameButton = Button(RuleNameView,text="Next ->>",command=lambda:AddEditRule(project_name,vRuleName,RuleNameView,RulesListBox)).grid(row=2,sticky='w')
 
-def AddRule(project_name):
-    SetRuleName(project_name)
+def AddRule(project_name,RulesListBox):
+    SetRuleName(project_name,RulesListBox)
     
 def WhiteListWindow(project_name,rule_name):
     WhiteListWindow =Toplevel()
@@ -114,11 +118,13 @@ def WhiteListWindow(project_name,rule_name):
 
 
 def SaveWhiteList(listAA,WhiteListWindow):
+    global currentWhiteList
     currentWhiteList = []
     currentWhiteList = listAA.split('\n')
     WhiteListWindow.withdraw()
     
 def SaveBlackList(listAA,BlackListWindow):
+    global currentBlackList
     currentBlackList = []
     currentBlackList = listAA.split('\n')
     BlackListWindow.withdraw()
@@ -232,25 +238,19 @@ def LoadFirstCfGScreen(project_name):
     clearTable.pack( side = LEFT)
 
     Lb1 = Listbox(middleframe,width=80,height=20)
-    Lb1.insert(1, "Python")
-    Lb1.insert(2, "Perl")
-    Lb1.insert(3, "C")
-    Lb1.insert(4, "PHP")
-    Lb1.insert(5, "JSP")    
-    Lb1.insert(6, "Ruby")
     Lb1.pack()
 
 
 
-    AddRules = Button(bottomframe, text="Add Rule", fg="black",command=lambda:AddRule(project_name))
+    AddRules = Button(bottomframe, text="Add Rule", fg="black",command=lambda:AddRule(project_name,Lb1))
     AddRules.pack( side = LEFT)
-    DeleteRule = Button(bottomframe, text="Delete Rule", fg="black",command=RemoveRule)
+    DeleteRule = Button(bottomframe, text="Delete Rule", fg="black",command=lambda:RemoveRule(Lb1))
     DeleteRule.pack( side = LEFT)
     EditRule = Button(bottomframe, text="Edit Rule", fg="black",command=AddRule)
     EditRule.pack( side = LEFT)
-    MoveUpRule = Button(bottomframe, text="Move Up Rule", fg="black",command=MoveRuleUp)
+    MoveUpRule = Button(bottomframe, text="Move Up Rule", fg="black",command=lambda:MoveRuleUp(Lb1))
     MoveUpRule.pack( side = LEFT)
-    MoveDownRule = Button(bottomframe, text="Move Down Rule", fg="black",command=MoveRuleDown)
+    MoveDownRule = Button(bottomframe, text="Move Down Rule", fg="black",command=lambda:MoveRuleDown(Lb1))
     MoveDownRule.pack( side = LEFT)
     Next = Button(bottomframe, text="Next", bg="green")
     Next.pack( side = LEFT)

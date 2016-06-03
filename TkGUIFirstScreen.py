@@ -11,6 +11,8 @@ import tkMessageBox
 import FileManipulationHelper
 Lb1 = None
 Lb3 = None   
+currentWhiteList = []
+currentBlackList = []
 
 def RemoveRule():
     try:
@@ -46,7 +48,10 @@ def MoveRuleDown():
     except IndexError:
         pass
 
-def AddEditRule(project_name):
+def AddEditRule(project_name,vRuleName,RuleNameView):
+    currentWhiteList = []
+    currentBlackList = []
+    RuleNameView.withdraw()
     add = Toplevel()
     add.title("Add/Edit Rule")
     add.geometry('{}x{}'.format(200, 200))
@@ -54,25 +59,47 @@ def AddEditRule(project_name):
     itemsFrame.pack()
 
     namerule_label = Label(itemsFrame,text="Name of the rule").grid(row=0,column=0,sticky='w')
-    vRuleName = StringVar()
-    rulename_entry = Entry(itemsFrame,textvariable=vRuleName).grid(row=0,column=1,sticky='w')
+    rulename_entry = Entry(itemsFrame,textvariable=vRuleName,state=DISABLED).grid(row=0,column=1,sticky='w')
+    
     rule_name = vRuleName.get()
     editWhiteList = Button(itemsFrame,text="Edit White List",command=lambda:WhiteListWindow(project_name,rule_name)).grid(row=1,column=0,sticky='w')
-    editBlackList = Button(itemsFrame,text="Edit Black List").grid(row=2,column=0,sticky='w')
+    editBlackList = Button(itemsFrame,text="Edit Black List", command = lambda:BlackListWindow(project_name,rule_name)).grid(row=2,column=0,sticky='w')
     text_of_where_to_look = StringVar()
     where_to_look = Label(itemsFrame,text="Where to look?").grid(row=1,column=1,sticky='w')
-    HeaderCB = Checkbutton(itemsFrame,text="Header").grid(row=2,column=1,sticky='w')
-    StubCB = Checkbutton(itemsFrame,text="Stub").grid(row=3,column=1,sticky='w')
-    SuperRowCB = Checkbutton(itemsFrame,text="Super-row").grid(row=4,column=1,sticky='w')
-    DataCB = Checkbutton(itemsFrame,text="Data").grid(row=5,column=1,sticky='w')
-    EverywhereCB = Checkbutton(itemsFrame,text="Everywhere").grid(row=6,column=1,sticky='w')
-    save = Button(itemsFrame, text="Save", fg="black").grid(row=7,column=1,sticky='w')
+    look_head = IntVar()
+    HeaderCB = Checkbutton(itemsFrame,text="Header",variable = look_head).grid(row=2,column=1,sticky='w')
+    look_stub = IntVar()
+    StubCB = Checkbutton(itemsFrame,text="Stub",variable = look_stub).grid(row=3,column=1,sticky='w')
+    look_super = IntVar()
+    SuperRowCB = Checkbutton(itemsFrame,text="Super-row",variable = look_super).grid(row=4,column=1,sticky='w')
+    look_data = IntVar()
+    DataCB = Checkbutton(itemsFrame,text="Data",variable = look_data).grid(row=5,column=1,sticky='w')
+    look_all = IntVar()
+    EverywhereCB = Checkbutton(itemsFrame,text="Everywhere",variable=look_all).grid(row=6,column=1,sticky='w')
+    save = Button(itemsFrame, text="Save", fg="black",command=lambda:SaveRule(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add)).grid(row=7,column=1,sticky='w')
+
+def SaveRule(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add):
+    rule_path = "Projects/"+project_name+"/"+rule_name
+    FileManipulationHelper.CreateFoderIfNotExist(rule_path)
+    FileManipulationHelper.SaveWhiteList(rule_path, currentWhiteList)
+    FileManipulationHelper.SaveBlackList(rule_path, currentBlackList)
+    FileManipulationHelper.MakeRuleCFGFile(rule_path, look_head, look_stub, look_super, look_data, look_all) 
+    add.withdraw()
     
+    
+    
+  
+def SetRuleName(project_name):
+    RuleNameView = Toplevel()
+    RuleNameView.title("Set rule name") 
+    RuleNameLabel = Label(RuleNameView,text="Name of the rule").grid(row=0,sticky='w')
+    vRuleName = StringVar()
+    RuleNameEntry = Entry(RuleNameView,textvariable=vRuleName).grid(row=1,sticky='w')
+    RuleNameButton = Button(RuleNameView,text="Next ->>",command=lambda:AddEditRule(project_name,vRuleName,RuleNameView)).grid(row=2,sticky='w')
 
 def AddRule(project_name):
-    AddEditRule(project_name)
-    pass
-
+    SetRuleName(project_name)
+    
 def WhiteListWindow(project_name,rule_name):
     WhiteListWindow =Toplevel()
     WhiteListWindow.title("Edit White List")
@@ -80,8 +107,32 @@ def WhiteListWindow(project_name,rule_name):
     itemsFrame = Frame(WhiteListWindow)
     itemsFrame.pack()
     namerule_label = Label(itemsFrame,text="List of terms in whitelsit").grid(row=0,sticky='w')
-    list = Text(itemsFrame,height=10,width=50).grid(row=1,sticky='w')
-    saveButton = Button(itemsFrame,text="Save",fg="black").grid(row=2,sticky='w')
+    whitelist = Text(itemsFrame,height=10,width=50)
+    whitelist.grid(row=1,sticky='w')
+    saveButton = Button(itemsFrame,text="Save",fg="black",command=lambda:SaveWhiteList(whitelist.get("1.0",END),WhiteListWindow)).grid(row=2,sticky='w')
+
+
+
+def SaveWhiteList(listAA,WhiteListWindow):
+    currentWhiteList = []
+    currentWhiteList = listAA.split('\n')
+    WhiteListWindow.withdraw()
+    
+def SaveBlackList(listAA,BlackListWindow):
+    currentBlackList = []
+    currentBlackList = listAA.split('\n')
+    BlackListWindow.withdraw()
+
+def BlackListWindow(project_name,rule_name):
+    BlackListWindow =Toplevel()
+    BlackListWindow.title("Edit Black List")
+    BlackListWindow.geometry('{}x{}'.format(450, 250))
+    itemsFrame = Frame(BlackListWindow)
+    itemsFrame.pack()
+    namerule_label = Label(itemsFrame,text="List of terms in blacklist").grid(row=0,sticky='w')
+    list = Text(itemsFrame,height=10,width=50)
+    list.grid(row=1,sticky='w')
+    saveButton = Button(itemsFrame,text="Save",fg="black",command=lambda:SaveBlackList(list.get("1.0",END),BlackListWindow)).grid(row=2,sticky='w')
     
     
     

@@ -39,6 +39,26 @@ def SaveToConfigFile(project_name,hostname,port,user,pasword,database):
     f.write('Pass:'+pasword+'\n')
     f.write('Database:'+database+'\n')
     f.close()
+
+def SaveWhiteList(rule_path,whitelist):
+    f = open(rule_path+'/WhiteList.lst','w')
+    for item in whitelist:
+        f.write(item+'\n')
+    f.close
+def SaveBlackList(rule_path,blakclist):
+    f = open(rule_path+'/BlackList.lst','w')
+    for item in blakclist:
+        f.write(item+'\n')
+    f.close
+def MakeRuleCFGFile(rule_path,look_head,look_stub,look_super,look_data,look_all):
+    f = open(rule_path+'/Rule.cfg','w')
+    f.write('Header:'+str(look_head.get())+'\n')
+    f.write('Stub:'+str(look_stub.get())+'\n')
+    f.write('Super-row:'+str(look_super.get())+'\n')
+    f.write('Data:'+str(look_data.get())+'\n')
+    f.write('All:'+str(look_all.get())+'\n')
+    f.close()
+
         
 #CreateFolderStructure()
 #print readProjects()

@@ -9,15 +9,18 @@ Licence GNU/GPL 3.0
 from Tkinter import *
 import tkMessageBox
 import FileManipulationHelper
+import shutil
 Lb1 = None
 Lb3 = None   
 currentWhiteList = []
 currentBlackList = []
 
-def RemoveRule(Lb1):
+def RemoveRule(Lb1,project_name):
     try:
         # get selected line index
         index = Lb1.curselection()[0]
+        rule = Lb1.get(index)
+        shutil.rmtree('Projects/'+project_name+'/'+rule)
         Lb1.delete(index)
     except IndexError:
         pass
@@ -79,7 +82,7 @@ def AddEditRule(project_name,vRuleName,RuleNameView,RulesListBox):
     DataCB = Checkbutton(itemsFrame,text="Data",variable = look_data).grid(row=5,column=1,sticky='w')
     look_all = IntVar()
     EverywhereCB = Checkbutton(itemsFrame,text="Everywhere",variable=look_all).grid(row=6,column=1,sticky='w')
-    save = Button(itemsFrame, text="Save", fg="black",command=lambda:SaveRule(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add,RulesListBox)).grid(row=7,column=1,sticky='w')
+    save = Button(itemsFrame, text="Save", fg="black",command=lambda:SaveRuleEdit(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add)).grid(row=7,column=1,sticky='w')
 
 def SaveRule(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add,RulesListBox):
     global currentWhiteList
@@ -92,6 +95,16 @@ def SaveRule(project_name,rule_name,look_head,look_stub,look_super,look_data,loo
     RulesListBox.insert(RulesListBox.size(),rule_name)
     add.withdraw()   
     
+def SaveRuleEdit(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add):
+    global currentWhiteList
+    global currentBlackList
+    rule_path = "Projects/"+project_name+"/"+rule_name
+    FileManipulationHelper.CreateFoderIfNotExist(rule_path)
+    FileManipulationHelper.SaveWhiteList(rule_path, currentWhiteList)
+    FileManipulationHelper.SaveBlackList(rule_path, currentBlackList)
+    FileManipulationHelper.MakeRuleCFGFile(rule_path, look_head, look_stub, look_super, look_data, look_all) 
+    add.withdraw()  
+    
   
 def SetRuleName(project_name,RulesListBox):
     RuleNameView = Toplevel()
@@ -100,6 +113,42 @@ def SetRuleName(project_name,RulesListBox):
     vRuleName = StringVar()
     RuleNameEntry = Entry(RuleNameView,textvariable=vRuleName).grid(row=1,sticky='w')
     RuleNameButton = Button(RuleNameView,text="Next ->>",command=lambda:AddEditRule(project_name,vRuleName,RuleNameView,RulesListBox)).grid(row=2,sticky='w')
+
+def EditRule(project_name,Lb1):
+    global currentWhiteList
+    global currentBlackList
+    currentWhiteList = []
+    currentBlackList = []
+    
+    add = Toplevel()
+    add.title("Edit Rule")
+    add.geometry('{}x{}'.format(200, 200))
+    itemsFrame = Frame(add,height=130)
+    itemsFrame.pack()
+    vRuleName = StringVar()
+    pos = Lb1.curselection()[0]
+    vRuleName.set(Lb1.get(pos))
+    namerule_label = Label(itemsFrame,text="Name of the rule").grid(row=0,column=0,sticky='w')
+    rulename_entry = Entry(itemsFrame,textvariable=vRuleName,state=DISABLED).grid(row=0,column=1,sticky='w')
+    
+    rule_name = vRuleName.get()
+    editWhiteList = Button(itemsFrame,text="Edit White List",command=lambda:WhiteListWindow(project_name,rule_name)).grid(row=1,column=0,sticky='w')
+    editBlackList = Button(itemsFrame,text="Edit Black List", command = lambda:BlackListWindow(project_name,rule_name)).grid(row=2,column=0,sticky='w')
+    text_of_where_to_look = StringVar()
+    where_to_look = Label(itemsFrame,text="Where to look?").grid(row=1,column=1,sticky='w')
+    look_head = IntVar()
+    HeaderCB = Checkbutton(itemsFrame,text="Header",variable = look_head).grid(row=2,column=1,sticky='w')
+    look_stub = IntVar()
+    StubCB = Checkbutton(itemsFrame,text="Stub",variable = look_stub).grid(row=3,column=1,sticky='w')
+    look_super = IntVar()
+    SuperRowCB = Checkbutton(itemsFrame,text="Super-row",variable = look_super).grid(row=4,column=1,sticky='w')
+    look_data = IntVar()
+    DataCB = Checkbutton(itemsFrame,text="Data",variable = look_data).grid(row=5,column=1,sticky='w')
+    look_all = IntVar()
+    EverywhereCB = Checkbutton(itemsFrame,text="Everywhere",variable=look_all).grid(row=6,column=1,sticky='w')
+    save = Button(itemsFrame, text="Save", fg="black",command=lambda:SaveRule(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add)).grid(row=7,column=1,sticky='w')
+    
+
 
 def AddRule(project_name,RulesListBox):
     SetRuleName(project_name,RulesListBox)
@@ -143,9 +192,9 @@ def BlackListWindow(project_name,rule_name):
     
     
 
-def EditRule():
-    AddEditRule()
-    pass
+#def EditRule():
+#    AddEditRule()
+#    pass
 
 def ConfigureDatabaseScreen(project_name):
     DataConfig = Toplevel()
@@ -236,18 +285,19 @@ def LoadFirstCfGScreen(project_name):
     ConfigureDB.pack( side = LEFT)
     clearTable = Button(frame, text="Clear DB Table", fg="black")
     clearTable.pack( side = LEFT)
-
+    rules = FileManipulationHelper.loadRules(project_name)
     Lb1 = Listbox(middleframe,width=80,height=20)
     Lb1.pack()
-
-
-
+    size = Lb1.size()
+    for rule in rules:
+        Lb1.insert(size,rule)
+        size = Lb1.size()
     AddRules = Button(bottomframe, text="Add Rule", fg="black",command=lambda:AddRule(project_name,Lb1))
     AddRules.pack( side = LEFT)
-    DeleteRule = Button(bottomframe, text="Delete Rule", fg="black",command=lambda:RemoveRule(Lb1))
+    DeleteRule = Button(bottomframe, text="Delete Rule", fg="black",command=lambda:RemoveRule(Lb1,project_name))
     DeleteRule.pack( side = LEFT)
-    EditRule = Button(bottomframe, text="Edit Rule", fg="black",command=AddRule)
-    EditRule.pack( side = LEFT)
+    EditRuleA = Button(bottomframe, text="Edit Rule", fg="black",command=lambda:EditRule(project_name,Lb1))
+    EditRuleA.pack( side = LEFT)
     MoveUpRule = Button(bottomframe, text="Move Up Rule", fg="black",command=lambda:MoveRuleUp(Lb1))
     MoveUpRule.pack( side = LEFT)
     MoveDownRule = Button(bottomframe, text="Move Down Rule", fg="black",command=lambda:MoveRuleDown(Lb1))

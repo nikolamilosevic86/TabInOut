@@ -59,6 +59,13 @@ def MakeRuleCFGFile(rule_path,look_head,look_stub,look_super,look_data,look_all)
     f.write('All:'+str(look_all.get())+'\n')
     f.close()
 
+def loadRules(project_name):
+    project_folder = 'Projects/'+project_name+'/'
+    projects = [os.path.join("",o) for o in os.listdir(project_folder) if os.path.isdir(os.path.join(project_folder,o))]
+    return projects
+    
+    
+
         
 #CreateFolderStructure()
 #print readProjects()

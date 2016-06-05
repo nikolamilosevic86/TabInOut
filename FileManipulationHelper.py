@@ -64,6 +64,35 @@ def loadRules(project_name):
     projects = [os.path.join("",o) for o in os.listdir(project_folder) if os.path.isdir(os.path.join(project_folder,o))]
     return projects
     
+def loadWhiteList(project_name,rule_name):
+    Rule_path = "Projects/"+project_name+'/'+rule_name+'/WhiteList.lst'
+    f = open(Rule_path,'r')
+    whitelist = f.readlines()
+    return whitelist
+def loadBlackList(project_name,rule_name):
+    Rule_path = "Projects/"+project_name+'/'+rule_name+'/BlackList.lst'
+    f = open(Rule_path,'r')
+    blacklist = f.readlines()
+    return blacklist
+def loadRuleConfig(project_name,rule_name):
+    Rule_path = "Projects/"+project_name+'/'+rule_name+'/Rule.cfg'
+    f = open(Rule_path,'r')
+    config = f.readlines()
+    conf = {}
+    for cfg in config:
+        sp = cfg.split(':')
+        if sp[0]=='Header':
+            conf['Header']=sp[1]
+        if sp[0]=='Stub':
+            conf['Stub']=sp[1]
+        if sp[0]=='Super-row':
+            conf['Super-row']=sp[1]
+        if sp[0]=='Data':
+            conf['Data']=sp[1]
+        if sp[0]=='All':
+            conf['All']=sp[1]
+    return conf
+            
     
 
         

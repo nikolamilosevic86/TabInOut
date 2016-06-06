@@ -92,6 +92,12 @@ def loadRuleConfig(project_name,rule_name):
         if sp[0]=='All':
             conf['All']=sp[1]
     return conf
+
+def LoadRules(path):
+    f = open(path,'r')
+    rules = f.readlines()
+    return rules
+
             
     
 

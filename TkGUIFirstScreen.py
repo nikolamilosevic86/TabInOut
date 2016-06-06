@@ -478,11 +478,11 @@ def LoadRulesCfGMainScreen(project_name,SetLexRules):
     none_val = IntVar()
     NoneCB = Checkbutton(frame,text="None (Write your own rules)",variable = none_val)
     NoneCB.grid(row=5,column=0,sticky='w')
-    Next = Button(bottomframe, text="Next", bg="green",command = lambda:EditSintacticRules(project_name, top))
+    Next = Button(bottomframe, text="Next", bg="green",command = lambda:EditSintacticRules(project_name, top,int_val,float_val,stats_val,alt_val,none_val))
     Next.pack( side = LEFT)
     pass
 
-def EditSintacticRules(project_name, ChoseSintRulesWindow):
+def EditSintacticRules(project_name, ChoseSintRulesWindow,int_val,float_val,stats_val,alt_val,none_val):
     ChoseSintRulesWindow.withdraw()
     top = Toplevel()
     top.protocol("WM_DELETE_WINDOW", on_closing)
@@ -494,9 +494,28 @@ def EditSintacticRules(project_name, ChoseSintRulesWindow):
     frame.pack()
     topframe2 = Frame(top,height=10)
     topframe2.pack()
-    whitelist = Text(frame,height=15,width=40)
-    whitelist.grid(row=1,sticky='w')
-    saveButton = Button(frame,text="Next",bg="green",fg="black",command=lambda:SaveSintacticRules(whitelist.get("1.0",END),top)).grid(row=2,sticky='w')
+    rules = StringVar()
+    rulelist = Text(frame,height=15,width=40)
+    rulelist.grid(row=1,sticky='w')
+    fpaths = []
+    if(int_val.get()==1):
+        fpaths.append('DefaultSintacticRules/SingleInteger')
+    if(float_val.get()==1):
+        fpaths.append('DefaultSintacticRules/SingleFloat')
+    if(stats_val.get()==1):
+        fpaths.append('DefaultSintacticRules/StatisticalValues')
+    if(alt_val.get()==1):
+        fpaths.append('DefaultSintacticRules/Alternatives')
+    rules = []
+    for path in fpaths:
+        rules = rules + FileManipulationHelper.LoadRules(path)
+        
+    i = 1
+    for w in rules:
+        rulelist.insert(str(i)+'.0',w)
+        i=i+1
+    
+    saveButton = Button(frame,text="Next",bg="green",fg="black",command=lambda:SaveSintacticRules(rulelist.get("1.0",END),top)).grid(row=2,sticky='w')
     pass
 
 def SaveSintacticRules(rules, window):

@@ -7,9 +7,8 @@ Created at the University of Manchester, School of Computer Science
 Licence GNU/GPL 3.0
 '''
 from Tkinter import *
-import tkMessageBox
 import FileManipulationHelper
-import shutil
+import shutil 
 Lb1 = None
 Lb3 = None   
 currentWhiteList = []
@@ -253,7 +252,6 @@ def BlackListWindowEdit(project_name,rule_name):
 
 def ConfigureDatabaseScreen(project_name):
     DataConfig = Toplevel()
-    DataConfig.protocol("WM_DELETE_WINDOW", on_closing)
     db_host = ""
     db_port = ""
     db_user = ""
@@ -313,6 +311,7 @@ def SaveDBSettings(HostName,PortName,UserName,PassName,DatabaseName,DataConfig,p
 
 def LoadFirstCfGScreen(project_name):
     top = Toplevel()
+    top.protocol("WM_DELETE_WINDOW", on_closing)
     top.title("Table InfExtractor")
     top.geometry('{}x{}'.format(500, 500))
     topframe = Frame(top,height=10)
@@ -358,7 +357,7 @@ def LoadFirstCfGScreen(project_name):
     MoveUpRule.pack( side = LEFT)
     MoveDownRule = Button(bottomframe, text="Move Down Rule", fg="black",command=lambda:MoveRuleDown(Lb1))
     MoveDownRule.pack( side = LEFT)
-    Next = Button(bottomframe, text="Next", bg="green")
+    Next = Button(bottomframe, text="Next", bg="green", command=lambda:LoadRulesCfGMainScreen(project_name,top))
     Next.pack( side = LEFT)
 
 def EnableLB(Lb3,E2):
@@ -391,6 +390,7 @@ def FinishFirstScreen(variab,E2,Lb3,s):
 
 def LoadConfigScreen():
     s = Toplevel()
+    s.protocol("WM_DELETE_WINDOW", on_closing)
     s.title("Table InfExtractor")
     s.geometry('{}x{}'.format(500, 500))
     topframe = Frame(s,height=10)
@@ -433,7 +433,83 @@ def LoadConfigScreen():
     
 def on_closing():
     main.destroy()
+    
+########################################
+#                                      #
+#   Frames for setting up the rules    #
+#                                      #
+########################################
+def LoadRulesCfGMainScreen(project_name,SetLexRules):
+    top = Toplevel()
+    SetLexRules.withdraw()
+    top.protocol("WM_DELETE_WINDOW", on_closing)
+    top.title("Set up rules")
+    top.geometry('{}x{}'.format(300, 400))
+    topframe = Frame(top,height=10)
+    topframe.pack()
+    frame = Frame(top)
+    frame.pack()
+    topframe2 = Frame(top,height=10)
+    topframe2.pack()
 
+    middleframe = Frame(top)
+    middleframe.pack()
+    bottomframe2 = Frame(top,height=10)
+    bottomframe2.pack( side = BOTTOM )
+    bottomframe = Frame(top)
+    bottomframe.pack( side = BOTTOM )
+
+    name = StringVar()
+    label_name = Label(frame,textvariable=name)
+    name.set("Choose from default set of rules:")
+    label_name.grid(row=0,column=0,sticky='w')
+    int_val = IntVar()
+    IntCB = Checkbutton(frame,text="Single integer",variable = int_val)
+    IntCB.grid(row=1,column=0,sticky='w')
+    float_val = IntVar()
+    FloatCB = Checkbutton(frame,text="Single Float",variable = float_val)
+    FloatCB.grid(row=2,column=0,sticky='w')
+    stats_val = IntVar()
+    StatsCB = Checkbutton(frame,text="Statistical value (Mean,SD,Ranges)",variable = stats_val)
+    StatsCB.grid(row=3,column=0,sticky='w')
+    alt_val = IntVar()
+    AltCB = Checkbutton(frame,text="Two alternative values",variable = alt_val)
+    AltCB.grid(row=4,column=0,sticky='w')
+    none_val = IntVar()
+    NoneCB = Checkbutton(frame,text="None (Write your own rules)",variable = none_val)
+    NoneCB.grid(row=5,column=0,sticky='w')
+    Next = Button(bottomframe, text="Next", bg="green",command = lambda:EditSintacticRules(project_name, top))
+    Next.pack( side = LEFT)
+    pass
+
+def EditSintacticRules(project_name, ChoseSintRulesWindow):
+    ChoseSintRulesWindow.withdraw()
+    top = Toplevel()
+    top.protocol("WM_DELETE_WINDOW", on_closing)
+    top.title("Modify selected rules")
+    top.geometry('{}x{}'.format(400, 300))
+    topframe = Frame(top,height=10)
+    topframe.pack()
+    frame = Frame(top)
+    frame.pack()
+    topframe2 = Frame(top,height=10)
+    topframe2.pack()
+    whitelist = Text(frame,height=15,width=40)
+    whitelist.grid(row=1,sticky='w')
+    saveButton = Button(frame,text="Next",bg="green",fg="black",command=lambda:SaveSintacticRules(whitelist.get("1.0",END),top)).grid(row=2,sticky='w')
+    pass
+
+def SaveSintacticRules(rules, window):
+    window.withdraw()
+    top = Toplevel()
+    top.protocol("WM_DELETE_WINDOW", on_closing)
+    top.title("Working...")
+    top.geometry('{}x{}'.format(400, 300))
+    lab = Label(top,text="Please be patient...")
+    lab.pack()
+    #Logic for saving the rules
+    pass
+##################################################################
 
 main = Tk()
 variab = StringVar() 

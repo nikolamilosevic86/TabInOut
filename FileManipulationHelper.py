@@ -50,13 +50,16 @@ def SaveBlackList(rule_path,blakclist):
     for item in blakclist:
         f.write(item+'\n')
     f.close
-def MakeRuleCFGFile(rule_path,look_head,look_stub,look_super,look_data,look_all):
+def MakeRuleCFGFile(rule_path,look_head,look_stub,look_super,look_data,look_all,vClsIn,vDefUnit,vPosUnit):
     f = open(rule_path+'/Rule.cfg','w')
     f.write('Header:'+str(look_head.get())+'\n')
     f.write('Stub:'+str(look_stub.get())+'\n')
     f.write('Super-row:'+str(look_super.get())+'\n')
     f.write('Data:'+str(look_data.get())+'\n')
     f.write('All:'+str(look_all.get())+'\n')
+    f.write("Class:"+str(vClsIn.get())+'\n')
+    f.write("DefUnit:"+str(vDefUnit.get())+'\n')
+    f.write("PosUnit:"+str(vPosUnit.get())+'\n')
     f.close()
 
 def loadRules(project_name):
@@ -91,6 +94,12 @@ def loadRuleConfig(project_name,rule_name):
             conf['Data']=sp[1]
         if sp[0]=='All':
             conf['All']=sp[1]
+        if sp[0]=='Class':
+            conf['Class']=sp[1]
+        if sp[0]=='DefUnit':
+            conf['DefUnit']=sp[1]
+        if sp[0]=='PosUnit':
+            conf['PosUnit']=sp[1]
     return conf
 
 def LoadRules(path):

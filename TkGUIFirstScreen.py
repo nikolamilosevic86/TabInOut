@@ -60,7 +60,7 @@ def AddEditRule(project_name,vRuleName,RuleNameView,RulesListBox):
     add = Toplevel()
     add.protocol("WM_DELETE_WINDOW", on_closing)
     add.title("Add/Edit Rule")
-    add.geometry('{}x{}'.format(200, 200))
+    add.geometry('{}x{}'.format(400, 300))
     itemsFrame = Frame(add,height=130)
     itemsFrame.pack()
 
@@ -70,6 +70,15 @@ def AddEditRule(project_name,vRuleName,RuleNameView,RulesListBox):
     rule_name = vRuleName.get()
     editWhiteList = Button(itemsFrame,text="Edit White List",command=lambda:WhiteListWindow(project_name,rule_name)).grid(row=1,column=0,sticky='w')
     editBlackList = Button(itemsFrame,text="Edit Black List", command = lambda:BlackListWindow(project_name,rule_name)).grid(row=2,column=0,sticky='w')
+    ClassLabel = Label(itemsFrame,text="Class name of result").grid(row=3,column=0,sticky='w')
+    vClsIn = StringVar()
+    ClassInput = Entry(itemsFrame,textvariable=vClsIn.get()).grid(row=4,sticky='w')
+    DefUnitLabel = Label(itemsFrame,text="Default unit").grid(row=5,column=0,sticky='w')
+    vDefUnit = StringVar()
+    DefUnInput = Entry(itemsFrame,textvariable=vDefUnit).grid(row=6,sticky='w')
+    PosUnitLabel = Label(itemsFrame,text="Possible units (comma separated)").grid(row=7,column=0,sticky='w')
+    vPosUnit = StringVar()
+    PosUnInput = Entry(itemsFrame,textvariable=vPosUnit).grid(row=8,sticky='w')
     text_of_where_to_look = StringVar()
     where_to_look = Label(itemsFrame,text="Where to look?").grid(row=1,column=1,sticky='w')
     look_head = IntVar()
@@ -82,7 +91,7 @@ def AddEditRule(project_name,vRuleName,RuleNameView,RulesListBox):
     DataCB = Checkbutton(itemsFrame,text="Data",variable = look_data).grid(row=5,column=1,sticky='w')
     look_all = IntVar()
     EverywhereCB = Checkbutton(itemsFrame,text="Everywhere",variable=look_all).grid(row=6,column=1,sticky='w')
-    save = Button(itemsFrame, text="Save", fg="black",command=lambda:SaveRuleEdit(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add)).grid(row=7,column=1,sticky='w')
+    save = Button(itemsFrame, text="Save", fg="black",command=lambda:SaveRuleEdit(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add,vClsIn,vDefUnit,vPosUnit)).grid(row=7,column=1,sticky='w')
 
 def SaveRule(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add,RulesListBox):
     global currentWhiteList
@@ -95,14 +104,14 @@ def SaveRule(project_name,rule_name,look_head,look_stub,look_super,look_data,loo
     RulesListBox.insert(RulesListBox.size(),rule_name)
     add.withdraw()   
     
-def SaveRuleEdit(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add):
+def SaveRuleEdit(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add,vClsIn,vDefUnit,vPosUnit):
     global currentWhiteList
     global currentBlackList
     rule_path = "Projects/"+project_name+"/"+rule_name
     FileManipulationHelper.CreateFoderIfNotExist(rule_path)
     FileManipulationHelper.SaveWhiteList(rule_path, currentWhiteList)
     FileManipulationHelper.SaveBlackList(rule_path, currentBlackList)
-    FileManipulationHelper.MakeRuleCFGFile(rule_path, look_head, look_stub, look_super, look_data, look_all) 
+    FileManipulationHelper.MakeRuleCFGFile(rule_path, look_head, look_stub, look_super, look_data, look_all,vClsIn,vDefUnit,vPosUnit) 
     add.withdraw()  
     
   
@@ -122,7 +131,7 @@ def EditRule(project_name,Lb1):
     
     add = Toplevel()
     add.title("Edit Rule")
-    add.geometry('{}x{}'.format(200, 200))
+    add.geometry('{}x{}'.format(400, 300))
     itemsFrame = Frame(add,height=130)
     itemsFrame.pack()
     vRuleName = StringVar()
@@ -132,12 +141,33 @@ def EditRule(project_name,Lb1):
     rulename_entry = Entry(itemsFrame,textvariable=vRuleName,state=DISABLED).grid(row=0,column=1,sticky='w')
     
     rule_name = vRuleName.get()
+    ClassLabel = Label(itemsFrame,text="Class name of result").grid(row=3,column=0,sticky='w')
+    vClsIn = StringVar()
+    ClassInput = Entry(itemsFrame,textvariable=vClsIn)
+    ClassInput.grid(row=4,sticky='w')
+    DefUnitLabel = Label(itemsFrame,text="Default unit")
+    DefUnitLabel.grid(row=5,column=0,sticky='w')
+    vDefUnit = StringVar()
+    DefUnInput = Entry(itemsFrame,textvariable=vDefUnit)
+    DefUnInput.grid(row=6,sticky='w')
+    PosUnitLabel = Label(itemsFrame,text="Possible units (comma separated)")
+    PosUnitLabel.grid(row=7,column=0,sticky='w')
+    vPosUnit = StringVar()
+    PosUnInput = Entry(itemsFrame,textvariable=vPosUnit)
+    PosUnInput.grid(row=8,sticky='w')
+    
     editWhiteList = Button(itemsFrame,text="Edit White List",command=lambda:WhiteListWindowEdit(project_name,rule_name)).grid(row=1,column=0,sticky='w')
     editBlackList = Button(itemsFrame,text="Edit Black List", command = lambda:BlackListWindowEdit(project_name,rule_name)).grid(row=2,column=0,sticky='w')
     text_of_where_to_look = StringVar()
     where_to_look = Label(itemsFrame,text="Where to look?").grid(row=1,column=1,sticky='w')
     look_head = IntVar()
     cfg = FileManipulationHelper.loadRuleConfig(project_name, rule_name)
+    try:
+        vClsIn.set(cfg['Class'])
+        vDefUnit.set(cfg['DefUnit'])
+        vPosUnit.set(cfg['PosUnit'])
+    except:
+        print "Class is missing"
     look_head.set(cfg['Header'])
     HeaderCB = Checkbutton(itemsFrame,text="Header",variable = look_head)
     if look_head.get() == 1:
@@ -167,9 +197,8 @@ def EditRule(project_name,Lb1):
     EverywhereCB.grid(row=6,column=1,sticky='w')
     if look_all.get() == 1:
         EverywhereCB.select()
-    save = Button(itemsFrame, text="Save", fg="black",command=lambda:SaveRuleEdit(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add)).grid(row=7,column=1,sticky='w')
+    save = Button(itemsFrame, text="Save", fg="black",command=lambda:SaveRuleEdit(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add,vClsIn,vDefUnit,vPosUnit)).grid(row=7,column=1,sticky='w')
     
-
 
 def AddRule(project_name,RulesListBox):
     SetRuleName(project_name,RulesListBox)

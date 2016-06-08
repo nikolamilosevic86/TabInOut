@@ -544,12 +544,16 @@ def EditSintacticRules(project_name, ChoseSintRulesWindow,int_val,float_val,stat
         rulelist.insert(str(i)+'.0',w)
         i=i+1
     
-    saveButton = Button(frame,text="Next",bg="green",fg="black",command=lambda:SaveSintacticRules(rulelist.get("1.0",END),top)).grid(row=2,sticky='w')
+    saveButton = Button(frame,text="Next",bg="green",fg="black",command=lambda:SaveSintacticRules(rulelist.get("1.0",END),top,project_name)).grid(row=2,sticky='w')
     pass
 
-def SaveSintacticRules(rules, window):
+def SaveSintacticRules(rules, window,project_name):
     window.withdraw()
     top = Toplevel()
+    get_rules = FileManipulationHelper.loadRules(project_name)
+    for rule in get_rules:
+        rule_path = 'Projects/'+project_name+'/'+rule
+        FileManipulationHelper.SaveSyntacticRules(rules,project_name,rule)
     top.protocol("WM_DELETE_WINDOW", on_closing)
     top.title("Working...")
     top.geometry('{}x{}'.format(400, 300))

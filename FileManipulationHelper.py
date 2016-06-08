@@ -9,6 +9,9 @@ Licence GNU/GPL 3.0
 import os
 from os import listdir
 from os.path import isfile, join
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 def CreateFoderIfNotExist(FolderName):
     if not os.path.exists(FolderName):
         os.makedirs(FolderName)
@@ -106,6 +109,13 @@ def LoadRules(path):
     f = open(path,'r')
     rules = f.readlines()
     return rules
+
+def SaveSyntacticRules(rules,project_name,rule_name):
+    Rule_path = "Projects/"+project_name+'/'+rule_name+'/SyntacticRules.sin'
+    f = open(Rule_path,'w')
+    f.write(rules)
+    f.close()
+    
 
             
     

@@ -9,6 +9,7 @@ Licence GNU/GPL 3.0
 from Tkinter import *
 import FileManipulationHelper
 import shutil 
+import RuleClasses_LoadRulesForProcessingClass
 Lb1 = None
 Lb3 = None   
 currentWhiteList = []
@@ -507,11 +508,15 @@ def LoadRulesCfGMainScreen(project_name,SetLexRules):
     none_val = IntVar()
     NoneCB = Checkbutton(frame,text="None (Write your own rules)",variable = none_val)
     NoneCB.grid(row=5,column=0,sticky='w')
-    Next = Button(bottomframe, text="Next", bg="green",command = lambda:EditSintacticRules(project_name, top,int_val,float_val,stats_val,alt_val,none_val))
+    skip_val = IntVar()
+    skip_val.set(1)
+    SkipCB = Checkbutton(frame,text="Skip this step (Will not overwrite old rules)",variable = skip_val)
+    SkipCB.grid(row=5,column=0,sticky='w')
+    Next = Button(bottomframe, text="Next", bg="green",command = lambda:EditSintacticRules(project_name, top,int_val,float_val,stats_val,alt_val,none_val,skip_val))
     Next.pack( side = LEFT)
     pass
 
-def EditSintacticRules(project_name, ChoseSintRulesWindow,int_val,float_val,stats_val,alt_val,none_val):
+def EditSintacticRules(project_name, ChoseSintRulesWindow,int_val,float_val,stats_val,alt_val,none_val,skip_val):
     ChoseSintRulesWindow.withdraw()
     top = Toplevel()
     top.protocol("WM_DELETE_WINDOW", on_closing)
@@ -535,6 +540,9 @@ def EditSintacticRules(project_name, ChoseSintRulesWindow,int_val,float_val,stat
         fpaths.append('DefaultSintacticRules/StatisticalValues')
     if(alt_val.get()==1):
         fpaths.append('DefaultSintacticRules/Alternatives')
+    if skip_val.get()==1:
+        SaveSintacticRules(rulelist.get("1.0",END),top,project_name,skip_val)
+        return
     rules = []
     for path in fpaths:
         rules = rules + FileManipulationHelper.LoadRules(path)
@@ -544,22 +552,23 @@ def EditSintacticRules(project_name, ChoseSintRulesWindow,int_val,float_val,stat
         rulelist.insert(str(i)+'.0',w)
         i=i+1
     
-    saveButton = Button(frame,text="Next",bg="green",fg="black",command=lambda:SaveSintacticRules(rulelist.get("1.0",END),top,project_name)).grid(row=2,sticky='w')
+    saveButton = Button(frame,text="Next",bg="green",fg="black",command=lambda:SaveSintacticRules(rulelist.get("1.0",END),top,project_name,skip_val)).grid(row=2,sticky='w')
     pass
 
-def SaveSintacticRules(rules, window,project_name):
+def SaveSintacticRules(rules, window,project_name,skip_val):
     window.withdraw()
     top = Toplevel()
     get_rules = FileManipulationHelper.loadRules(project_name)
     for rule in get_rules:
         rule_path = 'Projects/'+project_name+'/'+rule
-        FileManipulationHelper.SaveSyntacticRules(rules,project_name,rule)
+        if(skip_val.get()!=1):
+            FileManipulationHelper.SaveSyntacticRules(rules,project_name,rule)
     top.protocol("WM_DELETE_WINDOW", on_closing)
     top.title("Working...")
     top.geometry('{}x{}'.format(400, 300))
     lab = Label(top,text="Please be patient...")
     lab.pack()
-    #Logic for saving the rules
+    RuleClasses_LoadRulesForProcessingClass.LoadRulesForProcessing(project_name)
     pass
 ##################################################################
 

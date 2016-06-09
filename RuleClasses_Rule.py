@@ -16,3 +16,5 @@ class Rule:
     look_data = False
     look_anywhere = False
     PatternList = []
+    DefaultUnit = ''
+    PossibleUnits = []

@@ -45,9 +45,6 @@ def LoadSyntacticRoles(project_name,rule_name):
             pvs.position = int(val[0])
             semanticVals.append(pvs)
     return patterns
-            
-        
-        
         
 
 def LoadRulesForProcessing(project_name):
@@ -75,7 +72,8 @@ def LoadRulesForProcessing(project_name):
             rule.look_anywhere = True
         rule.DefaultUnit = cfg['DefUnit']
         rule.PossibleUnits = cfg['PosUnit'].split(',')
-        LoadSyntacticRoles(project_name,rule_name)
+        patterns = LoadSyntacticRoles(project_name,rule_name)
+        rule.PatternList = patterns
         
         
         #PatternList

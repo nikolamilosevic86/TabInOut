@@ -8,8 +8,10 @@ Licence GNU/GPL 3.0
 '''
 from Tkinter import *
 import FileManipulationHelper
+import QueryDBClass
 import shutil 
 import RuleClasses_LoadRulesForProcessingClass
+import Process_Data
 Lb1 = None
 Lb3 = None   
 currentWhiteList = []
@@ -59,7 +61,7 @@ def AddEditRule(project_name,vRuleName,RuleNameView,RulesListBox):
     
     RuleNameView.withdraw()
     add = Toplevel()
-    add.protocol("WM_DELETE_WINDOW", on_closing)
+    #add.protocol("WM_DELETE_WINDOW", on_closing)
     add.title("Add/Edit Rule")
     add.geometry('{}x{}'.format(400, 300))
     itemsFrame = Frame(add,height=130)
@@ -73,7 +75,7 @@ def AddEditRule(project_name,vRuleName,RuleNameView,RulesListBox):
     editBlackList = Button(itemsFrame,text="Edit Black List", command = lambda:BlackListWindow(project_name,rule_name)).grid(row=2,column=0,sticky='w')
     ClassLabel = Label(itemsFrame,text="Class name of result").grid(row=3,column=0,sticky='w')
     vClsIn = StringVar()
-    ClassInput = Entry(itemsFrame,textvariable=vClsIn.get()).grid(row=4,sticky='w')
+    ClassInput = Entry(itemsFrame,textvariable=vClsIn).grid(row=4,sticky='w')
     DefUnitLabel = Label(itemsFrame,text="Default unit").grid(row=5,column=0,sticky='w')
     vDefUnit = StringVar()
     DefUnInput = Entry(itemsFrame,textvariable=vDefUnit).grid(row=6,sticky='w')
@@ -92,27 +94,35 @@ def AddEditRule(project_name,vRuleName,RuleNameView,RulesListBox):
     DataCB = Checkbutton(itemsFrame,text="Data",variable = look_data).grid(row=5,column=1,sticky='w')
     look_all = IntVar()
     EverywhereCB = Checkbutton(itemsFrame,text="Everywhere",variable=look_all).grid(row=6,column=1,sticky='w')
-    save = Button(itemsFrame, text="Save", fg="black",command=lambda:SaveRuleEdit(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add,vClsIn,vDefUnit,vPosUnit)).grid(row=7,column=1,sticky='w')
+    DBSettings = FileManipulationHelper.LoadDBConfigFile(project_name)
+    db = QueryDBClass.QueryDBCalss(DBSettings['Host'],DBSettings['User'],DBSettings['Pass'],DBSettings['Database'])
+    prags = db.GetPragmaticClasses()
+    pragVar = StringVar()
+    pragVar.set(prags[0])
+    PragLabel = Label(itemsFrame,text="Pragmatic class").grid(row=7,column=1,sticky='w')
+    drop = OptionMenu(itemsFrame,pragVar,*prags)
+    drop.grid(row=8,column=1,sticky='w')
+    save = Button(itemsFrame, text="Save", fg="black",command=lambda:SaveRule(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add,vClsIn,vDefUnit,vPosUnit,pragVar,RulesListBox)).grid(row=9,column=1,sticky='w')
 
-def SaveRule(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add,RulesListBox):
+def SaveRule(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add,vClsIn,vDefUnit,vPosUnit,pragVar,RulesListBox):
     global currentWhiteList
     global currentBlackList
     rule_path = "Projects/"+project_name+"/"+rule_name
     FileManipulationHelper.CreateFoderIfNotExist(rule_path)
     FileManipulationHelper.SaveWhiteList(rule_path, currentWhiteList)
     FileManipulationHelper.SaveBlackList(rule_path, currentBlackList)
-    FileManipulationHelper.MakeRuleCFGFile(rule_path, look_head, look_stub, look_super, look_data, look_all) 
+    FileManipulationHelper.MakeRuleCFGFile(rule_path, look_head, look_stub, look_super, look_data, look_all,vClsIn,vDefUnit,vPosUnit,pragVar) 
     RulesListBox.insert(RulesListBox.size(),rule_name)
     add.withdraw()   
     
-def SaveRuleEdit(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add,vClsIn,vDefUnit,vPosUnit):
+def SaveRuleEdit(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add,vClsIn,vDefUnit,vPosUnit,pragVar):
     global currentWhiteList
     global currentBlackList
     rule_path = "Projects/"+project_name+"/"+rule_name
     FileManipulationHelper.CreateFoderIfNotExist(rule_path)
     FileManipulationHelper.SaveWhiteList(rule_path, currentWhiteList)
     FileManipulationHelper.SaveBlackList(rule_path, currentBlackList)
-    FileManipulationHelper.MakeRuleCFGFile(rule_path, look_head, look_stub, look_super, look_data, look_all,vClsIn,vDefUnit,vPosUnit) 
+    FileManipulationHelper.MakeRuleCFGFile(rule_path, look_head, look_stub, look_super, look_data, look_all,vClsIn,vDefUnit,vPosUnit,pragVar) 
     add.withdraw()  
     
   
@@ -198,7 +208,15 @@ def EditRule(project_name,Lb1):
     EverywhereCB.grid(row=6,column=1,sticky='w')
     if look_all.get() == 1:
         EverywhereCB.select()
-    save = Button(itemsFrame, text="Save", fg="black",command=lambda:SaveRuleEdit(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add,vClsIn,vDefUnit,vPosUnit)).grid(row=7,column=1,sticky='w')
+    DBSettings = FileManipulationHelper.LoadDBConfigFile(project_name)
+    db = QueryDBClass.QueryDBCalss(DBSettings['Host'],DBSettings['User'],DBSettings['Pass'],DBSettings['Database'])
+    prags = db.GetPragmaticClasses()
+    pragVar = StringVar()
+    pragVar.set(cfg['PragClass'])
+    PragLabel = Label(itemsFrame,text="Pragmatic class").grid(row=7,column=1,sticky='w')
+    drop = OptionMenu(itemsFrame,pragVar,*prags)
+    drop.grid(row=8,column=1,sticky='w')
+    save = Button(itemsFrame, text="Save", fg="black",command=lambda:SaveRuleEdit(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add,vClsIn,vDefUnit,vPosUnit,pragVar)).grid(row=9,column=1,sticky='w')
     
 
 def AddRule(project_name,RulesListBox):
@@ -368,7 +386,7 @@ def LoadFirstCfGScreen(project_name):
     label_name2.pack(side = LEFT)
     ConfigureDB = Button(frame, text="Configure Database", fg="black",command=lambda: ConfigureDatabaseScreen(project_name))
     ConfigureDB.pack( side = LEFT)
-    clearTable = Button(frame, text="Clear DB Table", fg="black")
+    clearTable = Button(frame, text="Clear DB Table", fg="black",command = lambda: ClearDBTables(project_name))
     clearTable.pack( side = LEFT)
     rules = FileManipulationHelper.loadRules(project_name)
     Lb1 = Listbox(middleframe,width=80,height=20)
@@ -389,6 +407,13 @@ def LoadFirstCfGScreen(project_name):
     MoveDownRule.pack( side = LEFT)
     Next = Button(bottomframe, text="Next", bg="green", command=lambda:LoadRulesCfGMainScreen(project_name,top))
     Next.pack( side = LEFT)
+    
+def ClearDBTables(project_name):
+    dbSettings = FileManipulationHelper.LoadDBConfigFile(project_name)
+    query = QueryDBClass.QueryDBCalss(dbSettings['Host'],dbSettings['User'],dbSettings['Pass'],dbSettings['Database'])
+    query.ClearCreatedTables()
+    query.CreateAdditionalTables()
+    
 
 def EnableLB(Lb3,E2):
     Lb3.configure(exportselection=True)
@@ -568,7 +593,8 @@ def SaveSintacticRules(rules, window,project_name,skip_val):
     top.geometry('{}x{}'.format(400, 300))
     lab = Label(top,text="Please be patient...")
     lab.pack()
-    RuleClasses_LoadRulesForProcessingClass.LoadRulesForProcessing(project_name)
+    processing_rules = RuleClasses_LoadRulesForProcessingClass.LoadRulesForProcessing(project_name)
+    Process_Data.ProcessDataBase(project_name,processing_rules)
     pass
 ##################################################################
 

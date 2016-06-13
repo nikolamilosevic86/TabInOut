@@ -514,7 +514,7 @@ class QueryDBCalss:
     
     def CreateAdditionalTables(self):
         cursor = self.db.cursor()
-        sql = "Create table if not exists IEAttribute (id int NOT NULL AUTO_INCREMENT,documentId INT, PMC varchar(255),idTable int,TableName varchar(200),Class varchar(255),SubClass varchar(255),VOption varchar(255),Target varchar(255), StringValue varchar(255),IntValue DOUBLE, Unit varchar(255), PRIMARY KEY (id))"
+        sql = "Create table if not exists IEAttribute (id int NOT NULL AUTO_INCREMENT,documentId INT, PMC varchar(255),idTable int,TableName varchar(200),Class varchar(255),SubClass varchar(255),VOption varchar(255),Source varchar(255), StringValue varchar(255),IntValue DOUBLE, Unit varchar(255),CueRule varchar(255),SynRule varchar(255) PRIMARY KEY (id))"
         cursor.execute(sql)
         sql = "Create table if not exists AdverseEventNames (id int NOT NULL AUTO_INCREMENT,idArticle int, PMC varchar(255),TableName varchar(255), idTable int, EventName varchar(255), AnnotationFlag int, PRIMARY KEY (id))"
         cursor.execute(sql)
@@ -538,6 +538,17 @@ class QueryDBCalss:
         cursor.execute(sql,(documentID,PMC,tableId,TableName,AttributeName,AttributeSubClass,Option,Target,AttributeValue,intValue,Unit))
         self.db.commit()
         return cursor.lastrowid
+    
+    def GetPragmaticClasses(self):
+        cursor = self.db.cursor()
+        sql = "SELECT Distinct(SpecPragmatic) from arttable"
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        pragTypes = []
+        for res in results:
+            pragTypes.append(res[0])
+        return pragTypes
+        
     
     def ClearCreatedTables(self):
         cursor = self.db.cursor()

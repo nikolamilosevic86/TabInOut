@@ -15,6 +15,7 @@ class Rule:
     look_superrow = False
     look_data = False
     look_anywhere = False
+    PragmaticClass = ''
     PatternList = []
     DefaultUnit = ''
     PossibleUnits = []

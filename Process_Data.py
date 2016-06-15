@@ -59,11 +59,35 @@ def CheckBListUsingRegex(look_header,look_stub,look_superrow,look_data,List,Head
     
     return ValidCandidate
 
+def CheckUnits(Header,Stub,SuperRow,Data,defaultUnit,PossibleUnits):
+    UnitSelected = defaultUnit
+    for unit in PossibleUnits:
+        unit = unit.replace('\n','')
+        m1 = re.search('\\b('+unit+")\\b",Header)
+        if(m1!=None):
+            UnitSelected = unit
+            break
+        m1 = re.search('\\b('+unit+")\\b",Stub)
+        if(m1!=None):
+            UnitSelected = unit
+            break
+        m1 = re.search('\\b('+unit+")\\b",SuperRow)
+        if(m1!=None):
+            UnitSelected = unit
+            break
+        m1 = re.search('\\b('+unit+")\\b",Data)
+        if(m1!=None):
+            UnitSelected = unit
+            break
+        return UnitSelected
+            
+
 def ProcessDataBase(project_name,rules):
     DBSettings = FileManipulationHelper.LoadDBConfigFile(project_name)
     db = QueryDBClass.QueryDBCalss(DBSettings['Host'],DBSettings['User'],DBSettings['Pass'],DBSettings['Database'])
     for rule in rules:
         rows = db.getCellsGeneric(rule.PragmaticClass,rule.look_header,rule.look_stub,rule.look_superrow,rule.look_data,rule.WhiteList)
+        gen_rule_name = rule.RuleName
         for row in rows:
             id_article = row[0]
             pmc_id = row[1]
@@ -109,6 +133,9 @@ def ProcessDataBase(project_name,rules):
                             if len(sem.SemTermList)==0:
                                 semValue  = sem.Semantics
                                 FoundSemantics = True
+                        syn_rule_name = syn_rule.name
+                    Unit = CheckUnits(Header, Stub, Super_row, Content, rule.DefaultUnit, rule.PossibleUnits)
+                    #Save the value to the database
                                     
             
     pass

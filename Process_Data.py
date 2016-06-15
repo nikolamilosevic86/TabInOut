@@ -95,9 +95,21 @@ def ProcessDataBase(project_name,rules):
             if(ContainsLooked):
                 ValidCandidate = CheckBListUsingRegex(rule.look_header,rule.look_stub,rule.look_superrow,rule.look_data,rule.WhiteList,Header,Stub,Super_row,Content)
                 if ValidCandidate:
-                    #Sintactic rules processing
-                    pass
-            
+                    FoundSemantics = False
+                    for syn_rule in rule.PatternList:
+                        m = re.search(syn_rule.regex,Content)
+                        c = 0
+                        for sem in syn_rule.SemanticValues:
+                            value = m.group(sem.position)
+                            if len(sem.SemTermList)>0:
+                                contains_term =  CheckWListUsingRegex(True,True,True,False,sem.SemTermList,Header,Stub,Super_row,Content)
+                                if(contains_term):
+                                    semValue  = sem.Semantics
+                                    FoundSemantics = True
+                            if len(sem.SemTermList)==0:
+                                semValue  = sem.Semantics
+                                FoundSemantics = True
+                                    
             
     pass
 

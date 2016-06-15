@@ -12,6 +12,8 @@ import QueryDBClass
 import shutil 
 import RuleClasses_LoadRulesForProcessingClass
 import Process_Data
+from threading import Thread
+from time import sleep
 Lb1 = None
 Lb3 = None   
 currentWhiteList = []
@@ -594,7 +596,11 @@ def SaveSintacticRules(rules, window,project_name,skip_val):
     lab = Label(top,text="Please be patient...")
     lab.pack()
     processing_rules = RuleClasses_LoadRulesForProcessingClass.LoadRulesForProcessing(project_name)
-    Process_Data.ProcessDataBase(project_name,processing_rules)
+    thread = Thread(target = Process_Data.ProcessDataBase, args = (project_name,processing_rules))
+    thread.start()
+    thread.join()
+    print "thread finished...exiting"
+    #Process_Data.ProcessDataBase(project_name,processing_rules)
     pass
 ##################################################################
 

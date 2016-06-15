@@ -395,6 +395,40 @@ class QueryDBCalss:
         results = cursor.fetchall()
         return results
     
+    def getCellsGeneric(self,pragmaticType,look_header,look_stub,look_super_row,look_data,stringList):
+        cursor = self.db.cursor()
+        sql = """SELECT idArticle,article.PMCID,idTable,TableOrder,SpecPragmatic,idCell,CellType,RowN,ColumnN,Content,WholeHeader,WholeStub,WholeSuperRow FROM article 
+        inner join arttable on arttable.Article_idArticle=article.idArticle 
+        inner join cell on cell.Table_idTable=arttable.idTable  where SpecPragmatic='"""+pragmaticType.replace('\n','')+"""' and ("""
+        if(look_header):
+            for white_string in stringList:
+                white_string=white_string.replace('\n','')
+                if( white_string == ''):
+                    continue
+                sql = sql + "WholeHeader LIKE '%"+white_string.replace('\n','')+"%' or "
+        if(look_stub):
+            for white_string in stringList:
+                white_string=white_string.replace('\n','')
+                if white_string == '':
+                    continue
+                sql = sql + "WholeStub LIKE '%"+white_string.replace('\n','')+"%' or "
+        if(look_super_row):
+            for white_string in stringList:
+                white_string=white_string.replace('\n','')
+                if white_string == '':
+                    continue
+                sql = sql + "WholeSuperRow LIKE '%"+white_string.replace('\n','')+"%' or "
+        if(look_data):
+            for white_string in stringList:
+                white_string=white_string.replace('\n','')
+                if white_string == '':
+                    continue
+                sql = sql + "Content LIKE '%"+white_string.replace('\n','')+"%' or "
+        sql =sql[0:-3]+")"
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        return results
+    
     
     def getCellsContainingINavigational(self,tableID, string):
         cursor = self.db.cursor()

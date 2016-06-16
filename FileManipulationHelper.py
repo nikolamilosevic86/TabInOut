@@ -123,6 +123,8 @@ def loadRuleConfig(project_name,rule_name):
             conf['PosUnit']=sp[1]
         if sp[0]=='PragClass':
             conf['PragClass']=sp[1]
+        if sp[0]=='Class':
+            conf['Class']=sp[1]
     return conf
 
 def LoadRules(path):

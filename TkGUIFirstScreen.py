@@ -582,7 +582,7 @@ def EditSintacticRules(project_name, ChoseSintRulesWindow,int_val,float_val,stat
     saveButton = Button(frame,text="Next",bg="green",fg="black",command=lambda:SaveSintacticRules(rulelist.get("1.0",END),top,project_name,skip_val)).grid(row=2,sticky='w')
     pass
 
-def SaveSintacticRules(rules, window,project_name,skip_val):
+def MakeWorkingScreen(rules, window,project_name,skip_val):
     window.withdraw()
     top = Toplevel()
     get_rules = FileManipulationHelper.loadRules(project_name)
@@ -595,10 +595,16 @@ def SaveSintacticRules(rules, window,project_name,skip_val):
     top.geometry('{}x{}'.format(400, 300))
     lab = Label(top,text="Please be patient...")
     lab.pack()
+
+def SaveSintacticRules(rules, window,project_name,skip_val):
+    
     processing_rules = RuleClasses_LoadRulesForProcessingClass.LoadRulesForProcessing(project_name)
     thread = Thread(target = Process_Data.ProcessDataBase, args = (project_name,processing_rules))
     thread.start()
+    thread2 = Thread(target = MakeWorkingScreen, args = (rules, window,project_name,skip_val))
+    thread2.start()
     thread.join()
+    thread2.join()
     print "thread finished...exiting"
     #Process_Data.ProcessDataBase(project_name,processing_rules)
     pass

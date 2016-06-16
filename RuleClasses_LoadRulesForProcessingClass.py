@@ -73,6 +73,7 @@ def LoadRulesForProcessing(project_name):
         rule.DefaultUnit = cfg['DefUnit']
         rule.PossibleUnits = cfg['PosUnit'].split(',')
         rule.PragmaticClass = cfg['PragClass']
+        rule.ClassName = cfg['Class']
         patterns = LoadSyntacticRoles(project_name,rule_name)
         rule.PatternList = patterns
         

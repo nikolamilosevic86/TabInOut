@@ -10,50 +10,81 @@ import FileManipulationHelper
 import QueryDBClass
 import re
 
+Source = ''
+
 def CheckWListUsingRegex(look_header,look_stub,look_superrow,look_data,List,Header,Stub,Super_row,Data):
+    global Source
     ContainsValue = False
     if(look_header):
         for item in List:
-            m1 = re.search('\\b('+item+")\\b",Header)
+            if Header == None or item.replace('\n','') =='':
+                continue
+            regex = '\\b('+item.replace('\n','')+')\\b'
+            m1 = re.search(regex,Header)
             if(m1!=None):
                 ContainsValue = True
+                Source = Stub
     if(look_stub):
         for item in List:
-            m1 = re.search('\\b('+item+")\\b",Stub)
+            if(Stub == None or item.replace('\n','') ==''):
+                continue
+            regex = '\\b('+item.replace('\n','')+')\\b'
+            m1 = re.search(regex,Stub)
             if(m1!=None):
                 ContainsValue = True
+                Source = Header
     if(look_superrow):
         for item in List:
-            m1 = re.search('\\b('+item+")\\b",Super_row)
+            if Super_row == None or item.replace('\n','') =='':
+                continue
+            regex = '\\b('+item.replace('\n','')+')\\b'
+            m1 = re.search(regex,Super_row)
             if(m1!=None):
                 ContainsValue = True
+                Source = "h:"+Header+"; s:"+Stub
     if(look_data):
         for item in List:
-            m1 = re.search('\\b('+item+")\\b",Data)
+            if Data == None or item.replace('\n','') =='':
+                continue
+            regex = '\\b('+item.replace('\n','')+')\\b'
+            m1 = re.search(regex,Data)
             if(m1!=None):
                 ContainsValue = True
+                Source = "h:"+Header+"; s:"+Stub
     return ContainsValue
 
 def CheckBListUsingRegex(look_header,look_stub,look_superrow,look_data,List,Header,Stub,Super_row,Data):
     ValidCandidate = True
     if(look_header):
         for item in List:
-            m1 = re.search('\\b('+item+")\\b",Header)
+            if Header == None or item.replace('\n','') =='':
+                continue
+            regex = '\\b('+item.replace('\n','')+')\\b'
+            m1 = re.search(regex,Header)
             if(m1!=None):
                 ValidCandidate = False
     if(look_stub):
         for item in List:
-            m1 = re.search('\\b('+item+")\\b",Stub)
+            if Stub == None or item.replace('\n','') =='':
+                continue
+            regex = '\\b('+item.replace('\n','')+')\\b'
+            m1 = re.search(regex,Stub)
             if(m1!=None):
                 ValidCandidate = False
     if(look_superrow):
         for item in List:
-            m1 = re.search('\\b('+item+")\\b",Super_row)
+            if Super_row == None or item.replace('\n','') =='':
+                continue
+            regex = '\\b('+item.replace('\n','')+')\\b'
+            m1 = re.search(regex,Super_row)
             if(m1!=None):
                 ValidCandidate = False
     if(look_data):
         for item in List:
-            m1 = re.search('\\b('+item+")\\b",Data)
+            if Data == None or item.replace('\n','') =='':
+                continue
+            regex = '\\b('+item.replace('\n','')+')\\b'
+            m1 = re.search(regex,Data)
             if(m1!=None):
                 ValidCandidate = False
     
@@ -63,26 +94,31 @@ def CheckUnits(Header,Stub,SuperRow,Data,defaultUnit,PossibleUnits):
     UnitSelected = defaultUnit
     for unit in PossibleUnits:
         unit = unit.replace('\n','')
-        m1 = re.search('\\b('+unit+")\\b",Header)
-        if(m1!=None):
-            UnitSelected = unit
-            break
-        m1 = re.search('\\b('+unit+")\\b",Stub)
-        if(m1!=None):
-            UnitSelected = unit
-            break
-        m1 = re.search('\\b('+unit+")\\b",SuperRow)
-        if(m1!=None):
-            UnitSelected = unit
-            break
-        m1 = re.search('\\b('+unit+")\\b",Data)
-        if(m1!=None):
-            UnitSelected = unit
-            break
+        if Header != None:
+            m1 = re.search('\\b('+unit+")\\b",Header)
+            if(m1!=None):
+                UnitSelected = unit
+                break
+        if Stub !=None:
+            m1 = re.search('\\b('+unit+")\\b",Stub)
+            if(m1!=None):
+                UnitSelected = unit
+                break
+        if SuperRow != None:
+            m1 = re.search('\\b('+unit+")\\b",SuperRow)
+            if(m1!=None):
+                UnitSelected = unit
+                break
+        if Data != None:
+            m1 = re.search('\\b('+unit+")\\b",Data)
+            if(m1!=None):
+                UnitSelected = unit
+                break
         return UnitSelected
             
 
 def ProcessDataBase(project_name,rules):
+    global Source
     DBSettings = FileManipulationHelper.LoadDBConfigFile(project_name)
     db = QueryDBClass.QueryDBCalss(DBSettings['Host'],DBSettings['User'],DBSettings['Pass'],DBSettings['Database'])
     for rule in rules:
@@ -102,26 +138,16 @@ def ProcessDataBase(project_name,rules):
             Header = row[10]
             Stub = row[11]
             Super_row = row[12]
-            print id_article
-            print pmc_id
-            print id_table
-            print tableOrder
-            print SpecPragmatic
-            print idCell
-            print cellType
-            print rowN
-            print columnN
-            print Content
-            print Header
-            print Stub
-            print Super_row
+
             ContainsLooked = CheckWListUsingRegex(rule.look_header,rule.look_stub,rule.look_superrow,rule.look_data,rule.WhiteList,Header,Stub,Super_row,Content)
             if(ContainsLooked):
-                ValidCandidate = CheckBListUsingRegex(rule.look_header,rule.look_stub,rule.look_superrow,rule.look_data,rule.WhiteList,Header,Stub,Super_row,Content)
+                ValidCandidate = CheckBListUsingRegex(rule.look_header,rule.look_stub,rule.look_superrow,rule.look_data,rule.BlackList,Header,Stub,Super_row,Content)
                 if ValidCandidate:
                     FoundSemantics = False
                     for syn_rule in rule.PatternList:
-                        m = re.search(syn_rule.regex,Content)
+                        m = re.search(syn_rule.regex.replace('\n',''),Content)
+                        if m == None:
+                            continue
                         c = 0
                         for sem in syn_rule.SemanticValues:
                             value = m.group(sem.position)
@@ -134,9 +160,10 @@ def ProcessDataBase(project_name,rules):
                                 semValue  = sem.Semantics
                                 FoundSemantics = True
                         syn_rule_name = syn_rule.name
-                    Unit = CheckUnits(Header, Stub, Super_row, Content, rule.DefaultUnit, rule.PossibleUnits)
-                    #Save the value to the database
-                                    
+                    if FoundSemantics:    
+                        Unit = CheckUnits(Header, Stub, Super_row, Content, rule.DefaultUnit, rule.PossibleUnits)
+                        #Save the value to the database
+                        db.SaveExtracted(id_article,id_table,tableOrder,pmc_id,rule.ClassName,semValue,value,Unit,Source,gen_rule_name,syn_rule_name)
             
     pass
 

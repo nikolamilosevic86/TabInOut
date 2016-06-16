@@ -8,6 +8,7 @@ Licence GNU/GPL 3.0
 '''
 class Rule:
     RuleName = ""
+    ClassName = ""
     WhiteList = []
     BlackList = []
     look_header = False

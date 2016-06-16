@@ -573,6 +573,18 @@ class QueryDBCalss:
         self.db.commit()
         return cursor.lastrowid
     
+    def SaveExtracted(self,documentID,tableId,TableName,PMC,ClassName,Option,AttributeValue,Unit,Source,RuleName,SynRuleName):
+        cursor = self.db.cursor()
+        intValue = -999
+        try:
+            intValue = float(AttributeValue)
+        except:
+            intValue = None
+        sql = "INSERT into IEAttribute (documentId, PMC,idTable,TableName,Class,VOption,Source, StringValue,IntValue, Unit,CueRule,SynRule) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        cursor.execute(sql,(documentID,PMC,tableId,TableName,ClassName,Option,Source,AttributeValue,intValue,Unit,RuleName,SynRuleName))
+        self.db.commit()
+        return cursor.lastrowid
+    
     def GetPragmaticClasses(self):
         cursor = self.db.cursor()
         sql = "SELECT Distinct(SpecPragmatic) from arttable"

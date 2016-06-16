@@ -114,7 +114,7 @@ def CheckUnits(Header,Stub,SuperRow,Data,defaultUnit,PossibleUnits):
             if(m1!=None):
                 UnitSelected = unit
                 break
-        return UnitSelected
+    return UnitSelected
             
 
 def ProcessDataBase(project_name,rules):

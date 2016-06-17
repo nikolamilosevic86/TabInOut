@@ -165,5 +165,8 @@ def ProcessDataBase(project_name,rules):
                         #Save the value to the database
                         db.SaveExtracted(id_article,id_table,tableOrder,pmc_id,rule.ClassName,semValue,value,Unit,Source,gen_rule_name,syn_rule_name)
             
+    print "Done!!!!"
+    #FinishScreen()
+    
     pass
 

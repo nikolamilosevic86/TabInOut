@@ -595,21 +595,42 @@ def MakeWorkingScreen(rules, window,project_name,skip_val):
     top.geometry('{}x{}'.format(400, 300))
     lab = Label(top,text="Please be patient...")
     lab.pack()
+    
+
+
+def ProcessDataV(project_name,processing_rules,window,extracted):
+    extracted = IntVar()
+    extracted.set(0)
+    Process_Data.ProcessDataBase(project_name,processing_rules,extracted)
+    
 
 def SaveSintacticRules(rules, window,project_name,skip_val):
-    
+    global lab2
     processing_rules = RuleClasses_LoadRulesForProcessingClass.LoadRulesForProcessing(project_name)
-    thread = Thread(target = Process_Data.ProcessDataBase, args = (project_name,processing_rules))
+    window.withdraw()
+    top = Toplevel()
+    get_rules = FileManipulationHelper.loadRules(project_name)
+    for rule in get_rules:
+        rule_path = 'Projects/'+project_name+'/'+rule
+        if(skip_val.get()!=1):
+            FileManipulationHelper.SaveSyntacticRules(rules,project_name,rule)
+    top.protocol("WM_DELETE_WINDOW", on_closing)
+    top.title("Working...")
+    top.geometry('{}x{}'.format(400, 300))
+    extracted = IntVar()
+    lab = Label(top,text="Please be patient... Processing...")
+    lab.pack()
+    lab2 = Label(top,text=extracted)
+    lab2.pack()
+    thread = Thread(target = ProcessDataV, args = (project_name,processing_rules,top,extracted))
     thread.start()
-    thread2 = Thread(target = MakeWorkingScreen, args = (rules, window,project_name,skip_val))
-    thread2.start()
-    thread.join()
-    thread2.join()
     print "thread finished...exiting"
     #Process_Data.ProcessDataBase(project_name,processing_rules)
     pass
+   
+    
 ##################################################################
-
+lab2 = None
 main = Tk()
 variab = StringVar() 
 FileManipulationHelper.CreateFolderStructure()

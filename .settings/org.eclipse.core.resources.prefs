@@ -4,5 +4,6 @@ encoding/AnalyzePattern.py=utf-8
 encoding/CreateMLDatasetPatientNum.py=utf-8
 encoding/GetAdverseEvents.py=utf-8
 encoding/GetNumPatients.py=utf-8
+encoding/Process_Data.py=UTF-8
 encoding/Tests.py=utf-8
 encoding/getAge.py=utf-8

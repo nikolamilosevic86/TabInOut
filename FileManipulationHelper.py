@@ -43,6 +43,23 @@ def SaveToConfigFile(project_name,hostname,port,user,pasword,database):
     f.write('Database:'+database+'\n')
     f.close()
 
+def LoadDBConfigFile(project_name):
+    f  = open("Projects/"+project_name+"/Config.cfg",'r')
+    lines = f.readlines()
+    dbSettings = {}
+    for line in lines:
+        parts = line.split(':')
+        if(parts[0]=='Host'):
+            dbSettings['Host']=parts[1].replace('\n','')
+        if(parts[0]=='Port'):
+            dbSettings['Port']=parts[1].replace('\n','')
+        if(parts[0]=='User'):
+            dbSettings['User']=parts[1].replace('\n','')
+        if(parts[0]=='Pass'):
+            dbSettings['Pass']=parts[1].replace('\n','')
+        if(parts[0]=='Database'):
+            dbSettings['Database']=parts[1].replace('\n','')
+    return dbSettings
 def SaveWhiteList(rule_path,whitelist):
     f = open(rule_path+'/WhiteList.lst','w')
     for item in whitelist:
@@ -53,16 +70,17 @@ def SaveBlackList(rule_path,blakclist):
     for item in blakclist:
         f.write(item+'\n')
     f.close
-def MakeRuleCFGFile(rule_path,look_head,look_stub,look_super,look_data,look_all,vClsIn,vDefUnit,vPosUnit):
+def MakeRuleCFGFile(rule_path,look_head,look_stub,look_super,look_data,look_all,vClsIn,vDefUnit,vPosUnit,pragVar):
     f = open(rule_path+'/Rule.cfg','w')
     f.write('Header:'+str(look_head.get())+'\n')
     f.write('Stub:'+str(look_stub.get())+'\n')
     f.write('Super-row:'+str(look_super.get())+'\n')
     f.write('Data:'+str(look_data.get())+'\n')
     f.write('All:'+str(look_all.get())+'\n')
-    f.write("Class:"+str(vClsIn.get())+'\n')
-    f.write("DefUnit:"+str(vDefUnit.get())+'\n')
-    f.write("PosUnit:"+str(vPosUnit.get())+'\n')
+    f.write("Class:"+str(vClsIn.get().replace('\n',''))+'\n')
+    f.write("DefUnit:"+str(vDefUnit.get().replace('\n',''))+'\n')
+    f.write("PosUnit:"+str(vPosUnit.get().replace('\n',''))+'\n')
+    f.write("PragClass:"+str(pragVar.get().replace('\n',''))+'\n')
     f.close()
 
 def loadRules(project_name):
@@ -103,6 +121,10 @@ def loadRuleConfig(project_name,rule_name):
             conf['DefUnit']=sp[1]
         if sp[0]=='PosUnit':
             conf['PosUnit']=sp[1]
+        if sp[0]=='PragClass':
+            conf['PragClass']=sp[1]
+        if sp[0]=='Class':
+            conf['Class']=sp[1]
     return conf
 
 def LoadRules(path):

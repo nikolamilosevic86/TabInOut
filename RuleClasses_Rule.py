@@ -8,6 +8,7 @@ Licence GNU/GPL 3.0
 '''
 class Rule:
     RuleName = ""
+    ClassName = ""
     WhiteList = []
     BlackList = []
     look_header = False
@@ -15,6 +16,7 @@ class Rule:
     look_superrow = False
     look_data = False
     look_anywhere = False
+    PragmaticClass = ''
     PatternList = []
     DefaultUnit = ''
     PossibleUnits = []

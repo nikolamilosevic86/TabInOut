@@ -568,7 +568,7 @@ def SaveSintacticRules(rules, window,project_name,skip_val):
     top.geometry('{}x{}'.format(400, 300))
     lab = Label(top,text="Please be patient...")
     lab.pack()
-    RuleClasses_LoadRulesForProcessingClass.LoadRulesForProcessing(project_name)
+    rules = RuleClasses_LoadRulesForProcessingClass.LoadRulesForProcessing(project_name)
     pass
 ##################################################################
 

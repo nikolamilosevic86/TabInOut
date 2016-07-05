@@ -80,5 +80,6 @@ def LoadRulesForProcessing(project_name):
         
         #PatternList
         rules.append(rule)
+
     return rules
         

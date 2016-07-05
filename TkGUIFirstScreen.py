@@ -548,9 +548,7 @@ def MakeWorkingScreen(rules, window,project_name,skip_val):
     top.geometry('{}x{}'.format(400, 300))
     lab = Label(top,text="Please be patient...")
     lab.pack()
-<<<<<<< HEAD
     rules = RuleClasses_LoadRulesForProcessingClass.LoadRulesForProcessing(project_name)
-=======
     
 
 
@@ -582,7 +580,6 @@ def SaveSintacticRules(rules, window,project_name,skip_val):
     thread.start()
     print "thread finished...exiting"
     #Process_Data.ProcessDataBase(project_name,processing_rules)
->>>>>>> 1719b547f40a624ed78cb9145f0d57c1f2742b9f
     pass
    
     

@@ -60,8 +60,18 @@ def LoadDBConfigFile(project_name):
         if(parts[0]=='Database'):
             dbSettings['Database']=parts[1].replace('\n','')
     return dbSettings
-def SaveWhiteList(rule_path,whitelist):
-    f = open(rule_path+'/WhiteList.lst','w')
+def SaveCueList(rule_path,rule_name, whitelist,typeVar,look_head,look_stub,look_super,look_data,look_all):
+    if(typeVar.get()=='WhiteList'):
+        f = open(rule_path+'/'+rule_name+'_WhiteList.lst','w')
+    else:
+        f = open(rule_path+'/'+rule_name+'_BlackList.lst','w')
+    f.write('Type:'+str(typeVar.get())+'\n')
+    f.write('Header:'+str(look_head.get())+'\n')
+    f.write('Stub:'+str(look_stub.get())+'\n')
+    f.write('Super-row:'+str(look_super.get())+'\n')
+    f.write('Data:'+str(look_data.get())+'\n')
+    f.write('All:'+str(look_all.get())+'\n')
+    f.write('WordList:\n')
     for item in whitelist:
         f.write(item+'\n')
     f.close
@@ -70,13 +80,8 @@ def SaveBlackList(rule_path,blakclist):
     for item in blakclist:
         f.write(item+'\n')
     f.close
-def MakeRuleCFGFile(rule_path,look_head,look_stub,look_super,look_data,look_all,vClsIn,vDefUnit,vPosUnit,pragVar):
+def MakeRuleCFGFile(rule_path,vClsIn,vDefUnit,vPosUnit,pragVar):
     f = open(rule_path+'/Rule.cfg','w')
-    f.write('Header:'+str(look_head.get())+'\n')
-    f.write('Stub:'+str(look_stub.get())+'\n')
-    f.write('Super-row:'+str(look_super.get())+'\n')
-    f.write('Data:'+str(look_data.get())+'\n')
-    f.write('All:'+str(look_all.get())+'\n')
     f.write("Class:"+str(vClsIn.get().replace('\n',''))+'\n')
     f.write("DefUnit:"+str(vDefUnit.get().replace('\n',''))+'\n')
     f.write("PosUnit:"+str(vPosUnit.get().replace('\n',''))+'\n')

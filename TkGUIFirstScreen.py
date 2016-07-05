@@ -68,13 +68,10 @@ def AddEditRule(project_name,vRuleName,RuleNameView,RulesListBox):
     add.geometry('{}x{}'.format(400, 300))
     itemsFrame = Frame(add,height=130)
     itemsFrame.pack()
-
     namerule_label = Label(itemsFrame,text="Name of the rule").grid(row=0,column=0,sticky='w')
     rulename_entry = Entry(itemsFrame,textvariable=vRuleName,state=DISABLED).grid(row=0,column=1,sticky='w')
-    
     rule_name = vRuleName.get()
-    editWhiteList = Button(itemsFrame,text="Edit White List",command=lambda:WhiteListWindow(project_name,rule_name)).grid(row=1,column=0,sticky='w')
-    editBlackList = Button(itemsFrame,text="Edit Black List", command = lambda:BlackListWindow(project_name,rule_name)).grid(row=2,column=0,sticky='w')
+    editCueList = Button(itemsFrame,text="Edit Cue List",command=lambda:WhiteListWindow(project_name,rule_name)).grid(row=1,column=0,sticky='w')
     ClassLabel = Label(itemsFrame,text="Class name of result").grid(row=3,column=0,sticky='w')
     vClsIn = StringVar()
     ClassInput = Entry(itemsFrame,textvariable=vClsIn).grid(row=4,sticky='w')
@@ -84,18 +81,6 @@ def AddEditRule(project_name,vRuleName,RuleNameView,RulesListBox):
     PosUnitLabel = Label(itemsFrame,text="Possible units (comma separated)").grid(row=7,column=0,sticky='w')
     vPosUnit = StringVar()
     PosUnInput = Entry(itemsFrame,textvariable=vPosUnit).grid(row=8,sticky='w')
-    text_of_where_to_look = StringVar()
-    where_to_look = Label(itemsFrame,text="Where to look?").grid(row=1,column=1,sticky='w')
-    look_head = IntVar()
-    HeaderCB = Checkbutton(itemsFrame,text="Header",variable = look_head).grid(row=2,column=1,sticky='w')
-    look_stub = IntVar()
-    StubCB = Checkbutton(itemsFrame,text="Stub",variable = look_stub).grid(row=3,column=1,sticky='w')
-    look_super = IntVar()
-    SuperRowCB = Checkbutton(itemsFrame,text="Super-row",variable = look_super).grid(row=4,column=1,sticky='w')
-    look_data = IntVar()
-    DataCB = Checkbutton(itemsFrame,text="Data",variable = look_data).grid(row=5,column=1,sticky='w')
-    look_all = IntVar()
-    EverywhereCB = Checkbutton(itemsFrame,text="Everywhere",variable=look_all).grid(row=6,column=1,sticky='w')
     DBSettings = FileManipulationHelper.LoadDBConfigFile(project_name)
     db = QueryDBClass.QueryDBCalss(DBSettings['Host'],DBSettings['User'],DBSettings['Pass'],DBSettings['Database'])
     prags = db.GetPragmaticClasses()
@@ -104,27 +89,27 @@ def AddEditRule(project_name,vRuleName,RuleNameView,RulesListBox):
     PragLabel = Label(itemsFrame,text="Pragmatic class").grid(row=7,column=1,sticky='w')
     drop = OptionMenu(itemsFrame,pragVar,*prags)
     drop.grid(row=8,column=1,sticky='w')
-    save = Button(itemsFrame, text="Save", fg="black",command=lambda:SaveRule(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add,vClsIn,vDefUnit,vPosUnit,pragVar,RulesListBox)).grid(row=9,column=1,sticky='w')
+    save = Button(itemsFrame, text="Save", fg="black",command=lambda:SaveRule(project_name,rule_name,add,vClsIn,vDefUnit,vPosUnit,pragVar,RulesListBox)).grid(row=9,column=1,sticky='w')
 
-def SaveRule(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add,vClsIn,vDefUnit,vPosUnit,pragVar,RulesListBox):
+def SaveRule(project_name,rule_name,add,vClsIn,vDefUnit,vPosUnit,pragVar,RulesListBox):
     global currentWhiteList
     global currentBlackList
     rule_path = "Projects/"+project_name+"/"+rule_name
     FileManipulationHelper.CreateFoderIfNotExist(rule_path)
-    FileManipulationHelper.SaveWhiteList(rule_path, currentWhiteList)
-    FileManipulationHelper.SaveBlackList(rule_path, currentBlackList)
-    FileManipulationHelper.MakeRuleCFGFile(rule_path, look_head, look_stub, look_super, look_data, look_all,vClsIn,vDefUnit,vPosUnit,pragVar) 
+    #FileManipulationHelper.SaveWhiteList(rule_path, currentWhiteList)
+    #FileManipulationHelper.SaveBlackList(rule_path, currentBlackList)
+    FileManipulationHelper.MakeRuleCFGFile(rule_path,vClsIn,vDefUnit,vPosUnit,pragVar) 
     RulesListBox.insert(RulesListBox.size(),rule_name)
     add.withdraw()   
     
-def SaveRuleEdit(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add,vClsIn,vDefUnit,vPosUnit,pragVar):
+def SaveRuleEdit(project_name,rule_name,add,vClsIn,vDefUnit,vPosUnit,pragVar):
     global currentWhiteList
     global currentBlackList
     rule_path = "Projects/"+project_name+"/"+rule_name
     FileManipulationHelper.CreateFoderIfNotExist(rule_path)
-    FileManipulationHelper.SaveWhiteList(rule_path, currentWhiteList)
-    FileManipulationHelper.SaveBlackList(rule_path, currentBlackList)
-    FileManipulationHelper.MakeRuleCFGFile(rule_path, look_head, look_stub, look_super, look_data, look_all,vClsIn,vDefUnit,vPosUnit,pragVar) 
+    #FileManipulationHelper.SaveWhiteList(rule_path, currentWhiteList)
+    #FileManipulationHelper.SaveBlackList(rule_path, currentBlackList)
+    FileManipulationHelper.MakeRuleCFGFile(rule_path,rule_name, vClsIn,vDefUnit,vPosUnit,pragVar) 
     add.withdraw()  
     
   
@@ -169,47 +154,9 @@ def EditRule(project_name,Lb1):
     PosUnInput = Entry(itemsFrame,textvariable=vPosUnit)
     PosUnInput.grid(row=8,sticky='w')
     
-    editWhiteList = Button(itemsFrame,text="Edit White List",command=lambda:WhiteListWindowEdit(project_name,rule_name)).grid(row=1,column=0,sticky='w')
-    editBlackList = Button(itemsFrame,text="Edit Black List", command = lambda:BlackListWindowEdit(project_name,rule_name)).grid(row=2,column=0,sticky='w')
+    editWhiteList = Button(itemsFrame,text="Edit Cue List",command=lambda:WhiteListWindowEdit(project_name,rule_name)).grid(row=1,column=0,sticky='w')
     text_of_where_to_look = StringVar()
-    where_to_look = Label(itemsFrame,text="Where to look?").grid(row=1,column=1,sticky='w')
-    look_head = IntVar()
     cfg = FileManipulationHelper.loadRuleConfig(project_name, rule_name)
-    try:
-        vClsIn.set(cfg['Class'])
-        vDefUnit.set(cfg['DefUnit'])
-        vPosUnit.set(cfg['PosUnit'])
-    except:
-        print "Class is missing"
-    look_head.set(cfg['Header'])
-    HeaderCB = Checkbutton(itemsFrame,text="Header",variable = look_head)
-    if look_head.get() == 1:
-        HeaderCB.select()
-    HeaderCB.grid(row=2,column=1,sticky='w')
-    look_stub = IntVar()
-    look_stub.set(cfg['Stub'])
-    StubCB = Checkbutton(itemsFrame,text="Stub",variable = look_stub)
-    StubCB.grid(row=3,column=1,sticky='w')
-    if look_stub.get() == 1:
-        StubCB.select()
-    look_super = IntVar()
-    look_super.set(cfg['Super-row'])
-    SuperRowCB = Checkbutton(itemsFrame,text="Super-row",variable = look_super)
-    SuperRowCB.grid(row=4,column=1,sticky='w')
-    if look_super.get() == 1:
-        SuperRowCB.select()
-    look_data = IntVar()
-    look_data.set(cfg['Data'])
-    DataCB = Checkbutton(itemsFrame,text="Data",variable = look_data)
-    DataCB.grid(row=5,column=1,sticky='w')
-    if look_data.get() == 1:
-        DataCB.select()
-    look_all = IntVar()
-    look_all.set(cfg['All'])
-    EverywhereCB = Checkbutton(itemsFrame,text="Everywhere",variable=look_all)
-    EverywhereCB.grid(row=6,column=1,sticky='w')
-    if look_all.get() == 1:
-        EverywhereCB.select()
     DBSettings = FileManipulationHelper.LoadDBConfigFile(project_name)
     db = QueryDBClass.QueryDBCalss(DBSettings['Host'],DBSettings['User'],DBSettings['Pass'],DBSettings['Database'])
     prags = db.GetPragmaticClasses()
@@ -218,7 +165,7 @@ def EditRule(project_name,Lb1):
     PragLabel = Label(itemsFrame,text="Pragmatic class").grid(row=7,column=1,sticky='w')
     drop = OptionMenu(itemsFrame,pragVar,*prags)
     drop.grid(row=8,column=1,sticky='w')
-    save = Button(itemsFrame, text="Save", fg="black",command=lambda:SaveRuleEdit(project_name,rule_name,look_head,look_stub,look_super,look_data,look_all,add,vClsIn,vDefUnit,vPosUnit,pragVar)).grid(row=9,column=1,sticky='w')
+    save = Button(itemsFrame, text="Save", fg="black",command=lambda:SaveRuleEdit(project_name,rule_name,add,vClsIn,vDefUnit,vPosUnit,pragVar)).grid(row=9,column=1,sticky='w')
     
 
 def AddRule(project_name,RulesListBox):
@@ -226,21 +173,46 @@ def AddRule(project_name,RulesListBox):
     
 def WhiteListWindow(project_name,rule_name):
     WhiteListWindow =Toplevel()
-    WhiteListWindow.title("Edit White List")
-    WhiteListWindow.geometry('{}x{}'.format(450, 250))
+    WhiteListWindow.title("Edit Cue List")
+    WhiteListWindow.geometry('{}x{}'.format(550, 250))
     itemsFrame = Frame(WhiteListWindow)
-    itemsFrame.pack()
+    itemsFrame.pack(side=LEFT)
+    choiseFrame = Frame(WhiteListWindow,width=130)
+    choiseFrame.pack(side=RIGHT)
+    type = ['WhiteList','BlackList']
+    typeVar = StringVar()
+    typeVar.set(type[0])
+    TypeLabel = Label(choiseFrame,text="ListType").grid(row=0,column=0,sticky='w')
+    drop = OptionMenu(choiseFrame,typeVar,*type)
+    drop.grid(row=1,column=0,sticky='w')
+    where_to_look = Label(choiseFrame,text="Where to look?").grid(row=2,column=0,sticky='w')
+    look_head = IntVar()
+    HeaderCB = Checkbutton(choiseFrame,text="Header",variable = look_head).grid(row=3,column=0,sticky='w')
+    look_stub = IntVar()
+    StubCB = Checkbutton(choiseFrame,text="Stub",variable = look_stub).grid(row=4,column=0,sticky='w')
+    look_super = IntVar()
+    SuperRowCB = Checkbutton(choiseFrame,text="Super-row",variable = look_super).grid(row=5,column=0,sticky='w')
+    look_data = IntVar()
+    DataCB = Checkbutton(choiseFrame,text="Data",variable = look_data).grid(row=6,column=0,sticky='w')
+    look_all = IntVar()
+    EverywhereCB = Checkbutton(choiseFrame,text="Everywhere",variable=look_all).grid(row=7,column=0,sticky='w')
+    
     namerule_label = Label(itemsFrame,text="List of terms in whitelsit").grid(row=0,sticky='w')
     whitelist = Text(itemsFrame,height=10,width=50)
     whitelist.grid(row=1,sticky='w')
-    saveButton = Button(itemsFrame,text="Save",fg="black",command=lambda:SaveWhiteList(whitelist.get("1.0",END),WhiteListWindow)).grid(row=2,sticky='w')
+    saveButton = Button(itemsFrame,text="Save",fg="black",command=lambda:SaveWhiteList(whitelist.get("1.0",END),typeVar,look_head,look_stub,look_super,look_data,look_all,WhiteListWindow,project_name,rule_name)).grid(row=2,sticky='w')
 
 
 
-def SaveWhiteList(listAA,WhiteListWindow):
+def SaveWhiteList(listAA,typeVar,look_head,look_stub,look_super,look_data,look_all,WhiteListWindow,project_name,rule_name):
     global currentWhiteList
     currentWhiteList = []
     currentWhiteList = listAA.split('\n')
+    rule_path = "Projects/"+project_name+"/"+rule_name
+    FileManipulationHelper.CreateFoderIfNotExist(rule_path)
+    FileManipulationHelper.SaveCueList(rule_path,rule_name, currentWhiteList,typeVar,look_head,look_stub,look_super,look_data,look_all)
+    #FileManipulationHelper.MakeRuleCFGFile(rule_path, look_head, look_stub, look_super, look_data, look_all,vClsIn,vDefUnit,vPosUnit,pragVar) 
+    
     WhiteListWindow.withdraw()
     
 def SaveBlackList(listAA,BlackListWindow):
@@ -262,7 +234,7 @@ def BlackListWindow(project_name,rule_name):
     
 def WhiteListWindowEdit(project_name,rule_name):
     BlackListWindow =Toplevel()
-    BlackListWindow.title("Edit White List")
+    BlackListWindow.title("Edit Cue List")
     BlackListWindow.geometry('{}x{}'.format(450, 250))
     itemsFrame = Frame(BlackListWindow)
     itemsFrame.pack()
@@ -275,25 +247,6 @@ def WhiteListWindowEdit(project_name,rule_name):
         list.insert(str(i)+'.0',w)
         i=i+1
     saveButton = Button(itemsFrame,text="Save",fg="black",command=lambda:SaveWhiteList(list.get("1.0",END),BlackListWindow)).grid(row=2,sticky='w')
-    
-def BlackListWindowEdit(project_name,rule_name):
-    BlackListWindow =Toplevel()
-    BlackListWindow.title("Edit Black List")
-    BlackListWindow.geometry('{}x{}'.format(450, 250))
-    itemsFrame = Frame(BlackListWindow)
-    itemsFrame.pack()
-    namerule_label = Label(itemsFrame,text="List of terms in blacklist").grid(row=0,sticky='w')
-    list = Text(itemsFrame,height=10,width=50)
-    list.grid(row=1,sticky='w')
-    blacklist = FileManipulationHelper.loadBlackList(project_name, rule_name)
-    i = 1
-    for w in blacklist:
-        list.insert(str(i)+'.0',w)
-        i=i+1
-    saveButton = Button(itemsFrame,text="Save",fg="black",command=lambda:SaveBlackList(list.get("1.0",END),BlackListWindow)).grid(row=2,sticky='w')
-    
-    
-       
     
 
 #def EditRule():

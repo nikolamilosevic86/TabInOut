@@ -663,12 +663,12 @@ def MakeWorkingScreen(rules, window,project_name,skip_val):
 def ProcessDataV(project_name,processing_rules,window,extracted):
     extracted = IntVar()
     extracted.set(0)
-    Process_Data.ProcessDataBase(project_name,processing_rules,extracted)
+    Process_Data.ProcessDataBase(project_name,processing_rules)
     
 
 def SaveSintacticRules(rules, window,project_name,skip_val):
     global lab2
-    processing_rules = RuleClasses_LoadRulesForProcessingClass.LoadRulesForProcessing(project_name)
+    
     window.withdraw()
     top = Toplevel()
     get_rules = FileManipulationHelper.loadRules(project_name)
@@ -676,6 +676,7 @@ def SaveSintacticRules(rules, window,project_name,skip_val):
         rule_path = 'Projects/'+project_name+'/'+rule
         if(skip_val.get()!=1):
             FileManipulationHelper.SaveSyntacticRules(rules,project_name,rule)
+    processing_rules = RuleClasses_LoadRulesForProcessingClass.LoadRulesForProcessing(project_name)
     top.protocol("WM_DELETE_WINDOW", on_closing)
     top.title("Working...")
     top.geometry('{}x{}'.format(400, 300))

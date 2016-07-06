@@ -64,7 +64,7 @@ def AddEditRule(project_name,vRuleName,RuleNameView,RulesListBox):
     RuleNameView.withdraw()
     add = Toplevel()
     #add.protocol("WM_DELETE_WINDOW", on_closing)
-    add.title("Add/Edit Rule")
+    add.title("Add Rule")
     add.geometry('{}x{}'.format(400, 300))
     itemsFrame = Frame(add,height=130)
     itemsFrame.pack()
@@ -109,7 +109,7 @@ def SaveRuleEdit(project_name,rule_name,add,vClsIn,vDefUnit,vPosUnit,pragVar):
     FileManipulationHelper.CreateFoderIfNotExist(rule_path)
     #FileManipulationHelper.SaveWhiteList(rule_path, currentWhiteList)
     #FileManipulationHelper.SaveBlackList(rule_path, currentBlackList)
-    FileManipulationHelper.MakeRuleCFGFile(rule_path,rule_name, vClsIn,vDefUnit,vPosUnit,pragVar) 
+    FileManipulationHelper.MakeRuleCFGFile(rule_path, vClsIn,vDefUnit,vPosUnit,pragVar) 
     add.withdraw()  
     
   
@@ -154,7 +154,8 @@ def EditRule(project_name,Lb1):
     PosUnInput = Entry(itemsFrame,textvariable=vPosUnit)
     PosUnInput.grid(row=8,sticky='w')
     
-    editWhiteList = Button(itemsFrame,text="Edit Cue List",command=lambda:WhiteListWindowEdit(project_name,rule_name)).grid(row=1,column=0,sticky='w')
+    editWhiteList = Button(itemsFrame,text="Edit White Cue List",command=lambda:WhiteListWindowEdit(project_name,rule_name)).grid(row=1,column=0,sticky='w')
+    editBlackList = Button(itemsFrame,text="Edit Black Cue List",command=lambda:BlackListWindowEdit(project_name,rule_name)).grid(row=2,column=0,sticky='w')
     text_of_where_to_look = StringVar()
     cfg = FileManipulationHelper.loadRuleConfig(project_name, rule_name)
     DBSettings = FileManipulationHelper.LoadDBConfigFile(project_name)
@@ -162,6 +163,9 @@ def EditRule(project_name,Lb1):
     prags = db.GetPragmaticClasses()
     pragVar = StringVar()
     pragVar.set(cfg['PragClass'])
+    vDefUnit.set(cfg['DefUnit'])
+    vPosUnit.set(cfg['PosUnit'])
+    vClsIn.set(cfg['Class'])
     PragLabel = Label(itemsFrame,text="Pragmatic class").grid(row=7,column=1,sticky='w')
     drop = OptionMenu(itemsFrame,pragVar,*prags)
     drop.grid(row=8,column=1,sticky='w')
@@ -233,20 +237,124 @@ def BlackListWindow(project_name,rule_name):
     saveButton = Button(itemsFrame,text="Save",fg="black",command=lambda:SaveBlackList(list.get("1.0",END),BlackListWindow)).grid(row=2,sticky='w')
     
 def WhiteListWindowEdit(project_name,rule_name):
-    BlackListWindow =Toplevel()
-    BlackListWindow.title("Edit Cue List")
-    BlackListWindow.geometry('{}x{}'.format(450, 250))
-    itemsFrame = Frame(BlackListWindow)
-    itemsFrame.pack()
-    namerule_label = Label(itemsFrame,text="List of terms in whitelist").grid(row=0,sticky='w')
+    WhiteListWindow =Toplevel()
+    WhiteListWindow.title("Edit White Cue List")
+    WhiteListWindow.geometry('{}x{}'.format(550, 250))
+    itemsFrame = Frame(WhiteListWindow)
+    itemsFrame.pack(side=LEFT)
+    choiseFrame = Frame(WhiteListWindow,width=130)
+    choiseFrame.pack(side=RIGHT)
+    type = ['WhiteList','BlackList']
+    typeVar = StringVar()
+    typeVar.set(type[0])
+    TypeLabel = Label(choiseFrame,text="ListType").grid(row=0,column=0,sticky='w')
+    drop = OptionMenu(choiseFrame,typeVar,*type)
+    drop.grid(row=1,column=0,sticky='w')
+    where_to_look = Label(choiseFrame,text="Where to look?").grid(row=2,column=0,sticky='w')
+    look_head = IntVar()
+    HeaderCB = Checkbutton(choiseFrame,text="Header",variable = look_head).grid(row=3,column=0,sticky='w')
+    look_stub = IntVar()
+    StubCB = Checkbutton(choiseFrame,text="Stub",variable = look_stub).grid(row=4,column=0,sticky='w')
+    look_super = IntVar()
+    SuperRowCB = Checkbutton(choiseFrame,text="Super-row",variable = look_super).grid(row=5,column=0,sticky='w')
+    look_data = IntVar()
+    DataCB = Checkbutton(choiseFrame,text="Data",variable = look_data).grid(row=6,column=0,sticky='w')
+    look_all = IntVar()
+    EverywhereCB = Checkbutton(choiseFrame,text="Everywhere",variable=look_all).grid(row=7,column=0,sticky='w')
+    
+    namerule_label = Label(itemsFrame,text="List of terms in whitelsit").grid(row=0,sticky='w')
     list = Text(itemsFrame,height=10,width=50)
     list.grid(row=1,sticky='w')
     whitelist = FileManipulationHelper.loadWhiteList(project_name, rule_name)
     i = 1
+    afterWordList = False
     for w in whitelist:
-        list.insert(str(i)+'.0',w)
-        i=i+1
-    saveButton = Button(itemsFrame,text="Save",fg="black",command=lambda:SaveWhiteList(list.get("1.0",END),BlackListWindow)).grid(row=2,sticky='w')
+        w = w.replace('\n','')
+        splitted = w.split(':')
+        if splitted[0]=='Type':
+            if splitted[1]=='WhiteList':
+                typeVar.set(type[0])
+            else:
+                typeVar.set(type[1])
+        if splitted[0]=='Header':
+            look_head.set(int(splitted[1]))
+        if splitted[0]=='Stub':
+            look_stub.set(int(splitted[1]))
+        if splitted[0]=='Super-row':
+            look_super.set(int(splitted[1]))
+        if splitted[0]=='Data':
+            look_data.set(int(splitted[1]))
+        if splitted[0]=='All':
+            look_all.set(int(splitted[1]))
+        if w == "WordList:":
+            afterWordList = True
+            continue
+        
+        if afterWordList == True:
+            list.insert(str(i)+'.0',w+'\n')
+            i=i+1
+    saveButton = Button(itemsFrame,text="Save",fg="black",command=lambda:SaveWhiteList(list.get("1.0",END),typeVar,look_head,look_stub,look_super,look_data,look_all,WhiteListWindow,project_name,rule_name)).grid(row=2,sticky='w')
+
+    
+def BlackListWindowEdit(project_name,rule_name):
+    WhiteListWindow =Toplevel()
+    WhiteListWindow.title("Edit White Cue List")
+    WhiteListWindow.geometry('{}x{}'.format(550, 250))
+    itemsFrame = Frame(WhiteListWindow)
+    itemsFrame.pack(side=LEFT)
+    choiseFrame = Frame(WhiteListWindow,width=130)
+    choiseFrame.pack(side=RIGHT)
+    type = ['WhiteList','BlackList']
+    typeVar = StringVar()
+    typeVar.set(type[0])
+    TypeLabel = Label(choiseFrame,text="ListType").grid(row=0,column=0,sticky='w')
+    drop = OptionMenu(choiseFrame,typeVar,*type)
+    drop.grid(row=1,column=0,sticky='w')
+    where_to_look = Label(choiseFrame,text="Where to look?").grid(row=2,column=0,sticky='w')
+    look_head = IntVar()
+    HeaderCB = Checkbutton(choiseFrame,text="Header",variable = look_head).grid(row=3,column=0,sticky='w')
+    look_stub = IntVar()
+    StubCB = Checkbutton(choiseFrame,text="Stub",variable = look_stub).grid(row=4,column=0,sticky='w')
+    look_super = IntVar()
+    SuperRowCB = Checkbutton(choiseFrame,text="Super-row",variable = look_super).grid(row=5,column=0,sticky='w')
+    look_data = IntVar()
+    DataCB = Checkbutton(choiseFrame,text="Data",variable = look_data).grid(row=6,column=0,sticky='w')
+    look_all = IntVar()
+    EverywhereCB = Checkbutton(choiseFrame,text="Everywhere",variable=look_all).grid(row=7,column=0,sticky='w')
+    
+    namerule_label = Label(itemsFrame,text="List of terms in whitelsit").grid(row=0,sticky='w')
+    list = Text(itemsFrame,height=10,width=50)
+    list.grid(row=1,sticky='w')
+    whitelist = FileManipulationHelper.loadBlackList(project_name, rule_name)
+    i = 1
+    afterWordList = False
+    for w in whitelist:
+        w = w.replace('\n','')
+        splitted = w.split(':')
+        if splitted[0]=='Type':
+            if splitted[1]=='WhiteList':
+                typeVar.set(type[0])
+            else:
+                typeVar.set(type[1])
+        if splitted[0]=='Header':
+            look_head.set(int(splitted[1]))
+        if splitted[0]=='Stub':
+            look_stub.set(int(splitted[1]))
+        if splitted[0]=='Super-row':
+            look_super.set(int(splitted[1]))
+        if splitted[0]=='Data':
+            look_data.set(int(splitted[1]))
+        if splitted[0]=='All':
+            look_all.set(int(splitted[1]))
+        if w == "WordList:":
+            afterWordList = True
+            continue
+        
+        if afterWordList == True:
+            list.insert(str(i)+'.0',w+'\n')
+            i=i+1
+    saveButton = Button(itemsFrame,text="Save",fg="black",command=lambda:SaveWhiteList(list.get("1.0",END),typeVar,look_head,look_stub,look_super,look_data,look_all,WhiteListWindow,project_name,rule_name)).grid(row=2,sticky='w')
+
     
 
 #def EditRule():

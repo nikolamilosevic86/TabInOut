@@ -94,12 +94,12 @@ def loadRules(project_name):
     return projects
     
 def loadWhiteList(project_name,rule_name):
-    Rule_path = "Projects/"+project_name+'/'+rule_name+'/WhiteList.lst'
+    Rule_path = "Projects/"+project_name+'/'+rule_name+'/'+rule_name+'_WhiteList.lst'
     f = open(Rule_path,'r')
     whitelist = f.readlines()
     return whitelist
 def loadBlackList(project_name,rule_name):
-    Rule_path = "Projects/"+project_name+'/'+rule_name+'/BlackList.lst'
+    Rule_path = "Projects/"+project_name+'/'+rule_name+'/'+rule_name+'_BlackList.lst'
     f = open(Rule_path,'r')
     blacklist = f.readlines()
     return blacklist
@@ -110,16 +110,6 @@ def loadRuleConfig(project_name,rule_name):
     conf = {}
     for cfg in config:
         sp = cfg.split(':')
-        if sp[0]=='Header':
-            conf['Header']=sp[1]
-        if sp[0]=='Stub':
-            conf['Stub']=sp[1]
-        if sp[0]=='Super-row':
-            conf['Super-row']=sp[1]
-        if sp[0]=='Data':
-            conf['Data']=sp[1]
-        if sp[0]=='All':
-            conf['All']=sp[1]
         if sp[0]=='Class':
             conf['Class']=sp[1]
         if sp[0]=='DefUnit':

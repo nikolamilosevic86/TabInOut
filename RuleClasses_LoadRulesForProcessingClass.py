@@ -58,18 +58,81 @@ def LoadRulesForProcessing(project_name):
         cfg = FileManipulationHelper.loadRuleConfig(project_name, rule_name)
         rule = RuleClasses_Rule.Rule()
         rule.RuleName = rule_name
-        rule.WhiteList = white_list
-        rule.BlackList = black_list
-        if(int(cfg['Header'])==1):
-            rule.look_header = True
-        if(int(cfg['Stub'])==1):
-            rule.look_stub = True
-        if(int(cfg['Super-row'])==1):
-            rule.look_superrow = True
-        if(int(cfg['Data'])==1):
-            rule.look_data = True
-        if(int(cfg['All'])==1):
-            rule.look_anywhere = True
+        #rule.WhiteList = white_list
+        #rule.BlackList = black_list
+        for w in white_list:
+            w = w.replace('\n','')
+            splitted = w.split(':')
+            if splitted[0]=='Type':
+                if splitted[1]=='WhiteList':
+                    continue
+                if splitted[0]=='Header':
+                    if int(splitted[1]) ==1:
+                        rule.wl_look_head=True
+                    else:
+                        rule.wl_look_head=False
+                if splitted[0]=='Stub':
+                    if int(splitted[1]) ==1:
+                        rule.wl_look_stub=True
+                    else:
+                        rule.wl_look_stub=False
+                if splitted[0]=='Super-row':
+                    if int(splitted[1]) ==1:
+                        rule.wl_look_super=True
+                    else:
+                        rule.wl_look_super=False
+                if splitted[0]=='Data':
+                    if int(splitted[1]) ==1:
+                        rule.wl_look_data=True
+                    else:
+                        rule.wl_look_data=False
+                if splitted[0]=='All':
+                    if int(splitted[1]) ==1:
+                        rule.wl_look_all=True
+                    else:
+                        rule.wl_look_all=False
+                if w == "WordList:":
+                    afterWordList = True
+                    continue
+                if afterWordList == True:
+                    rule.WhiteList.append(w)
+        for w in black_list:
+            w = w.replace('\n','')
+            splitted = w.split(':')
+            if splitted[0]=='Type':
+                if splitted[1]=='BlackList':
+                    continue
+                if splitted[0]=='Header':
+                    if int(splitted[1]) ==1:
+                        rule.bl_look_head=True
+                    else:
+                        rule.bl_look_head=False
+                if splitted[0]=='Stub':
+                    if int(splitted[1]) ==1:
+                        rule.bl_look_stub=True
+                    else:
+                        rule.bl_look_stub=False
+                if splitted[0]=='Super-row':
+                    if int(splitted[1]) ==1:
+                        rule.bl_look_super=True
+                    else:
+                        rule.bl_look_super=False
+                if splitted[0]=='Data':
+                    if int(splitted[1]) ==1:
+                        rule.bl_look_data=True
+                    else:
+                        rule.bl_look_data=False
+                if splitted[0]=='All':
+                    if int(splitted[1]) ==1:
+                        rule.bl_look_all=True
+                    else:
+                        rule.bl_look_all=False
+                if w == "WordList:":
+                    afterWordList = True
+                    continue
+                if afterWordList == True:
+                    rule.BlackList.append(w)
+        
         rule.DefaultUnit = cfg['DefUnit']
         rule.PossibleUnits = cfg['PosUnit'].split(',')
         rule.PragmaticClass = cfg['PragClass']

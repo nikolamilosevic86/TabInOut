@@ -122,7 +122,7 @@ def ProcessDataBase(project_name,rules):
     DBSettings = FileManipulationHelper.LoadDBConfigFile(project_name)
     db = QueryDBClass.QueryDBCalss(DBSettings['Host'],DBSettings['User'],DBSettings['Pass'],DBSettings['Database'])
     for rule in rules:
-        rows = db.getCellsGeneric(rule.PragmaticClass,rule.look_header,rule.look_stub,rule.look_superrow,rule.look_data,rule.WhiteList)
+        rows = db.getCellsGeneric(rule.PragmaticClass,rule.wl_look_header,rule.wl_look_stub,rule.wl_look_superrow,rule.wl_look_data,rule.WhiteList)
         gen_rule_name = rule.RuleName
         for row in rows:
             id_article = row[0]
@@ -139,9 +139,9 @@ def ProcessDataBase(project_name,rules):
             Stub = row[11]
             Super_row = row[12]
 
-            ContainsLooked = CheckWListUsingRegex(rule.look_header,rule.look_stub,rule.look_superrow,rule.look_data,rule.WhiteList,Header,Stub,Super_row,Content)
+            ContainsLooked = CheckWListUsingRegex(rule.wl_look_header,rule.wl_look_stub,rule.wl_look_superrow,rule.wl_look_data,rule.WhiteList,Header,Stub,Super_row,Content)
             if(ContainsLooked):
-                ValidCandidate = CheckBListUsingRegex(rule.look_header,rule.look_stub,rule.look_superrow,rule.look_data,rule.BlackList,Header,Stub,Super_row,Content)
+                ValidCandidate = CheckBListUsingRegex(rule.bl_look_header,rule.bl_look_stub,rule.bl_look_superrow,rule.bl_look_data,rule.BlackList,Header,Stub,Super_row,Content)
                 if ValidCandidate:
                     FoundSemantics = False
                     for syn_rule in rule.PatternList:

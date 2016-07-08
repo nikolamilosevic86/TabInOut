@@ -144,12 +144,17 @@ def ProcessDataBase(project_name,rules):
                 ValidCandidate = CheckBListUsingRegex(rule.bl_look_header,rule.bl_look_stub,rule.bl_look_superrow,rule.bl_look_data,rule.BlackList,Header,Stub,Super_row,Content)
                 if ValidCandidate:
                     FoundSemantics = False
+                    AllSemSaved = False
                     for syn_rule in rule.PatternList:
+                        if(AllSemSaved ==True):
+                                break
                         m = re.search(syn_rule.regex.replace('\n',''),Content)
                         if m == None:
                             continue
                         c = 0
                         for sem in syn_rule.SemanticValues:
+                            if(AllSemSaved ==True):
+                                break
                             value = m.group(sem.position)
                             if len(sem.SemTermList)>0:
                                 contains_term =  CheckWListUsingRegex(True,True,True,False,sem.SemTermList,Header,Stub,Super_row,Content)
@@ -159,11 +164,19 @@ def ProcessDataBase(project_name,rules):
                             if len(sem.SemTermList)==0:
                                 semValue  = sem.Semantics
                                 FoundSemantics = True
-                        syn_rule_name = syn_rule.name
-                    if FoundSemantics:    
-                        Unit = CheckUnits(Header, Stub, Super_row, Content, rule.DefaultUnit, rule.PossibleUnits)
+                            c = c+1
+                            if FoundSemantics:    
+                                syn_rule_name = syn_rule.name
+                                Unit = CheckUnits(Header, Stub, Super_row, Content, rule.DefaultUnit, rule.PossibleUnits)
                         #Save the value to the database
-                        db.SaveExtracted(id_article,id_table,tableOrder,pmc_id,rule.ClassName,semValue,value,Unit,Source,gen_rule_name,syn_rule_name)
+                                db.SaveExtracted(id_article,id_table,tableOrder,pmc_id,rule.ClassName,semValue,value,Unit,Source,gen_rule_name,syn_rule_name)
+                                
+                                FoundSemantics = False
+                                if(c == len(syn_rule.SemanticValues)):
+                                    AllSemSaved = True
+                            
+                        
+                    
             
     print "Done!!!!"
     #FinishScreen()

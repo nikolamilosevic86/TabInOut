@@ -17,17 +17,18 @@ def LoadSyntacticRoles(project_name,rule_name):
     path = "Projects/"+project_name+"/"+rule_name+"/SyntacticRules.sin"
     f = open(path,'r')
     lines = f.readlines()
-    pattern = RuleClasses_Pattern.Pattern()
     i = 0
+    pattern = RuleClasses_Pattern.Pattern()
+    semanticVals = []
     for line in lines:
         if line == '\n':
             continue
         if(line[0]=='+'):
             i = 0
-            semanticVals = []
             if pattern.name != '':
                 pattern.SemanticValues = semanticVals
                 patterns.append(pattern)
+            semanticVals = []
             pattern = RuleClasses_Pattern.Pattern()
             pattern.name = line[1:]
             i = i+1
@@ -44,6 +45,8 @@ def LoadSyntacticRoles(project_name,rule_name):
                 pvs.SemTermList = val[1].split(',')
             pvs.position = int(val[0])
             semanticVals.append(pvs)
+    pattern.SemanticValues = semanticVals
+    patterns.append(pattern)
     return patterns
         
 

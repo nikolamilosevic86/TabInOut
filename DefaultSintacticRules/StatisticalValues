@@ -18,18 +18,13 @@
 1->mean
 2->range_min
 3->range_max
-+GetMean5
-[(](\d+\.*\d*)[?  ]{0,}[\-—–−,]{1,}[?  ]{0,}(\d+\.*\d*)[)][?  ]*(\d+\.*\d*)
-1->range_min
-2->range_max
-3->mean
 +GetRange1
 (\d+\.*\d*)[?  ]*[(](\d+\.*\d*)[?  ]{0,}[\-—–−,]{1,}[?  ]{0,}(\d+\.*\d*)[)]
 1:median,Median->median
 2->range_min
 3->range_max
 +GetRange2
-[(](\d+\.*\d*)[?  ]{0,}[\-—–−,;]{1,}[?  ]{0,}(\d+)[)][?  ]*(\d+\.*\d*)
+[(](\d+\.*\d*)[?  ]{0,}[\-—–−,;]{1,}[?  ]{0,}(\d+\.*\d*)[)][?  ]*(\d+\.*\d*)
 1->range_min
 2->range_max
 3:median,Median->median
@@ -44,11 +39,11 @@
 1->mean
 2->SD
 +GetMean7
-(\d+\.*\d*)[?  ]{0,}[(]{1,}[?  ]{0,}(\d+\.*\d*)[)]{1,}
+(\d+\.{0,}\d*)[?  ]{0,}[(](\d+\.{0,}\d*)[)]
 1:median,Median->median
 1->mean
 2->SD
-++GetMean8
++GetMean8
 (\d+\.*\d*)
 1:median,Median->median
 1->mean

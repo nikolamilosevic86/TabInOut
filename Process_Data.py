@@ -59,7 +59,7 @@ def CheckBListUsingRegex(look_header,look_stub,look_superrow,look_data,List,Head
         for item in List:
             if Header == None or item.replace('\n','') =='':
                 continue
-            regex = '\\b('+item.replace('\n','')+')\\b'
+            regex = '\\b('+item.replace('\n','')+')'
             m1 = re.search(regex,Header)
             if(m1!=None):
                 ValidCandidate = False

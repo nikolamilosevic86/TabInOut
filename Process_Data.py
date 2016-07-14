@@ -148,7 +148,8 @@ def ProcessDataBase(project_name,rules):
                     for syn_rule in rule.PatternList:
                         if(AllSemSaved ==True):
                                 break
-                        m = re.search(syn_rule.regex.replace('\n',''),Content)
+                        pattern = unicode(syn_rule.regex.replace('\n',''),'utf-8')
+                        m = re.search(pattern,Content,re.UNICODE)
                         if m == None:
                             continue
                         c = 0

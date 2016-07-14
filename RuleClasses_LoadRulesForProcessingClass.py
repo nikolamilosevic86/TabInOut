@@ -72,9 +72,9 @@ def LoadRulesForProcessing(project_name):
                     continue
             if splitted[0]=='Header':
                 if int(splitted[1]) ==1:
-                    rule.wl_look_head=True
+                    rule.wl_look_header=True
                 else:
-                    rule.wl_look_head=False
+                    rule.wl_look_header=False
             if splitted[0]=='Stub':
                 if int(splitted[1]) ==1:
                     rule.wl_look_stub=True
@@ -82,9 +82,9 @@ def LoadRulesForProcessing(project_name):
                     rule.wl_look_stub=False
             if splitted[0]=='Super-row':
                 if int(splitted[1]) ==1:
-                    rule.wl_look_super=True
+                    rule.wl_look_superrow=True
                 else:
-                    rule.wl_look_super=False
+                    rule.wl_look_superrow=False
             if splitted[0]=='Data':
                 if int(splitted[1]) ==1:
                     rule.wl_look_data=True
@@ -92,9 +92,9 @@ def LoadRulesForProcessing(project_name):
                     rule.wl_look_data=False
             if splitted[0]=='All':
                 if int(splitted[1]) ==1:
-                    rule.wl_look_all=True
+                    rule.wl_look_anywhere=True
                 else:
-                    rule.wl_look_all=False
+                    rule.wl_look_anywhere=False
             if w == "WordList:":
                 afterWordList = True
                 continue
@@ -109,9 +109,9 @@ def LoadRulesForProcessing(project_name):
                     continue
             if splitted[0]=='Header':
                 if int(splitted[1]) ==1:
-                    rule.bl_look_head=True
+                    rule.bl_look_header=True
                 else:
-                    rule.bl_look_head=False
+                    rule.bl_look_header=False
             if splitted[0]=='Stub':
                 if int(splitted[1]) ==1:
                     rule.bl_look_stub=True
@@ -119,9 +119,9 @@ def LoadRulesForProcessing(project_name):
                     rule.bl_look_stub=False
             if splitted[0]=='Super-row':
                 if int(splitted[1]) ==1:
-                    rule.bl_look_super=True
+                    rule.bl_look_superrow=True
                 else:
-                    rule.bl_look_super=False
+                    rule.bl_look_superrow=False
             if splitted[0]=='Data':
                 if int(splitted[1]) ==1:
                     rule.bl_look_data=True
@@ -129,9 +129,9 @@ def LoadRulesForProcessing(project_name):
                     rule.bl_look_data=False
             if splitted[0]=='All':
                 if int(splitted[1]) ==1:
-                    rule.bl_look_all=True
+                    rule.bl_look_anywhere=True
                 else:
-                    rule.bl_look_all=False
+                    rule.bl_look_anywhere=False
             if w == "WordList:":
                 afterWordList = True
                 continue

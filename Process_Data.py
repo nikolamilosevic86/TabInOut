@@ -59,7 +59,8 @@ def CheckBListUsingRegex(look_header,look_stub,look_superrow,look_data,List,Head
         for item in List:
             if Header == None or item.replace('\n','') =='':
                 continue
-            regex = '\\b('+item.replace('\n','')+')'
+            item = item.replace('\n','')
+            regex = ''+item+''
             m1 = re.search(regex,Header)
             if(m1!=None):
                 ValidCandidate = False
@@ -67,7 +68,7 @@ def CheckBListUsingRegex(look_header,look_stub,look_superrow,look_data,List,Head
         for item in List:
             if Stub == None or item.replace('\n','') =='':
                 continue
-            regex = '\\b('+item.replace('\n','')+')\\b'
+            regex = ''+item.replace('\n','')+''
             m1 = re.search(regex,Stub)
             if(m1!=None):
                 ValidCandidate = False
@@ -75,7 +76,7 @@ def CheckBListUsingRegex(look_header,look_stub,look_superrow,look_data,List,Head
         for item in List:
             if Super_row == None or item.replace('\n','') =='':
                 continue
-            regex = '\\b('+item.replace('\n','')+')\\b'
+            regex = ''+item.replace('\n','')+''
             m1 = re.search(regex,Super_row)
             if(m1!=None):
                 ValidCandidate = False
@@ -83,7 +84,7 @@ def CheckBListUsingRegex(look_header,look_stub,look_superrow,look_data,List,Head
         for item in List:
             if Data == None or item.replace('\n','') =='':
                 continue
-            regex = '\\b('+item.replace('\n','')+')\\b'
+            regex = ''+item.replace('\n','')+''
             m1 = re.search(regex,Data)
             if(m1!=None):
                 ValidCandidate = False
@@ -153,9 +154,17 @@ def ProcessDataBase(project_name,rules):
                         if m == None:
                             continue
                         c = 0
+                        contains_term = False
+                        last_sem_extracted = -1
                         for sem in syn_rule.SemanticValues:
+                            if contains_term and sem.Semantics=='mean':
+                                contains_term = False
+                                FoundSemantics = False
+                                continue
                             if(AllSemSaved ==True):
                                 break
+                            if last_sem_extracted >= sem.position:
+                                continue
                             value = m.group(sem.position)
                             if len(sem.SemTermList)>0:
                                 contains_term =  CheckWListUsingRegex(True,True,True,False,sem.SemTermList,Header,Stub,Super_row,Content)
@@ -171,7 +180,7 @@ def ProcessDataBase(project_name,rules):
                                 Unit = CheckUnits(Header, Stub, Super_row, Content, rule.DefaultUnit, rule.PossibleUnits)
                         #Save the value to the database
                                 db.SaveExtracted(id_article,id_table,tableOrder,pmc_id,rule.ClassName,semValue,value,Unit,Source,gen_rule_name,syn_rule_name)
-                                
+                                last_sem_extracted = sem.position
                                 FoundSemantics = False
                                 if(c == len(syn_rule.SemanticValues)):
                                     AllSemSaved = True

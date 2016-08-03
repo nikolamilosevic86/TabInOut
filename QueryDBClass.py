@@ -585,6 +585,13 @@ class QueryDBCalss:
         self.db.commit()
         return cursor.lastrowid
     
+    def getExtracted(self):
+        cursor = self.db.cursor()
+        sql = "SELECT * FROM IEAttribute limit 20"
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        return results
+    
     def GetPragmaticClasses(self):
         cursor = self.db.cursor()
         sql = "SELECT Distinct(SpecPragmatic) from arttable"

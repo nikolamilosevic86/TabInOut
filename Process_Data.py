@@ -191,5 +191,10 @@ def ProcessDataBase(project_name,rules):
     print "Done!!!!"
     #FinishScreen()
     
-    pass
+def GetExtractedData(project_name):
+    DBSettings = FileManipulationHelper.LoadDBConfigFile(project_name)
+    db = QueryDBClass.QueryDBCalss(DBSettings['Host'],DBSettings['User'],DBSettings['Pass'],DBSettings['Database'])
+    extracted = db.getExtracted()
+    return extracted
+    
 

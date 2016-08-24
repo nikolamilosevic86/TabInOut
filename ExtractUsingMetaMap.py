@@ -122,8 +122,8 @@ if __name__=="__main__":
         CellRole = 3
         SuperRowOfInterest = Content
         SuperRow = SuperRowOfInterest
-        while CellRole!=4 and SuperRowOfInterest in SuperRow and row<50:
-            rowRes = queryclass.getCellsFromTableRowRow(TableID,row)
+        while CellRole!=4 and SuperRow!=None and SuperRowOfInterest!=None and SuperRowOfInterest in SuperRow and row<50:
+            rowRes = queryclass.getCellsFromTableRowRowWithRole(TableID,row)
             for res in rowRes:
                 SuperRow = res[12]
                 CellRole = res[14]

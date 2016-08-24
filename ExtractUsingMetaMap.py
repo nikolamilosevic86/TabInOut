@@ -32,7 +32,7 @@ if __name__=="__main__":
         TableOrder = res[28]
         idArt = res[34]
         PMC = res[38]
-        if PMC=='1090597':#'1488867':
+        if PMC=='2361378':#'1488867':
             print 'right PMC'
         #CellRole = res[51]
         lastCellID = CellID
@@ -114,7 +114,7 @@ if __name__=="__main__":
         TableOrder = res[28]
         idArt = res[34]
         PMC = res[38]
-        if PMC=='1488867':#'1488867':
+        if PMC=='2361378':#'1488867':
             print 'right PMC'
         CellRole = res[51]
         lastCellID = CellID

@@ -573,6 +573,13 @@ class QueryDBCalss:
         results = cursor.fetchall()
         return results
     
+    def CreateAdditionalDDITables(self):
+        cursor = self.db.cursor()
+        sql = "Drop table if exists  DDIInfo"
+        cursor.execute(sql)
+        sql = "Create table if not exists DDIInfo (id int NOT NULL AUTO_INCREMENT,documentId INT, SpecId varchar(255),idTable int,TableName varchar(200),Drug1 varchar(255),Drug2 varchar(255),CueRule varchar(255), PRIMARY KEY (id))"
+        cursor.execute(sql)
+    
     def CreateAdditionalTables(self):
         cursor = self.db.cursor()
         sql = "Create table if not exists IEAttribute (id int NOT NULL AUTO_INCREMENT,documentId INT, PMC varchar(255),idTable int,TableName varchar(200),Class varchar(255),SubClass varchar(255),VOption varchar(255),Source varchar(255), StringValue varchar(255),IntValue DOUBLE, Unit varchar(255),CueRule varchar(255),SynRule varchar(255), PRIMARY KEY (id))"

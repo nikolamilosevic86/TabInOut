@@ -8,12 +8,9 @@ Licence GNU/GPL 3.0
 '''
 from Tkinter import *
 import FileManipulationHelper
-import QueryDBClass
 import RuleClasses_LoadRulesForProcessingClass
-import Process_Data
 from threading import Thread
-from time import sleep
-from EditRule import AddEditRule,EditRule
+from EditRule import EditRule
 from SimpleRuleOps import MoveRuleDown,MoveRuleUp,RemoveRule,AddRule,EnableLEntity,EnableLB
 from DatabaseSettings import ConfigureDatabaseScreen,ClearDBTables
 from SyntacticRules import ProcessDataV,RefreshDatabaseData
@@ -34,7 +31,6 @@ def LoadFirstCfGScreen(project_name):
     frame.pack()
     topframe2 = Frame(top,height=10)
     topframe2.pack()
-
     middleframe = Frame(top)
     middleframe.pack()
     bottomframe2 = Frame(top,height=10)

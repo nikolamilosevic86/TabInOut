@@ -14,9 +14,9 @@ if __name__=="__main__":
     queryclass = QueryDBCalss("localhost","root","","table_db_amia", )
     queryclass.CreateAdditionalDDITables()
     cursor = queryclass.db.cursor()
-    sql = """select Annotation.Content,AnnotationDescription,Table_idTable,RowN,ColumnN,TableOrder,idArticle,Title,SpecId from Annotation 
-    inner join Cell on Cell.idCell=Annotation.Cell_idCell inner join ArtTable on ArtTable.idTable=Cell.Table_idTable inner join Article on 
-    Article.idArticle = ArtTable.Article_idArticle where Section='34073-7' and AnnotationDescription  IN ('Pharmacologic Substance (phsu)','Biologically Active Substance (bacs)','Organic Chemical (orch)','Hazardous or Poisonous Substance (hops)','Carbohydrate (carb)','Element, Ion, or Isotope (elii)','Nucleic Acid, Nucleoside, or Nucleotide (nnon)','Indicator, Reagent, or Diagnostic Aid (irda)','Biomedical or Dental Material (bodm)', 'Inorganic Chemical (inch)','Hormone (horm)')
+    sql = """select annotation.Content,AnnotationDescription,Table_idTable,RowN,ColumnN,TableOrder,idArticle,Title,SpecId from annotation 
+    inner join cell on cell.idCell=annotation.Cell_idCell inner join arttable on arttable.idTable=cell.Table_idTable inner join article on 
+    article.idArticle = arttable.Article_idArticle where Section='34073-7' and AnnotationDescription  IN ('Pharmacologic Substance (phsu)','Biologically Active Substance (bacs)','Organic Chemical (orch)','Hazardous or Poisonous Substance (hops)','Carbohydrate (carb)','Element, Ion, or Isotope (elii)','Nucleic Acid, Nucleoside, or Nucleotide (nnon)','Indicator, Reagent, or Diagnostic Aid (irda)','Biomedical or Dental Material (bodm)', 'Inorganic Chemical (inch)','Hormone (horm)')
 """
     cursor.execute(sql)
     results = cursor.fetchall()

@@ -69,7 +69,13 @@ def SetRuleName(project_name,RulesListBox):
     RuleNameLabel = Label(RuleNameView,text="Name of the rule").grid(row=0,sticky='w')
     vRuleName = StringVar()
     RuleNameEntry = Entry(RuleNameView,textvariable=vRuleName).grid(row=1,sticky='w')
-    RuleNameButton = Button(RuleNameView,text="Next ->>",command=lambda:AddEditRule(project_name,vRuleName,RuleNameView,RulesListBox)).grid(row=2,sticky='w')
+    vRuleType = StringVar()
+    RuleNameLabel = Label(RuleNameView,text="Value type of the rule").grid(row=2,sticky='w')
+    vRuleType.set("Numeric")
+    Radiobutton(RuleNameView, text="Numeric", variable=vRuleType, value="Numeric").grid(row=3,sticky='w')
+    Radiobutton(RuleNameView, text="Categorical", variable=vRuleType, value="Categorical").grid(row=4,sticky='w')
+    Radiobutton(RuleNameView, text="String", variable=vRuleType, value="String").grid(row=5,sticky='w') 
+    RuleNameButton = Button(RuleNameView,text="Next ->>",command=lambda:AddEditRule(project_name,vRuleName,vRuleType,RuleNameView,RulesListBox)).grid(row=6,sticky='w')
 
 
     

@@ -60,11 +60,9 @@ def LoadDBConfigFile(project_name):
         if(parts[0]=='Database'):
             dbSettings['Database']=parts[1].replace('\n','')
     return dbSettings
-def SaveCueList(rule_path,rule_name, whitelist,typeVar,look_head,look_stub,look_super,look_data,look_all):
-    if(typeVar.get()=='WhiteList'):
-        f = open(rule_path+'/'+rule_name+'_WhiteList.lst','w')
-    else:
-        f = open(rule_path+'/'+rule_name+'_BlackList.lst','w')
+
+def SaveCueList(rule_path,rule_name, whitelist,blacklist,typeVar,look_head,look_stub,look_super,look_data,look_all):
+    f = open(rule_path+'/'+rule_name+'_WhiteList.lst','w')
     f.write('Type:'+str(typeVar.get())+'\n')
     f.write('Header:'+str(look_head.get())+'\n')
     f.write('Stub:'+str(look_stub.get())+'\n')
@@ -75,17 +73,38 @@ def SaveCueList(rule_path,rule_name, whitelist,typeVar,look_head,look_stub,look_
     for item in whitelist:
         f.write(item+'\n')
     f.close
+    f = open(rule_path+'/'+rule_name+'_BlackList.lst','w')
+    f.write('Type:'+str(typeVar.get())+'\n')
+    f.write('Header:'+str(look_head.get())+'\n')
+    f.write('Stub:'+str(look_stub.get())+'\n')
+    f.write('Super-row:'+str(look_super.get())+'\n')
+    f.write('Data:'+str(look_data.get())+'\n')
+    f.write('All:'+str(look_all.get())+'\n')
+    f.write('WordList:\n')
+    for item in blacklist:
+        f.write(item+'\n')
+    f.close
+    
+    
+    
+    
+    
 def SaveBlackList(rule_path,blakclist):
     f = open(rule_path+'/BlackList.lst','w')
     for item in blakclist:
         f.write(item+'\n')
     f.close
-def MakeRuleCFGFile(rule_path,vClsIn,vDefUnit,vPosUnit,pragVar):
+def MakeRuleCFGFile(rule_path,vClsIn,vDefUnit,vPosUnit,pragVar,vRuleType,vLexSemRule):
     f = open(rule_path+'/Rule.cfg','w')
     f.write("Class:"+str(vClsIn.get().replace('\n',''))+'\n')
-    f.write("DefUnit:"+str(vDefUnit.get().replace('\n',''))+'\n')
-    f.write("PosUnit:"+str(vPosUnit.get().replace('\n',''))+'\n')
+    f.write("RuleType:"+str(vRuleType.get().replace('\n',''))+'\n')
+    if(vRuleType.get()=="Numeric"):
+        f.write("DefUnit:"+str(vDefUnit.get().replace('\n',''))+'\n')
+        f.write("PosUnit:"+str(vPosUnit.get().replace('\n',''))+'\n')
+    if(vRuleType.get()=="Categorical"):
+        f.write("PosCategories:"+str(vPosUnit.get().replace('\n',''))+'\n')
     f.write("PragClass:"+str(pragVar.get().replace('\n',''))+'\n')
+    f.write("RuleCreationMech:"+str(vLexSemRule.get().replace('\n',''))+'\n')
     f.close()
 
 def loadRules(project_name):

@@ -61,38 +61,35 @@ def LoadDBConfigFile(project_name):
             dbSettings['Database']=parts[1].replace('\n','')
     return dbSettings
 
-def SaveCueList(rule_path,rule_name, whitelist,blacklist,typeVar,look_head,look_stub,look_super,look_data,look_all):
+def SaveCueList(rule_path,rule_name, whitelist,blacklist,typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data):
     f = open(rule_path+'/'+rule_name+'_WhiteList.lst','w')
     f.write('Type:'+str(typeVar.get())+'\n')
-    f.write('Header:'+str(look_head.get())+'\n')
-    f.write('Stub:'+str(look_stub.get())+'\n')
-    f.write('Super-row:'+str(look_super.get())+'\n')
-    f.write('Data:'+str(look_data.get())+'\n')
-    f.write('All:'+str(look_all.get())+'\n')
+    f.write('Header:'+str(wl_look_head.get())+'\n')
+    f.write('Stub:'+str(wl_look_stub.get())+'\n')
+    f.write('Super-row:'+str(wl_look_super.get())+'\n')
+    f.write('Data:'+str(wl_look_data.get())+'\n')
     f.write('WordList:\n')
     for item in whitelist:
         f.write(item+'\n')
     f.close
     f = open(rule_path+'/'+rule_name+'_BlackList.lst','w')
     f.write('Type:'+str(typeVar.get())+'\n')
-    f.write('Header:'+str(look_head.get())+'\n')
-    f.write('Stub:'+str(look_stub.get())+'\n')
-    f.write('Super-row:'+str(look_super.get())+'\n')
-    f.write('Data:'+str(look_data.get())+'\n')
-    f.write('All:'+str(look_all.get())+'\n')
+    f.write('Header:'+str(bl_look_head.get())+'\n')
+    f.write('Stub:'+str(bl_look_stub.get())+'\n')
+    f.write('Super-row:'+str(bl_look_super.get())+'\n')
+    f.write('Data:'+str(bl_look_data.get())+'\n')
     f.write('WordList:\n')
     for item in blacklist:
         f.write(item+'\n')
     f.close
     
-def SaveCueListSem(rule_path,rule_name, whitelist,blacklist,typeVar,look_head,look_stub,look_super,look_data,look_all):
+def SaveCueListSem(rule_path,rule_name, whitelist,blacklist,typeVar, wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data):
     f = open(rule_path+'/'+rule_name+'_WhiteList.lst','w')
     f.write('Type:'+str(typeVar.get())+'\n')
-    f.write('Header:'+str(look_head.get())+'\n')
-    f.write('Stub:'+str(look_stub.get())+'\n')
-    f.write('Super-row:'+str(look_super.get())+'\n')
-    f.write('Data:'+str(look_data.get())+'\n')
-    f.write('All:'+str(look_all.get())+'\n')
+    f.write('Header:'+str(wl_look_head.get())+'\n')
+    f.write('Stub:'+str(wl_look_stub.get())+'\n')
+    f.write('Super-row:'+str(wl_look_super.get())+'\n')
+    f.write('Data:'+str(wl_look_data.get())+'\n')
     f.write('Sem:'+str("1")+'\n')
     f.write('SemanticTypes:\n')
     for item in whitelist:
@@ -100,11 +97,10 @@ def SaveCueListSem(rule_path,rule_name, whitelist,blacklist,typeVar,look_head,lo
     f.close
     f = open(rule_path+'/'+rule_name+'_BlackList.lst','w')
     f.write('Type:'+str(typeVar.get())+'\n')
-    f.write('Header:'+str(look_head.get())+'\n')
-    f.write('Stub:'+str(look_stub.get())+'\n')
-    f.write('Super-row:'+str(look_super.get())+'\n')
-    f.write('Data:'+str(look_data.get())+'\n')
-    f.write('All:'+str(look_all.get())+'\n')
+    f.write('Header:'+str(bl_look_head.get())+'\n')
+    f.write('Stub:'+str(bl_look_stub.get())+'\n')
+    f.write('Super-row:'+str(bl_look_super.get())+'\n')
+    f.write('Data:'+str(bl_look_data.get())+'\n')
     f.write('WordList:\n')
     for item in blacklist:
         f.write(item+'\n')

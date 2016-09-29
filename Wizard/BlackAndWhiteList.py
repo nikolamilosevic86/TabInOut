@@ -42,17 +42,25 @@ def SemanticListWindow(project_name,rule_name):#
     #TypeLabel = Label(choiseFrame,text="ListType").grid(row=0,column=0,sticky='w')
     #drop = OptionMenu(choiseFrame,typeVar,*type)
     #drop.grid(row=1,column=0,sticky='w')
-    where_to_look = Tix.Label(choiseFrame,text="Where to look?").grid(row=2,column=0,sticky='w')
-    look_head = Tix.IntVar()
-    HeaderCB = Tix.Checkbutton(choiseFrame,text="Header",variable = look_head).grid(row=3,column=0,sticky='w')
-    look_stub = Tix.IntVar()
-    StubCB = Tix.Checkbutton(choiseFrame,text="Stub",variable = look_stub).grid(row=4,column=0,sticky='w')
-    look_super = Tix.IntVar()
-    SuperRowCB = Tix.Checkbutton(choiseFrame,text="Super-row",variable = look_super).grid(row=5,column=0,sticky='w')
-    look_data = Tix.IntVar()
-    DataCB = Tix.Checkbutton(choiseFrame,text="Data",variable = look_data).grid(row=6,column=0,sticky='w')
-    look_all = Tix.IntVar()
-    EverywhereCB = Tix.Checkbutton(choiseFrame,text="Everywhere",variable=look_all).grid(row=7,column=0,sticky='w')
+    where_to_look = Tix.Label(choiseFrame,text="Where to look for white list variables?").grid(row=2,column=0,sticky='w')
+    wl_look_head = Tix.IntVar()
+    WLHeaderCB = Tix.Checkbutton(choiseFrame,text="Header",variable = wl_look_head).grid(row=3,column=0,sticky='w')
+    wl_look_stub = Tix.IntVar()
+    WLStubCB = Tix.Checkbutton(choiseFrame,text="Stub",variable = wl_look_stub).grid(row=4,column=0,sticky='w')
+    wl_look_super = Tix.IntVar()
+    WLSuperRowCB = Tix.Checkbutton(choiseFrame,text="Super-row",variable = wl_look_super).grid(row=5,column=0,sticky='w')
+    wl_look_data = Tix.IntVar()
+    WLDataCB = Tix.Checkbutton(choiseFrame,text="Data",variable = wl_look_data).grid(row=6,column=0,sticky='w')
+    
+    where_to_look2 = Tix.Label(choiseFrame,text="Where to look for black list variables?").grid(row=7,column=0,sticky='w')
+    bl_look_head = Tix.IntVar()
+    BLHeaderCB = Tix.Checkbutton(choiseFrame,text="Header",variable = bl_look_head).grid(row=8,column=0,sticky='w')
+    bl_look_stub = Tix.IntVar()
+    BLStubCB = Tix.Checkbutton(choiseFrame,text="Stub",variable = bl_look_stub).grid(row=9,column=0,sticky='w')
+    bl_look_super = Tix.IntVar()
+    BLSuperRowCB = Tix.Checkbutton(choiseFrame,text="Super-row",variable = bl_look_super).grid(row=10,column=0,sticky='w')
+    bl_look_data = Tix.IntVar()
+    BLDataCB = Tix.Checkbutton(choiseFrame,text="Data",variable = bl_look_data).grid(row=11,column=0,sticky='w')
     
     namerule_label = Tix.Label(itemsFrame,text="List of terms in whitelsit").grid(row=0,sticky='w')
     whitelist = Tix.CheckList(itemsFrame,width=350)
@@ -62,7 +70,7 @@ def SemanticListWindow(project_name,rule_name):#
     namerule_label2 = Tix.Label(itemsFrame,text="List of terms in blacklist").grid(row=2,sticky='w')
     blacklist = Tix.Text(itemsFrame,height=5,width=50)
     blacklist.grid(row=3,sticky='w')
-    saveButton = Tix.Button(itemsFrame,text="Save",fg="black",command=lambda:SaveWhiteList(whitelist.get("1.0",Tix.END),blacklist.get("1.0",Tix.END),typeVar,look_head,look_stub,look_super,look_data,look_all,WhiteListWindow,project_name,rule_name)).grid(row=4,sticky='w')
+    saveButton = Tix.Button(itemsFrame,text="Save",fg="black",command=lambda:SaveWhiteListSemantic(whitelist,blacklist.get("1.0",Tix.END),typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data,WhiteListWindow,project_name,rule_name)).grid(row=4,sticky='w')
 
     pass
 
@@ -134,25 +142,33 @@ def WhiteListWindow(project_name,rule_name):
     #TypeLabel = Label(choiseFrame,text="ListType").grid(row=0,column=0,sticky='w')
     #drop = OptionMenu(choiseFrame,typeVar,*type)
     #drop.grid(row=1,column=0,sticky='w')
-    where_to_look = Tix.Label(choiseFrame,text="Where to look?").grid(row=2,column=0,sticky='w')
-    look_head = Tix.IntVar()
-    HeaderCB = Tix.Checkbutton(choiseFrame,text="Header",variable = look_head).grid(row=3,column=0,sticky='w')
-    look_stub = Tix.IntVar()
-    StubCB = Tix.Checkbutton(choiseFrame,text="Stub",variable = look_stub).grid(row=4,column=0,sticky='w')
-    look_super = Tix.IntVar()
-    SuperRowCB = Tix.Checkbutton(choiseFrame,text="Super-row",variable = look_super).grid(row=5,column=0,sticky='w')
-    look_data = Tix.IntVar()
-    DataCB = Tix.Checkbutton(choiseFrame,text="Data",variable = look_data).grid(row=6,column=0,sticky='w')
-    look_all = Tix.IntVar()
-    EverywhereCB = Tix.Checkbutton(choiseFrame,text="Everywhere",variable=look_all).grid(row=7,column=0,sticky='w')
+    where_to_look = Tix.Label(choiseFrame,text="Where to look for white list cues?").grid(row=2,column=0,sticky='w')
+    wl_look_head = Tix.IntVar()
+    WLHeaderCB = Tix.Checkbutton(choiseFrame,text="Header",variable = wl_look_head).grid(row=3,column=0,sticky='w')
+    wl_look_stub = Tix.IntVar()
+    WLStubCB = Tix.Checkbutton(choiseFrame,text="Stub",variable = wl_look_stub).grid(row=4,column=0,sticky='w')
+    wl_look_super = Tix.IntVar()
+    WLSuperRowCB = Tix.Checkbutton(choiseFrame,text="Super-row",variable = wl_look_super).grid(row=5,column=0,sticky='w')
+    wl_look_data = Tix.IntVar()
+    WLDataCB = Tix.Checkbutton(choiseFrame,text="Data",variable = wl_look_data).grid(row=6,column=0,sticky='w')
     
-    namerule_label = Tix.Label(itemsFrame,text="List of terms in whitelsit").grid(row=0,sticky='w')
+    where_to_look2 = Tix.Label(choiseFrame,text="Where to look for black list cues?").grid(row=7,column=0,sticky='w')
+    bl_look_head = Tix.IntVar()
+    BLHeaderCB = Tix.Checkbutton(choiseFrame,text="Header",variable = bl_look_head).grid(row=8,column=0,sticky='w')
+    bl_look_stub = Tix.IntVar()
+    BLStubCB = Tix.Checkbutton(choiseFrame,text="Stub",variable = bl_look_stub).grid(row=9,column=0,sticky='w')
+    bl_look_super = Tix.IntVar()
+    BLSuperRowCB = Tix.Checkbutton(choiseFrame,text="Super-row",variable = bl_look_super).grid(row=10,column=0,sticky='w')
+    bl_look_data = Tix.IntVar()
+    BLDataCB = Tix.Checkbutton(choiseFrame,text="Data",variable = bl_look_data).grid(row=11,column=0,sticky='w')
+    
+    namerule_label = Tix.Label(itemsFrame,text="List of terms in whitelist").grid(row=0,sticky='w')
     whitelist = Tix.Text(itemsFrame,height=5,width=50)
     whitelist.grid(row=1,sticky='w')
     namerule_label2 = Tix.Label(itemsFrame,text="List of terms in blacklist").grid(row=2,sticky='w')
     blacklist = Tix.Text(itemsFrame,height=5,width=50)
     blacklist.grid(row=3,sticky='w')
-    saveButton = Tix.Button(itemsFrame,text="Save",fg="black",command=lambda:SaveWhiteList(whitelist.get("1.0",Tix.END),blacklist.get("1.0",Tix.END),typeVar,look_head,look_stub,look_super,look_data,look_all,WhiteListWindow,project_name,rule_name)).grid(row=4,sticky='w')
+    saveButton = Tix.Button(itemsFrame,text="Save",fg="black",command=lambda:SaveWhiteList(whitelist.get("1.0",Tix.END),blacklist.get("1.0",Tix.END),typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data,WhiteListWindow,project_name,rule_name)).grid(row=4,sticky='w')
 
     
 def WhiteListWindowEdit(project_name,rule_name):
@@ -215,7 +231,7 @@ def WhiteListWindowEdit(project_name,rule_name):
             i=i+1
     saveButton = Tix.Button(itemsFrame,text="Save",fg="black",command=lambda:SaveWhiteList(list.get("1.0",Tix.END),blacklist.get("1.0",Tix.END),typeVar,look_head,look_stub,look_super,look_data,look_all,WhiteListWindow,project_name,rule_name)).grid(row=2,sticky='w')
 
-def SaveWhiteListSemantic(listWL,listBL,typeVar,look_head,look_stub,look_super,look_data,look_all,WhiteListWindow,project_name,rule_name):
+def SaveWhiteListSemantic(listWL,listBL,typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data,WhiteListWindow,project_name,rule_name):
     global currentWhiteList
     global currentBlackList
     global semanticTypes
@@ -230,11 +246,11 @@ def SaveWhiteListSemantic(listWL,listBL,typeVar,look_head,look_stub,look_super,l
     rule_path = "Projects/"+project_name+"/"+rule_name
     FileManipulationHelper.CreateFoderIfNotExist(rule_path)
     semType = True
-    FileManipulationHelper.SaveCueListSem(rule_path,rule_name, currentWhiteList,currentBlackList,typeVar,look_head,look_stub,look_super,look_data,look_all)
+    FileManipulationHelper.SaveCueListSem(rule_path,rule_name, currentWhiteList,currentBlackList,typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data)
     #FileManipulationHelper.MakeRuleCFGFile(rule_path, look_head, look_stub, look_super, look_data, look_all,vClsIn,vDefUnit,vPosUnit,pragVar) 
     WhiteListWindow.withdraw()
 
-def SaveWhiteList(listWL,listBL,typeVar,look_head,look_stub,look_super,look_data,look_all,WhiteListWindow,project_name,rule_name):
+def SaveWhiteList(listWL,listBL,typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data,WhiteListWindow,project_name,rule_name):
     global currentWhiteList
     global currentBlackList
     listWL
@@ -244,6 +260,6 @@ def SaveWhiteList(listWL,listBL,typeVar,look_head,look_stub,look_super,look_data
     currentBlackList = listBL.split('\n')
     rule_path = "Projects/"+project_name+"/"+rule_name
     FileManipulationHelper.CreateFoderIfNotExist(rule_path)
-    FileManipulationHelper.SaveCueList(rule_path,rule_name, currentWhiteList,currentBlackList,typeVar,look_head,look_stub,look_super,look_data,look_all)
+    FileManipulationHelper.SaveCueList(rule_path,rule_name, currentWhiteList,currentBlackList,typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data)
     #FileManipulationHelper.MakeRuleCFGFile(rule_path, look_head, look_stub, look_super, look_data, look_all,vClsIn,vDefUnit,vPosUnit,pragVar) 
     WhiteListWindow.withdraw()

@@ -9,6 +9,8 @@ Licence GNU/GPL 3.0
 import Tix
 import QueryDBClass
 import FileManipulationHelper
+
+global semanticTypes
 def SaveBlackList(listAA,BlackListWindow):
     global currentBlackList
     currentBlackList = []
@@ -29,7 +31,7 @@ def BlackListWindow(project_name,rule_name):
 def SemanticListWindow(project_name,rule_name):#
     WhiteListWindow =Tix.Toplevel()
     WhiteListWindow.title("Edit Cue List")
-    WhiteListWindow.geometry('{}x{}'.format(550, 250))
+    WhiteListWindow.geometry('{}x{}'.format(550, 400))
     itemsFrame = Tix.Frame(WhiteListWindow)
     itemsFrame.pack(side=Tix.LEFT)
     choiseFrame = Tix.Frame(WhiteListWindow,width=130)
@@ -65,26 +67,49 @@ def SemanticListWindow(project_name,rule_name):#
     pass
 
 def createSemanticWhiteList(whitelist):
-    list = []
-    
-    list.append("Physical Object")
-    list.append("Physical Object.Organism")
-    list.append("Physical Object.Organism.Plant")
-    list.append("Physical Object.Organism.Fungus")
-    list.append("Physical Object.Organism.Virus")
-    list.append("Physical Object.Organism.Bacterium")
-    
-    list.append("Physical Object.Organism.Archaeon")
-    list.append("Physical Object.Organism.Eukaryote")
-    list.append("Physical Object.Organism.Eukaryote.Animal")
-    list.append("Physical Object.Organism.Eukaryote.Animal.Vertebrate")
-    list.append("Physical Object.Organism.Eukaryote.Animal.Vertebrate.Amphibian")
-    list.append("Physical Object.Organism.Eukaryote.Animal.Vertebrate.Bird")
-    list.append("Physical Object.Organism.Eukaryote.Animal.Vertebrate.Fish")
-    list.append("Physical Object.Organism.Eukaryote.Animal.Vertebrate.Reptile")
-    list.append("Physical Object.Organism.Eukaryote.Animal.Vertebrate.Mammal")
-    list.append("Physical Object.Organism.Eukaryote.Animal.Vertebrate.Mammal.Human")
-    
+    global semanticTypes
+    list = ["Physical Object","Physical Object.Organism","Physical Object.Organism.Plant","Physical Object.Organism.Fungus","Physical Object.Organism.Virus","Physical Object.Organism.Bacterium",
+    "Physical Object.Organism.Archaeon","Physical Object.Organism.Eukaryote","Physical Object.Organism.Eukaryote.Animal","Physical Object.Organism.Eukaryote.Animal.Vertebrate","Physical Object.Organism.Eukaryote.Animal.Vertebrate.Amphibian",
+    "Physical Object.Organism.Eukaryote.Animal.Vertebrate.Bird","Physical Object.Organism.Eukaryote.Animal.Vertebrate.Fish","Physical Object.Organism.Eukaryote.Animal.Vertebrate.Reptile",
+    "Physical Object.Organism.Eukaryote.Animal.Vertebrate.Mammal","Physical Object.Organism.Eukaryote.Animal.Vertebrate.Mammal.Human","Physical Object.Anatomical Structure",
+    "Physical Object.Anatomical Structure.Embryonic Structure","Physical Object.Anatomical Structure.Anatomical Abnormality","Physical Object.Anatomical Structure.Anatomical Abnormality.Congenital Abnormality",
+    "Physical Object.Anatomical Structure.Anatomical Abnormality.Acquired Abnormality","Physical Object.Anatomical Structure.Fully Formed Anatomical Structure","Physical Object.Anatomical Structure.Fully Formed Anatomical Structure.Body Part, Organ, or Organ Component",
+    "Physical Object.Anatomical Structure.Fully Formed Anatomical Structure.Tissue","Physical Object.Anatomical Structure.Fully Formed Anatomical Structure.Cell","Physical Object.Anatomical Structure.Fully Formed Anatomical Structure.Cell Component",
+    "Physical Object.Anatomical Structure.Fully Formed Anatomical Structure.Gene or Genome","Physical Object.Manufactured Object","Physical Object.Manufactured Object.Medical Device",
+    "Physical Object.Manufactured Object.Medical Device.Drug Delivery Device","Physical Object.Manufactured Object.Research Device","Physical Object.Manufactured Object.Clinical Drug",
+    "Physical Object.Substance","Physical Object.Substance.Chemical","Physical Object.Substance.Chemical.Chemical Viewed Functionally","Physical Object.Substance.Chemical.Chemical Viewed Functionally.Pharmacologic Substance",
+    "Physical Object.Substance.Chemical.Chemical Viewed Functionally.Pharmacologic Substance.Antibiotic","Physical Object.Substance.Chemical.Chemical Viewed Functionally.Biomedical or Dental Material",
+    "Physical Object.Substance.Chemical.Chemical Viewed Functionally.Biologically Active Substance","Physical Object.Substance.Chemical.Chemical Viewed Functionally.Biologically Active Substance.Hormone",
+    "Physical Object.Substance.Chemical.Chemical Viewed Functionally.Biologically Active Substance.Enzyme","Physical Object.Substance.Chemical.Chemical Viewed Functionally.Biologically Active Substance.Vitamin",
+    "Physical Object.Substance.Chemical.Chemical Viewed Functionally.Biologically Active Substance.Immunologic Factor","Physical Object.Substance.Chemical.Chemical Viewed Functionally.Biologically Active Substance.Receptor",
+    "Physical Object.Substance.Chemical.Chemical Viewed Functionally.Indicator, Reagent, or Diagnostic Acid","Physical Object.Substance.Chemical.Chemical Viewed Functionally.Hazardous or Poisonous Substance",
+    "Physical Object.Substance.Chemical.Chemical Viewed Structurally","Physical Object.Substance.Chemical.Chemical Viewed Structurally.Organic Chemical","Physical Object.Substance.Chemical.Chemical Viewed Structurally.Organic Chemical.Nucleic Acid, Nucleoside, or Nucleotide",
+    "Physical Object.Substance.Chemical.Chemical Viewed Structurally.Organic Chemical.Amino Acid, Peptide, or Protein","Physical Object.Substance.Chemical.Chemical Viewed Structurally.Inorganic Chemical",
+    "Physical Object.Substance.Chemical.Chemical Viewed Structurally.Element, Ion, or Isotope","Physical Object.Substance.Body Substance","Physical Object.Substance.Food","Conceptual Entity","Conceptual Entity.Idea or Concept",
+    "Conceptual Entity.Idea or Concept.Temporal Concept","Conceptual Entity.Idea or Concept.Qualitative Concept","Conceptual Entity.Idea or Concept.Quantitative Concept","Conceptual Entity.Idea or Concept.Functional Concept",
+    "Conceptual Entity.Idea or Concept.Functional Concept.Body System","Conceptual Entity.Idea or Concept.Spatial Concept","Conceptual Entity.Idea or Concept.Spatial Concept.Body Space or Junction",
+    "Conceptual Entity.Idea or Concept.Spatial Concept.Body Location or Region","Conceptual Entity.Idea or Concept.Spatial Concept.Molecular Sequence","Conceptual Entity.Idea or Concept.Spatial Concept.Molecular Sequence.Nucleotide Sequence",
+    "Conceptual Entity.Idea or Concept.Spatial Concept.Molecular Sequence.Amino Acid Sequence","Conceptual Entity.Idea or Concept.Spatial Concept.Molecular Sequence.Carbohydrate Sequence",
+    "Conceptual Entity.Idea or Concept.Spatial Concept.Geographic Area","Conceptual Entity.Finding","Conceptual Entity.Finding.Laboratory or Test Result","Conceptual Entity.Finding.Sign or Symptom",
+    "Conceptual Entity.Organism Attribute","Conceptual Entity.Organism Attribute.Clinical Attribute","Conceptual Entity.Intellectual Product","Conceptual Entity.Intellectual Product.Classification",
+    "Conceptual Entity.Intellectual Product.Regulation or Law","Conceptual Entity.Language","Conceptual Entity.Occupation or Discipline","Conceptual Entity.Occupation or Discipline.Biomedical Occupation or Discipline",
+    "Conceptual Entity.Organization","Conceptual Entity.Organization.Health Care Related Organization","Conceptual Entity.Organization.Professional Society","Conceptual Entity.Organization.Self-help or Relief Organization",
+    "Conceptual Entity.Group Attribute","Conceptual Entity.Group","Conceptual Entity.Group.Professional or Occupational Group","Conceptual Entity.Group.Population Group","Conceptual Entity.Group.Family Group",
+    "Conceptual Entity.Group.Age Group","Conceptual Entity.Group.Patient or Disabled Group","Activity","Activity.Behavior","Activity.Behavior.Social Behavior","Activity.Behavior.Individual Behavior",
+    "Activity.Daily or Recreational Activity","Activity.Occupational Activity","Activity.Occupational Activity.Health Care Activity","Activity.Occupational Activity.Health Care Activity.Laboratory Procedure",
+    "Activity.Occupational Activity.Health Care Activity.Diagnostic Procedure","Activity.Occupational Activity.Health Care Activity.Therapeutic or Preventive Procedure","Activity.Occupational Activity.Research Activity",
+    "Activity.Occupational Activity.Research Activity.Molecular Biology Research Technique","Activity.Occupational Activity.Governmental or Regulatory Activity","Activity.Occupational Activity.Educational Activity",
+    "Activity.Machine Activity","Phenomenon or Process","Phenomenon or Process.Human-caused Phenomenon or Process","Phenomenon or Process.Human-caused Phenomenon or Process.Environmental Effect of Humans",
+    "Phenomenon or Process.Natural Phenomenon or Process","Phenomenon or Process.Natural Phenomenon or Process.Biologic Function","Phenomenon or Process.Natural Phenomenon or Process.Biologic Function.Physiologic Function",
+    "Phenomenon or Process.Natural Phenomenon or Process.Biologic Function.Physiologic Function.Organism Function","Phenomenon or Process.Natural Phenomenon or Process.Biologic Function.Physiologic Function.Organism Function.Mental Process",
+    "Phenomenon or Process.Natural Phenomenon or Process.Biologic Function.Physiologic Function.Organ or Tissue Function","Phenomenon or Process.Natural Phenomenon or Process.Biologic Function.Physiologic Function.Cell Function",
+    "Phenomenon or Process.Natural Phenomenon or Process.Biologic Function.Physiologic Function.Molecular Function",
+    "Phenomenon or Process.Natural Phenomenon or Process.Biologic Function.Physiologic Function.Molecular Function.Genetic Function","Phenomenon or Process.Natural Phenomenon or Process.Biologic Function.Pathologic Function",
+    "Phenomenon or Process.Natural Phenomenon or Process.Biologic Function.Pathologic Function.Disease or Syndrome","Phenomenon or Process.Natural Phenomenon or Process.Biologic Function.Pathologic Function.Disease or Syndrome.Mental or Behavioral Dysfunction",
+    "Phenomenon or Process.Natural Phenomenon or Process.Biologic Function.Pathologic Function.Disease or Syndrome.Neoplastic Process","Phenomenon or Process.Natural Phenomenon or Process.Biologic Function.Pathologic Function.Cell or Molecular Dysfunction",
+    "Phenomenon or Process.Natural Phenomenon or Process.Biologic Function.Pathologic Function.Experimental Model of Disease","Phenomenon or Process. Injury or Poisoning"
+    ]
+    semanticTypes = list
     for item in list:
         print item
         whitelist.hlist.add(item,text = item.split('.')[-1])
@@ -190,11 +215,29 @@ def WhiteListWindowEdit(project_name,rule_name):
             i=i+1
     saveButton = Tix.Button(itemsFrame,text="Save",fg="black",command=lambda:SaveWhiteList(list.get("1.0",Tix.END),blacklist.get("1.0",Tix.END),typeVar,look_head,look_stub,look_super,look_data,look_all,WhiteListWindow,project_name,rule_name)).grid(row=2,sticky='w')
 
-
+def SaveWhiteListSemantic(listWL,listBL,typeVar,look_head,look_stub,look_super,look_data,look_all,WhiteListWindow,project_name,rule_name):
+    global currentWhiteList
+    global currentBlackList
+    global semanticTypes
+    selected = []
+    for item in semanticTypes:
+        if(listWL.getstatus(item)=="on"):
+            selected.append(item.split(".")[-1])
+    
+    currentWhiteList = selected
+    currentBlackList = []
+    currentBlackList = listBL.split('\n')
+    rule_path = "Projects/"+project_name+"/"+rule_name
+    FileManipulationHelper.CreateFoderIfNotExist(rule_path)
+    semType = True
+    FileManipulationHelper.SaveCueListSem(rule_path,rule_name, currentWhiteList,currentBlackList,typeVar,look_head,look_stub,look_super,look_data,look_all)
+    #FileManipulationHelper.MakeRuleCFGFile(rule_path, look_head, look_stub, look_super, look_data, look_all,vClsIn,vDefUnit,vPosUnit,pragVar) 
+    WhiteListWindow.withdraw()
 
 def SaveWhiteList(listWL,listBL,typeVar,look_head,look_stub,look_super,look_data,look_all,WhiteListWindow,project_name,rule_name):
     global currentWhiteList
     global currentBlackList
+    listWL
     currentWhiteList = []
     currentBlackList = []
     currentWhiteList = listWL.split('\n')

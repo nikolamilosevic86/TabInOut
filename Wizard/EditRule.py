@@ -31,12 +31,12 @@ def AddEditRule(project_name,vRuleName,vRuleType,RuleNameView,RulesListBox):
     ClassLabel = Label(itemsFrame,text="Class name of result").grid(row=3,column=0,sticky='w')
     vClsIn = StringVar()
     ClassInput = Entry(itemsFrame,textvariable=vClsIn).grid(row=4,sticky='w')
+    vDefUnit = StringVar()
+    vPosUnit = StringVar()
     if(vRuleType.get() == "Numeric"):
         DefUnitLabel = Label(itemsFrame,text="Default unit").grid(row=5,column=0,sticky='w')
-        vDefUnit = StringVar()
         DefUnInput = Entry(itemsFrame,textvariable=vDefUnit).grid(row=6,sticky='w')
-        PosUnitLabel = Label(itemsFrame,text="Possible units (comma separated)").grid(row=7,column=0,sticky='w')
-        vPosUnit = StringVar()
+        PosUnitLabel = Label(itemsFrame,text="Possible units (comma separated)").grid(row=7,column=0,sticky='w')    
         PosUnInput = Entry(itemsFrame,textvariable=vPosUnit).grid(row=8,sticky='w')
     if(vRuleType.get() == "Categorical"):
         PosUnitLabel = Label(itemsFrame,text="Possible categories (comma separated)").grid(row=7,column=0,sticky='w')

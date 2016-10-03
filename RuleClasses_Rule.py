@@ -25,3 +25,6 @@ class Rule:
     PatternList = []
     DefaultUnit = ''
     PossibleUnits = []
+    PossibleCategories = []
+    is_semantic = False
+    RuleType = ''

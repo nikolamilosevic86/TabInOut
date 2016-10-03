@@ -63,7 +63,7 @@ def LoadDBConfigFile(project_name):
 
 def SaveCueList(rule_path,rule_name, whitelist,blacklist,typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data):
     f = open(rule_path+'/'+rule_name+'_WhiteList.lst','w')
-    f.write('Type:'+str(typeVar.get())+'\n')
+    f.write('Type:'+"WhiteList"+'\n')
     f.write('Header:'+str(wl_look_head.get())+'\n')
     f.write('Stub:'+str(wl_look_stub.get())+'\n')
     f.write('Super-row:'+str(wl_look_super.get())+'\n')
@@ -73,7 +73,7 @@ def SaveCueList(rule_path,rule_name, whitelist,blacklist,typeVar,wl_look_head,wl
         f.write(item+'\n')
     f.close
     f = open(rule_path+'/'+rule_name+'_BlackList.lst','w')
-    f.write('Type:'+str(typeVar.get())+'\n')
+    f.write('Type:'+"BlackList"+'\n')
     f.write('Header:'+str(bl_look_head.get())+'\n')
     f.write('Stub:'+str(bl_look_stub.get())+'\n')
     f.write('Super-row:'+str(bl_look_super.get())+'\n')
@@ -85,7 +85,7 @@ def SaveCueList(rule_path,rule_name, whitelist,blacklist,typeVar,wl_look_head,wl
     
 def SaveCueListSem(rule_path,rule_name, whitelist,blacklist,typeVar, wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data):
     f = open(rule_path+'/'+rule_name+'_WhiteList.lst','w')
-    f.write('Type:'+str(typeVar.get())+'\n')
+    f.write('Type:'+"WhiteList"+'\n')
     f.write('Header:'+str(wl_look_head.get())+'\n')
     f.write('Stub:'+str(wl_look_stub.get())+'\n')
     f.write('Super-row:'+str(wl_look_super.get())+'\n')
@@ -96,7 +96,7 @@ def SaveCueListSem(rule_path,rule_name, whitelist,blacklist,typeVar, wl_look_hea
         f.write(item+'\n')
     f.close
     f = open(rule_path+'/'+rule_name+'_BlackList.lst','w')
-    f.write('Type:'+str(typeVar.get())+'\n')
+    f.write('Type:'+"BlackList"+'\n')
     f.write('Header:'+str(bl_look_head.get())+'\n')
     f.write('Stub:'+str(bl_look_stub.get())+'\n')
     f.write('Super-row:'+str(bl_look_super.get())+'\n')
@@ -105,10 +105,7 @@ def SaveCueListSem(rule_path,rule_name, whitelist,blacklist,typeVar, wl_look_hea
     for item in blacklist:
         f.write(item+'\n')
     f.close
-    
-    
-    
-    
+     
     
 def SaveBlackList(rule_path,blakclist):
     f = open(rule_path+'/BlackList.lst','w')
@@ -158,8 +155,12 @@ def loadRuleConfig(project_name,rule_name):
             conf['PosUnit']=sp[1]
         if sp[0]=='PragClass':
             conf['PragClass']=sp[1]
-        if sp[0]=='Class':
-            conf['Class']=sp[1]
+        if sp[0]=='RuleType':
+            conf['RuleType']=sp[1]
+        if sp[0]=='RuleCreationMech':
+            conf['RuleCreationMech']=sp[1]
+        if sp[0]=='PosCategories':
+            conf['Categories']=sp[1]
     return conf
 
 def LoadRules(path):

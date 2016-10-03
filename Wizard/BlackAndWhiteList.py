@@ -9,6 +9,7 @@ Licence GNU/GPL 3.0
 import Tix
 import QueryDBClass
 import FileManipulationHelper
+from SyntacticRules import LoadRulesCfGMainScreen
 
 global semanticTypes
 def SaveBlackList(listAA,BlackListWindow):
@@ -249,6 +250,7 @@ def SaveWhiteListSemantic(listWL,listBL,typeVar,wl_look_head,wl_look_stub,wl_loo
     FileManipulationHelper.SaveCueListSem(rule_path,rule_name, currentWhiteList,currentBlackList,typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data)
     #FileManipulationHelper.MakeRuleCFGFile(rule_path, look_head, look_stub, look_super, look_data, look_all,vClsIn,vDefUnit,vPosUnit,pragVar) 
     WhiteListWindow.withdraw()
+    LoadRulesCfGMainScreen(project_name,rule_name)
 
 def SaveWhiteList(listWL,listBL,typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data,WhiteListWindow,project_name,rule_name):
     global currentWhiteList
@@ -263,3 +265,4 @@ def SaveWhiteList(listWL,listBL,typeVar,wl_look_head,wl_look_stub,wl_look_super,
     FileManipulationHelper.SaveCueList(rule_path,rule_name, currentWhiteList,currentBlackList,typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data)
     #FileManipulationHelper.MakeRuleCFGFile(rule_path, look_head, look_stub, look_super, look_data, look_all,vClsIn,vDefUnit,vPosUnit,pragVar) 
     WhiteListWindow.withdraw()
+    LoadRulesCfGMainScreen(project_name,rule_name)

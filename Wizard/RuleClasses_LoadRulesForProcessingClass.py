@@ -50,7 +50,7 @@ def LoadSyntacticRoles(project_name,rule_name):
     return patterns
         
 
-def LoadRulesForProcessing(project_name):
+def LoadRulesForProcessing(project_name,before_syntactic = False):
     rules = []
     projectpath = "Projects/"+project_name
     rules_names = FileManipulationHelper.loadRules(project_name)
@@ -137,16 +137,22 @@ def LoadRulesForProcessing(project_name):
                 continue
             if afterWordList == True:
                 rule.BlackList.append(w)
-        
-        rule.DefaultUnit = cfg['DefUnit']
-        rule.PossibleUnits = cfg['PosUnit'].split(',')
+        rule.RuleType = cfg['RuleType'].replace('\n','')
+        if(rule.RuleType == "Numeric"):
+            rule.DefaultUnit = cfg['DefUnit']
+        if(rule.RuleType == "Numeric"):
+            rule.PossibleUnits = cfg['PosUnit'].split(',')
         rule.PragmaticClass = cfg['PragClass']
         rule.ClassName = cfg['Class']
-        patterns = LoadSyntacticRoles(project_name,rule_name)
-        rule.PatternList = patterns
         
-        
-        #PatternList
+        if(cfg["RuleCreationMech"]=="Semantic"):
+            rule.is_semantic = True
+        if('Categories' in cfg.keys()):
+            rule.PossibleCategories = cfg['Categories'].split(',')
+        if(rule.RuleType != "Categorical"):
+            if(before_syntactic==False):
+                patterns = LoadSyntacticRoles(project_name,rule_name)
+                rule.PatternList = patterns
         rules.append(rule)
 
     return rules

@@ -9,7 +9,8 @@ Licence GNU/GPL 3.0
 from Tkinter import *
 import QueryDBClass
 import FileManipulationHelper
-from BlackAndWhiteList import WhiteListWindow,WhiteListWindowEdit,SemanticListWindow
+from BlackAndWhiteList import WhiteListWindow,WhiteListWindowEdit,SemanticListWindow,SemanticListWindowEdit
+from SyntacticRules import LoadRulesCfGMainScreen
 
 def AddEditRule(project_name,vRuleName,vRuleType,RuleNameView,RulesListBox):
     global currentWhiteList
@@ -58,12 +59,16 @@ def AddEditRule(project_name,vRuleName,vRuleType,RuleNameView,RulesListBox):
     save = Button(itemsFrame, text="Save", fg="black",command=lambda:SaveRule(project_name,rule_name,add,vClsIn,vDefUnit,vPosUnit,pragVar,RulesListBox,vRuleType,vLexSemRule)).grid(row=14,column=1,sticky='w')
     
 
-def SaveRuleEdit(project_name,rule_name,add,vClsIn,vDefUnit,vPosUnit,pragVar):
+def SaveRuleEdit(project_name,rule_name,add,vClsIn,vDefUnit,vPosUnit,pragVar,ruleType,ruleMech):
     global currentWhiteList
     global currentBlackList
     rule_path = "Projects/"+project_name+"/"+rule_name
     FileManipulationHelper.CreateFoderIfNotExist(rule_path)
-    FileManipulationHelper.MakeRuleCFGFile(rule_path, vClsIn,vDefUnit,vPosUnit,pragVar) 
+    vRuleType = StringVar()
+    vLexSemRule = StringVar()
+    vRuleType.set(ruleType)
+    vLexSemRule.set(ruleMech)
+    FileManipulationHelper.MakeRuleCFGFile(rule_path, vClsIn,vDefUnit,vPosUnit,pragVar,vRuleType,vLexSemRule) 
     add.withdraw()  
 
 def SaveRule(project_name,rule_name,add,vClsIn,vDefUnit,vPosUnit,pragVar,RulesListBox,vRuleType,vLexSemRule):
@@ -99,36 +104,52 @@ def EditRule(project_name,Lb1):
     vRuleName.set(Lb1.get(pos))
     namerule_label = Label(itemsFrame,text="Name of the rule").grid(row=0,column=0,sticky='w')
     rulename_entry = Entry(itemsFrame,textvariable=vRuleName,state=DISABLED).grid(row=0,column=1,sticky='w')
-    
     rule_name = vRuleName.get()
+    cfg = FileManipulationHelper.loadRuleConfig(project_name, rule_name)
+    ruleType = cfg['RuleType'].replace('\n','')
     ClassLabel = Label(itemsFrame,text="Class name of result").grid(row=3,column=0,sticky='w')
     vClsIn = StringVar()
     ClassInput = Entry(itemsFrame,textvariable=vClsIn)
     ClassInput.grid(row=4,sticky='w')
-    DefUnitLabel = Label(itemsFrame,text="Default unit")
-    DefUnitLabel.grid(row=5,column=0,sticky='w')
     vDefUnit = StringVar()
-    DefUnInput = Entry(itemsFrame,textvariable=vDefUnit)
-    DefUnInput.grid(row=6,sticky='w')
-    PosUnitLabel = Label(itemsFrame,text="Possible units (comma separated)")
-    PosUnitLabel.grid(row=7,column=0,sticky='w')
     vPosUnit = StringVar()
-    PosUnInput = Entry(itemsFrame,textvariable=vPosUnit)
-    PosUnInput.grid(row=8,sticky='w')
-    
-    editWhiteList = Button(itemsFrame,text="Edit White Cue List",command=lambda:WhiteListWindowEdit(project_name,rule_name)).grid(row=1,column=0,sticky='w')
+    if ruleType =='Numeric':
+        DefUnitLabel = Label(itemsFrame,text="Default unit")
+        DefUnitLabel.grid(row=5,column=0,sticky='w')
+        vDefUnit = StringVar()
+        DefUnInput = Entry(itemsFrame,textvariable=vDefUnit)
+        DefUnInput.grid(row=6,sticky='w')
+        PosUnitLabel = Label(itemsFrame,text="Possible units (comma separated)")
+        PosUnitLabel.grid(row=7,column=0,sticky='w')
+        PosUnInput = Entry(itemsFrame,textvariable=vPosUnit)
+        PosUnInput.grid(row=8,sticky='w')
+    if ruleType == 'Categorical':
+        PosUnitLabel = Label(itemsFrame,text="Possible categories (comma separated)").grid(row=7,column=0,sticky='w')
+        vPosUnit = StringVar()
+        PosUnInput = Entry(itemsFrame,textvariable=vPosUnit).grid(row=8,sticky='w')
+    ruleMech = cfg['RuleCreationMech'].replace('\n','')
+    if ruleMech == 'Lexical':
+        editWhiteList = Button(itemsFrame,text="Edit Lexical Cue List",command=lambda:WhiteListWindowEdit(project_name,rule_name)).grid(row=1,column=0,sticky='w')
+    else:
+        editWhiteList = Button(itemsFrame,text="Edit Semantic Cue List",command=lambda:SemanticListWindowEdit(project_name,rule_name)).grid(row=1,column=0,sticky='w')
+    if ruleType != "String":
+        SyntacticRules = Button(itemsFrame,text="Edit Syntactic rules",command=lambda:LoadRulesCfGMainScreen(project_name,rule_name)).grid(row=1,column=1,sticky='w')
     #editBlackList = Button(itemsFrame,text="Edit Black Cue List",command=lambda:BlackListWindowEdit(project_name,rule_name)).grid(row=2,column=0,sticky='w')
     text_of_where_to_look = StringVar()
-    cfg = FileManipulationHelper.loadRuleConfig(project_name, rule_name)
+    
     DBSettings = FileManipulationHelper.LoadDBConfigFile(project_name)
     db = QueryDBClass.QueryDBCalss(DBSettings['Host'],DBSettings['User'],DBSettings['Pass'],DBSettings['Database'])
     prags = db.GetPragmaticClasses()
     pragVar = StringVar()
     pragVar.set(cfg['PragClass'])
-    vDefUnit.set(cfg['DefUnit'])
-    vPosUnit.set(cfg['PosUnit'])
+    
+    if ruleType == 'Numeric':
+        vDefUnit.set(cfg['DefUnit'])
+        vPosUnit.set(cfg['PosUnit'])
+    if ruleType == 'Categorical':
+        vPosUnit.set(cfg['Categories'])
     vClsIn.set(cfg['Class'])
     PragLabel = Label(itemsFrame,text="Pragmatic class").grid(row=7,column=1,sticky='w')
     drop = OptionMenu(itemsFrame,pragVar,*prags)
     drop.grid(row=8,column=1,sticky='w')
-    save = Button(itemsFrame, text="Save", fg="black",command=lambda:SaveRuleEdit(project_name,rule_name,add,vClsIn,vDefUnit,vPosUnit,pragVar)).grid(row=9,column=1,sticky='w')
+    save = Button(itemsFrame, text="Save", fg="black",command=lambda:SaveRuleEdit(project_name,rule_name,add,vClsIn,vDefUnit,vPosUnit,pragVar,ruleType,ruleMech)).grid(row=9,column=1,sticky='w')

@@ -104,8 +104,6 @@ def LoadConfigScreen():
     label_projectName.pack(side = Tix.LEFT)
     E2 = Tix.Entry(newprojectFrame, bd =5)
     E2.pack(side = Tix.LEFT)
-    #E2.configure(state=DISABLED)
-    #E2.configure(exportselection=False)
     newprojectFrame.pack()
     loadproject = Tix.Radiobutton(frame,text="Load Project",variable=variab,value="LP", command=lambda: EnableLB(Lb3,E2))
     loadproject.pack()

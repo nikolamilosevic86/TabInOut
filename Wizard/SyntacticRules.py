@@ -125,7 +125,34 @@ def EditSintacticRules(project_name, ChoseSintRulesWindow,int_val,float_val,stat
     for w in rules:
         rulelist.insert(str(i)+'.0',w)
         i=i+1
-    
+    saveButton = Button(frame,text="Next",bg="green",fg="black",command=lambda:SaveSintacticRules(rulelist.get("1.0",END),top,project_name,skip_val)).grid(row=2,sticky='w')
+    pass
+
+def MakeChangesToSyntacticRules(project_name,rule_name):
+    top = Toplevel()
+    #top.protocol("WM_DELETE_WINDOW", on_closing)
+    top.title("Modify selected rules")
+    top.geometry('{}x{}'.format(400, 300))
+    topframe = Frame(top,height=10)
+    topframe.pack()
+    frame = Frame(top)
+    frame.pack()
+    topframe2 = Frame(top,height=10)
+    topframe2.pack()
+    rules = StringVar()
+    rulelist = Text(frame,height=15,width=40)
+    rulelist.grid(row=1,sticky='w')
+    fpaths = []
+    rules = []
+    path = 'Projects/'+project_name+'/'+rule_name+'/'+'SyntacticRules.sin'
+    rules = FileManipulationHelper.LoadRules(path)
+        
+    i = 1
+    for w in rules:
+        rulelist.insert(str(i)+'.0',w)
+        i=i+1
+    skip_val = IntVar()
+    skip_val.set(0)
     saveButton = Button(frame,text="Next",bg="green",fg="black",command=lambda:SaveSintacticRules(rulelist.get("1.0",END),top,project_name,skip_val)).grid(row=2,sticky='w')
     pass
 

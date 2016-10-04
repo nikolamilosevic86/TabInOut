@@ -10,7 +10,7 @@ from Tkinter import *
 import QueryDBClass
 import FileManipulationHelper
 from BlackAndWhiteList import WhiteListWindow,WhiteListWindowEdit,SemanticListWindow,SemanticListWindowEdit
-from SyntacticRules import LoadRulesCfGMainScreen
+from SyntacticRules import LoadRulesCfGMainScreen,MakeChangesToSyntacticRules
 
 def AddEditRule(project_name,vRuleName,vRuleType,RuleNameView,RulesListBox):
     global currentWhiteList
@@ -133,7 +133,7 @@ def EditRule(project_name,Lb1):
     else:
         editWhiteList = Button(itemsFrame,text="Edit Semantic Cue List",command=lambda:SemanticListWindowEdit(project_name,rule_name)).grid(row=1,column=0,sticky='w')
     if ruleType != "String":
-        SyntacticRules = Button(itemsFrame,text="Edit Syntactic rules",command=lambda:LoadRulesCfGMainScreen(project_name,rule_name)).grid(row=1,column=1,sticky='w')
+        SyntacticRules = Button(itemsFrame,text="Edit Syntactic rules",command=lambda:MakeChangesToSyntacticRules(project_name,rule_name)).grid(row=1,column=1,sticky='w')
     #editBlackList = Button(itemsFrame,text="Edit Black Cue List",command=lambda:BlackListWindowEdit(project_name,rule_name)).grid(row=2,column=0,sticky='w')
     text_of_where_to_look = StringVar()
     

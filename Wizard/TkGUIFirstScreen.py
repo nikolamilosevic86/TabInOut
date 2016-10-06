@@ -8,12 +8,10 @@ Licence GNU/GPL 3.0
 '''
 import Tix
 import FileManipulationHelper
-import RuleClasses_LoadRulesForProcessingClass
-from threading import Thread
 from EditRule import EditRule
 from SimpleRuleOps import MoveRuleDown,MoveRuleUp,RemoveRule,AddRule,EnableLEntity,EnableLB
 from DatabaseSettings import ConfigureDatabaseScreen,ClearDBTables
-from SyntacticRules import ProcessDataV,RefreshDatabaseData,MakeWorkingScreen
+from SyntacticRules import MakeWorkingScreen
 Lb1 = None
 Lb3 = None   
 currentWhiteList = []

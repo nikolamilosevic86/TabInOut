@@ -178,7 +178,7 @@ def ProcessDataBase(project_name,rules):
                             if FoundSemantics:    
                                 syn_rule_name = syn_rule.name
                                 Unit = CheckUnits(Header, Stub, Super_row, Content, rule.DefaultUnit, rule.PossibleUnits)
-                        #Save the value to the database
+                                #Save the value to the database
                                 db.SaveExtracted(id_article,id_table,tableOrder,pmc_id,rule.ClassName,semValue,value,Unit,Source,gen_rule_name,syn_rule_name)
                                 last_sem_extracted = sem.position
                                 FoundSemantics = False

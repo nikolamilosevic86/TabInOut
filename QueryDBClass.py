@@ -54,7 +54,7 @@ class QueryDBCalss:
         results = cursor.fetchall()
         return results
     
-    def getCellsFromTableRowRowWithRole(self,table_id,rowN):
+    def getCellsFromTableRow(self,table_id,rowN):
         cursor = self.db.cursor()
         sql = 'select * from cell inner join cellroles on cell.idCell=cellroles.Cell_idCell where Table_idTable='+str(table_id)+' and rown = '+str(rowN)+''
         cursor.execute(sql)

@@ -46,10 +46,24 @@ class QueryDBCalss:
         cursor.execute(sql)
         results = cursor.fetchall()
         return results
+    
+    def getCellsWithMetaMapAnnotationWithRole2(self,pragmaticType,SemanticType,role):
+        cursor = self.db.cursor()
+        sql = 'select * from cell inner join annotation on cell.idCell=annotation.Cell_idCell inner join arttable on cell.Table_idTable=ArtTable.idTable inner join article on article.idArticle=arttable.Article_idArticle inner join cellroles on cellroles.Cell_idCell=cell.idCell where SpecPragmatic="'+pragmaticType+'" and AnnotationDescription like "%'+SemanticType+'%" and CellRole_idCellRole='+str(role)+' group by RowN,Table_idTable'
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        return results
      
     def getCellsFromTableRowRow(self,table_id,rowN):
         cursor = self.db.cursor()
         sql = 'select * from cell where Table_idTable='+str(table_id)+' and rown = '+str(rowN)+''
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        return results
+    
+    def getCellsFromTableColumn(self,table_id,columnN):
+        cursor = self.db.cursor()
+        sql = 'select * from cell where Table_idTable='+str(table_id)+' and columnn = '+str(columnN)+''
         cursor.execute(sql)
         results = cursor.fetchall()
         return results

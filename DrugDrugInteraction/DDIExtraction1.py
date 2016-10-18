@@ -46,6 +46,8 @@ if __name__=="__main__":
         print drugname
         if(AnnotationConent in drugname.lower()):
             continue
+        if(AnnotationConent in ["drug","drugs"]):
+            continue
         cursor = queryclass.db.cursor()
         sql = "INSERT into ddiinfo (documentId, SpecId,idTable,TableName,Drug1,Drug2,CueRule) values (%s,%s,%s,%s,%s,%s,%s)"
         cursor.execute(sql,(idArticle,SetId,TableId,TableOrder,drugname,AnnotationConent,"DDI Method 1"))

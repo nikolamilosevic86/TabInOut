@@ -19,6 +19,7 @@ if __name__=="__main__":
     with open("Categories.txt") as f:
         for line in f:
             spl = line.split('\t')
+            print spl[0]
             d[spl[0].lower()] = spl[1].replace('\n','').lower()
     print d
     sql = """select Content,Table_idTable,RowN,ColumnN,TableOrder,idArticle,Title,SpecId,CellRole_idCellRole from cell inner join arttable on arttable.idTable=cell.Table_idTable inner join article on 
@@ -41,7 +42,6 @@ if __name__=="__main__":
         results2 = cursor.fetchall()
         for res1 in results2:
             drugname = res1[3]
-        print drugname
         ContainsKey = False
         ContainsTheKey = ''
         for keyA in d.keys() :
@@ -66,6 +66,7 @@ if __name__=="__main__":
                     continue
                 cursor = queryclass.db.cursor()
                 sql = "INSERT into ddiinfo (documentId, SpecId,idTable,TableName,Drug1,Drug2,CueRule) values (%s,%s,%s,%s,%s,%s,%s)"
+                print drugname,r_content
                 cursor.execute(sql,(idArticle,SetId,TableId,TableOrder,drugname,r_content,"DDI Method 2"))
                 queryclass.db.commit()
             ContainsKey = False

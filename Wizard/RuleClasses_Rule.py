@@ -21,6 +21,10 @@ class Rule:
     bl_look_superrow = False
     bl_look_data = False
     bl_look_anywhere = False
+    data_in_header = False
+    data_in_stub = False
+    data_in_super = False
+    data_in_data = False
     PragmaticClass = ''
     PatternList = []
     DefaultUnit = ''

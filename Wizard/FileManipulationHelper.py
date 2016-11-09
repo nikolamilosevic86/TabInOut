@@ -112,7 +112,7 @@ def SaveBlackList(rule_path,blakclist):
     for item in blakclist:
         f.write(item+'\n')
     f.close
-def MakeRuleCFGFile(rule_path,vClsIn,vDefUnit,vPosUnit,pragVar,vRuleType,vLexSemRule):
+def MakeRuleCFGFile(rule_path,vClsIn,vDefUnit,vPosUnit,pragVar,vRuleType,vLexSemRule,wl_look_head,wl_look_stub,wl_look_super,wl_look_data):
     f = open(rule_path+'/Rule.cfg','w')
     f.write("Class:"+str(vClsIn.get().replace('\n',''))+'\n')
     f.write("RuleType:"+str(vRuleType.get().replace('\n',''))+'\n')
@@ -123,6 +123,10 @@ def MakeRuleCFGFile(rule_path,vClsIn,vDefUnit,vPosUnit,pragVar,vRuleType,vLexSem
         f.write("PosCategories:"+str(vPosUnit.get().replace('\n',''))+'\n')
     f.write("PragClass:"+str(pragVar.get().replace('\n',''))+'\n')
     f.write("RuleCreationMech:"+str(vLexSemRule.get().replace('\n',''))+'\n')
+    f.write("DataInHeader:"+str(wl_look_head.get())+'\n')
+    f.write("DataInStub:"+str(wl_look_stub.get())+'\n')
+    f.write("DataInSuperRow:"+str(wl_look_super.get())+'\n')
+    f.write("DataInData:"+str(wl_look_data.get())+'\n')
     f.close()
 
 def loadRules(project_name):
@@ -161,6 +165,14 @@ def loadRuleConfig(project_name,rule_name):
             conf['RuleCreationMech']=sp[1]
         if sp[0]=='PosCategories':
             conf['Categories']=sp[1]
+        if sp[0]=='DataInHeader':
+            conf['DataInHeader']=sp[1].replace('\n','')
+        if sp[0]=='DataInStub':
+            conf['DataInStub']=sp[1].replace('\n','')
+        if sp[0]=='DataInSuperRow':
+            conf['DataInSuperRow']=sp[1].replace('\n','')
+        if sp[0]=='DataInData':
+            conf['DataInData']=sp[1].replace('\n','')
     return conf
 
 def LoadRules(path):

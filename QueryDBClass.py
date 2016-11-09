@@ -602,7 +602,7 @@ class QueryDBCalss:
             intValue = float(AttributeValue)
         except:
             intValue = None
-        sql = "INSERT into IEAttribute (documentId, PMC,idTable,TableName,Class,SubClass,VOption,Target, StringValue,IntValue, Unit) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        sql = "INSERT into IEAttribute (documentId, PMC,idTable,TableName,Class,SubClass,VOption,Source, StringValue,IntValue, Unit) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         cursor.execute(sql,(documentID,PMC,tableId,TableName,AttributeName,AttributeSubClass,Option,Target,AttributeValue,intValue,Unit))
         self.db.commit()
         return cursor.lastrowid

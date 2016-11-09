@@ -56,10 +56,19 @@ def AddEditRule(project_name,vRuleName,vRuleType,RuleNameView,RulesListBox):
     PosUnitLabel = Label(itemsFrame,text="Select rule creation mechanism").grid(row=11,column=0,sticky='w')
     Radiobutton(itemsFrame, text="Lexical (White List+Black list)", variable=vLexSemRule, value="Lexical").grid(row=12,sticky='w')
     Radiobutton(itemsFrame, text="Semantic (UMLS Sem. type+Black list)", variable=vLexSemRule, value="Semantic").grid(row=13,sticky='w')
-    save = Button(itemsFrame, text="Save", fg="black",command=lambda:SaveRule(project_name,rule_name,add,vClsIn,vDefUnit,vPosUnit,pragVar,RulesListBox,vRuleType,vLexSemRule)).grid(row=14,column=1,sticky='w')
+    where_to_look = Label(itemsFrame,text="Where to look for data?").grid(row=2,column=1,sticky='w')
+    wl_look_head = IntVar()
+    WLHeaderCB = Checkbutton(itemsFrame,text="Header",variable = wl_look_head).grid(row=3,column=1,sticky='w')
+    wl_look_stub = IntVar()
+    WLStubCB = Checkbutton(itemsFrame,text="Stub",variable = wl_look_stub).grid(row=4,column=1,sticky='w')
+    wl_look_super = IntVar()
+    WLSuperRowCB = Checkbutton(itemsFrame,text="Super-row",variable = wl_look_super).grid(row=5,column=1,sticky='w')
+    wl_look_data = IntVar()
+    WLDataCB = Checkbutton(itemsFrame,text="Data",variable = wl_look_data).grid(row=6,column=1,sticky='w')
+    save = Button(itemsFrame, text="Save", fg="black",command=lambda:SaveRule(project_name,rule_name,add,vClsIn,vDefUnit,vPosUnit,pragVar,RulesListBox,vRuleType,vLexSemRule,wl_look_head,wl_look_stub,wl_look_super,wl_look_data)).grid(row=14,column=1,sticky='w')
     
 
-def SaveRuleEdit(project_name,rule_name,add,vClsIn,vDefUnit,vPosUnit,pragVar,ruleType,ruleMech):
+def SaveRuleEdit(project_name,rule_name,add,vClsIn,vDefUnit,vPosUnit,pragVar,ruleType,ruleMech,wl_look_head,wl_look_stub,wl_look_super,wl_look_data):
     global currentWhiteList
     global currentBlackList
     rule_path = "Projects/"+project_name+"/"+rule_name
@@ -68,17 +77,17 @@ def SaveRuleEdit(project_name,rule_name,add,vClsIn,vDefUnit,vPosUnit,pragVar,rul
     vLexSemRule = StringVar()
     vRuleType.set(ruleType)
     vLexSemRule.set(ruleMech)
-    FileManipulationHelper.MakeRuleCFGFile(rule_path, vClsIn,vDefUnit,vPosUnit,pragVar,vRuleType,vLexSemRule) 
+    FileManipulationHelper.MakeRuleCFGFile(rule_path, vClsIn,vDefUnit,vPosUnit,pragVar,vRuleType,vLexSemRule,wl_look_head,wl_look_stub,wl_look_super,wl_look_data) 
     add.withdraw()  
 
-def SaveRule(project_name,rule_name,add,vClsIn,vDefUnit,vPosUnit,pragVar,RulesListBox,vRuleType,vLexSemRule):
+def SaveRule(project_name,rule_name,add,vClsIn,vDefUnit,vPosUnit,pragVar,RulesListBox,vRuleType,vLexSemRule,wl_look_head,wl_look_stub,wl_look_super,wl_look_data):
     global currentWhiteList
     global currentBlackList
     rule_path = "Projects/"+project_name+"/"+rule_name
     FileManipulationHelper.CreateFoderIfNotExist(rule_path)
     #FileManipulationHelper.SaveWhiteList(rule_path, currentWhiteList)
     #FileManipulationHelper.SaveBlackList(rule_path, currentBlackList)
-    FileManipulationHelper.MakeRuleCFGFile(rule_path,vClsIn,vDefUnit,vPosUnit,pragVar,vRuleType,vLexSemRule) 
+    FileManipulationHelper.MakeRuleCFGFile(rule_path,vClsIn,vDefUnit,vPosUnit,pragVar,vRuleType,vLexSemRule,wl_look_head,wl_look_stub,wl_look_super,wl_look_data) 
     RulesListBox.insert(RulesListBox.size(),rule_name)
     add.withdraw() 
     if(vLexSemRule.get()=="Lexical"):
@@ -128,6 +137,31 @@ def EditRule(project_name,Lb1):
         vPosUnit = StringVar()
         PosUnInput = Entry(itemsFrame,textvariable=vPosUnit).grid(row=8,sticky='w')
     ruleMech = cfg['RuleCreationMech'].replace('\n','')
+    where_to_look = Label(itemsFrame,text="Where to look for data?").grid(row=2,column=1,sticky='w')
+    wl_look_head = IntVar()
+    if('DataInHeader' in cfg.keys() and cfg['DataInHeader']!=None and cfg['DataInHeader']=='1'):
+        wl_look_head.set(1)
+    else:
+        wl_look_head.set(0)
+    WLHeaderCB = Checkbutton(itemsFrame,text="Header",variable = wl_look_head).grid(row=3,column=1,sticky='w')
+    wl_look_stub = IntVar()
+    if('DataInStub' in cfg.keys() and cfg['DataInStub']!=None and cfg['DataInStub']=='1'):
+        wl_look_stub.set(1)
+    else:
+        wl_look_stub.set(0)
+    WLStubCB = Checkbutton(itemsFrame,text="Stub",variable = wl_look_stub).grid(row=4,column=1,sticky='w')
+    wl_look_super = IntVar()
+    if('DataInSuperRow' in cfg.keys() and cfg['DataInSuperRow']!=None and cfg['DataInSuperRow']=='1'):
+        wl_look_super.set(1)
+    else:
+        wl_look_super.set(0)
+    WLSuperRowCB = Checkbutton(itemsFrame,text="Super-row",variable = wl_look_super).grid(row=5,column=1,sticky='w')
+    wl_look_data = IntVar()
+    if('DataInData' in cfg.keys() and cfg['DataInData']!=None and cfg['DataInData']=='1'):
+        wl_look_data.set(1)
+    else:
+        wl_look_data.set(0)
+    WLDataCB = Checkbutton(itemsFrame,text="Data",variable = wl_look_data).grid(row=6,column=1,sticky='w')
     if ruleMech == 'Lexical':
         editWhiteList = Button(itemsFrame,text="Edit Lexical Cue List",command=lambda:WhiteListWindowEdit(project_name,rule_name)).grid(row=1,column=0,sticky='w')
     else:
@@ -152,4 +186,4 @@ def EditRule(project_name,Lb1):
     PragLabel = Label(itemsFrame,text="Pragmatic class").grid(row=7,column=1,sticky='w')
     drop = OptionMenu(itemsFrame,pragVar,*prags)
     drop.grid(row=8,column=1,sticky='w')
-    save = Button(itemsFrame, text="Save", fg="black",command=lambda:SaveRuleEdit(project_name,rule_name,add,vClsIn,vDefUnit,vPosUnit,pragVar,ruleType,ruleMech)).grid(row=9,column=1,sticky='w')
+    save = Button(itemsFrame, text="Save", fg="black",command=lambda:SaveRuleEdit(project_name,rule_name,add,vClsIn,vDefUnit,vPosUnit,pragVar,ruleType,ruleMech,wl_look_head,wl_look_stub,wl_look_super,wl_look_data)).grid(row=9,column=1,sticky='w')

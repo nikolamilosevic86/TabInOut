@@ -153,6 +153,22 @@ def LoadRulesForProcessing(project_name,before_syntactic = False):
             if(before_syntactic==False):
                 patterns = LoadSyntacticRoles(project_name,rule_name)
                 rule.PatternList = patterns
+        if('DataInHeader' in cfg.keys() and cfg['DataInHeader']!=None and cfg['DataInHeader']=='1'):
+            rule.data_in_header = True
+        else:
+            rule.data_in_header = False
+    if('DataInStub' in cfg.keys() and cfg['DataInStub']!=None and cfg['DataInStub']=='1'):
+        rule.data_in_stub = True
+    else:
+        rule.data_in_stub = False
+    if('DataInSuperRow' in cfg.keys() and cfg['DataInSuperRow']!=None and cfg['DataInSuperRow']=='1'):
+        rule.data_in_super = True
+    else:
+        rule.data_in_super = False
+    if('DataInData' in cfg.keys() and cfg['DataInData']!=None and cfg['DataInData']=='1'):
+        rule.data_in_data = True
+    else:
+        rule.data_in_data = False
         rules.append(rule)
 
     return rules

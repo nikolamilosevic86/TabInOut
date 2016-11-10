@@ -671,3 +671,15 @@ class QueryDBCalss:
         sql = "Delete from IEAttribute where Class='"+attributeName+"'"
         cursor.execute(sql)
         self.db.commit()
+        
+    def GetCellRole(self,idCell):
+        cursor = self.db.cursor()
+        sql = "SELECT CellRole_idCellRole FROM table_db.cellroles where Cell_idCell='"+idCell+"'"
+        cursor.execute(sql)
+        self.db.commit()
+        # 1- header, 2-stub,3-data, 4- super-row
+    def getCellAnnotation(self,idCell):
+        cursor = self.db.cursor()
+        sql = "SELECT Content,`Start`,`End`,AnnotationID,AnnotationDescription,AgentName FROM table_db.annotation where Cell_idCell='"+idCell+"'"
+        cursor.execute(sql)
+        self.db.commit()

@@ -46,6 +46,7 @@ def AddEditRule(project_name,vRuleName,vRuleType,RuleNameView,RulesListBox):
     DBSettings = FileManipulationHelper.LoadDBConfigFile(project_name)
     db = QueryDBClass.QueryDBCalss(DBSettings['Host'],DBSettings['User'],DBSettings['Pass'],DBSettings['Database'])
     prags = db.GetPragmaticClasses()
+    prags.insert(0,"None")
     pragVar = StringVar()
     pragVar.set(prags[0])
     PragLabel = Label(itemsFrame,text="Pragmatic class").grid(row=9,column=0,sticky='w')
@@ -174,6 +175,7 @@ def EditRule(project_name,Lb1):
     DBSettings = FileManipulationHelper.LoadDBConfigFile(project_name)
     db = QueryDBClass.QueryDBCalss(DBSettings['Host'],DBSettings['User'],DBSettings['Pass'],DBSettings['Database'])
     prags = db.GetPragmaticClasses()
+    prags.insert(0,"None")
     pragVar = StringVar()
     pragVar.set(cfg['PragClass'])
     

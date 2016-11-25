@@ -9,6 +9,8 @@ Licence GNU/GPL 3.0
 import FileManipulationHelper
 import QueryDBClass
 import re
+import Cell
+import Annotation
 
 Source = ''
 
@@ -116,382 +118,677 @@ def CheckUnits(Header,Stub,SuperRow,Data,defaultUnit,PossibleUnits):
                 UnitSelected = unit
                 break
     return UnitSelected
-            
+
+def getCellsByTableID(TableID,db):
+    rows = db.getTableCellsWithTableArticleData(TableID)
+    cells = []
+    for row in rows:
+        cell = Cell.Cell()
+        cell.idArticle = row[20]
+        cell.idPMC = row[24]
+        cell.idTable = row[13]
+        cell.tableOrder = row[14]
+        cell.pragmaticClass = row[22]
+        cell.idCell = row[0]
+        cell.cellID = row[1]
+        cell.cellType = row[2]
+        cell.rowN = row[4]
+        cell.columnN = row[5]
+        cell.Content = row[9]
+        cell.Header = row[10]
+        cell.Stub = row[11]
+        cell.Super_row = row[12]
+        cell.HeaderId = row[6]
+        cell.StubId = row[7]
+        cell.SuperRowId = row[8]
+        roles = db.getCellRole(cell.idCell)
+        for role in roles:
+            if role[0]==1:
+                cell.isHeader = True
+            if role[0]==2:
+                cell.isStub = True
+            if role[0]==3:
+                cell.isData = True
+            if role[0]==4:
+                cell.isSuperRow = True
+        annotations = db.getCellAnnotation(cell.idCell)
+        cell_annotations = []
+        if(annotations!= None):
+            for ann in annotations:
+                Annot = Annotation.Annotation()
+                Annot.annotationID = ann[0]
+                Annot.Content = ann[1]
+                Annot.Start = ann[2]
+                Annot.End = ann[3]
+                Annot.AnnotationCID = ann[4]
+                Annot.AnnotationDesc =ann[5]
+                Annot.AgentName = ann[6]
+                Annot.AgentType = ann[7]
+                Annot.AnnotationURL = ann[8]
+                cell_annotations.append(Annot)
+        cell.Annotations = cell_annotations
+        cells.append(cell)    
+    return cells
+        
+def getHeaderCells(HeaderId,Cells,heads):
+    if HeaderId == None:
+        return heads
+    for cell in Cells:
+        if cell.cellID==HeaderId:
+            heads.append(cell)
+            heads = getHeaderCells(cell.HeaderId,Cells,heads)
+    return heads
+
+def getStubCells(StubId,Cells,stubs):
+    if StubId == None:
+        return stubs
+    for cell in Cells:
+        if cell.cellID==StubId:
+            stubs.append(cell)
+            stubs = getHeaderCells(cell.StubId,Cells,stubs)
+    return stubs
+
+def getSuperRowCells(SuperRowId,Cells,superrows):
+    if SuperRowId == None:
+        return superrows
+    for cell in Cells:
+        if cell.cellID==SuperRowId:
+            superrows.append(cell)
+            superrows = getHeaderCells(cell.SuperRowId,Cells,superrows)
+    return superrows
 
 def ProcessDataBase(project_name,rules):
     global Source
     DBSettings = FileManipulationHelper.LoadDBConfigFile(project_name)
     db = QueryDBClass.QueryDBCalss(DBSettings['Host'],DBSettings['User'],DBSettings['Pass'],DBSettings['Database'])
     for rule in rules:
-        if not rule.is_semantic:
-            rows = db.getCellsGeneric(rule.PragmaticClass,rule.wl_look_header,rule.wl_look_stub,rule.wl_look_superrow,rule.wl_look_data,rule.WhiteList)
-            gen_rule_name = rule.RuleName
-            for row in rows:
-                id_article = row[0]
-                pmc_id = row[1]
-                id_table = row[2]
-                tableOrder = row[3]
-                SpecPragmatic =  row[4]
-                idCell = row[5]
-                cellType = row[6]
-                rowN = row[7]
-                columnN = row[8]
-                Content = row[9]
-                Header = row[10]
-                Stub = row[11]
-                Super_row = row[12]
+        WhiteWordList = []
+        WhiteIDList = []
+        WhiteDescList = []
+        BlackWordList = []
+        BlackIDList = []
+        BlackDescList = []
+        # Get different cue lists from one big list containing annotations and lexical cues
+        for word in rule.WhiteList:
+            if('[annID]:' in word):
+                WhiteIDList.append(word[8:])
+            elif('[annDesc]:'in word):
+                WhiteDescList.append(word[10:])
+            elif('[word]:'in word):
+                WhiteWordList.append(word[7:])
+            else:
+                WhiteWordList.append(word)  
+                
+        for word in rule.BlackList:
+            if('[annID]:' in word):
+                BlackIDList.append(word[8:])
+            elif('[annDesc]:'in word):
+                BlackDescList.append(word[10:])
+            elif('[word]:'in word):
+                BlackWordList.append(word[7:])
+            else:
+                BlackWordList.append(word) 
+            # Get tables that contain something from white list in it
+        tabres = db.getRelevantTables(WhiteWordList,WhiteIDList,WhiteDescList,rule.PragmaticClass)
+        tables = []
+        for res in tabres:
+            tables.append(res[0])
+        for table in tables:
+        #Get Table cells with all the annotations
+            cells = getCellsByTableID(table,db)
+            #Now the data should be filtered
+            for cell in cells:
+                extractData = True
+                extracted = False
+                selectCell = False
 
-                ContainsLooked = CheckWListUsingRegex(rule.wl_look_header,rule.wl_look_stub,rule.wl_look_superrow,rule.wl_look_data,rule.WhiteList,Header,Stub,Super_row,Content)
-                if(ContainsLooked):
-                    ValidCandidate = CheckBListUsingRegex(rule.bl_look_header,rule.bl_look_stub,rule.bl_look_superrow,rule.bl_look_data,rule.BlackList,Header,Stub,Super_row,Content)
-                    if ValidCandidate:
-                        FoundSemantics = False
-                        AllSemSaved = False
-                        for syn_rule in rule.PatternList:
+                #Check white list against data cells
+                if rule.wl_look_data:
+                    for word in WhiteWordList:
+                        if(word in cell.Content):
+                            selectCell = True
+                    for word in WhiteDescList:
+                        for ann in cell.Annotation:
+                            if ann.AnnotationDesc == word:
+                                selectCell = True
+                    for word in WhiteIDList:
+                        for ann in cell.Annotation:
+                            if ann.AnnotationCID == word:
+                                selectCell = True
+
+                # Check white list against heades
+                if rule.wl_look_header:
+                    for word in WhiteWordList:
+                        if (word in cell.Header):
+                            selectCell = True
+                    idHeader = cell.HeaderId
+                    heads = []
+                    heads = getHeaderCells(cell.HeaderId,cells,heads)
+                    for head in heads:
+                        for word in WhiteDescList:
+                            for ann in head.Annotation:
+                                if ann.AnnotationDesc==word:
+                                    selectCell = True
+                        for word in WhiteIDList:
+                            for ann in head.Annotation:
+                                if ann.AnnotationCID == word:
+                                    selectCell = True
+
+                # Check white list against stub
+                if rule.wl_look_stub:
+                    for word in WhiteWordList:
+                        if (word in cell.Stub):
+                                selectCell = True
+                    idStub = cell.StubId
+                    stubs = []
+                    stubs = getStubCells(cell.StubId, cells, stubs)
+                    for stub in stubs:
+                        for word in WhiteDescList:
+                            for ann in stub.Annotation:
+                                if ann.AnnotationDesc == word:
+                                    selectCell = True
+                        for word in WhiteIDList:
+                            for ann in stub.Annotation:
+                                if ann.AnnotationCID == word:
+                                    selectCell = True
+
+                # Check white list against super-row
+                if rule.wl_look_superrow:
+                    for word in WhiteWordList:
+                        if (word in cell.Super_row):
+                            selectCell = True
+                    idSuperRow = cell.SuperRowId
+                    superrows = []
+                    superrows = getStubCells(cell.SuperRowId, cells, superrows)
+                    for superrow in superrows:
+                        for word in WhiteDescList:
+                            for ann in superrow.Annotation:
+                                if ann.AnnotationDesc == word:
+                                    selectCell = True
+                        for word in WhiteIDList:
+                            for ann in superrow.Annotation:
+                                if ann.AnnotationCID == word:
+                                    selectCell = True
+
+#=============================================================================================
+                # Check black list against data cells
+                if rule.bl_look_data:
+                    for word in BlackWordList:
+                        if (word in cell.Content):
+                            selectCell = False
+                    for word in BlackDescList:
+                        for ann in cell.Annotation:
+                            if ann.AnnotationDesc == word:
+                                selectCell = False
+                    for word in BlackIDList:
+                        for ann in cell.Annotation:
+                            if ann.AnnotationCID == word:
+                                selectCell = False
+
+
+                # Check black list against heades
+                if rule.bl_look_header:
+                    for word in BlackWordList:
+                        if (word in cell.Header):
+                            selectCell = False
+                    idHeader = cell.HeaderId
+                    heads = []
+                    heads = getHeaderCells(cell.HeaderId, cells, heads)
+                    for head in heads:
+                        for word in BlackDescList:
+                            for ann in head.Annotation:
+                                if ann.AnnotationDesc == word:
+                                    selectCell = False
+                        for word in BlackIDList:
+                            for ann in head.Annotation:
+                                if ann.AnnotationCID == word:
+                                    selectCell = False
+
+                                                # Check white list against stub
+                if rule.bl_look_stub:
+                    for word in BlackWordList:
+                        if (word in cell.Stub):
+                            selectCell = False
+                    idStub = cell.StubId
+                    stubs = []
+                    stubs = getStubCells(cell.StubId, cells, stubs)
+                    for stub in stubs:
+                        for word in BlackDescList:
+                            for ann in stub.Annotation:
+                                if ann.AnnotationDesc == word:
+                                    selectCell = False
+                        for word in BlackIDList:
+                            for ann in stub.Annotation:
+                                if ann.AnnotationCID == word:
+                                    selectCell = False
+
+                # Check white list against super-row
+                if rule.bl_look_superrow:
+                    for word in BlackWordList:
+                        if (word in cell.Super_row):
+                            selectCell = False
+                    idSuperRow = cell.SuperRowId
+                    superrows = []
+                    superrows = getStubCells(cell.SuperRowId, cells, superrows)
+                    for superrow in superrows:
+                        for word in BlackDescList:
+                            for ann in superrow.Annotation:
+                                if ann.AnnotationDesc == word:
+                                    selectCell = False
+                        for word in BlackIDList:
+                            for ann in superrow.Annotation:
+                                if ann.AnnotationCID == word:
+                                    selectCell = False
+
+                if selectCell:
+                    FoundSemantics = False
+                    AllSemSaved = False
+                    # Iterate trought all the patterns
+                    for syn_rule in rule.PatternList:
+                        if(AllSemSaved ==True):
+                            break
+                        # check pattern
+                        pattern = unicode(syn_rule.regex.replace('\n',''),'utf-8')
+                        m = re.search(pattern,cell.Content,re.UNICODE)
+                        # in case pattern is not found continue to the next one
+                        if m == None:
+                            continue
+                        c = 0
+                        contains_term = False
+                        last_sem_extracted = -1
+                        # Itterate semantics for each pattern rule (syntactic rule)
+                        for sem in syn_rule.SemanticValues:
+                            if contains_term and sem.Semantics=='mean':
+                                contains_term = False
+                                FoundSemantics = False
+                                continue
                             if(AllSemSaved ==True):
                                 break
-                            pattern = unicode(syn_rule.regex.replace('\n',''),'utf-8')
-                            m = re.search(pattern,Content,re.UNICODE)
-                            if m == None:
+                            if last_sem_extracted >= sem.position:
                                 continue
-                            c = 0
-                            contains_term = False
-                            last_sem_extracted = -1
-                            for sem in syn_rule.SemanticValues:
-                                if contains_term and sem.Semantics=='mean':
-                                    contains_term = False
-                                    FoundSemantics = False
-                                    continue
-                                if(AllSemSaved ==True):
-                                    break
-                                if last_sem_extracted >= sem.position:
-                                    continue
-                                value = m.group(sem.position)
-                                if len(sem.SemTermList)>0:
-                                    contains_term =  CheckWListUsingRegex(True,True,True,False,sem.SemTermList,Header,Stub,Super_row,Content)
-                                    if(contains_term):
-                                        semValue  = sem.Semantics
-                                        FoundSemantics = True
-                                if len(sem.SemTermList)==0:
+                            # extract value
+                            value = m.group(sem.position)
+                            #Checking terms in case there are multiple semantics for certain group
+                            if len(sem.SemTermList)>0:
+                                contains_term =  CheckWListUsingRegex(True,True,True,False,sem.SemTermList,cell.Header,cell.Stub,cell.Super_row,cell.Content)
+                                if(contains_term):
                                     semValue  = sem.Semantics
                                     FoundSemantics = True
-                                c = c+1
-                                if FoundSemantics:    
-                                    syn_rule_name = syn_rule.name
-                                    Unit = CheckUnits(Header, Stub, Super_row, Content, rule.DefaultUnit, rule.PossibleUnits)
-                                    #Save the value to the database
-                                    db.SaveExtracted(id_article,id_table,tableOrder,pmc_id,rule.ClassName,semValue,value,Unit,Source,gen_rule_name,syn_rule_name)
-                                    last_sem_extracted = sem.position
-                                    FoundSemantics = False
-                                    if(c == len(syn_rule.SemanticValues)):
-                                        AllSemSaved = True
-        #Semantic extraction
-        else:
-            #For header look in the column
-            if rule.wl_look_header:
-                head_cells = db.getCellsWithMetaMapAnnotationWithRole(rule.PragmaticClass,rule.WhiteList,"1")
-                lastCellID = -1
-                for head in head_cells:
-                    CellID = head[0]
-                    if(CellID==lastCellID):
-                        continue
-                    TableID = head[3]
-                    RowN = head[4]
-                    ColumtnN = head[5]
-                    Content = head[9]
-                    Header  = head [10]
-                    Stub = head[11]
-                    SuperRow = head[12]
-                    AnnotationContent = head[14]
-                    AnnotationDesc = head[19]
-                    TableOrder = head[28]
-                    idArt = head[34]
-                    PMC = head[38]
-                    lastCellID = CellID
-                    rowRes = db.getCellsFromTableColumn(TableID,ColumtnN)
-                    for res in rowRes:
-                        EvalCell_Id = res[0]
-                        EvalCell_TableID = head[3]
-                        EvalCell_RowN = head[4]
-                        EvalCell_ColumtnN = head[5]
-                        EvalCell_Content = head[9]
-                        EvalCell_Header  = head [10]
-                        EvalCell_Stub = head[11]
-                        EvalCell_SuperRow = head[12]
-                        ValidCandidate = CheckBListUsingRegex(rule.bl_look_header,rule.bl_look_stub,rule.bl_look_superrow,rule.bl_look_data,rule.BlackList,EvalCell_Header,EvalCell_Stub,EvalCell_SuperRow,EvalCell_Content)
-                        if ValidCandidate:
-                            FoundSemantics = False
-                            AllSemSaved = False
-                            for syn_rule in rule.PatternList:
-                                if(AllSemSaved ==True):
-                                    break
-                                pattern = unicode(syn_rule.regex.replace('\n',''),'utf-8')
-                                m = re.search(pattern,EvalCell_Content,re.UNICODE)
-                                if m == None:
-                                    continue
-                                c = 0
-                                contains_term = False
-                                last_sem_extracted = -1
-                                for sem in syn_rule.SemanticValues:
-                                    if contains_term and sem.Semantics=='mean':
-                                        contains_term = False
-                                        FoundSemantics = False
-                                        continue
-                                    if(AllSemSaved ==True):
-                                        break
-                                    if last_sem_extracted >= sem.position:
-                                        continue
-                                    value = m.group(sem.position)
-                                    if len(sem.SemTermList)>0:
-                                        contains_term =  CheckWListUsingRegex(True,True,True,False,sem.SemTermList,EvalCell_Header,EvalCell_Stub,EvalCell_SuperRow,EvalCell_Content)
-                                        if(contains_term):
-                                            semValue  = sem.Semantics
-                                            FoundSemantics = True
-                                    if len(sem.SemTermList)==0:
-                                        semValue  = sem.Semantics
-                                        FoundSemantics = True
-                                    c = c+1
-                                    if FoundSemantics:    
-                                        syn_rule_name = syn_rule.name
-                                        if(rule.RuleType=='Numeric'):
-                                            Unit = CheckUnits(EvalCell_Header, EvalCell_Stub, EvalCell_SuperRow, EvalCell_Content, rule.DefaultUnit, rule.PossibleUnits)
-                                        else:
-                                            Unit = ''
-                                        #Save the value to the database
-                                        db.SaveExtracted(id_article,id_table,tableOrder,pmc_id,rule.ClassName,semValue,value,Unit,Source,gen_rule_name,syn_rule_name)
-                                        last_sem_extracted = sem.position
-                                        FoundSemantics = False
-                                        if(c == len(syn_rule.SemanticValues)):
-                                            AllSemSaved = True
+                            # Getting semantics for certain group
+                            if len(sem.SemTermList)==0:
+                                semValue  = sem.Semantics
+                                FoundSemantics = True
+                            c = c+1
+                            if FoundSemantics:
+                                syn_rule_name = syn_rule.name
+                                # Get unit
+                                Unit = CheckUnits(cell.Header, cell.Stub, cell.Super_row, cell.Content, rule.DefaultUnit, rule.PossibleUnits)
+                                #Save the value to the database
+                                db.SaveExtracted(cell.idArticle,cell.idTable,cell.tableOrder,cell.idPMC,rule.ClassName,semValue,value,Unit,Source,rule.RuleName,syn_rule_name)
+                                last_sem_extracted = sem.position
+                                FoundSemantics = False
+                                if(c == len(syn_rule.SemanticValues)):
+                                    AllSemSaved = True
+
+
+
+            #print cells
+    print "Finished!!!"
+
+
+#                    ContainsLooked = CheckWListUsingRegex(rule.wl_look_header,rule.wl_look_stub,rule.wl_look_superrow,rule.wl_look_data,WhiteWordList,cell.Header,cell.Stub,cell.Super_row,cell.Content)
+#                    ValidCandidate = True
+#                    if(ContainsLooked):
+#                        ValidCandidate = CheckBListUsingRegex(rule.bl_look_header,rule.bl_look_stub,rule.bl_look_superrow,rule.bl_look_data,BlackWordList,cell.Header,cell.Stub,cell.Super_row,cell.Content)
+#                    
+#                    if ValidCandidate:
+#                        FoundSemantics = False
+#                        AllSemSaved = False
+#                        for syn_rule in rule.PatternList:
+#                            if(AllSemSaved ==True):
+#                                break
+#                            pattern = unicode(syn_rule.regex.replace('\n',''),'utf-8')
+#                            m = re.search(pattern,Content,re.UNICODE)
+#                            if m == None:
+#                                continue
+#                            c = 0
+#                            contains_term = False
+#                            last_sem_extracted = -1
+#                            for sem in syn_rule.SemanticValues:
+#                                if contains_term and sem.Semantics=='mean':
+#                                    contains_term = False
+#                                    FoundSemantics = False
+#                                    continue
+#                                if(AllSemSaved ==True):
+#                                    break
+#                                if last_sem_extracted >= sem.position:
+#                                    continue
+#                                value = m.group(sem.position)
+#                                if len(sem.SemTermList)>0:
+#                                    contains_term =  CheckWListUsingRegex(True,True,True,False,sem.SemTermList,Header,Stub,Super_row,Content)
+#                                    if(contains_term):
+#                                        semValue  = sem.Semantics
+#                                        FoundSemantics = True
+#                                if len(sem.SemTermList)==0:
+#                                    semValue  = sem.Semantics
+#                                    FoundSemantics = True
+#                                c = c+1
+#                                if FoundSemantics:    
+#                                    syn_rule_name = syn_rule.name
+#                                    Unit = CheckUnits(Header, Stub, Super_row, Content, rule.DefaultUnit, rule.PossibleUnits)
+#                                    #Save the value to the database
+#                                    db.SaveExtracted(id_article,id_table,tableOrder,pmc_id,rule.ClassName,semValue,value,Unit,Source,gen_rule_name,syn_rule_name)
+#                                    last_sem_extracted = sem.position
+#                                   FoundSemantics = False
+#                                    if(c == len(syn_rule.SemanticValues)):
+#                                        AllSemSaved = True
+#        #Semantic extraction
+#        else:
+#            #For header look in the column
+#            if rule.wl_look_header:
+#                head_cells = db.getCellsWithMetaMapAnnotationWithRole(rule.PragmaticClass,rule.WhiteList,"1")
+#                lastCellID = -1
+#                for head in head_cells:
+#                    CellID = head[0]
+#                    if(CellID==lastCellID):
+#                        continue
+#                    TableID = head[3]
+#                    RowN = head[4]
+#                    ColumtnN = head[5]
+#                    Content = head[9]
+#                    Header  = head [10]
+#                    Stub = head[11]
+#                    SuperRow = head[12]
+#                    AnnotationContent = head[14]
+#                    AnnotationDesc = head[19]
+#                    TableOrder = head[28]
+#                    idArt = head[34]
+#                    PMC = head[38]
+#                    lastCellID = CellID
+#                    rowRes = db.getCellsFromTableColumn(TableID,ColumtnN)
+#                    for res in rowRes:
+#                        EvalCell_Id = res[0]
+#                        EvalCell_TableID = head[3]
+#                        EvalCell_RowN = head[4]
+#                        EvalCell_ColumtnN = head[5]
+#                        EvalCell_Content = head[9]
+#                        EvalCell_Header  = head [10]
+#                        EvalCell_Stub = head[11]
+#                        EvalCell_SuperRow = head[12]
+#                        ValidCandidate = CheckBListUsingRegex(rule.bl_look_header,rule.bl_look_stub,rule.bl_look_superrow,rule.bl_look_data,rule.BlackList,EvalCell_Header,EvalCell_Stub,EvalCell_SuperRow,EvalCell_Content)
+#                        if ValidCandidate:
+#                            FoundSemantics = False
+#                            AllSemSaved = False
+#                            for syn_rule in rule.PatternList:
+#                                if(AllSemSaved ==True):
+#                                    break
+#                                pattern = unicode(syn_rule.regex.replace('\n',''),'utf-8')
+#                                m = re.search(pattern,EvalCell_Content,re.UNICODE)
+#                                if m == None:
+#                                    continue
+#                                c = 0
+#                                contains_term = False
+#                                last_sem_extracted = -1
+#                                for sem in syn_rule.SemanticValues:
+#                                    if contains_term and sem.Semantics=='mean':
+#                                        contains_term = False
+#                                        FoundSemantics = False
+#                                        continue
+#                                    if(AllSemSaved ==True):
+#                                        break
+#                                    if last_sem_extracted >= sem.position:
+#                                        continue
+#                                    value = m.group(sem.position)
+#                                    if len(sem.SemTermList)>0:
+#                                        contains_term =  CheckWListUsingRegex(True,True,True,False,sem.SemTermList,EvalCell_Header,EvalCell_Stub,EvalCell_SuperRow,EvalCell_Content)
+#                                        if(contains_term):
+#                                            semValue  = sem.Semantics
+#                                            FoundSemantics = True
+#                                    if len(sem.SemTermList)==0:
+#                                        semValue  = sem.Semantics
+#                                        FoundSemantics = True
+#                                    c = c+1
+#                                    if FoundSemantics:    
+#                                        syn_rule_name = syn_rule.name
+#                                        if(rule.RuleType=='Numeric'):
+#                                            Unit = CheckUnits(EvalCell_Header, EvalCell_Stub, EvalCell_SuperRow, EvalCell_Content, rule.DefaultUnit, rule.PossibleUnits)
+#                                        else:
+#                                            Unit = ''
+#                                        #Save the value to the database
+#                                        db.SaveExtracted(id_article,id_table,tableOrder,pmc_id,rule.ClassName,semValue,value,Unit,Source,gen_rule_name,syn_rule_name)
+#                                        last_sem_extracted = sem.position
+#                                        FoundSemantics = False
+#                                        if(c == len(syn_rule.SemanticValues)):
+#                                            AllSemSaved = True
         
             # Stub processing - needs testing
-            if rule.wl_look_stub:
-                head_cells = db.getCellsWithMetaMapAnnotationWithRole(rule.PragmaticClass,rule.WhiteList,"2") # 2 is for stub, 1 is header, 3 is data, 4 is for super-row
-                lastCellID = -1
-                for head in head_cells:
-                    CellID = head[0]
-                    if(CellID==lastCellID):
-                        continue
-                    TableID = head[3]
-                    RowN = head[4]
-                    ColumtnN = head[5]
-                    Content = head[9]
-                    Header  = head [10]
-                    Stub = head[11]
-                    SuperRow = head[12]
-                    AnnotationContent = head[14]
-                    AnnotationDesc = head[19]
-                    TableOrder = head[28]
-                    idArt = head[34]
-                    PMC = head[38]
-                    lastCellID = CellID
-                    rowRes = db.getCellsFromTableRowRow(TableID,ColumtnN)
-                    for res in rowRes:
-                        EvalCell_Id = res[0]
-                        EvalCell_TableID = head[3]
-                        EvalCell_RowN = head[4]
-                        EvalCell_ColumtnN = head[5]
-                        EvalCell_Content = head[9]
-                        EvalCell_Header  = head [10]
-                        EvalCell_Stub = head[11]
-                        EvalCell_SuperRow = head[12]
-                        ValidCandidate = CheckBListUsingRegex(rule.bl_look_header,rule.bl_look_stub,rule.bl_look_superrow,rule.bl_look_data,rule.BlackList,EvalCell_Header,EvalCell_Stub,EvalCell_SuperRow,EvalCell_Content)
-                        if ValidCandidate:
-                            FoundSemantics = False
-                            AllSemSaved = False
-                            for syn_rule in rule.PatternList:
-                                if(AllSemSaved ==True):
-                                    break
-                                pattern = unicode(syn_rule.regex.replace('\n',''),'utf-8')
-                                m = re.search(pattern,EvalCell_Content,re.UNICODE)
-                                if m == None:
-                                    continue
-                                c = 0
-                                contains_term = False
-                                last_sem_extracted = -1
-                                for sem in syn_rule.SemanticValues:
-                                    if contains_term and sem.Semantics=='mean':
-                                        contains_term = False
-                                        FoundSemantics = False
-                                        continue
-                                    if(AllSemSaved ==True):
-                                        break
-                                    if last_sem_extracted >= sem.position:
-                                        continue
-                                    value = m.group(sem.position)
-                                    if len(sem.SemTermList)>0:
-                                        contains_term =  CheckWListUsingRegex(True,True,True,False,sem.SemTermList,EvalCell_Header,EvalCell_Stub,EvalCell_SuperRow,EvalCell_Content)
-                                        if(contains_term):
-                                            semValue  = sem.Semantics
-                                            FoundSemantics = True
-                                    if len(sem.SemTermList)==0:
-                                        semValue  = sem.Semantics
-                                        FoundSemantics = True
-                                    c = c+1
-                                    if FoundSemantics:    
-                                        syn_rule_name = syn_rule.name
-                                        if(rule.RuleType=='Numeric'):
-                                            Unit = CheckUnits(EvalCell_Header, EvalCell_Stub, EvalCell_SuperRow, EvalCell_Content, rule.DefaultUnit, rule.PossibleUnits)
-                                        else:
-                                            Unit = ''
-                                        #Save the value to the database
-                                        db.SaveExtracted(id_article,id_table,tableOrder,pmc_id,rule.ClassName,semValue,value,Unit,Source,gen_rule_name,syn_rule_name)
-                                        last_sem_extracted = sem.position
-                                        FoundSemantics = False
-                                        if(c == len(syn_rule.SemanticValues)):
-                                            AllSemSaved = True
-            # Data processing - needs testing, no need for other select that gets row or columns below
-            if rule.wl_look_data:
-                head_cells = db.getCellsWithMetaMapAnnotationWithRole(rule.PragmaticClass,rule.WhiteList,"3") # 2 is for stub, 1 is header, 3 is data, 4 is for super-row
-                lastCellID = -1
-                for head in head_cells:
-                    CellID = head[0]
-                    if(CellID==lastCellID):
-                        continue
-                    TableID = head[3]
-                    RowN = head[4]
-                    ColumtnN = head[5]
-                    Content = head[9]
-                    Header  = head [10]
-                    Stub = head[11]
-                    SuperRow = head[12]
-                    AnnotationContent = head[14]
-                    AnnotationDesc = head[19]
-                    TableOrder = head[28]
-                    idArt = head[34]
-                    PMC = head[38]
-                    lastCellID = CellID
-                    ValidCandidate = CheckBListUsingRegex(rule.bl_look_header,rule.bl_look_stub,rule.bl_look_superrow,rule.bl_look_data,rule.BlackList,EvalCell_Header,EvalCell_Stub,EvalCell_SuperRow,EvalCell_Content)
-                    if ValidCandidate:
-                        FoundSemantics = False
-                        AllSemSaved = False
-                        for syn_rule in rule.PatternList:
-                            if(AllSemSaved ==True):
-                                break
-                            pattern = unicode(syn_rule.regex.replace('\n',''),'utf-8')
-                            m = re.search(pattern,EvalCell_Content,re.UNICODE)
-                            if m == None:
-                                continue
-                            c = 0
-                            contains_term = False
-                            last_sem_extracted = -1
-                            for sem in syn_rule.SemanticValues:
-                                if contains_term and sem.Semantics=='mean':
-                                    contains_term = False
-                                    FoundSemantics = False
-                                    continue
-                                if(AllSemSaved ==True):
-                                    break
-                                if last_sem_extracted >= sem.position:
-                                    continue
-                                value = m.group(sem.position)
-                                if len(sem.SemTermList)>0:
-                                    contains_term =  CheckWListUsingRegex(True,True,True,False,sem.SemTermList,EvalCell_Header,EvalCell_Stub,EvalCell_SuperRow,EvalCell_Content)
-                                    if(contains_term):
-                                        semValue  = sem.Semantics
-                                        FoundSemantics = True
-                                if len(sem.SemTermList)==0:
-                                    semValue  = sem.Semantics
-                                    FoundSemantics = True
-                                c = c+1
-                                if FoundSemantics:    
-                                    syn_rule_name = syn_rule.name
-                                    if(rule.RuleType=='Numeric'):
-                                        Unit = CheckUnits(EvalCell_Header, EvalCell_Stub, EvalCell_SuperRow, EvalCell_Content, rule.DefaultUnit, rule.PossibleUnits)
-                                    else:
-                                        Unit = ''
-                                    #Save the value to the database
-                                    db.SaveExtracted(id_article,id_table,tableOrder,pmc_id,rule.ClassName,semValue,value,Unit,Source,gen_rule_name,syn_rule_name)
-                                    last_sem_extracted = sem.position
-                                    FoundSemantics = False
-                                    if(c == len(syn_rule.SemanticValues)):
-                                        AllSemSaved = True                                
-            # Super-row rules                                
-            if rule.wl_look_superrow:
-                head_cells = db.getCellsWithMetaMapAnnotationWithRole(rule.PragmaticClass,rule.WhiteList,"4") # 2 is for stub, 1 is header, 3 is data, 4 is for super-row
-                lastCellID = -1
-                for head in head_cells:
-                    CellID = head[0]
-                    if(CellID==lastCellID):
-                        continue
-                    TableID = head[3]
-                    RowN = head[4]
-                    ColumtnN = head[5]
-                    Content = head[9]
-                    Header  = head [10]
-                    Stub = head[11]
-                    SuperRow = head[12]
-                    AnnotationContent = head[14]
-                    AnnotationDesc = head[19]
-                    TableOrder = head[28]
-                    idArt = head[34]
-                    PMC = head[38]
-                    lastCellID = CellID
-                    row = RowN+1
-                    CellRole = 3
-                    SuperRowOfInterest = Content
-                    SuperRow = SuperRowOfInterest
-                    while CellRole!=4 and SuperRow!=None and SuperRowOfInterest!=None and SuperRowOfInterest in SuperRow and row<50:
-                        rowRes = db.getCellsFromTableRowRowWithRole(TableID,row)
-                        for res in rowRes:
-                            SuperRow = res[12]
-                            CellRole = res[14]
-                            EvalCell_Id = res[0]
-                            EvalCell_TableID = head[3]
-                            EvalCell_RowN = head[4]
-                            EvalCell_ColumtnN = head[5]
-                            EvalCell_Content = head[9]
-                            EvalCell_Header  = head [10]
-                            EvalCell_Stub = head[11]
-                            EvalCell_SuperRow = head[12]
-                            ValidCandidate = CheckBListUsingRegex(rule.bl_look_header,rule.bl_look_stub,rule.bl_look_superrow,rule.bl_look_data,rule.BlackList,EvalCell_Header,EvalCell_Stub,EvalCell_SuperRow,EvalCell_Content)
-                            if ValidCandidate:
-                                FoundSemantics = False
-                                AllSemSaved = False
-                                for syn_rule in rule.PatternList:
-                                    if(AllSemSaved ==True):
-                                        break
-                                    pattern = unicode(syn_rule.regex.replace('\n',''),'utf-8')
-                                    m = re.search(pattern,EvalCell_Content,re.UNICODE)
-                                    if m == None:
-                                        continue
-                                    c = 0
-                                    contains_term = False
-                                    last_sem_extracted = -1
-                                    for sem in syn_rule.SemanticValues:
-                                        if contains_term and sem.Semantics=='mean':
-                                            contains_term = False
-                                            FoundSemantics = False
-                                            continue
-                                        if(AllSemSaved ==True):
-                                            break
-                                        if last_sem_extracted >= sem.position:
-                                            continue
-                                        value = m.group(sem.position)
-                                        if len(sem.SemTermList)>0:
-                                            contains_term =  CheckWListUsingRegex(True,True,True,False,sem.SemTermList,EvalCell_Header,EvalCell_Stub,EvalCell_SuperRow,EvalCell_Content)
-                                            if(contains_term):
-                                                semValue  = sem.Semantics
-                                                FoundSemantics = True
-                                        if len(sem.SemTermList)==0:
-                                            semValue  = sem.Semantics
-                                            FoundSemantics = True
-                                        c = c+1
-                                        if FoundSemantics:    
-                                            syn_rule_name = syn_rule.name
-                                            if(rule.RuleType=='Numeric'):
-                                                Unit = CheckUnits(EvalCell_Header, EvalCell_Stub, EvalCell_SuperRow, EvalCell_Content, rule.DefaultUnit, rule.PossibleUnits)
-                                            else:
-                                                Unit = ''
-                                        #Save the value to the database
-                                            db.SaveExtracted(id_article,id_table,tableOrder,pmc_id,rule.ClassName,semValue,value,Unit,Source,gen_rule_name,syn_rule_name)
-                                            last_sem_extracted = sem.position
-                                            FoundSemantics = False
-                                            if(c == len(syn_rule.SemanticValues)):
-                                                AllSemSaved = True                
-                        
-                    
-            pass          
+#            if rule.wl_look_stub:
+#                head_cells = db.getCellsWithMetaMapAnnotationWithRole(rule.PragmaticClass,rule.WhiteList,"2") # 2 is for stub, 1 is header, 3 is data, 4 is for super-row
+#                lastCellID = -1
+#                for head in head_cells:
+#                    CellID = head[0]
+#                    if(CellID==lastCellID):
+#                        continue
+#                    TableID = head[3]
+#                    RowN = head[4]
+#                    ColumtnN = head[5]
+#                    Content = head[9]
+#                    Header  = head [10]
+#                    Stub = head[11]
+#                    SuperRow = head[12]
+#                    AnnotationContent = head[14]
+#                    AnnotationDesc = head[19]
+#                    TableOrder = head[28]
+#                    idArt = head[34]
+#                    PMC = head[38]
+#                    lastCellID = CellID
+#                    rowRes = db.getCellsFromTableRowRow(TableID,ColumtnN)
+#                    for res in rowRes:
+#                        EvalCell_Id = res[0]
+#                        EvalCell_TableID = head[3]
+#                        EvalCell_RowN = head[4]
+#                        EvalCell_ColumtnN = head[5]
+#                        EvalCell_Content = head[9]
+#                        EvalCell_Header  = head [10]
+#                        EvalCell_Stub = head[11]
+#                        EvalCell_SuperRow = head[12]
+#                        ValidCandidate = CheckBListUsingRegex(rule.bl_look_header,rule.bl_look_stub,rule.bl_look_superrow,rule.bl_look_data,rule.BlackList,EvalCell_Header,EvalCell_Stub,EvalCell_SuperRow,EvalCell_Content)
+#                        if ValidCandidate:
+#                            FoundSemantics = False
+#                            AllSemSaved = False
+#                            for syn_rule in rule.PatternList:
+#                                if(AllSemSaved ==True):
+#                                    break
+#                                pattern = unicode(syn_rule.regex.replace('\n',''),'utf-8')
+#                                m = re.search(pattern,EvalCell_Content,re.UNICODE)
+#                                if m == None:
+#                                    continue
+#                                c = 0
+#                                contains_term = False
+#                                last_sem_extracted = -1
+#                                for sem in syn_rule.SemanticValues:
+#                                    if contains_term and sem.Semantics=='mean':
+#                                        contains_term = False
+#                                        FoundSemantics = False
+#                                        continue
+#                                    if(AllSemSaved ==True):
+#                                        break
+#                                    if last_sem_extracted >= sem.position:
+#                                        continue
+#                                    value = m.group(sem.position)
+#                                    if len(sem.SemTermList)>0:
+#                                        contains_term =  CheckWListUsingRegex(True,True,True,False,sem.SemTermList,EvalCell_Header,EvalCell_Stub,EvalCell_SuperRow,EvalCell_Content)
+#                                        if(contains_term):
+#                                            semValue  = sem.Semantics
+#                                            FoundSemantics = True
+#                                    if len(sem.SemTermList)==0:
+#                                        semValue  = sem.Semantics
+#                                        FoundSemantics = True
+#                                    c = c+1
+#                                    if FoundSemantics:    
+#                                        syn_rule_name = syn_rule.name
+#                                        if(rule.RuleType=='Numeric'):
+#                                            Unit = CheckUnits(EvalCell_Header, EvalCell_Stub, EvalCell_SuperRow, EvalCell_Content, rule.DefaultUnit, rule.PossibleUnits)
+#                                        else:
+#                                            Unit = ''
+#                                        #Save the value to the database
+#                                        db.SaveExtracted(id_article,id_table,tableOrder,pmc_id,rule.ClassName,semValue,value,Unit,Source,gen_rule_name,syn_rule_name)
+#                                        last_sem_extracted = sem.position
+#                                        FoundSemantics = False
+#                                        if(c == len(syn_rule.SemanticValues)):
+#                                            AllSemSaved = True
+#            # Data processing - needs testing, no need for other select that gets row or columns below
+#            if rule.wl_look_data:
+#                head_cells = db.getCellsWithMetaMapAnnotationWithRole(rule.PragmaticClass,rule.WhiteList,"3") # 2 is for stub, 1 is header, 3 is data, 4 is for super-row
+#                lastCellID = -1
+#                for head in head_cells:
+#                    CellID = head[0]
+#                    if(CellID==lastCellID):
+#                        continue
+#                    TableID = head[3]
+#                    RowN = head[4]
+#                    ColumtnN = head[5]
+#                    Content = head[9]
+#                    Header  = head [10]
+#                    Stub = head[11]
+#                    SuperRow = head[12]#
+#                    AnnotationContent = head[14]
+#                    AnnotationDesc = head[19]
+#                    TableOrder = head[28]
+#                    idArt = head[34]
+#                    PMC = head[38]
+#                    lastCellID = CellID
+#                    ValidCandidate = CheckBListUsingRegex(rule.bl_look_header,rule.bl_look_stub,rule.bl_look_superrow,rule.bl_look_data,rule.BlackList,EvalCell_Header,EvalCell_Stub,EvalCell_SuperRow,EvalCell_Content)
+#                    if ValidCandidate:
+#                        FoundSemantics = False
+#                        AllSemSaved = False
+#                        for syn_rule in rule.PatternList:
+#                            if(AllSemSaved ==True):
+#                                break
+#                            pattern = unicode(syn_rule.regex.replace('\n',''),'utf-8')
+#                            m = re.search(pattern,EvalCell_Content,re.UNICODE)
+#                            if m == None:
+#                                continue
+#                            c = 0
+#                            contains_term = False
+#                            last_sem_extracted = -1
+#                            for sem in syn_rule.SemanticValues:
+#                                if contains_term and sem.Semantics=='mean':
+#                                    contains_term = False
+#                                    FoundSemantics = False
+#                                    continue
+#                                if(AllSemSaved ==True):
+#                                    break
+#                                if last_sem_extracted >= sem.position:
+#                                    continue
+#                                value = m.group(sem.position)
+#                                if len(sem.SemTermList)>0:
+#                                    contains_term =  CheckWListUsingRegex(True,True,True,False,sem.SemTermList,EvalCell_Header,EvalCell_Stub,EvalCell_SuperRow,EvalCell_Content)
+#                                    if(contains_term):
+#                                        semValue  = sem.Semantics
+#                                        FoundSemantics = True
+#                                if len(sem.SemTermList)==0:
+#                                    semValue  = sem.Semantics
+#                                    FoundSemantics = True
+#                                c = c+1
+#                                if FoundSemantics:    
+#                                    syn_rule_name = syn_rule.name
+#                                    if(rule.RuleType=='Numeric'):
+#                                        Unit = CheckUnits(EvalCell_Header, EvalCell_Stub, EvalCell_SuperRow, EvalCell_Content, rule.DefaultUnit, rule.PossibleUnits)
+#                                    else:
+#                                        Unit = ''
+#                                    #Save the value to the database
+#                                    db.SaveExtracted(id_article,id_table,tableOrder,pmc_id,rule.ClassName,semValue,value,Unit,Source,gen_rule_name,syn_rule_name)
+#                                    last_sem_extracted = sem.position
+#                                    FoundSemantics = False
+#                                    if(c == len(syn_rule.SemanticValues)):
+#                                        AllSemSaved = True                                
+#            # Super-row rules                                
+#            if rule.wl_look_superrow:
+#                head_cells = db.getCellsWithMetaMapAnnotationWithRole(rule.PragmaticClass,rule.WhiteList,"4") # 2 is for stub, 1 is header, 3 is data, 4 is for super-row
+#                lastCellID = -1
+#                for head in head_cells:
+#                    CellID = head[0]
+#                    if(CellID==lastCellID):
+#                        continue
+#                    TableID = head[3]
+#                    RowN = head[4]
+#                    ColumtnN = head[5]
+#                    Content = head[9]
+#                    Header  = head [10]
+#                    Stub = head[11]
+#                    SuperRow = head[12]
+#                    AnnotationContent = head[14]
+#                    AnnotationDesc = head[19]
+#                    TableOrder = head[28]
+#                    idArt = head[34]
+#                    PMC = head[38]
+#                    lastCellID = CellID
+#                    row = RowN+1
+#                    CellRole = 3
+#                    SuperRowOfInterest = Content
+#                    SuperRow = SuperRowOfInterest
+#                    while CellRole!=4 and SuperRow!=None and SuperRowOfInterest!=None and SuperRowOfInterest in SuperRow and row<50:
+#                        rowRes = db.getCellsFromTableRowRowWithRole(TableID,row)
+#                        for res in rowRes:
+#                            SuperRow = res[12]
+#                            CellRole = res[14]
+#                            EvalCell_Id = res[0]
+#                            EvalCell_TableID = head[3]
+#                            EvalCell_RowN = head[4]
+#                            EvalCell_ColumtnN = head[5]
+#                            EvalCell_Content = head[9]
+#                            EvalCell_Header  = head [10]
+#                            EvalCell_Stub = head[11]
+#                            EvalCell_SuperRow = head[12]
+#                            ValidCandidate = CheckBListUsingRegex(rule.bl_look_header,rule.bl_look_stub,rule.bl_look_superrow,rule.bl_look_data,rule.BlackList,EvalCell_Header,EvalCell_Stub,EvalCell_SuperRow,EvalCell_Content)
+#                            if ValidCandidate:
+#                                FoundSemantics = False
+#                                AllSemSaved = False
+#                                for syn_rule in rule.PatternList:
+#                                    if(AllSemSaved ==True):
+#                                        break#
+#                                    pattern = unicode(syn_rule.regex.replace('\n',''),'utf-8')
+#                                    m = re.search(pattern,EvalCell_Content,re.UNICODE)
+#                                    if m == None:
+#                                        continue
+#                                    c = 0
+#                                    contains_term = False
+#                                    last_sem_extracted = -1
+#                                    for sem in syn_rule.SemanticValues:
+#                                        if contains_term and sem.Semantics=='mean':
+#                                            contains_term = False
+#                                            FoundSemantics = False
+#                                            continue
+#                                        if(AllSemSaved ==True):
+#                                            break
+#                                        if last_sem_extracted >= sem.position:
+#                                            continue
+#                                        value = m.group(sem.position)
+#                                        if len(sem.SemTermList)>0:
+#                                            contains_term =  CheckWListUsingRegex(True,True,True,False,sem.SemTermList,EvalCell_Header,EvalCell_Stub,EvalCell_SuperRow,EvalCell_Content)
+#                                            if(contains_term):
+#                                                semValue  = sem.Semantics
+#                                                FoundSemantics = True
+#                                        if len(sem.SemTermList)==0:
+#                                            semValue  = sem.Semantics
+#                                            FoundSemantics = True
+#                                        c = c+1
+#                                        if FoundSemantics:    
+#                                            syn_rule_name = syn_rule.name
+#                                            if(rule.RuleType=='Numeric'):
+#                                                Unit = CheckUnits(EvalCell_Header, EvalCell_Stub, EvalCell_SuperRow, EvalCell_Content, rule.DefaultUnit, rule.PossibleUnits)
+#                                            else:
+#                                                Unit = ''
+#                                        #Save the value to the database
+#                                            db.SaveExtracted(id_article,id_table,tableOrder,pmc_id,rule.ClassName,semValue,value,Unit,Source,gen_rule_name,syn_rule_name)
+#                                            last_sem_extracted = sem.position
+#                                            FoundSemantics = False
+##                                            if(c == len(syn_rule.SemanticValues)):
+#                                                AllSemSaved = True                
+##                        
+#                    
+#            pass          
                             
                         
                     

@@ -89,6 +89,13 @@ class QueryDBCalss:
         results = cursor.fetchall()
         return results
     
+    def getTableCellsWithTableArticleData(self,tableID):
+        cursor = self.db.cursor()
+        sql = "select * from cell inner join arttable on arttable.idTable=cell.Table_idTable inner join article on arttable.Article_idArticle=article.idArticle where Table_idTable='%d'" % tableID
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        return results
+    
     def getCellsInRow(self,tableID,RowN):
         cursor = self.db.cursor()
         sql = "SELECT * FROM cell inner join cellroles on idCell=Cell_idCell where Table_idTable='%d' and RowN='%d'" % (tableID,RowN)
@@ -436,9 +443,44 @@ class QueryDBCalss:
         results = cursor.fetchall()
         return results
     
+    def getCellsAnnId(self,pragmaticType,look_header,look_stub,look_super_row,look_data,stringList):
+        cursor = self.db.cursor()
+        sql = """SELECT idArticle,article.PMCID,idTable,TableOrder,SpecPragmatic,cell.idCell,CellType,RowN,ColumnN,cell.Content,WholeHeader,WholeStub,WholeSuperRow,HeaderRef,StubRef,SuperRowRef,annotation.Content,annotation.`Start`,annotation.`End`,annotation.AnnotationID,annotation.AnnotationDescription,annotation.AgentName FROM article 
+        inner join arttable on arttable.Article_idArticle=article.idArticle 
+        inner join cell on cell.Table_idTable=arttable.idTable
+        inner join annotation on  annotation.Cell_idCell=cell.idCell
+        where SpecPragmatic='BaselineCharacteristic'"""+pragmaticType.replace('\n','')+"""' and ("""
+        for white_string in stringList:
+            white_string=white_string.replace('\n','')
+            if( white_string == ''):
+                continue
+            sql = sql + ",annotation.AnnotationID LIKE '%"+white_string.replace('\n','')+"%' or "
+        sql =sql[0:-3]+")"
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        return results
+    
+    def getCellsDescId(self,pragmaticType,look_header,look_stub,look_super_row,look_data,stringList):
+        cursor = self.db.cursor()
+        sql = """SELECT idArticle,article.PMCID,idTable,TableOrder,SpecPragmatic,cell.idCell,CellType,RowN,ColumnN,cell.Content,WholeHeader,WholeStub,WholeSuperRow,HeaderRef,StubRef,SuperRowRef,annotation.Content,annotation.`Start`,annotation.`End`,annotation.AnnotationID,annotation.AnnotationDescription,annotation.AgentName FROM article 
+        inner join arttable on arttable.Article_idArticle=article.idArticle 
+        inner join cell on cell.Table_idTable=arttable.idTable
+        inner join annotation on  annotation.Cell_idCell=cell.idCell
+        where SpecPragmatic='BaselineCharacteristic'"""+pragmaticType.replace('\n','')+"""' and ("""
+        for white_string in stringList:
+            white_string=white_string.replace('\n','')
+            if( white_string == ''):
+                continue
+            sql = sql + ",annotation.AnnotationDescription LIKE '%"+white_string.replace('\n','')+"%' or "
+        sql =sql[0:-3]+")"
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        return results
+    
+    
     def getCellsGeneric(self,pragmaticType,look_header,look_stub,look_super_row,look_data,stringList):
         cursor = self.db.cursor()
-        sql = """SELECT idArticle,article.PMCID,idTable,TableOrder,SpecPragmatic,idCell,CellType,RowN,ColumnN,Content,WholeHeader,WholeStub,WholeSuperRow FROM article 
+        sql = """SELECT idArticle,article.PMCID,idTable,TableOrder,SpecPragmatic,idCell,CellType,RowN,ColumnN,Content,WholeHeader,WholeStub,WholeSuperRow,HeaderRef,StubRef,SuperRowRef FROM article 
         inner join arttable on arttable.Article_idArticle=article.idArticle 
         inner join cell on cell.Table_idTable=arttable.idTable  where SpecPragmatic='"""+pragmaticType.replace('\n','')+"""' and ("""
         if(look_header):
@@ -680,6 +722,33 @@ class QueryDBCalss:
         # 1- header, 2-stub,3-data, 4- super-row
     def getCellAnnotation(self,idCell):
         cursor = self.db.cursor()
-        sql = "SELECT Content,`Start`,`End`,AnnotationID,AnnotationDescription,AgentName FROM table_db.annotation where Cell_idCell='"+idCell+"'"
+        sql = "SELECT idAnnotation, Content,`Start`,`End`,AnnotationID,AnnotationDescription,AgentName,AgentType,AnnotationURL FROM table_db.annotation where Cell_idCell='"+str(idCell)+"'"
         cursor.execute(sql)
-        self.db.commit()
+        results = cursor.fetchall()
+        return results
+        
+    def getRelevantTables(self,WhiteWordList,WhiteAnnIDList,WhiteAnnDescList,PragmaticClass):
+        cursor = self.db.cursor()
+        sql = "SELECT  DISTINCT(idTable) from cell left join arttable on arttable.idTable=cell.Table_idTable left join annotation on cell.idCell=annotation.Cell_idCell where ("
+        for word in WhiteWordList:
+            if word == '':
+                continue
+            sql=sql+" cell.Content like '%"+word+"%' or"
+        for word in WhiteAnnIDList:
+            if word == '':
+                continue
+            sql=sql+" annotation.AnnotationID like '%"+word+"%' or"
+        for word in WhiteAnnDescList:
+            if word == '':
+                continue
+            sql=sql+" annotation.AnnotationDescription like '%"+word+"%' or"
+        sql =sql[0:-3]
+        sql = sql + ")"
+        if PragmaticClass!= "None":
+            sql = sql + " and SpecPragmatic="+PragmaticClass
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        return results
+        
+        
+    

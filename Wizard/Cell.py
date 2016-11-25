@@ -13,6 +13,7 @@ class Cell:
     tableOrder = -1
     pragmaticClass = ''
     idCell = 0
+    cellID = ''
     cellType = ""
     rowN = -1
     columnN = -1
@@ -20,11 +21,11 @@ class Cell:
     Header = ""
     Stub = ""
     Super_row = ""
-    HeaderId = -1
-    StubId = -1
-    SuperRowId = -1
+    HeaderId = ""
+    StubId = ""
+    SuperRowId = ""
+    Annotations = []
     isHeader = False
     isStub = False
     isSuperRow = False
     isData = False
-    extractedBecauseOfAnnotations = False

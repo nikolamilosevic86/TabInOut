@@ -169,7 +169,7 @@ def LoadRulesForProcessing(project_name,before_syntactic = False):
         rule.data_in_data = True
     else:
         rule.data_in_data = False
-        rules.append(rule)
+    rules.append(rule)
 
     return rules
         

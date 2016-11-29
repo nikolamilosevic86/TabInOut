@@ -7,11 +7,15 @@ Created at the University of Manchester, School of Computer Science
 Licence GNU/GPL 3.0
 '''
 import Tix
+
 import FileManipulationHelper
-from EditRule import EditRule
-from SimpleRuleOps import MoveRuleDown,MoveRuleUp,RemoveRule,AddRule,EnableLEntity,EnableLB
 from DatabaseSettings import ConfigureDatabaseScreen,ClearDBTables
-from SyntacticRules import MakeWorkingScreen
+from EditRule import EditRule
+from threading import Thread
+from SimpleRuleOps import MoveRuleDown,MoveRuleUp,RemoveRule,AddRule,EnableLEntity,EnableLB
+from SyntacticRules import ProcessDataV,RefreshDatabaseData
+from  RuleClasses_LoadRulesForProcessingClass import LoadRulesForProcessing
+
 Lb1 = None
 Lb3 = None   
 currentWhiteList = []
@@ -124,7 +128,29 @@ def LoadConfigScreen():
     NextButtonFrame.pack()
     NextButton = Tix.Button(NextButtonFrame, text="Next", fg="black",command=lambda: FinishFirstScreen(variab,E2,Lb3,s))
     NextButton.pack()
-    
+
+
+
+def MakeWorkingScreen(rules, window,project_name,skip_val):
+    window.withdraw()
+    top = Tix.Toplevel()
+    top.protocol("WM_DELETE_WINDOW", on_closing)
+    top.title("Working...")
+    top.geometry('{}x{}'.format(400, 400))
+    extracted = Tix.IntVar()
+    lab = Tix.Label(top,text="Please be patient... Processing...")
+    lab.pack()
+    Lb1 = Tix.Listbox(top,width=60,height=20)
+    Lb1.pack()
+    size = Lb1.size()
+    refreshButton = Tix.Button(top,text="Refresh",fg="black",command=lambda:RefreshDatabaseData(Lb1,project_name))
+    refreshButton.pack()
+    processing_rules = LoadRulesForProcessing(project_name)
+    thread = Thread(target = ProcessDataV, args = (project_name,processing_rules,top,extracted))
+    thread.start()
+    print "thread finished...exiting"
+    pass
+
 def on_closing():
     global main
     main.destroy()

@@ -262,12 +262,12 @@ def ProcessDataBase(project_name,rules):
                                 selectCell = True
                                 CueFoundInData = True
                     for word in WhiteDescList:
-                        for ann in cell.Annotation:
+                        for ann in cell.Annotations:
                             if ann.AnnotationDesc == word:
                                 selectCell = True
                                 CueFoundInData = True
                     for word in WhiteIDList:
-                        for ann in cell.Annotation:
+                        for ann in cell.Annotations:
                             if ann.AnnotationCID == word:
                                 selectCell = True
                                 CueFoundInData = True
@@ -284,12 +284,12 @@ def ProcessDataBase(project_name,rules):
                     heads = getHeaderCells(cell.HeaderId,cells,heads)
                     for head in heads:
                         for word in WhiteDescList:
-                            for ann in head.Annotation:
+                            for ann in head.Annotations:
                                 if ann.AnnotationDesc==word:
                                     selectCell = True
                                     CueFoundInHeader = True
                         for word in WhiteIDList:
-                            for ann in head.Annotation:
+                            for ann in head.Annotations:
                                 if ann.AnnotationCID == word:
                                     selectCell = True
                                     CueFoundInHeader = True
@@ -306,12 +306,12 @@ def ProcessDataBase(project_name,rules):
                     stubs = getStubCells(cell.StubId, cells, stubs)
                     for stub in stubs:
                         for word in WhiteDescList:
-                            for ann in stub.Annotation:
+                            for ann in stub.Annotations:
                                 if ann.AnnotationDesc == word:
                                     selectCell = True
                                     CueFoundInStub = True
                         for word in WhiteIDList:
-                            for ann in stub.Annotation:
+                            for ann in stub.Annotations:
                                 if ann.AnnotationCID == word:
                                     selectCell = True
                                     CueFoundInStub = True
@@ -328,12 +328,12 @@ def ProcessDataBase(project_name,rules):
                     superrows = getStubCells(cell.SuperRowId, cells, superrows)
                     for superrow in superrows:
                         for word in WhiteDescList:
-                            for ann in superrow.Annotation:
+                            for ann in superrow.Annotations:
                                 if ann.AnnotationDesc == word:
                                     selectCell = True
                                     CueFoundInSuperRow = True
                         for word in WhiteIDList:
-                            for ann in superrow.Annotation:
+                            for ann in superrow.Annotations:
                                 if ann.AnnotationCID == word:
                                     selectCell = True
                                     CueFoundInSuperRow = True
@@ -346,11 +346,11 @@ def ProcessDataBase(project_name,rules):
                             if (word in cell.Content):
                                 selectCell = False
                     for word in BlackDescList:
-                        for ann in cell.Annotation:
+                        for ann in cell.Annotations:
                             if ann.AnnotationDesc == word:
                                 selectCell = False
                     for word in BlackIDList:
-                        for ann in cell.Annotation:
+                        for ann in cell.Annotations:
                             if ann.AnnotationCID == word:
                                 selectCell = False
 
@@ -366,11 +366,11 @@ def ProcessDataBase(project_name,rules):
                     heads = getHeaderCells(cell.HeaderId, cells, heads)
                     for head in heads:
                         for word in BlackDescList:
-                            for ann in head.Annotation:
+                            for ann in head.Annotations:
                                 if ann.AnnotationDesc == word:
                                     selectCell = False
                         for word in BlackIDList:
-                            for ann in head.Annotation:
+                            for ann in head.Annotations:
                                 if ann.AnnotationCID == word:
                                     selectCell = False
 
@@ -385,11 +385,11 @@ def ProcessDataBase(project_name,rules):
                     stubs = getStubCells(cell.StubId, cells, stubs)
                     for stub in stubs:
                         for word in BlackDescList:
-                            for ann in stub.Annotation:
+                            for ann in stub.Annotations:
                                 if ann.AnnotationDesc == word:
                                     selectCell = False
                         for word in BlackIDList:
-                            for ann in stub.Annotation:
+                            for ann in stub.Annotations:
                                 if ann.AnnotationCID == word:
                                     selectCell = False
 

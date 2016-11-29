@@ -8,7 +8,7 @@ Licence GNU/GPL 3.0
 '''
 from Tkinter import *
 import FileManipulationHelper
-from threading import Thread
+
 import RuleClasses_LoadRulesForProcessingClass
 import Process_Data
 
@@ -170,24 +170,5 @@ def SaveSintacticRules(rules, window,project_name,skip_val):
             FileManipulationHelper.SaveSyntacticRules(rules,project_name,rule)
     #processing_rules = RuleClasses_LoadRulesForProcessingClass.LoadRulesForProcessing(project_name)
     #top.protocol("WM_DELETE_WINDOW", on_closing)
-    
 
-def MakeWorkingScreen(rules, window,project_name,skip_val):
-    window.withdraw()
-    top = Toplevel()
-    top.title("Working...")
-    top.geometry('{}x{}'.format(400, 400))
-    extracted = IntVar()
-    lab = Label(top,text="Please be patient... Processing...")
-    lab.pack()
-    Lb1 = Listbox(top,width=60,height=20)
-    Lb1.pack()
-    size = Lb1.size()
-    refreshButton = Button(top,text="Refresh",fg="black",command=lambda:RefreshDatabaseData(Lb1,project_name))
-    refreshButton.pack()
-    processing_rules = RuleClasses_LoadRulesForProcessingClass.LoadRulesForProcessing(project_name)
-    thread = Thread(target = ProcessDataV, args = (project_name,processing_rules,top,extracted))
-    thread.start()
-    print "thread finished...exiting"
-    pass
     

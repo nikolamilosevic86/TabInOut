@@ -211,23 +211,31 @@ def ProcessDataBase(project_name,rules):
         # Get different cue lists from one big list containing annotations and lexical cues
         for word in rule.WhiteList:
             if('[annID]:' in word):
-                WhiteIDList.append(word[8:])
+                if(word[8:]!=''):
+                    WhiteIDList.append(word[8:])
             elif('[annDesc]:'in word):
-                WhiteDescList.append(word[10:])
+                if(word[10:]!=''):
+                    WhiteDescList.append(word[10:])
             elif('[word]:'in word):
-                WhiteWordList.append(word[7:])
+                if(word[7:]!=''):
+                    WhiteWordList.append(word[7:])
             else:
-                WhiteWordList.append(word)  
+                if(word!=''):
+                    WhiteWordList.append(word)
                 
         for word in rule.BlackList:
             if('[annID]:' in word):
-                BlackIDList.append(word[8:])
+                if (word[8:] != ''):
+                    BlackIDList.append(word[8:])
             elif('[annDesc]:'in word):
-                BlackDescList.append(word[10:])
+                if (word[10:] != ''):
+                    BlackDescList.append(word[10:])
             elif('[word]:'in word):
-                BlackWordList.append(word[7:])
+                if (word[7:] != ''):
+                    BlackWordList.append(word[7:])
             else:
-                BlackWordList.append(word) 
+                if (word[7:] != ''):
+                    BlackWordList.append(word)
             # Get tables that contain something from white list in it
         tabres = db.getRelevantTables(WhiteWordList,WhiteIDList,WhiteDescList,rule.PragmaticClass)
         tables = []
@@ -241,26 +249,36 @@ def ProcessDataBase(project_name,rules):
                 extractData = True
                 extracted = False
                 selectCell = False
+                CueFoundInHeader = False
+                CueFoundInStub = False
+                CueFoundInSuperRow = False
+                CueFoundInData = False
 
                 #Check white list against data cells
                 if rule.wl_look_data:
                     for word in WhiteWordList:
-                        if(word in cell.Content):
-                            selectCell = True
+                        if cell.Content != None:
+                            if(word in cell.Content):
+                                selectCell = True
+                                CueFoundInData = True
                     for word in WhiteDescList:
                         for ann in cell.Annotation:
                             if ann.AnnotationDesc == word:
                                 selectCell = True
+                                CueFoundInData = True
                     for word in WhiteIDList:
                         for ann in cell.Annotation:
                             if ann.AnnotationCID == word:
                                 selectCell = True
+                                CueFoundInData = True
 
                 # Check white list against heades
                 if rule.wl_look_header:
                     for word in WhiteWordList:
-                        if (word in cell.Header):
-                            selectCell = True
+                        if cell.Header != None:
+                            if (word in cell.Header):
+                                selectCell = True
+                                CueFoundInHeader = True
                     idHeader = cell.HeaderId
                     heads = []
                     heads = getHeaderCells(cell.HeaderId,cells,heads)
@@ -269,16 +287,20 @@ def ProcessDataBase(project_name,rules):
                             for ann in head.Annotation:
                                 if ann.AnnotationDesc==word:
                                     selectCell = True
+                                    CueFoundInHeader = True
                         for word in WhiteIDList:
                             for ann in head.Annotation:
                                 if ann.AnnotationCID == word:
                                     selectCell = True
+                                    CueFoundInHeader = True
 
                 # Check white list against stub
                 if rule.wl_look_stub:
                     for word in WhiteWordList:
-                        if (word in cell.Stub):
+                        if cell.Stub != None:
+                            if (word in cell.Stub):
                                 selectCell = True
+                                CueFoundInStub = True
                     idStub = cell.StubId
                     stubs = []
                     stubs = getStubCells(cell.StubId, cells, stubs)
@@ -287,16 +309,20 @@ def ProcessDataBase(project_name,rules):
                             for ann in stub.Annotation:
                                 if ann.AnnotationDesc == word:
                                     selectCell = True
+                                    CueFoundInStub = True
                         for word in WhiteIDList:
                             for ann in stub.Annotation:
                                 if ann.AnnotationCID == word:
                                     selectCell = True
+                                    CueFoundInStub = True
 
                 # Check white list against super-row
                 if rule.wl_look_superrow:
                     for word in WhiteWordList:
-                        if (word in cell.Super_row):
-                            selectCell = True
+                        if cell.Super_row != None:
+                            if (word in cell.Super_row):
+                                selectCell = True
+                                CueFoundInSuperRow = True
                     idSuperRow = cell.SuperRowId
                     superrows = []
                     superrows = getStubCells(cell.SuperRowId, cells, superrows)
@@ -305,17 +331,20 @@ def ProcessDataBase(project_name,rules):
                             for ann in superrow.Annotation:
                                 if ann.AnnotationDesc == word:
                                     selectCell = True
+                                    CueFoundInSuperRow = True
                         for word in WhiteIDList:
                             for ann in superrow.Annotation:
                                 if ann.AnnotationCID == word:
                                     selectCell = True
+                                    CueFoundInSuperRow = True
 
 #=============================================================================================
                 # Check black list against data cells
                 if rule.bl_look_data:
                     for word in BlackWordList:
-                        if (word in cell.Content):
-                            selectCell = False
+                        if cell.Content != None:
+                            if (word in cell.Content):
+                                selectCell = False
                     for word in BlackDescList:
                         for ann in cell.Annotation:
                             if ann.AnnotationDesc == word:
@@ -329,8 +358,9 @@ def ProcessDataBase(project_name,rules):
                 # Check black list against heades
                 if rule.bl_look_header:
                     for word in BlackWordList:
-                        if (word in cell.Header):
-                            selectCell = False
+                        if cell.Header != None:
+                            if (word in cell.Header):
+                                selectCell = False
                     idHeader = cell.HeaderId
                     heads = []
                     heads = getHeaderCells(cell.HeaderId, cells, heads)
@@ -347,8 +377,9 @@ def ProcessDataBase(project_name,rules):
                                                 # Check white list against stub
                 if rule.bl_look_stub:
                     for word in BlackWordList:
-                        if (word in cell.Stub):
-                            selectCell = False
+                        if cell.Stub != None:
+                            if (word in cell.Stub):
+                                selectCell = False
                     idStub = cell.StubId
                     stubs = []
                     stubs = getStubCells(cell.StubId, cells, stubs)
@@ -365,8 +396,9 @@ def ProcessDataBase(project_name,rules):
                 # Check white list against super-row
                 if rule.bl_look_superrow:
                     for word in BlackWordList:
-                        if (word in cell.Super_row):
-                            selectCell = False
+                        if cell.SuperRow != None:
+                            if (word in cell.Super_row):
+                                selectCell = False
                     idSuperRow = cell.SuperRowId
                     superrows = []
                     superrows = getStubCells(cell.SuperRowId, cells, superrows)
@@ -421,6 +453,11 @@ def ProcessDataBase(project_name,rules):
                             c = c+1
                             if FoundSemantics:
                                 syn_rule_name = syn_rule.name
+                                # Be a bit smart for generating Source
+                                if(CueFoundInHeader and rule.data_in_data):
+                                    Source = cell.Stub
+                                else:
+                                    Source = cell.Header
                                 # Get unit
                                 Unit = CheckUnits(cell.Header, cell.Stub, cell.Super_row, cell.Content, rule.DefaultUnit, rule.PossibleUnits)
                                 #Save the value to the database

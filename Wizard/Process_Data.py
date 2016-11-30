@@ -234,7 +234,7 @@ def ProcessDataBase(project_name,rules):
                 if (word[7:] != ''):
                     BlackWordList.append(word[7:])
             else:
-                if (word[7:] != ''):
+                if (word != ''):
                     BlackWordList.append(word)
             # Get tables that contain something from white list in it
         tabres = db.getRelevantTables(WhiteWordList,WhiteIDList,WhiteDescList,rule.PragmaticClass)

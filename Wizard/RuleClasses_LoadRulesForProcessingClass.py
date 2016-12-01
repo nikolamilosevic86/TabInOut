@@ -23,6 +23,8 @@ def LoadSyntacticRoles(project_name,rule_name):
     for line in lines:
         if line == '\n':
             continue
+        if line == '':
+            continue
         if(line[0]=='+'):
             i = 0
             if pattern.name != '':
@@ -38,11 +40,18 @@ def LoadSyntacticRoles(project_name,rule_name):
         else:
             sem = line.split('->')
             pvs = RuleClasses_PatternValueSem.PatternValueSem()
+            pvs.SemTermList = []
             i= i+1
+
+            if(len(sem)<2):
+                continue
+            print sem[0], sem[1]
             pvs.Semantics = sem[1]
             val  = sem[0].split(':')
             if (len(val)>1):
-                pvs.SemTermList = val[1].split(',')
+                arrays = val[1].split(';')
+                for array in arrays:
+                    pvs.SemTermList.append(array.split(','))
             pvs.position = int(val[0])
             semanticVals.append(pvs)
     pattern.SemanticValues = semanticVals

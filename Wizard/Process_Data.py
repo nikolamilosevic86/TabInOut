@@ -14,9 +14,11 @@ import Annotation
 
 Source = ''
 
-def CheckWListUsingRegex(look_header,look_stub,look_superrow,look_data,List,Header,Stub,Super_row,Data):
+
+def CheckSemTermListUsingRegex2(look_header,look_stub,look_superrow,look_data,List,Header,Stub,Super_row,Data):
     global Source
     ContainsValue = False
+    string_pos = 0
     if(look_header):
         for item in List:
             if Header == None or item.replace('\n','') =='':
@@ -24,8 +26,10 @@ def CheckWListUsingRegex(look_header,look_stub,look_superrow,look_data,List,Head
             regex = '\\b('+item.replace('\n','')+')\\b'
             m1 = re.search(regex,Header)
             if(m1!=None):
-                ContainsValue = True
-                Source = Stub
+                if string_pos<=m1.start():
+                    string_pos = m1.start()
+                    ContainsValue = True
+                    Source = Stub
     if(look_stub):
         for item in List:
             if(Stub == None or item.replace('\n','') ==''):
@@ -33,8 +37,10 @@ def CheckWListUsingRegex(look_header,look_stub,look_superrow,look_data,List,Head
             regex = '\\b('+item.replace('\n','')+')\\b'
             m1 = re.search(regex,Stub)
             if(m1!=None):
-                ContainsValue = True
-                Source = Header
+                if string_pos<=m1.start():
+                    string_pos = m1.start()
+                    ContainsValue = True
+                    Source = Header
     if(look_superrow):
         for item in List:
             if Super_row == None or item.replace('\n','') =='':
@@ -42,8 +48,10 @@ def CheckWListUsingRegex(look_header,look_stub,look_superrow,look_data,List,Head
             regex = '\\b('+item.replace('\n','')+')\\b'
             m1 = re.search(regex,Super_row)
             if(m1!=None):
-                ContainsValue = True
-                Source = "h:"+Header+"; s:"+Stub
+                if string_pos<=m1.start():
+                    string_pos = m1.start()
+                    ContainsValue = True
+                    Source = "h:"+Header+"; s:"+Stub
     if(look_data):
         for item in List:
             if Data == None or item.replace('\n','') =='':
@@ -51,8 +59,61 @@ def CheckWListUsingRegex(look_header,look_stub,look_superrow,look_data,List,Head
             regex = '\\b('+item.replace('\n','')+')\\b'
             m1 = re.search(regex,Data)
             if(m1!=None):
-                ContainsValue = True
-                Source = "h:"+Header+"; s:"+Stub
+                if string_pos<=m1.start():
+                    string_pos = m1.start()
+                    ContainsValue = True
+                    Source = "h:"+Header+"; s:"+Stub
+    return ContainsValue
+
+def CheckSemTermListUsingRegex(look_header,look_stub,look_superrow,look_data,BigList,Header,Stub,Super_row,Data):
+    global Source
+    ContainsValue = False
+    string_pos = 0
+    for List in BigList:
+        if(look_header):
+            for item in List:
+                if Header == None or item.replace('\n','') =='':
+                    continue
+                regex = '\\b('+item.replace('\n','')+')\\b'
+                m1 = re.search(regex,Header)
+                if(m1!=None):
+                    if string_pos<=m1.start():
+                        string_pos = m1.start()
+                        ContainsValue = True
+                        Source = Stub
+        if(look_stub):
+            for item in List:
+                if(Stub == None or item.replace('\n','') ==''):
+                    continue
+                regex = '\\b('+item.replace('\n','')+')\\b'
+                m1 = re.search(regex,Stub)
+                if(m1!=None):
+                    if string_pos<=m1.start():
+                        string_pos = m1.start()
+                        ContainsValue = True
+                        Source = Header
+        if(look_superrow):
+            for item in List:
+                if Super_row == None or item.replace('\n','') =='':
+                    continue
+                regex = '\\b('+item.replace('\n','')+')\\b'
+                m1 = re.search(regex,Super_row)
+                if(m1!=None):
+                    if string_pos<=m1.start():
+                        string_pos = m1.start()
+                        ContainsValue = True
+                        Source = "h:"+Header+"; s:"+Stub
+        if(look_data):
+            for item in List:
+                if Data == None or item.replace('\n','') =='':
+                    continue
+                regex = '\\b('+item.replace('\n','')+')\\b'
+                m1 = re.search(regex,Data)
+                if(m1!=None):
+                    if string_pos<=m1.start():
+                        string_pos = m1.start()
+                        ContainsValue = True
+                        Source = "h:"+Header+"; s:"+Stub
     return ContainsValue
 
 def CheckBListUsingRegex(look_header,look_stub,look_superrow,look_data,List,Header,Stub,Super_row,Data):
@@ -396,7 +457,7 @@ def ProcessDataBase(project_name,rules):
                 # Check white list against super-row
                 if rule.bl_look_superrow:
                     for word in BlackWordList:
-                        if cell.SuperRow != None:
+                        if cell.Super_row != None:
                             if (word in cell.Super_row):
                                 selectCell = False
                     idSuperRow = cell.SuperRowId
@@ -442,7 +503,7 @@ def ProcessDataBase(project_name,rules):
                             value = m.group(sem.position)
                             #Checking terms in case there are multiple semantics for certain group
                             if len(sem.SemTermList)>0:
-                                contains_term =  CheckWListUsingRegex(True,True,True,False,sem.SemTermList,cell.Header,cell.Stub,cell.Super_row,cell.Content)
+                                contains_term = CheckSemTermListUsingRegex(True,True,True,False,sem.SemTermList,cell.Header,cell.Stub,cell.Super_row,cell.Content)
                                 if(contains_term):
                                     semValue  = sem.Semantics
                                     FoundSemantics = True

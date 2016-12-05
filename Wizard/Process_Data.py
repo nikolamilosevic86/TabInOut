@@ -274,7 +274,7 @@ def ProcessDataBase(project_name,rules):
             if('[annID]:' in word):
                 if(word[8:]!=''):
                     WhiteIDList.append(word[8:])
-            elif('[annDesc]:'in word):
+            elif('[annType]:'in word):
                 if(word[10:]!=''):
                     WhiteDescList.append(word[10:])
             elif('[word]:'in word):
@@ -288,7 +288,7 @@ def ProcessDataBase(project_name,rules):
             if('[annID]:' in word):
                 if (word[8:] != ''):
                     BlackIDList.append(word[8:])
-            elif('[annDesc]:'in word):
+            elif('[annType]:'in word):
                 if (word[10:] != ''):
                     BlackDescList.append(word[10:])
             elif('[word]:'in word):

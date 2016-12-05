@@ -272,7 +272,7 @@ def WhiteListWindow(project_name,rule_name):
     BLSuperRowCB = Tix.Checkbutton(choiseFrame,text="Super-row",variable = bl_look_super).grid(row=10,column=0,sticky='w')
     bl_look_data = Tix.IntVar()
     BLDataCB = Tix.Checkbutton(choiseFrame,text="Data",variable = bl_look_data).grid(row=11,column=0,sticky='w')
-    namerule_label2 = Tix.Label(itemsFrame,text="To look for annotations ids (such as CUI from UMLS)\nwrite [annID]: (eg. '[annID]:C1696465'). To look\nfor annotation descriptions (such as Semantic Type\nin UMLS) write [annDesc]: in front of cue (e.g.\n'[annDesc]:Biomedical or Dental Materia' or\n'[annDesc]:(bodm)'). To write just lexical cue,\njust write word, without prefixes, or [word]:\n(e.g. 'age' or '[word]:age')", justify=Tix.LEFT).grid(row=0,sticky='w')
+    namerule_label2 = Tix.Label(itemsFrame,text="To look for annotations ids (such as CUI from UMLS)\nwrite [annID]: (eg. '[annID]:C1696465'). To look\nfor annotation types (such as Semantic Type\nin UMLS) write [annType]: in front of cue (e.g.\n'[annType]:Biomedical or Dental Materia' or\n'[annDesc]:(bodm)'). To write just lexical cue,\njust write word, without prefixes, or [word]:\n(e.g. 'age' or '[word]:age')", justify=Tix.LEFT).grid(row=0,sticky='w')
     namerule_label = Tix.Label(itemsFrame,text="List of terms in whitelist").grid(row=1,sticky='w')
     whitelist = Tix.Text(itemsFrame,height=5,width=50)
     whitelist.grid(row=2,sticky='w')
@@ -314,7 +314,7 @@ def WhiteListWindowEdit(project_name,rule_name):
     #look_all = Tix.IntVar()
     #EverywhereCB = Tix.Checkbutton(choiseFrame,text="Everywhere",variable=look_all).grid(row=7,column=0,sticky='w')
     
-    namerule_label2 = Tix.Label(itemsFrame,text="To look for annotations ids (such as CUI from UMLS)\nwrite [annID]: (eg. '[annID]:C1696465'). To look\nfor annotation descriptions (such as Semantic Type\nin UMLS) write [annDesc]: in front of cue (e.g.\n'[annDesc]:Biomedical or Dental Materia' or\n'[annDesc]:(bodm)'). To write just lexical cue,\njust write word, without prefixes, or [word]:\n(e.g. 'age' or '[word]:age')", justify=Tix.LEFT).grid(row=0,sticky='w')
+    namerule_label2 = Tix.Label(itemsFrame,text="To look for annotations ids (such as CUI from UMLS)\nwrite [annID]: (eg. '[annID]:C1696465'). To look\nfor annotation types (such as Semantic Type\nin UMLS) write [annType]: in front of cue (e.g.\n'[annDesc]:Biomedical or Dental Materia' or\n'[annDesc]:(bodm)'). To write just lexical cue,\njust write word, without prefixes, or [word]:\n(e.g. 'age' or '[word]:age')", justify=Tix.LEFT).grid(row=0,sticky='w')
     
     namerule_label = Tix.Label(itemsFrame,text="List of terms in whitelsit").grid(row=1,sticky='w')
     WhiteListText = Tix.Text(itemsFrame,height=10,width=50)

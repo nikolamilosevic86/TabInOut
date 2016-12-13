@@ -14,6 +14,7 @@ if __name__=="__main__":
     queryclass = QueryDBCalss("localhost","root","","table_db_amia", )
     queryclass.CreateAdditionalDDITables()
     cursor = queryclass.db.cursor()
+    #Get cells and annotations that contain potential DDIs
     sql = """select annotation.Content,AnnotationDescription,Table_idTable,RowN,ColumnN,TableOrder,idArticle,Title,SpecId,
     AnnotationID from annotation inner join cell on cell.idCell=annotation.Cell_idCell inner join arttable on
     arttable.idTable=cell.Table_idTable inner join article on article.idArticle = arttable.Article_idArticle
@@ -38,6 +39,7 @@ if __name__=="__main__":
         Title = res[7]
         SetId = res[8]
         AnnotationID = res[9]
+        #Make sure it extracts drugs from only one column
         if(not isfirst or ColumnN<columnOfDrugs):
             isfirst = True
             columnOfDrugs = ColumnN
@@ -55,13 +57,16 @@ if __name__=="__main__":
         if(AnnotationConent in ["drug","drugs"]):
             continue
 
+        #QUERY UMLS for ATC codes
         umls_query = QueryDBCalss("localhost", "root", "", "umls", )
         umls_cursor = umls_query.db.cursor()
-
         sql_umls = "SELECT CODE FROM umls.mrconso where SAB='ATC' and CUI='"+AnnotationID+"'"
-        print sql_umls
         umls_cursor.execute(sql_umls)
         umls_results = umls_cursor.fetchall()
+        # Set flag based on ATC:
+        #-1: The name was not found in ATC
+        # 0: It is a drug/ingrediant name
+        # 1: It is a group name
         isGroup = -1
         print "size:"+str(umls_cursor.rowcount)
         for umls_res in umls_results:
@@ -72,7 +77,7 @@ if __name__=="__main__":
             if len(umls_res[0])==7:
                 isGroup = 0
 
-
+        #Save output to database
         cursor = queryclass.db.cursor()
         sql = "INSERT into ddiinfo (documentId, SpecId,idTable,TableName,Drug1,Drug2,CueRule,isGroup) values (%s,%s,%s,%s,%s,%s,%s,%s)"
         cursor.execute(sql,(idArticle,SetId,TableId,TableOrder,drugname,AnnotationConent,"DDI Method 1",isGroup))

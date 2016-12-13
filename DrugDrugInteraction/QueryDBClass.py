@@ -584,7 +584,7 @@ class QueryDBCalss:
         cursor = self.db.cursor()
         sql = "Drop table if exists  DDIInfo"
         cursor.execute(sql)
-        sql = "Create table if not exists DDIInfo (id int NOT NULL AUTO_INCREMENT,documentId INT, SpecId varchar(255),idTable int,TableName varchar(200),Drug1 varchar(255),Drug2 varchar(255),CueRule varchar(255), PRIMARY KEY (id))"
+        sql = "Create table if not exists DDIInfo (id int NOT NULL AUTO_INCREMENT,documentId INT, SpecId varchar(255),idTable int,TableName varchar(200),Drug1 varchar(255),Drug2 varchar(255),CueRule varchar(255),isGroup int, PRIMARY KEY (id))"
         cursor.execute(sql)
     
     def CreateAdditionalTables(self):

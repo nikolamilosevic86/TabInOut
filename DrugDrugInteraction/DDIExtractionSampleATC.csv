@@ -1,0 +1,596 @@
+SpecId,TableName,Drug1,Drug2,isGroup
+22167b92-da4a-4b6d-aceb-04dacd0afcd3,"Table 12"," LAMOTRIGINE",estrogen,-1
+22167b92-da4a-4b6d-aceb-04dacd0afcd3,"Table 12"," LAMOTRIGINE","ethinyl estradiol",0
+22167b92-da4a-4b6d-aceb-04dacd0afcd3,"Table 12"," LAMOTRIGINE",levonorgestrel,0
+22167b92-da4a-4b6d-aceb-04dacd0afcd3,"Table 12"," LAMOTRIGINE","oral contraceptive preparations",-1
+22167b92-da4a-4b6d-aceb-04dacd0afcd3,"Table 12"," LAMOTRIGINE",carbamazepine,0
+22167b92-da4a-4b6d-aceb-04dacd0afcd3,"Table 12"," LAMOTRIGINE",carbamazepin,-1
+22167b92-da4a-4b6d-aceb-04dacd0afcd3,"Table 12"," LAMOTRIGINE","carbamazepine epoxide",-1
+22167b92-da4a-4b6d-aceb-04dacd0afcd3,"Table 12"," LAMOTRIGINE",phenobarbital,0
+22167b92-da4a-4b6d-aceb-04dacd0afcd3,"Table 12"," LAMOTRIGINE",primidone,0
+22167b92-da4a-4b6d-aceb-04dacd0afcd3,"Table 12"," LAMOTRIGINE",phenytoin,0
+0dc12b44-73f8-416c-88bb-0b11b3e35458,"Table 18",Risperidone,fluoxetine,0
+0dc12b44-73f8-416c-88bb-0b11b3e35458,"Table 18",Risperidone,paroxetine,0
+0dc12b44-73f8-416c-88bb-0b11b3e35458,"Table 18",Risperidone,ranitidine,0
+0dc12b44-73f8-416c-88bb-0b11b3e35458,"Table 18",Risperidone,cimetidine,0
+0dc12b44-73f8-416c-88bb-0b11b3e35458,"Table 18",Risperidone,amitriptyline,0
+10553514-8001-4281-85b6-96d99ef6822a,"Table 0",Cesamet,cocaine,0
+10553514-8001-4281-85b6-96d99ef6822a,"Table 0",Cesamet,"sympathomimetic agents",1
+10553514-8001-4281-85b6-96d99ef6822a,"Table 0",Cesamet,atropine,0
+10553514-8001-4281-85b6-96d99ef6822a,"Table 0",Cesamet,scopolamine,0
+10553514-8001-4281-85b6-96d99ef6822a,"Table 0",Cesamet,antihistamines,-1
+10553514-8001-4281-85b6-96d99ef6822a,"Table 0",Cesamet,"anticholinergic agents",1
+10553514-8001-4281-85b6-96d99ef6822a,"Table 0",Cesamet,amoxapine,0
+10553514-8001-4281-85b6-96d99ef6822a,"Table 0",Cesamet,desipramine,0
+10553514-8001-4281-85b6-96d99ef6822a,"Table 0",Cesamet,"tricyclic antidepressants",-1
+10553514-8001-4281-85b6-96d99ef6822a,"Table 0",Cesamet,barbiturates,-1
+10553514-8001-4281-85b6-96d99ef6822a,"Table 0",Cesamet,benzodiazepines,-1
+10553514-8001-4281-85b6-96d99ef6822a,"Table 0",Cesamet,ethanol,0
+10553514-8001-4281-85b6-96d99ef6822a,"Table 0",Cesamet,lithium,0
+10553514-8001-4281-85b6-96d99ef6822a,"Table 0",Cesamet,opioids,-1
+10553514-8001-4281-85b6-96d99ef6822a,"Table 0",Cesamet,buspirone,0
+10553514-8001-4281-85b6-96d99ef6822a,"Table 0",Cesamet,"muscle relaxants",1
+10553514-8001-4281-85b6-96d99ef6822a,"Table 0",Cesamet,"cns depressants",-1
+10553514-8001-4281-85b6-96d99ef6822a,"Table 0",Cesamet,disulfiram,0
+10553514-8001-4281-85b6-96d99ef6822a,"Table 0",Cesamet,antipyrine,0
+10553514-8001-4281-85b6-96d99ef6822a,"Table 0",Cesamet,theophylline,0
+10553514-8001-4281-85b6-96d99ef6822a,"Table 0",Cesamet,naltrexone,0
+10553514-8001-4281-85b6-96d99ef6822a,"Table 0",Cesamet,alcohol,0
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,tizanidine,0
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,"oral drugs",-1
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,antidiabetic,-1
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,"antidiabetic drugs",-1
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,"anti coagulant",-1
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,methotrexate,0
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,ropinirole,0
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,clozapine,0
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,nsaids,-1
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,sildenafil,0
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,duloxetine,0
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,caffeine,0
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,"xanthine derivatives",-1
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,antacids,1
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,sucralfate,0
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,multivitamins,-1
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,magnesium,-1
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,polymeric,-1
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,sevelamer,0
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,videx,-1
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,iron,-1
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,zinc,-1
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,"aluminum antacids",-1
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,"phosphate binder",-1
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,"lanthanum carbonate",0
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,didanosine,0
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,"chewable tablets",-1
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,buffered,-1
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,powder,-1
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,calcium,-1
+178dc379-e2b8-4b47-9f0c-3fc7fb435c36,"Table 9",ciprofloxacin,probenecid,0
+0224b5a6-25a3-44c9-b94f-90e2e064c164,"Table 1",Prometrium,estradiol,0
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,iodine,-1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,"radiographic contrast agents",-1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,aluminium,-1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,aluminum,-1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,"magnesium sulfate",0
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,hydroxides,-1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,"cholestyramine resins",0
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,heroin,0
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,furosemide,0
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,mg,-1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,"steroidal anti inflammatory drugs",-1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,fenamates,-1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,phenylbutazone,0
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,salicylates,-1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,propranolol,0
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,glucocorticoids,-1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,propylthiouracil,0
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,"adrenergic antagonists",-1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,dexamethasone,0
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,anticoagulants,-1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,cumarin,-1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,"antidepressants tricyclics",-1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,maprotilin,0
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,"selective serotonin reuptake inhibitors",1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,ssris,1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,sertraline,0
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,biguanides,-1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,meglitinides,-1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,sulfonylureas,-1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,thiazolidinediones,-1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,insulin,-1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,"antidiabetic agents",-1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,"cardiac glycosides",1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,ketamine,0
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,"methyl xanthine",-1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,methylxanthine,-1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,bronchodilators,-1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,agent,-1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,sympathomimetics,1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,chloral,-1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,aminosalicylate,-1
+2704cdb8-72a4-45cd-b718-d9723a284506,"Table 2",Synthroid,"thiazide diuretics",-1
+22882f81-84de-456a-8f65-a60b0f3d8062,"Table 3",Colcrys,"reductase inhibitor",-1
+22882f81-84de-456a-8f65-a60b0f3d8062,"Table 3",Colcrys,atorvastatin,0
+22882f81-84de-456a-8f65-a60b0f3d8062,"Table 3",Colcrys,fluvastatin,0
+22882f81-84de-456a-8f65-a60b0f3d8062,"Table 3",Colcrys,lovastatin,0
+22882f81-84de-456a-8f65-a60b0f3d8062,"Table 3",Colcrys,pravastatin,0
+22882f81-84de-456a-8f65-a60b0f3d8062,"Table 3",Colcrys,simvastatin,0
+22882f81-84de-456a-8f65-a60b0f3d8062,"Table 3",Colcrys,"lipid lowering drug",-1
+22882f81-84de-456a-8f65-a60b0f3d8062,"Table 3",Colcrys,fibrates,-1
+22882f81-84de-456a-8f65-a60b0f3d8062,"Table 3",Colcrys,"digitalis glycosides",1
+22882f81-84de-456a-8f65-a60b0f3d8062,"Table 3",Colcrys,digoxin,0
+0c48f867-0fa3-4d52-9830-0f400dd4810e,"Table 2",simvastatin,itraconazole,0
+0c48f867-0fa3-4d52-9830-0f400dd4810e,"Table 2",simvastatin,ketoconazole,0
+0c48f867-0fa3-4d52-9830-0f400dd4810e,"Table 2",simvastatin,posaconazole,0
+0c48f867-0fa3-4d52-9830-0f400dd4810e,"Table 2",simvastatin,voriconazole,0
+0c48f867-0fa3-4d52-9830-0f400dd4810e,"Table 2",simvastatin,"hiv protease inhibitors",-1
+0c48f867-0fa3-4d52-9830-0f400dd4810e,"Table 2",simvastatin,nefazodone,0
+0c48f867-0fa3-4d52-9830-0f400dd4810e,"Table 2",simvastatin,cobicistat,0
+0c48f867-0fa3-4d52-9830-0f400dd4810e,"Table 2",simvastatin,danazol,0
+0c48f867-0fa3-4d52-9830-0f400dd4810e,"Table 2",simvastatin,verapamil,0
+0c48f867-0fa3-4d52-9830-0f400dd4810e,"Table 2",simvastatin,diltiazem,0
+0c48f867-0fa3-4d52-9830-0f400dd4810e,"Table 2",simvastatin,dronedarone,0
+0c48f867-0fa3-4d52-9830-0f400dd4810e,"Table 2",simvastatin,amiodarone,0
+0c48f867-0fa3-4d52-9830-0f400dd4810e,"Table 2",simvastatin,amlodipine,0
+0c48f867-0fa3-4d52-9830-0f400dd4810e,"Table 2",simvastatin,ranolazine,0
+0c48f867-0fa3-4d52-9830-0f400dd4810e,"Table 2",simvastatin,lomitapide,0
+08982e49-d2eb-4b25-b01a-1be52fd669ef,"Table 5",Aptivus,h,-1
+08982e49-d2eb-4b25-b01a-1be52fd669ef,"Table 5",Aptivus,cl,-1
+08982e49-d2eb-4b25-b01a-1be52fd669ef,"Table 6",Aptivus,f,-1
+08982e49-d2eb-4b25-b01a-1be52fd669ef,"Table 7",Aptivus,maalox,-1
+08982e49-d2eb-4b25-b01a-1be52fd669ef,"Table 7",Aptivus,"atazanavir ritonavir",-1
+08982e49-d2eb-4b25-b01a-1be52fd669ef,"Table 7",Aptivus,efavirenz,0
+08982e49-d2eb-4b25-b01a-1be52fd669ef,"Table 7",Aptivus,"ethinyl estradiol norethindrone",0
+08982e49-d2eb-4b25-b01a-1be52fd669ef,"Table 7",Aptivus,fluconazole,0
+08982e49-d2eb-4b25-b01a-1be52fd669ef,"Table 7",Aptivus,loperamide,0
+08982e49-d2eb-4b25-b01a-1be52fd669ef,"Table 7",Aptivus,rosuvastatin,0
+08982e49-d2eb-4b25-b01a-1be52fd669ef,"Table 7",Aptivus,tadalafil,0
+08982e49-d2eb-4b25-b01a-1be52fd669ef,"Table 7",Aptivus,tenofovir,-1
+08982e49-d2eb-4b25-b01a-1be52fd669ef,"Table 7",Aptivus,valaciclovir,0
+08982e49-d2eb-4b25-b01a-1be52fd669ef,"Table 7",Aptivus,zidovudine,0
+08982e49-d2eb-4b25-b01a-1be52fd669ef,"Table 8",Aptivus,amprenavir,0
+08982e49-d2eb-4b25-b01a-1be52fd669ef,"Table 8",Aptivus,buprenorphine,0
+08982e49-d2eb-4b25-b01a-1be52fd669ef,"Table 8",Aptivus,oh,-1
+08982e49-d2eb-4b25-b01a-1be52fd669ef,"Table 8",Aptivus,lopinavir,-1
+08982e49-d2eb-4b25-b01a-1be52fd669ef,"Table 8",Aptivus,"n demethyl loperamide",-1
+08982e49-d2eb-4b25-b01a-1be52fd669ef,"Table 8",Aptivus,methadone,0
+08982e49-d2eb-4b25-b01a-1be52fd669ef,"Table 8",Aptivus,norethindrone,0
+08982e49-d2eb-4b25-b01a-1be52fd669ef,"Table 8",Aptivus,raltegravir,0
+08982e49-d2eb-4b25-b01a-1be52fd669ef,"Table 8",Aptivus,saquinavir,0
+08982e49-d2eb-4b25-b01a-1be52fd669ef,"Table 8",Aptivus,"zidovudine glucuronide",-1
+07562e72-7eaa-4ce6-94f0-e08814787e50,"Table 2",Unithroid,"magnesium hydroxide",0
+24180909-ee5f-2519-fdfd-ea2ea9a9dfea,"Table 6","Voriconazole ","pharmaceutical drug",-1
+24180909-ee5f-2519-fdfd-ea2ea9a9dfea,"Table 6","Voriconazole ",ritonavir,0
+24180909-ee5f-2519-fdfd-ea2ea9a9dfea,"Table 6","Voriconazole ","long acting barbiturates",-1
+24180909-ee5f-2519-fdfd-ea2ea9a9dfea,"Table 6","Voriconazole ","oral contraceptives",-1
+24180909-ee5f-2519-fdfd-ea2ea9a9dfea,"Table 6","Voriconazole ",nnrti,-1
+24180909-ee5f-2519-fdfd-ea2ea9a9dfea,"Table 7","Voriconazole ",terfenadine,0
+24180909-ee5f-2519-fdfd-ea2ea9a9dfea,"Table 7","Voriconazole ",astemizole,0
+24180909-ee5f-2519-fdfd-ea2ea9a9dfea,"Table 7","Voriconazole ",cisapride,0
+24180909-ee5f-2519-fdfd-ea2ea9a9dfea,"Table 7","Voriconazole ",pimozide,0
+24180909-ee5f-2519-fdfd-ea2ea9a9dfea,"Table 7","Voriconazole ",quinidine,0
+24180909-ee5f-2519-fdfd-ea2ea9a9dfea,"Table 7","Voriconazole ","ergot alkaloids",0
+24180909-ee5f-2519-fdfd-ea2ea9a9dfea,"Table 7","Voriconazole ",fentanyl,0
+24180909-ee5f-2519-fdfd-ea2ea9a9dfea,"Table 7","Voriconazole ",alfentanil,0
+24180909-ee5f-2519-fdfd-ea2ea9a9dfea,"Table 7","Voriconazole ",oxycodone,0
+24180909-ee5f-2519-fdfd-ea2ea9a9dfea,"Table 7","Voriconazole ",ibuprofen,0
+24180909-ee5f-2519-fdfd-ea2ea9a9dfea,"Table 7","Voriconazole ",diclofenac,0
+24180909-ee5f-2519-fdfd-ea2ea9a9dfea,"Table 7","Voriconazole ",tacrolimus,0
+24180909-ee5f-2519-fdfd-ea2ea9a9dfea,"Table 7","Voriconazole ",warfarin,0
+24180909-ee5f-2519-fdfd-ea2ea9a9dfea,"Table 7","Voriconazole ",omeprazole,0
+24180909-ee5f-2519-fdfd-ea2ea9a9dfea,"Table 7","Voriconazole ",statins,-1
+24180909-ee5f-2519-fdfd-ea2ea9a9dfea,"Table 7","Voriconazole ","hmg coa reductase inhibitors",-1
+24180909-ee5f-2519-fdfd-ea2ea9a9dfea,"Table 7","Voriconazole ","dihydropyridine calcium channel blocker",-1
+24180909-ee5f-2519-fdfd-ea2ea9a9dfea,"Table 7","Voriconazole ",sulfonylurea,-1
+24180909-ee5f-2519-fdfd-ea2ea9a9dfea,"Table 7","Voriconazole ","oral hypoglycemics",-1
+24180909-ee5f-2519-fdfd-ea2ea9a9dfea,"Table 7","Voriconazole ","vinca alkaloids",-1
+24180909-ee5f-2519-fdfd-ea2ea9a9dfea,"Table 7","Voriconazole ",everolimus,0
+237da26c-f38c-4faa-93ad-735e71c9d0c1,"Table 0",Velphoro,levothyroxine,-1
+24fd285a-bec3-41b5-9026-b263da83c54f,"Table 2",Nevirapine,"antiviral agents",-1
+24fd285a-bec3-41b5-9026-b263da83c54f,"Table 2",Nevirapine,"protease inhibitors",-1
+24fd285a-bec3-41b5-9026-b263da83c54f,"Table 2",Nevirapine,fosamprenavir,0
+24fd285a-bec3-41b5-9026-b263da83c54f,"Table 2",Nevirapine,"fosamprenavir ritonavir",-1
+24fd285a-bec3-41b5-9026-b263da83c54f,"Table 2",Nevirapine,indinavir,0
+24fd285a-bec3-41b5-9026-b263da83c54f,"Table 2",Nevirapine,"lopinavir ritonavir",0
+24fd285a-bec3-41b5-9026-b263da83c54f,"Table 2",Nevirapine,nelfinavir,0
+24fd285a-bec3-41b5-9026-b263da83c54f,"Table 2",Nevirapine,"non nucleoside reverse transcriptase inhibitors",1
+24fd285a-bec3-41b5-9026-b263da83c54f,"Table 2",Nevirapine,delavirdine,0
+24fd285a-bec3-41b5-9026-b263da83c54f,"Table 2",Nevirapine,analgesics,1
+24fd285a-bec3-41b5-9026-b263da83c54f,"Table 2",Nevirapine,antiarrhythmics,-1
+24fd285a-bec3-41b5-9026-b263da83c54f,"Table 2",Nevirapine,disopyramide,0
+24fd285a-bec3-41b5-9026-b263da83c54f,"Table 2",Nevirapine,lidocaine,0
+24fd285a-bec3-41b5-9026-b263da83c54f,"Table 2",Nevirapine,anticonvulsants,-1
+24fd285a-bec3-41b5-9026-b263da83c54f,"Table 2",Nevirapine,clonazepam,0
+24fd285a-bec3-41b5-9026-b263da83c54f,"Table 2",Nevirapine,ethosuximide,0
+24fd285a-bec3-41b5-9026-b263da83c54f,"Table 2",Nevirapine,antifungals,-1
+24fd285a-bec3-41b5-9026-b263da83c54f,"Table 2",Nevirapine,"calcium channel blockers",1
+24fd285a-bec3-41b5-9026-b263da83c54f,"Table 2",Nevirapine,nifedipine,0
+24fd285a-bec3-41b5-9026-b263da83c54f,"Table 2",Nevirapine,ergotamine,0
+24fd285a-bec3-41b5-9026-b263da83c54f,"Table 2",Nevirapine,"opiate agonists",-1
+03880372-2c68-45c6-a53a-f420c49541d6,"Table 4",EDURANT,etravirine,0
+03880372-2c68-45c6-a53a-f420c49541d6,"Table 4",EDURANT,nevirapine,0
+03880372-2c68-45c6-a53a-f420c49541d6,"Table 4",EDURANT,"darunavir ritonavir",-1
+03880372-2c68-45c6-a53a-f420c49541d6,"Table 4",EDURANT,atazanavir,0
+03880372-2c68-45c6-a53a-f420c49541d6,"Table 4",EDURANT,"calcium carbonate",0
+03880372-2c68-45c6-a53a-f420c49541d6,"Table 4",EDURANT,antimycobacterials,1
+03880372-2c68-45c6-a53a-f420c49541d6,"Table 4",EDURANT,"azole antifungal agents",-1
+03880372-2c68-45c6-a53a-f420c49541d6,"Table 4",EDURANT,macrolide,-1
+03880372-2c68-45c6-a53a-f420c49541d6,"Table 4",EDURANT,ketolide,-1
+03880372-2c68-45c6-a53a-f420c49541d6,"Table 4",EDURANT,"narcotic analgesics",-1
+129ccc6e-4eb2-495d-8583-427cb223b783,"Table 0","Salicylic Acid",salicylate,-1
+129ccc6e-4eb2-495d-8583-427cb223b783,"Table 0","Salicylic Acid","other drugs",-1
+129ccc6e-4eb2-495d-8583-427cb223b783,"Table 0","Salicylic Acid","oral anticoagulants",-1
+129ccc6e-4eb2-495d-8583-427cb223b783,"Table 0","Salicylic Acid",corticosteroids,-1
+129ccc6e-4eb2-495d-8583-427cb223b783,"Table 0","Salicylic Acid","acidifying agents",-1
+129ccc6e-4eb2-495d-8583-427cb223b783,"Table 0","Salicylic Acid",heparin,0
+129ccc6e-4eb2-495d-8583-427cb223b783,"Table 0","Salicylic Acid",pyrazinamide,0
+129ccc6e-4eb2-495d-8583-427cb223b783,"Table 0","Salicylic Acid","uricosuric agents",-1
+129ccc6e-4eb2-495d-8583-427cb223b783,"Table 0","Salicylic Acid","hydroxyindoleacetic acid",-1
+129ccc6e-4eb2-495d-8583-427cb223b783,"Table 0","Salicylic Acid","acetone bodies",-1
+129ccc6e-4eb2-495d-8583-427cb223b783,"Table 0","Salicylic Acid",acetone,-1
+129ccc6e-4eb2-495d-8583-427cb223b783,"Table 0","Salicylic Acid",ketone,-1
+129ccc6e-4eb2-495d-8583-427cb223b783,"Table 0","Salicylic Acid","ketone bodies",-1
+129ccc6e-4eb2-495d-8583-427cb223b783,"Table 0","Salicylic Acid","vanilmandelic acid",-1
+129ccc6e-4eb2-495d-8583-427cb223b783,"Table 0","Salicylic Acid","uric acid",-1
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 1",CRIXIVAN,isoniazid,0
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 1",CRIXIVAN,"hypericum perforatum",-1
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 1",CRIXIVAN,hypericin,-1
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 1",CRIXIVAN,stavudine,0
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 1",CRIXIVAN,"trimethoprim sulfamethoxazole",0
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 1",CRIXIVAN,"zidovudine lamivudine",0
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 1",CRIXIVAN,xtc,-1
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 2",CRIXIVAN,"ortho novum",-1
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 2",CRIXIVAN,vardenafil,0
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 7",CRIXIVAN,alfuzosin,0
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 7",CRIXIVAN,"adrenoreceptor antagonist",-1
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 7",CRIXIVAN,antimycobacterial,1
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 7",CRIXIVAN,dihydroergotamine,0
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 7",CRIXIVAN,ergonovine,0
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 7",CRIXIVAN,methylergonovine,0
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 7",CRIXIVAN,"ergot derivatives",-1
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 7",CRIXIVAN,neuroleptic,1
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 7",CRIXIVAN,"protease inhibitor",-1
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 7",CRIXIVAN,"sedative hypnotics",1
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 7",CRIXIVAN,midazolam,0
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 7",CRIXIVAN,triazolam,0
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 7",CRIXIVAN,alprazolam,0
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 8",CRIXIVAN,bepridil,0
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 8",CRIXIVAN,antidepressant,1
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 8",CRIXIVAN,trazodone,0
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 8",CRIXIVAN,colchicine,0
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 8",CRIXIVAN,dihydropyridine,-1
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 8",CRIXIVAN,felodipine,0
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 8",CRIXIVAN,nicardipine,0
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 8",CRIXIVAN,bosentan,0
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 8",CRIXIVAN,"endothelin receptor antagonist",-1
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 8",CRIXIVAN,"hmg coa",-1
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 8",CRIXIVAN,agonist,-1
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 8",CRIXIVAN,salmeterol,0
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 8",CRIXIVAN,fluticasone,0
+01c5574c-1056-49c6-af20-e950db3f4139,"Table 8",CRIXIVAN,venlafaxine,0
+030dac01-d589-4c3e-94dc-a9088b6a1171,"Table 4","Warfarin Sodium","antiplatelet agents",-1
+030dac01-d589-4c3e-94dc-a9088b6a1171,"Table 4","Warfarin Sodium","non steroidal anti inflammatory agents",-1
+030dac01-d589-4c3e-94dc-a9088b6a1171,"Table 4","Warfarin Sodium","serotonin reuptake inhibitors",-1
+02fcc06e-2a81-404f-a7cd-313fcb0d833c,"Table 1",Theophylline,adenosine,0
+02fcc06e-2a81-404f-a7cd-313fcb0d833c,"Table 1",Theophylline,allopurinol,0
+02fcc06e-2a81-404f-a7cd-313fcb0d833c,"Table 1",Theophylline,glutethimide,0
+02fcc06e-2a81-404f-a7cd-313fcb0d833c,"Table 1",Theophylline,ciprofloxacin,0
+02fcc06e-2a81-404f-a7cd-313fcb0d833c,"Table 1",Theophylline,diazepam,0
+02fcc06e-2a81-404f-a7cd-313fcb0d833c,"Table 1",Theophylline,enoxacin,0
+02fcc06e-2a81-404f-a7cd-313fcb0d833c,"Table 1",Theophylline,ephedrine,0
+02fcc06e-2a81-404f-a7cd-313fcb0d833c,"Table 1",Theophylline,flurazepam,0
+02fcc06e-2a81-404f-a7cd-313fcb0d833c,"Table 1",Theophylline,fluvoxamine,0
+02fcc06e-2a81-404f-a7cd-313fcb0d833c,"Table 1",Theophylline,halothane,0
+02fcc06e-2a81-404f-a7cd-313fcb0d833c,"Table 1",Theophylline,isoproterenol,0
+02fcc06e-2a81-404f-a7cd-313fcb0d833c,"Table 1",Theophylline,lorazepam,0
+02fcc06e-2a81-404f-a7cd-313fcb0d833c,"Table 1",Theophylline,mexiletine,0
+02fcc06e-2a81-404f-a7cd-313fcb0d833c,"Table 1",Theophylline,moricizine,0
+02fcc06e-2a81-404f-a7cd-313fcb0d833c,"Table 1",Theophylline,pancuronium,0
+02fcc06e-2a81-404f-a7cd-313fcb0d833c,"Table 1",Theophylline,pentoxifylline,0
+02fcc06e-2a81-404f-a7cd-313fcb0d833c,"Table 1",Theophylline,propafenone,0
+02fcc06e-2a81-404f-a7cd-313fcb0d833c,"Table 1",Theophylline,sulfinpyrazone,0
+02fcc06e-2a81-404f-a7cd-313fcb0d833c,"Table 1",Theophylline,tacrine,0
+02fcc06e-2a81-404f-a7cd-313fcb0d833c,"Table 1",Theophylline,thiabendazole,0
+02fcc06e-2a81-404f-a7cd-313fcb0d833c,"Table 1",Theophylline,ticlopidine,0
+02fcc06e-2a81-404f-a7cd-313fcb0d833c,"Table 2",Theophylline,albuterol,0
+02fcc06e-2a81-404f-a7cd-313fcb0d833c,"Table 2",Theophylline,atenolol,0
+02fcc06e-2a81-404f-a7cd-313fcb0d833c,"Table 2",Theophylline,"co trimoxazole",0
+02fcc06e-2a81-404f-a7cd-313fcb0d833c,"Table 2",Theophylline,enflurane,0
+02fcc06e-2a81-404f-a7cd-313fcb0d833c,"Table 2",Theophylline,famotidine,0
+000e2ca1-9a11-46f2-860c-4de0ca5be369,"Table 2","SODIUM IODIDE I 131",carbimazole,0
+000e2ca1-9a11-46f2-860c-4de0ca5be369,"Table 2","SODIUM IODIDE I 131","synthetic hormone",-1
+000e2ca1-9a11-46f2-860c-4de0ca5be369,"Table 2","SODIUM IODIDE I 131",medications,-1
+000e2ca1-9a11-46f2-860c-4de0ca5be369,"Table 2","SODIUM IODIDE I 131",expectorants,1
+000e2ca1-9a11-46f2-860c-4de0ca5be369,"Table 2","SODIUM IODIDE I 131",vitamins,1
+14910dae-da81-3d73-d0a4-e98d13917c69,"Table 22",aripiprazole,"anti hypertensive drugs",1
+1ca97f71-71dd-410a-b733-5b34c8acecff,"Table 9",Ciprofloxacin,tablets,-1
+0100c70d-7fde-46a1-8374-940550a27e43,"Table 6","Clonidine Hydrochloride",digitalis,-1
+0100c70d-7fde-46a1-8374-940550a27e43,"Table 6","Clonidine Hydrochloride","beta blockers",1
+303c9bc8-eaff-4a65-9c60-7de6bddec348,"Table 9","VIRACEPT
+                        ",revatio,-1
+303c9bc8-eaff-4a65-9c60-7de6bddec348,"Table 9","VIRACEPT
+                        ","proton pump inhibitors",-1
+303c9bc8-eaff-4a65-9c60-7de6bddec348,"Table 10","VIRACEPT
+                        ","nucleoside reverse transcriptase inhibitor",-1
+303c9bc8-eaff-4a65-9c60-7de6bddec348,"Table 10","VIRACEPT
+                        ",convulsants,-1
+303c9bc8-eaff-4a65-9c60-7de6bddec348,"Table 10","VIRACEPT
+                        ",convulsant,-1
+303c9bc8-eaff-4a65-9c60-7de6bddec348,"Table 10","VIRACEPT
+                        ","hmg coa reductase inhibitor",-1
+303c9bc8-eaff-4a65-9c60-7de6bddec348,"Table 10","VIRACEPT
+                        ","narcotic analgesic",-1
+303c9bc8-eaff-4a65-9c60-7de6bddec348,"Table 10","VIRACEPT
+                        ","oral contraceptive",-1
+165cff62-b284-4a27-a65d-9ec8a5bfcdd8,"Table 15",REYATAZ,capsules,-1
+165cff62-b284-4a27-a65d-9ec8a5bfcdd8,"Table 15",REYATAZ,nucleotide,-1
+165cff62-b284-4a27-a65d-9ec8a5bfcdd8,"Table 15",REYATAZ,"reverse transcriptase inhibitors",-1
+165cff62-b284-4a27-a65d-9ec8a5bfcdd8,"Table 15",REYATAZ,"tenofovir disoproxil fumarate",-1
+165cff62-b284-4a27-a65d-9ec8a5bfcdd8,"Table 15",REYATAZ,"soft capsules",-1
+165cff62-b284-4a27-a65d-9ec8a5bfcdd8,"Table 15",REYATAZ,antidepressants,1
+165cff62-b284-4a27-a65d-9ec8a5bfcdd8,"Table 15",REYATAZ,antiepileptics,1
+165cff62-b284-4a27-a65d-9ec8a5bfcdd8,"Table 15",REYATAZ,lamotrigine,0
+165cff62-b284-4a27-a65d-9ec8a5bfcdd8,"Table 15",REYATAZ,antipsychotics,1
+165cff62-b284-4a27-a65d-9ec8a5bfcdd8,"Table 15",REYATAZ,quetiapine,0
+165cff62-b284-4a27-a65d-9ec8a5bfcdd8,"Table 15",REYATAZ,contraceptives,-1
+165cff62-b284-4a27-a65d-9ec8a5bfcdd8,"Table 15",REYATAZ,norgestimate,-1
+2bff8e82-83e6-0430-abde-0a27ad460852,"Table 12",Lamotrigine,"oral contraceptive preparation",-1
+13caa583-2238-4c2c-bc32-d88e7725a02e,"Table 2","Levothyroxine Sodium","dopamine agonists",1
+13caa583-2238-4c2c-bc32-d88e7725a02e,"Table 2","Levothyroxine Sodium",aminoglutethimide,0
+13caa583-2238-4c2c-bc32-d88e7725a02e,"Table 2","Levothyroxine Sodium",iodide,-1
+13caa583-2238-4c2c-bc32-d88e7725a02e,"Table 2","Levothyroxine Sodium",methimazole,0
+13caa583-2238-4c2c-bc32-d88e7725a02e,"Table 2","Levothyroxine Sodium",sulfonamides,-1
+13caa583-2238-4c2c-bc32-d88e7725a02e,"Table 2","Levothyroxine Sodium",tolbutamide,0
+13caa583-2238-4c2c-bc32-d88e7725a02e,"Table 2","Levothyroxine Sodium","magnesium hydroxide simethicone",-1
+13caa583-2238-4c2c-bc32-d88e7725a02e,"Table 2","Levothyroxine Sodium","bile acid sequestrants",1
+13caa583-2238-4c2c-bc32-d88e7725a02e,"Table 2","Levothyroxine Sodium",cholestyramine,0
+13caa583-2238-4c2c-bc32-d88e7725a02e,"Table 2","Levothyroxine Sodium",colestipol,0
+13caa583-2238-4c2c-bc32-d88e7725a02e,"Table 2","Levothyroxine Sodium","calcium sulfate",-1
+13caa583-2238-4c2c-bc32-d88e7725a02e,"Table 2","Levothyroxine Sodium",carbonate,-1
+13caa583-2238-4c2c-bc32-d88e7725a02e,"Table 2","Levothyroxine Sodium","cation exchange resins",0
+13caa583-2238-4c2c-bc32-d88e7725a02e,"Table 2","Levothyroxine Sodium",clofibrate,0
+13caa583-2238-4c2c-bc32-d88e7725a02e,"Table 2","Levothyroxine Sodium",estrogens,-1
+13caa583-2238-4c2c-bc32-d88e7725a02e,"Table 2","Levothyroxine Sodium","fluoro uracil",0
+13caa583-2238-4c2c-bc32-d88e7725a02e,"Table 2","Levothyroxine Sodium",mitotane,0
+13caa583-2238-4c2c-bc32-d88e7725a02e,"Table 2","Levothyroxine Sodium",tamoxifen,0
+13caa583-2238-4c2c-bc32-d88e7725a02e,"Table 2","Levothyroxine Sodium",hydantoins,-1
+13caa583-2238-4c2c-bc32-d88e7725a02e,"Table 2","Levothyroxine Sodium","beta adrenergic antagonists",1
+13caa583-2238-4c2c-bc32-d88e7725a02e,"Table 2","Levothyroxine Sodium",resorcinol,0
+13caa583-2238-4c2c-bc32-d88e7725a02e,"Table 2","Levothyroxine Sodium","chloral hydrate",0
+13caa583-2238-4c2c-bc32-d88e7725a02e,"Table 2","Levothyroxine Sodium",ethionamide,0
+13caa583-2238-4c2c-bc32-d88e7725a02e,"Table 2","Levothyroxine Sodium",mercaptopurine,0
+13caa583-2238-4c2c-bc32-d88e7725a02e,"Table 2","Levothyroxine Sodium","nitroprusside sodium",-1
+13caa583-2238-4c2c-bc32-d88e7725a02e,"Table 2","Levothyroxine Sodium","para aminosalicylate",-1
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,"hiv protease inhibitor",-1
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,darunavir,0
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,tipranavir,0
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,"non nucleoside reverse transcriptase inhibitor",-1
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,maraviroc,0
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,"integrase inhibitor",-1
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,narcotic,-1
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,tramadol,0
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,propoxyphene,0
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,anaesthetic,1
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,meperidine,0
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,dasatinib,0
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,nilotinib,0
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,vincristine,0
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,vinblastine,0
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,"anti cancer agents",1
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,anticoagulant,-1
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,rivaroxaban,0
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,divalproex,0
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,tricyclics,-1
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,nortriptyline,0
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,bupropion,0
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,"anti emetic",-1
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,dronabinol,0
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,antifungal,-1
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,"anti fungal",-1
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,"anti infective",-1
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,antiparasitic,-1
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,atovaquone,0
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,quinine,0
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,metoprolol,0
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,timolol,0
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,bronchodilator,-1
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,simeprevir,0
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,"beta adrenoceptor agonist",-1
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,neuroleptics,1
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,perfenazine,0
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,risperidone,0
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,thioridazine,0
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,patch,-1
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,avanafil,0
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,clorazepate,-1
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,estazolam,0
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,zolpidem,0
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,budesonide,0
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,prednisone,0
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,stimulant,-1
+13b059c6-0c6c-49a5-b985-a4b05caf9ac9,"Table 4",Norvir,methamphetamine,0
+09325220-e4c5-4fac-aefd-ee3e42602198,"Table 2",Theophylline,finasteride,0
+09325220-e4c5-4fac-aefd-ee3e42602198,"Table 2",Theophylline,hydrocortisone,0
+09325220-e4c5-4fac-aefd-ee3e42602198,"Table 2",Theophylline,isoflurane,0
+09325220-e4c5-4fac-aefd-ee3e42602198,"Table 2",Theophylline,isradipine,0
+09325220-e4c5-4fac-aefd-ee3e42602198,"Table 2",Theophylline,lomefloxacin,0
+0a82bcc3-0420-45f5-8c5c-44ab378b4ff3,"Table 1",Felbamate,aed,-1
+1b5a2dc7-0570-4977-876d-88b4176844a1,"Table 2",Intelence,flecainide,0
+1b5a2dc7-0570-4977-876d-88b4176844a1,"Table 2",Intelence,antiinfectives,-1
+1b5a2dc7-0570-4977-876d-88b4176844a1,"Table 2",Intelence,"phosphodiesterase inhibitors",-1
+1b5a2dc7-0570-4977-876d-88b4176844a1,"Table 2",Intelence,"platelet aggregation inhibitors",-1
+1b5a2dc7-0570-4977-876d-88b4176844a1,"Table 2",Intelence,clopidogrel,0
+173bb299-f774-e888-0ecf-7520ac220d78,"Table 14",Lamotrigine,"ethinyl estradiol levonorgestrel",0
+173bb299-f774-e888-0ecf-7520ac220d78,"Table 14",Lamotrigine,aripiprazole,0
+173bb299-f774-e888-0ecf-7520ac220d78,"Table 14",Lamotrigine,metabolite,-1
+173bb299-f774-e888-0ecf-7520ac220d78,"Table 14",Lamotrigine,felbamate,0
+173bb299-f774-e888-0ecf-7520ac220d78,"Table 14",Lamotrigine,gabapentin,0
+173bb299-f774-e888-0ecf-7520ac220d78,"Table 14",Lamotrigine,levetiracetam,0
+173bb299-f774-e888-0ecf-7520ac220d78,"Table 14",Lamotrigine,olanzapine,0
+173bb299-f774-e888-0ecf-7520ac220d78,"Table 14",Lamotrigine,oxcarbazepine,0
+173bb299-f774-e888-0ecf-7520ac220d78,"Table 14",Lamotrigine,topiramate,0
+173bb299-f774-e888-0ecf-7520ac220d78,"Table 14",Lamotrigine,zonisamide,0
+2085385a-7fe4-5bfe-e054-00144ff88e88,"Table 3",LEVO-T,"contrast agents",1
+2085385a-7fe4-5bfe-e054-00144ff88e88,"Table 3",LEVO-T,"non steroidal anti inflammatory drugs",-1
+29a1089b-8c60-63a4-e054-00144ff88e88,"Table 1",Progesterone,equilin,-1
+01243d39-ccf2-43ce-b9bf-b445b9c22c75,"Table 4",Atripla,"anti retroviral agents",-1
+01243d39-ccf2-43ce-b9bf-b445b9c22c75,"Table 4",Atripla,nrti,-1
+01243d39-ccf2-43ce-b9bf-b445b9c22c75,"Table 4",Atripla,"ethinyl estradiol norgestimate",0
+01243d39-ccf2-43ce-b9bf-b445b9c22c75,"Table 4",Atripla,etonogestrel,0
+1eaa7790-f1a1-4f51-b10a-cbbaf033f684,"Table 4",Caldolor,aspirin,0
+1eaa7790-f1a1-4f51-b10a-cbbaf033f684,"Table 4",Caldolor,"ace inhibitors",-1
+1eaa7790-f1a1-4f51-b10a-cbbaf033f684,"Table 4",Caldolor,"angiotensin receptor blockers",-1
+1eaa7790-f1a1-4f51-b10a-cbbaf033f684,"Table 4",Caldolor,diuretics,1
+1eaa7790-f1a1-4f51-b10a-cbbaf033f684,"Table 4",Caldolor,pemetrexed,0
+0ad21db3-2b1c-4ed9-a687-bdd6a74d0aae,"Table 5",BASAGLAR,"blood glucose",-1
+04b5c345-c446-43a4-83f0-509bc287e10b,"Table 7",SUSTIVA,"atazanavir sulfate",-1
+04b5c345-c446-43a4-83f0-509bc287e10b,"Table 7",SUSTIVA,"integrase strand transfer inhibitor",-1
+3e5149aa-c566-4d75-916d-08eeb809262d,"Table 12","Lamotrigine ",epoxide,-1
+4db6dd63-e56b-45a4-86b2-ee125a1854a0,"Table 8",Valganciclovir,"mycophenolate mofetil",-1
+4a70aaa3-7558-44d1-a326-2293956201f2,"Table 9",Ceftriaxone,diluent,-1
+4a70aaa3-7558-44d1-a326-2293956201f2,"Table 9",Ceftriaxone,"sterile water",-1
+4a70aaa3-7558-44d1-a326-2293956201f2,"Table 9",Ceftriaxone,"dextrose solution",-1
+4a70aaa3-7558-44d1-a326-2293956201f2,"Table 9",Ceftriaxone,"dextrose sodium chloride",-1
+4a70aaa3-7558-44d1-a326-2293956201f2,"Table 9",Ceftriaxone,dextrose,0
+4a70aaa3-7558-44d1-a326-2293956201f2,"Table 9",Ceftriaxone,solution,-1
+47fd4c44-56fa-4864-af5d-7b65c7b746d7,"Table 2",Topiramate,"valproic acid",0
+397e1846-cfca-4398-9e90-2ae24dea5682,"Table 6",Digoxin,nitrendipine,0
+397e1846-cfca-4398-9e90-2ae24dea5682,"Table 6",Digoxin,tetracycline,-1
+397e1846-cfca-4398-9e90-2ae24dea5682,"Table 6",Digoxin,carvedilol,0
+397e1846-cfca-4398-9e90-2ae24dea5682,"Table 6",Digoxin,indometacin,0
+397e1846-cfca-4398-9e90-2ae24dea5682,"Table 6",Digoxin,propantheline,0
+397e1846-cfca-4398-9e90-2ae24dea5682,"Table 6",Digoxin,spironolactone,0
+397e1846-cfca-4398-9e90-2ae24dea5682,"Table 6",Digoxin,telmisartan,0
+397e1846-cfca-4398-9e90-2ae24dea5682,"Table 6",Digoxin,tolvaptan,0
+397e1846-cfca-4398-9e90-2ae24dea5682,"Table 6",Digoxin,diphenoxylate,0
+397e1846-cfca-4398-9e90-2ae24dea5682,"Table 6",Digoxin,epoprostanol,0
+397e1846-cfca-4398-9e90-2ae24dea5682,"Table 6",Digoxin,esomeprazole,0
+397e1846-cfca-4398-9e90-2ae24dea5682,"Table 6",Digoxin,lansoprazole,0
+397e1846-cfca-4398-9e90-2ae24dea5682,"Table 6",Digoxin,metformin,0
+397e1846-cfca-4398-9e90-2ae24dea5682,"Table 6",Digoxin,rabeprazole,0
+397e1846-cfca-4398-9e90-2ae24dea5682,"Table 6",Digoxin,acarbose,0
+397e1846-cfca-4398-9e90-2ae24dea5682,"Table 6",Digoxin,"activated charcoal",0
+397e1846-cfca-4398-9e90-2ae24dea5682,"Table 6",Digoxin,"kaolin pectin",-1
+397e1846-cfca-4398-9e90-2ae24dea5682,"Table 6",Digoxin,metaclopramide,0
+397e1846-cfca-4398-9e90-2ae24dea5682,"Table 6",Digoxin,miglitol,0
+397e1846-cfca-4398-9e90-2ae24dea5682,"Table 6",Digoxin,sulfasalazine,0
+397e1846-cfca-4398-9e90-2ae24dea5682,"Table 7",Digoxin,"parathyroid hormone analog",-1
+397e1846-cfca-4398-9e90-2ae24dea5682,"Table 7",Digoxin,"thyroid supplement",-1
+397e1846-cfca-4398-9e90-2ae24dea5682,"Table 7",Digoxin,"neuromuscular blocking agents",-1
+397e1846-cfca-4398-9e90-2ae24dea5682,"Table 7",Digoxin,"beta adrenergic blockers",1
+32d6371e-ba56-4294-b732-6d43627c5c47,"Table 4",SUSTIVA,antimalarials,1
+32d6371e-ba56-4294-b732-6d43627c5c47,"Table 4",SUSTIVA,"artemether lumefantrine",0
+34c30372-08b0-4060-8aba-779b5bc1e5dd,"Table 1",Levitra,"alpha blocker",-1
+34c30372-08b0-4060-8aba-779b5bc1e5dd,"Table 3",Levitra,terazosin,0
+34c30372-08b0-4060-8aba-779b5bc1e5dd,"Table 3",Levitra,tamsulosin,0
+4a06d3b2-7229-4398-baba-5d0a72f63821,"Table 3",Welchol,colesevelam,0
+383e8810-b877-4a4f-abdf-c8c4c8e394f8,"Table 9",Valganciclovir,mmf,-1
+5acc87b0-ad83-4d42-befd-5623e25519aa,"Table 5","Moxifloxacin Hydrochloride","class iii antiarrhythmics",-1
+4471223e-9023-457e-be2e-8e4e0c2d94d1,"Table 3",Ketek,hexobarbital,0
+4bc249f2-7e8b-05cb-38ad-3085e947e0f1,"Table 5","VIDEX EC",ganciclovir,0
+3f40cef0-431c-4728-9a91-10720b16de55,"Table 0","Promethazine Hydrochloride, Phenylephrine Hydrochloride, and Codeine Phosphate","monoamine oxidase inhibitors",-1
+3f40cef0-431c-4728-9a91-10720b16de55,"Table 0","Promethazine Hydrochloride, Phenylephrine Hydrochloride, and Codeine Phosphate","bronchodilator agents",-1
+3f40cef0-431c-4728-9a91-10720b16de55,"Table 0","Promethazine Hydrochloride, Phenylephrine Hydrochloride, and Codeine Phosphate",sympathomimetic,1
+3f40cef0-431c-4728-9a91-10720b16de55,"Table 0","Promethazine Hydrochloride, Phenylephrine Hydrochloride, and Codeine Phosphate",epinephrine,0
+3f40cef0-431c-4728-9a91-10720b16de55,"Table 0","Promethazine Hydrochloride, Phenylephrine Hydrochloride, and Codeine Phosphate","adrenergic blockers",-1
+3f40cef0-431c-4728-9a91-10720b16de55,"Table 0","Promethazine Hydrochloride, Phenylephrine Hydrochloride, and Codeine Phosphate","atropine sulfate",-1
+3f40cef0-431c-4728-9a91-10720b16de55,"Table 0","Promethazine Hydrochloride, Phenylephrine Hydrochloride, and Codeine Phosphate",fentolamin,0
+3f40cef0-431c-4728-9a91-10720b16de55,"Table 0","Promethazine Hydrochloride, Phenylephrine Hydrochloride, and Codeine Phosphate",phenylpropanolamine,0
+4a3cec22-74d0-440a-a9f4-4d5f02e8417a,"Table 3",Cipro,"cipro xr",-1
+4e10129b-41a3-4572-9564-6f8366b627dc,"Table 0","Butalbital, Aspirin and Caffeine","anti inflammatory agents",-1
+4e10129b-41a3-4572-9564-6f8366b627dc,"Table 0","Butalbital, Aspirin and Caffeine","coumarin anticoagulant",-1
+4be9cc3f-0016-4426-a700-574b45ce245b,"Table 1",rifabutin,antivirals,-1
+4be9cc3f-0016-4426-a700-574b45ce245b,"Table 1",rifabutin,dapsone,0
+4be9cc3f-0016-4426-a700-574b45ce245b,"Table 1",rifabutin,"sulfamethoxazole trimethoprim",0
+4be9cc3f-0016-4426-a700-574b45ce245b,"Table 1",rifabutin,ethambutol,0
+55632908-8757-11de-8a39-0800200c9a66,"Table 0",Keralyt,"oral anticoagulant",-1
+55632908-8757-11de-8a39-0800200c9a66,"Table 1",Keralyt,"ammonium sulfate",-1
+53eaa46e-6b65-4e39-8535-0a072bb38e4d,"Table 2",Aminophylline,"hydrocortisone ketoconazole",-1
+3819daf3-e935-2c53-c527-e1d57922f394,"Table 2",ADDYI,prevent,-1
+58b72e4c-f419-4a70-b894-93a5804d9993,"Table 4",Azithromycin,cetirizine,0
+690da74b-2481-47fc-93ae-8340e0caf0a4,"Table 4",Nevirapine,"immediate release",-1
+690da74b-2481-47fc-93ae-8340e0caf0a4,"Table 5",Nevirapine,zalcitabine,0
+690da74b-2481-47fc-93ae-8340e0caf0a4,"Table 5",Nevirapine,progesterone,0
+690da74b-2481-47fc-93ae-8340e0caf0a4,"Table 5",Nevirapine,acetate,-1
+5f23b254-872b-4e88-91be-710c3ea7687b,"Table 0","Promethazine HCl, Phenylephrine HCl, Codeine Phosphate","tricyclic anti depressants",-1
+69df676c-0357-4e67-a92d-f6b337b34a2f,"Table 4",Belbuca,"central nervous system depressants",-1
+69df676c-0357-4e67-a92d-f6b337b34a2f,"Table 4",Belbuca,"agonist antagonist",-1
+69df676c-0357-4e67-a92d-f6b337b34a2f,"Table 4",Belbuca,"opioid analgesics",-1
+69df676c-0357-4e67-a92d-f6b337b34a2f,"Table 4",Belbuca,"anticholinergic drugs",1
+6a9cbc29-9f15-4b24-8d86-206b82887f3d,"Table 3",Intelence,"integrase inhibitors",-1
+6a9cbc29-9f15-4b24-8d86-206b82887f3d,"Table 3",Intelence,strand,-1
+6a9cbc29-9f15-4b24-8d86-206b82887f3d,"Table 3",Intelence,dolutegravir,0
+6a9cbc29-9f15-4b24-8d86-206b82887f3d,"Table 3",Intelence,rilpivirine,0
+6a9cbc29-9f15-4b24-8d86-206b82887f3d,"Table 3",Intelence,pitavastatin,0
+6a9cbc29-9f15-4b24-8d86-206b82887f3d,"Table 3",Intelence,"buprenorphine naloxone",-1
+6a9cbc29-9f15-4b24-8d86-206b82887f3d,"Table 6",Intelence,tablet,-1
+6a9cbc29-9f15-4b24-8d86-206b82887f3d,"Table 7",Intelence,artemether,0
+6a9cbc29-9f15-4b24-8d86-206b82887f3d,"Table 7",Intelence,"dihydro artemisinin",-1
+6a9cbc29-9f15-4b24-8d86-206b82887f3d,"Table 7",Intelence,lumefantrine,-1
+6a9cbc29-9f15-4b24-8d86-206b82887f3d,"Table 7",Intelence,hydroxy,-1
+6a9cbc29-9f15-4b24-8d86-206b82887f3d,"Table 7",Intelence,norbuprenorphine,-1
+6a9cbc29-9f15-4b24-8d86-206b82887f3d,"Table 7",Intelence,"desmethyl sildenafil",-1
+741f71b5-5a7a-43dc-9937-066d99c50707,"Table 1",Phoslyra,tetracyclines,-1
+801e4da1-5459-47d2-b67b-009f0a3247cc,"Table 6","Warfarin Sodium",stimulants,-1
+801e4da1-5459-47d2-b67b-009f0a3247cc,"Table 6","Warfarin Sodium",antimalarial,1
+801e4da1-5459-47d2-b67b-009f0a3247cc,"Table 6","Warfarin Sodium",antimicrobials,-1
+801e4da1-5459-47d2-b67b-009f0a3247cc,"Table 6","Warfarin Sodium",aminoglycosides,-1
+801e4da1-5459-47d2-b67b-009f0a3247cc,"Table 6","Warfarin Sodium",macrolides,-1
+801e4da1-5459-47d2-b67b-009f0a3247cc,"Table 6","Warfarin Sodium",quinolones,-1
+801e4da1-5459-47d2-b67b-009f0a3247cc,"Table 6","Warfarin Sodium",fluoroquinolones,-1
+801e4da1-5459-47d2-b67b-009f0a3247cc,"Table 7","Warfarin Sodium",hydrate,-1
+62c2116d-4b9a-462b-8bf1-e5b10b9cdea0,"Table 11",Didanosine,na,-1
+69b6f72d-fe6b-4347-8801-99ece7e2a29b,"Table 11",PREZISTA,anticonvulsant,-1
+69b6f72d-fe6b-4347-8801-99ece7e2a29b,"Table 11",PREZISTA,corticosteroid,-1
+69b6f72d-fe6b-4347-8801-99ece7e2a29b,"Table 11",PREZISTA,opioid,-1
+69b6f72d-fe6b-4347-8801-99ece7e2a29b,"Table 11",PREZISTA,"pde inhibitor",-1
+ebe4d1b3-72fc-4693-8922-abce103ed0d9,"Table 7","Levofloxacin
+",metal,-1
+b8b53129-06ab-4143-b9b7-7675e49a52ef,"Table 4",Invirase,capsule,-1
+b8b53129-06ab-4143-b9b7-7675e49a52ef,"Table 4",Invirase,"hiv fusion inhibitor",-1
+b8b53129-06ab-4143-b9b7-7675e49a52ef,"Table 4",Invirase,benzodiazepine,-1
+b8b53129-06ab-4143-b9b7-7675e49a52ef,"Table 4",Invirase,nimodipine,0
+b8b53129-06ab-4143-b9b7-7675e49a52ef,"Table 4",Invirase,nisoldipine,0
+b8b53129-06ab-4143-b9b7-7675e49a52ef,"Table 4",Invirase,imipramine,0
+b8b53129-06ab-4143-b9b7-7675e49a52ef,"Table 4",Invirase,garlic,-1
+d3ca59bd-ae00-48ab-89aa-87c7f56e9989,"Table 5",Fluconazole,"short acting benzodiazepines",-1
+d4401ca0-98ae-af38-84c7-2f615d0706b9,"Table 9",VIDEX,"azole antifungals",-1
+d4401ca0-98ae-af38-84c7-2f615d0706b9,"Table 9",VIDEX,quinolone,-1
+a05ef847-96e1-4f95-b35f-92c907df1e1f,"Table 6",LEXIVA,"hiv integrase inhibitor",-1
+a05ef847-96e1-4f95-b35f-92c907df1e1f,"Table 6",LEXIVA,nizatidine,0
+a05ef847-96e1-4f95-b35f-92c907df1e1f,"Table 6",LEXIVA,pantoprazole,0
+b92f9206-325e-4454-9518-4f7464b23f47,"Table 3",Ciprofloxacin,"extended release",-1
+eb28dcd2-c457-4137-9eec-00062e5a601b,"Table 5",RESCRIPTOR,"anticonvulsant agents",-1
+eb28dcd2-c457-4137-9eec-00062e5a601b,"Table 6",RESCRIPTOR,"erectile dysfunction agents",-1
+eb28dcd2-c457-4137-9eec-00062e5a601b,"Table 6",RESCRIPTOR,cerivastatin,0
+b6a476e8-9ceb-4320-873d-946df820b502,"Table 2",Elixophylline,terbutaline,0
+a69542ea-5b6f-15c1-9e7a-90ac839971d3,"Table 4",Lamotrigine,"estrogen preparation",-1
+acb7d02d-249b-4645-ac1b-8ff9a56dd244,"Table 3",Nicotrol,acetaminophen,0
+acb7d02d-249b-4645-ac1b-8ff9a56dd244,"Table 3",Nicotrol,oxazepam,0
+acb7d02d-249b-4645-ac1b-8ff9a56dd244,"Table 3",Nicotrol,pentazocine,0
+acb7d02d-249b-4645-ac1b-8ff9a56dd244,"Table 3",Nicotrol,prazosin,0
+acb7d02d-249b-4645-ac1b-8ff9a56dd244,"Table 3",Nicotrol,labetalol,0
+acb7d02d-249b-4645-ac1b-8ff9a56dd244,"Table 3",Nicotrol,phenylephrine,0
+acb7d02d-249b-4645-ac1b-8ff9a56dd244,"Table 3",Nicotrol,"adrenergic agonists",-1
+a1150d78-57cc-4216-beff-f7ea7364ab89,"Table 2","Warfarin Sodium",anesthetics,1
+a1150d78-57cc-4216-beff-f7ea7364ab89,"Table 2","Warfarin Sodium","anti androgen",-1
+a1150d78-57cc-4216-beff-f7ea7364ab89,"Table 2","Warfarin Sodium","lipoxygenase inhibitor",-1
+a1150d78-57cc-4216-beff-f7ea7364ab89,"Table 2","Warfarin Sodium","lipooxygenase inhibitor",-1
+a1150d78-57cc-4216-beff-f7ea7364ab89,"Table 2","Warfarin Sodium","antimalarial agents",1
+a1150d78-57cc-4216-beff-f7ea7364ab89,"Table 2","Warfarin Sodium",antineoplastics,1
+a1150d78-57cc-4216-beff-f7ea7364ab89,"Table 2","Warfarin Sodium","agents antineoplastics",1
+a1150d78-57cc-4216-beff-f7ea7364ab89,"Table 5","Warfarin Sodium","anti anxiety agents",1
+a1150d78-57cc-4216-beff-f7ea7364ab89,"Table 6","Warfarin Sodium",amobarbital,0
+a1150d78-57cc-4216-beff-f7ea7364ab89,"Table 6","Warfarin Sodium",azathioprine,0
+a1150d78-57cc-4216-beff-f7ea7364ab89,"Table 6","Warfarin Sodium",butabarbital,-1
+a1150d78-57cc-4216-beff-f7ea7364ab89,"Table 6","Warfarin Sodium",butalbital,-1
+a1150d78-57cc-4216-beff-f7ea7364ab89,"Table 6","Warfarin Sodium",chlordiazepoxide,0
+a1150d78-57cc-4216-beff-f7ea7364ab89,"Table 6","Warfarin Sodium",chlortalidone,0
+A7C01224-B32B-40EF-935B-164893A93B22,"Table 2",aminophylline,medroxyprogesterone,0
+A7C01224-B32B-40EF-935B-164893A93B22,"Table 2",aminophylline,metronidazole,0
+A7C01224-B32B-40EF-935B-164893A93B22,"Table 2",aminophylline,nadolol,0
+A7C01224-B32B-40EF-935B-164893A93B22,"Table 2",aminophylline,prednisolone,0
+A7C01224-B32B-40EF-935B-164893A93B22,"Table 2",aminophylline,sorbitol,0
+A7C01224-B32B-40EF-935B-164893A93B22,"Table 2",aminophylline,purgative,-1
+A7C01224-B32B-40EF-935B-164893A93B22,"Table 2",aminophylline,tocainide,0

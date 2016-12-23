@@ -263,6 +263,7 @@ def ProcessDataBase(project_name,rules):
     DBSettings = FileManipulationHelper.LoadDBConfigFile(project_name)
     db = QueryDBClass.QueryDBCalss(DBSettings['Host'],DBSettings['User'],DBSettings['Pass'],DBSettings['Database'])
     for rule in rules:
+        posSubClass = ''
         print "Rule "+rule.RuleName+" executing"
         WhiteWordList = []
         WhiteIDList = []
@@ -323,16 +324,19 @@ def ProcessDataBase(project_name,rules):
                             if(word in cell.Content):
                                 selectCell = True
                                 CueFoundInData = True
+                                posSubClass = word
                     for word in WhiteDescList:
                         for ann in cell.Annotations:
                             if ann.AnnotationDesc == word:
                                 selectCell = True
                                 CueFoundInData = True
+                                posSubClass = ann.Content
                     for word in WhiteIDList:
                         for ann in cell.Annotations:
                             if ann.AnnotationCID == word:
                                 selectCell = True
                                 CueFoundInData = True
+                                posSubClass = ann.Content
 
                 # Check white list against heades
                 if rule.wl_look_header:
@@ -341,6 +345,7 @@ def ProcessDataBase(project_name,rules):
                             if (word in cell.Header):
                                 selectCell = True
                                 CueFoundInHeader = True
+                                posSubClass = word
                     idHeader = cell.HeaderId
                     heads = []
                     heads = getHeaderCells(cell.HeaderId,cells,heads)
@@ -350,11 +355,13 @@ def ProcessDataBase(project_name,rules):
                                 if ann.AnnotationDesc==word:
                                     selectCell = True
                                     CueFoundInHeader = True
+                                    posSubClass = ann.Content
                         for word in WhiteIDList:
                             for ann in head.Annotations:
                                 if ann.AnnotationCID == word:
                                     selectCell = True
                                     CueFoundInHeader = True
+                                    posSubClass = ann.Content
 
                 # Check white list against stub
                 if rule.wl_look_stub:
@@ -363,6 +370,7 @@ def ProcessDataBase(project_name,rules):
                             if (word in cell.Stub):
                                 selectCell = True
                                 CueFoundInStub = True
+                                posSubClass = word
                     idStub = cell.StubId
                     stubs = []
                     stubs = getStubCells(cell.StubId, cells, stubs)
@@ -372,11 +380,13 @@ def ProcessDataBase(project_name,rules):
                                 if ann.AnnotationDesc == word:
                                     selectCell = True
                                     CueFoundInStub = True
+                                    posSubClass = ann.Content
                         for word in WhiteIDList:
                             for ann in stub.Annotations:
                                 if ann.AnnotationCID == word:
                                     selectCell = True
                                     CueFoundInStub = True
+                                    posSubClass = ann.Content
 
                 # Check white list against super-row
                 if rule.wl_look_superrow:
@@ -385,6 +395,7 @@ def ProcessDataBase(project_name,rules):
                             if (word in cell.Super_row):
                                 selectCell = True
                                 CueFoundInSuperRow = True
+                                posSubClass = word
                     idSuperRow = cell.SuperRowId
                     superrows = []
                     superrows = getStubCells(cell.SuperRowId, cells, superrows)
@@ -394,11 +405,13 @@ def ProcessDataBase(project_name,rules):
                                 if ann.AnnotationDesc == word:
                                     selectCell = True
                                     CueFoundInSuperRow = True
+                                    posSubClass = ann.Content
                         for word in WhiteIDList:
                             for ann in superrow.Annotations:
                                 if ann.AnnotationCID == word:
                                     selectCell = True
                                     CueFoundInSuperRow = True
+                                    posSubClass = ann.Content
 
 #=============================================================================================
                 # Check black list against data cells
@@ -521,9 +534,12 @@ def ProcessDataBase(project_name,rules):
                                 else:
                                     Source = cell.Header
                                 # Get unit
+                                SubClass = ''
+                                if rule.RuleType == 'Categorical':
+                                    SubClass = posSubClass
                                 Unit = CheckUnits(cell.Header, cell.Stub, cell.Super_row, cell.Content, rule.DefaultUnit, rule.PossibleUnits)
                                 #Save the value to the database
-                                db.SaveExtracted(cell.idArticle,cell.idTable,cell.tableOrder,cell.idPMC,rule.ClassName,semValue,value,Unit,Source,rule.RuleName,syn_rule_name)
+                                db.SaveExtracted(cell.idArticle,cell.idTable,cell.tableOrder,cell.idPMC,rule.ClassName,semValue,value,Unit,Source,rule.RuleName,syn_rule_name,SubClass)
                                 last_sem_extracted = sem.position
                                 FoundSemantics = False
                                 if(c == len(syn_rule.SemanticValues)):

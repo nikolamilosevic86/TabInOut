@@ -34,22 +34,22 @@ def AddEditRule(project_name,vRuleName,vRuleType,RuleNameView,RulesListBox):
     ClassInput = Entry(itemsFrame,textvariable=vClsIn).grid(row=4,sticky='w')
     vDefUnit = StringVar()
     vPosUnit = StringVar()
-    if(vRuleType.get() == "Numeric"):
+    if(vRuleType.get() == "Numeric" or vRuleType.get()=="Categorical"):
         DefUnitLabel = Label(itemsFrame,text="Default unit").grid(row=5,column=0,sticky='w')
         DefUnInput = Entry(itemsFrame,textvariable=vDefUnit).grid(row=6,sticky='w')
         PosUnitLabel = Label(itemsFrame,text="Possible units (comma separated)").grid(row=7,column=0,sticky='w')    
         PosUnInput = Entry(itemsFrame,textvariable=vPosUnit).grid(row=8,sticky='w')
-    if(vRuleType.get() == "Categorical"):
-        PosUnitLabel = Label(itemsFrame,text="Possible categories (comma separated)").grid(row=7,column=0,sticky='w')
-        vPosUnit = StringVar()
-        PosUnInput = Entry(itemsFrame,textvariable=vPosUnit).grid(row=8,sticky='w')
+    #if(vRuleType.get() == "Categorical"):
+    #    PosUnitLabel = Label(itemsFrame,text="Possible categories (comma separated)").grid(row=7,column=0,sticky='w')
+    #    vPosUnit = StringVar()
+    #    PosUnInput = Entry(itemsFrame,textvariable=vPosUnit).grid(row=8,sticky='w')
     DBSettings = FileManipulationHelper.LoadDBConfigFile(project_name)
     db = QueryDBClass.QueryDBCalss(DBSettings['Host'],DBSettings['User'],DBSettings['Pass'],DBSettings['Database'])
     prags = db.GetPragmaticClasses()
     prags.insert(0,"None")
     pragVar = StringVar()
     pragVar.set(prags[0])
-    PragLabel = Label(itemsFrame,text="Pragmatic class").grid(row=9,column=0,sticky='w')
+    PragLabel = Label(itemsFrame,text="Table type (pragmatics)").grid(row=9,column=0,sticky='w')
     drop = OptionMenu(itemsFrame,pragVar,*prags)
     drop.grid(row=10,column=0,sticky='w')
     vLexSemRule = StringVar()
@@ -185,7 +185,7 @@ def EditRule(project_name,Lb1):
     if ruleType == 'Categorical':
         vPosUnit.set(cfg['Categories'])
     vClsIn.set(cfg['Class'])
-    PragLabel = Label(itemsFrame,text="Pragmatic class").grid(row=7,column=1,sticky='w')
+    PragLabel = Label(itemsFrame,text="Table type (pragmatics)").grid(row=7,column=1,sticky='w')
     drop = OptionMenu(itemsFrame,pragVar,*prags)
     drop.grid(row=8,column=1,sticky='w')
     save = Button(itemsFrame, text="Save", fg="black",command=lambda:SaveRuleEdit(project_name,rule_name,add,vClsIn,vDefUnit,vPosUnit,pragVar,ruleType,ruleMech,wl_look_head,wl_look_stub,wl_look_super,wl_look_data)).grid(row=9,column=1,sticky='w')

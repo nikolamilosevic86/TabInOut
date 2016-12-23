@@ -263,6 +263,7 @@ def ProcessDataBase(project_name,rules):
     DBSettings = FileManipulationHelper.LoadDBConfigFile(project_name)
     db = QueryDBClass.QueryDBCalss(DBSettings['Host'],DBSettings['User'],DBSettings['Pass'],DBSettings['Database'])
     for rule in rules:
+        print "Rule "+rule.RuleName+" executing"
         WhiteWordList = []
         WhiteIDList = []
         WhiteDescList = []

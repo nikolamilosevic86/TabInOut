@@ -119,8 +119,8 @@ def MakeRuleCFGFile(rule_path,vClsIn,vDefUnit,vPosUnit,pragVar,vRuleType,vLexSem
     if(vRuleType.get()=="Numeric"):
         f.write("DefUnit:"+str(vDefUnit.get().replace('\n',''))+'\n')
         f.write("PosUnit:"+str(vPosUnit.get().replace('\n',''))+'\n')
-    if(vRuleType.get()=="Categorical"):
-        f.write("PosCategories:"+str(vPosUnit.get().replace('\n',''))+'\n')
+    #if(vRuleType.get()=="Categorical"):
+    #    f.write("PosCategories:"+str(vPosUnit.get().replace('\n',''))+'\n')
     f.write("PragClass:"+str(pragVar.get().replace('\n',''))+'\n')
     f.write("RuleCreationMech:"+str(vLexSemRule.get().replace('\n',''))+'\n')
     f.write("DataInHeader:"+str(wl_look_head.get())+'\n')

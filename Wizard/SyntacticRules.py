@@ -86,11 +86,11 @@ def LoadRulesCfGMainScreen(project_name,rule_name):
     skip_val.set(1)
     SkipCB = Checkbutton(frame,text="Skip this step (Will not overwrite old rules)",variable = skip_val)
     SkipCB.grid(row=5,column=0,sticky='w')
-    Next = Button(bottomframe, text="Next", bg="green",command = lambda:EditSintacticRules(project_name, top,int_val,float_val,stats_val,alt_val,none_val,skip_val))
+    Next = Button(bottomframe, text="Next", bg="green",command = lambda:EditSintacticRules(project_name,rule_name, top,int_val,float_val,stats_val,alt_val,none_val,skip_val))
     Next.pack( side = LEFT)
     pass
 
-def EditSintacticRules(project_name, ChoseSintRulesWindow,int_val,float_val,stats_val,alt_val,none_val,skip_val):
+def EditSintacticRules(project_name,rule_name, ChoseSintRulesWindow,int_val,float_val,stats_val,alt_val,none_val,skip_val):
     ChoseSintRulesWindow.withdraw()
     top = Toplevel()
     #top.protocol("WM_DELETE_WINDOW", on_closing)
@@ -125,7 +125,7 @@ def EditSintacticRules(project_name, ChoseSintRulesWindow,int_val,float_val,stat
     for w in rules:
         rulelist.insert(str(i)+'.0',w)
         i=i+1
-    saveButton = Button(frame,text="Next",bg="green",fg="black",command=lambda:SaveSintacticRules(rulelist.get("1.0",END),top,project_name,skip_val)).grid(row=2,sticky='w')
+    saveButton = Button(frame,text="Next",bg="green",fg="black",command=lambda:SaveSintacticRules(rulelist.get("1.0",END),top,project_name,rule_name,skip_val)).grid(row=2,sticky='w')
     pass
 
 def MakeChangesToSyntacticRules(project_name,rule_name):
@@ -153,21 +153,20 @@ def MakeChangesToSyntacticRules(project_name,rule_name):
         i=i+1
     skip_val = IntVar()
     skip_val.set(0)
-    saveButton = Button(frame,text="Next",bg="green",fg="black",command=lambda:SaveSintacticRules(rulelist.get("1.0",END),top,project_name,skip_val)).grid(row=2,sticky='w')
+    saveButton = Button(frame,text="Next",bg="green",fg="black",command=lambda:SaveSintacticRules(rulelist.get("1.0",END),top,project_name,rule_name,skip_val)).grid(row=2,sticky='w')
     pass
 
 
 # Syntactic rules
-def SaveSintacticRules(rules, window,project_name,skip_val):
+def SaveSintacticRules(rules, window,project_name,rule_name,skip_val):
     global lab2
     
     window.withdraw()
     #top = Toplevel()
     get_rules = FileManipulationHelper.loadRules(project_name)
-    for rule in get_rules:
-        rule_path = 'Projects/'+project_name+'/'+rule
-        if(skip_val.get()!=1):
-            FileManipulationHelper.SaveSyntacticRules(rules,project_name,rule)
+    rule_path = 'Projects/'+project_name+'/'+rule_name
+    if(skip_val.get()!=1):
+        FileManipulationHelper.SaveSyntacticRules(rules,project_name,rule_name)
     #processing_rules = RuleClasses_LoadRulesForProcessingClass.LoadRulesForProcessing(project_name)
     #top.protocol("WM_DELETE_WINDOW", on_closing)
 

@@ -69,6 +69,10 @@ def LoadRulesForProcessing(project_name,before_syntactic = False):
         white_list = FileManipulationHelper.loadWhiteList(project_name, rule_name)
         cfg = FileManipulationHelper.loadRuleConfig(project_name, rule_name)
         rule = RuleClasses_Rule.Rule()
+        rule.WhiteList = []
+        rule.BlackList = []
+        rule.PatternList = []
+        rule.PossibleUnits = []
         rule.RuleName = rule_name
         #rule.WhiteList = white_list
         #rule.BlackList = black_list
@@ -158,27 +162,27 @@ def LoadRulesForProcessing(project_name,before_syntactic = False):
             rule.is_semantic = True
         if('Categories' in cfg.keys()):
             rule.PossibleCategories = cfg['Categories'].split(',')
-        if(rule.RuleType != "Categorical"):
-            if(before_syntactic==False):
-                patterns = LoadSyntacticRoles(project_name,rule_name)
-                rule.PatternList = patterns
+        if(before_syntactic==False):
+            patterns = []
+            patterns = LoadSyntacticRoles(project_name,rule_name)
+            rule.PatternList = patterns
         if('DataInHeader' in cfg.keys() and cfg['DataInHeader']!=None and cfg['DataInHeader']=='1'):
             rule.data_in_header = True
         else:
             rule.data_in_header = False
-    if('DataInStub' in cfg.keys() and cfg['DataInStub']!=None and cfg['DataInStub']=='1'):
-        rule.data_in_stub = True
-    else:
-        rule.data_in_stub = False
-    if('DataInSuperRow' in cfg.keys() and cfg['DataInSuperRow']!=None and cfg['DataInSuperRow']=='1'):
-        rule.data_in_super = True
-    else:
-        rule.data_in_super = False
-    if('DataInData' in cfg.keys() and cfg['DataInData']!=None and cfg['DataInData']=='1'):
-        rule.data_in_data = True
-    else:
-        rule.data_in_data = False
-    rules.append(rule)
+        if('DataInStub' in cfg.keys() and cfg['DataInStub']!=None and cfg['DataInStub']=='1'):
+            rule.data_in_stub = True
+        else:
+            rule.data_in_stub = False
+        if('DataInSuperRow' in cfg.keys() and cfg['DataInSuperRow']!=None and cfg['DataInSuperRow']=='1'):
+            rule.data_in_super = True
+        else:
+            rule.data_in_super = False
+        if('DataInData' in cfg.keys() and cfg['DataInData']!=None and cfg['DataInData']=='1'):
+            rule.data_in_data = True
+        else:
+            rule.data_in_data = False
+        rules.append(rule)
 
     return rules
         

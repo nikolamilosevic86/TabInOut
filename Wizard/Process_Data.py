@@ -159,17 +159,17 @@ def CheckUnits(Header,Stub,SuperRow,Data,defaultUnit,PossibleUnits):
     for unit in PossibleUnits:
         unit = unit.replace('\n','')
         if Header != None:
-            m1 = re.search('\\b('+unit+")\\b",Header)
+            m1 = re.search('('+unit+")",Header)
             if(m1!=None):
                 UnitSelected = unit
                 break
         if Stub !=None:
-            m1 = re.search('\\b('+unit+")\\b",Stub)
+            m1 = re.search('('+unit+")",Stub)
             if(m1!=None):
                 UnitSelected = unit
                 break
         if SuperRow != None:
-            m1 = re.search('\\b('+unit+")\\b",SuperRow)
+            m1 = re.search('('+unit+")",SuperRow)
             if(m1!=None):
                 UnitSelected = unit
                 break
@@ -503,6 +503,7 @@ def ProcessDataBase(project_name,rules):
                         c = 0
                         contains_term = False
                         last_sem_extracted = -1
+                        savedSomething = False
                         # Itterate semantics for each pattern rule (syntactic rule)
                         for sem in syn_rule.SemanticValues:
                             if contains_term and sem.Semantics=='mean':
@@ -540,11 +541,13 @@ def ProcessDataBase(project_name,rules):
                                 Unit = CheckUnits(cell.Header, cell.Stub, cell.Super_row, cell.Content, rule.DefaultUnit, rule.PossibleUnits)
                                 #Save the value to the database
                                 db.SaveExtracted(cell.idArticle,cell.idTable,cell.tableOrder,cell.idPMC,rule.ClassName,semValue,value,Unit,Source,rule.RuleName,syn_rule_name,SubClass)
+                                savedSomething = True
                                 last_sem_extracted = sem.position
                                 FoundSemantics = False
                                 if(c == len(syn_rule.SemanticValues)):
                                     AllSemSaved = True
-
+                        if(savedSomething):
+                            break
 
 
             #print cells

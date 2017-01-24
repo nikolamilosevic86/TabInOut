@@ -123,7 +123,7 @@ def CheckBListUsingRegex(look_header,look_stub,look_superrow,look_data,List,Head
             if Header == None or item.replace('\n','') =='':
                 continue
             item = item.replace('\n','')
-            regex = ''+item+''
+            regex = ''+item+'\\b'
             m1 = re.search(regex,Header)
             if(m1!=None):
                 ValidCandidate = False
@@ -131,7 +131,7 @@ def CheckBListUsingRegex(look_header,look_stub,look_superrow,look_data,List,Head
         for item in List:
             if Stub == None or item.replace('\n','') =='':
                 continue
-            regex = ''+item.replace('\n','')+''
+            regex = ''+item.replace('\n','')+'\\b'
             m1 = re.search(regex,Stub)
             if(m1!=None):
                 ValidCandidate = False
@@ -139,7 +139,7 @@ def CheckBListUsingRegex(look_header,look_stub,look_superrow,look_data,List,Head
         for item in List:
             if Super_row == None or item.replace('\n','') =='':
                 continue
-            regex = ''+item.replace('\n','')+''
+            regex = ''+item.replace('\n','')+'\\b'
             m1 = re.search(regex,Super_row)
             if(m1!=None):
                 ValidCandidate = False
@@ -147,7 +147,7 @@ def CheckBListUsingRegex(look_header,look_stub,look_superrow,look_data,List,Head
         for item in List:
             if Data == None or item.replace('\n','') =='':
                 continue
-            regex = ''+item.replace('\n','')+''
+            regex = ''+item.replace('\n','')+'\\b'
             m1 = re.search(regex,Data)
             if(m1!=None):
                 ValidCandidate = False

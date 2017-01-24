@@ -746,7 +746,7 @@ class QueryDBCalss:
         sql = sql + ")"
         if PragmaticClass!= "None":
             sql = sql + " and SpecPragmatic='"+PragmaticClass.replace('\n','')+"'"
-        #sql = sql + " and Article_idArticle=1370"
+        #sql = sql + " and Article_idArticle=4495"
         cursor.execute(sql)
         results = cursor.fetchall()
         return results

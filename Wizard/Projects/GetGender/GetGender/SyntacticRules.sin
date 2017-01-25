@@ -1,0 +1,18 @@
++GetMaleFemale1
+(\d+)[/:\\, ]{1,}(\d+)
+1:male,m,Male,M;female,f,F,fem,Fem->male
+1:female,Female,f,F,fem,Fem;male,m,Male,M->female
+1->male
+2:male,m,Male,M;female,f,F,fem,Fem->female
+2:female,Female,f,F,fem,Fem;male,m,Male,M->male
+2->female
++GetMaleFemale2
+(\d+)[ (]{1,}(\d+)[%]{1,}
+1:male,m,Male,M->male
+1:female,f,F,Fem,Female->female
+1->total
+2:male,m,Male,M->percent male
+2:female,f,F,Fem,Female->percent female
+2->percent female
+
+

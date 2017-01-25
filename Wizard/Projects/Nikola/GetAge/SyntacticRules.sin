@@ -1,0 +1,56 @@
++GetMean1
+(\d+\.*\d*)[?  ]*[\-—–−––,]+(\d+\.*\d*)[ (]*(\d+\.*\d*)[?  ]*[±][?  ]*(\d+\.*\d*)[)]*
+1->range_min
+2->range_max
+3:median,Median->median
+3->mean
+4->SD
++GetMean2
+(\d+\.*\d*)[?  ]*[±][?  ]*(\d+\.*\d*)[ (]*(\d+\.*\d*)[?  ]{0,}[\-—–−––,]+[ ]*(\d+\.*\d*)[)]*
+1:median,Median->median
+1->mean
+2->SD
+3->range_min
+4->range_max
++GetMean4
+(\d+\.*\d*)[?  ]*[\(](\d+\.*\d*)[?  ]{0,}[\-—–−––,]+(\d+\.*\d*)[\)]*
+1:median,Median->median
+1->mean
+2->range_min
+3->range_max
++GetRange1
+(\d+\.*\d*)[?  ]*[(\[](\d+\.*\d*)[?  ]{0,}[\-—–−,]{1,}[?  ]{0,}(\d+\.*\d*)
+1:median,Median->median
+2->range_min
+3->range_max
++GetRange2
+[(](\d+\.*\d*)[?  ]{0,}[\-—–−,;]{1,}[?  ]{0,}(\d+\.*\d*)[)][?  ]*(\d+\.*\d*)
+1->range_min
+2->range_max
+3:median,Median->median
+3->mean
++GetRange21
+(\d+\.*\d*)[?  ]{0,}[\-—–−,;]{1,}[?  ]{0,}(\d+\.*\d*)[,?  ]+(\d+\.*\d*)
+1->range_min
+2->range_max
+3->mean
++GetRange3
+(\d+\.*\d*)[?  ]{0,1}[\-—–−,;to]{1,}[?  ]{0,}(\d+\.*\d*)
+1->range_min
+2->range_max
++GetMean6
+(\d+\.*\d*)[?  ]{0,}[±]{1,}[?  ]{0,}(\d+\.*\d*)
+1:median,Median->median
+1->mean
+2->SD
++GetMean7
+(\d+\.{0,}\d*)[?  ]{0,}[(](\d+\.{0,}\d*)[)]
+1:median,Median->median
+1->mean
+2->SD
++GetMean8
+(\d+\.*\d*)
+1:median,Median->median
+1->mean
+
+

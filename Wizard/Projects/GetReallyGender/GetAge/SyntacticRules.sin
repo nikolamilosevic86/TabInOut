@@ -1,6 +1,6 @@
 +GetComplexPattern
 (\d+)[ ]*[(](\d+[.]*\d*)[)/ ]+(\d+)[ ]*[(](\d+[.]*\d*)[)]
-1:male,m,Male,M,men,Men,males,Males;female,f,F,fem,Fem.women,Women,women,females,Females->male
+1:male,m,Male,M,men,Men,males,Males;female,f,F,fem,Fem,women,Women,women,females,Females->male
 1:female,Female,f,F,fem,Fem,women,Women,females,Females;male,m,Male,M,men,Men,males,Males->female
 1->male
 2:male,m,Male,M,men,Men,males,Males;female,f,F,fem,Fem,women,Women,women,females,Females->male perc

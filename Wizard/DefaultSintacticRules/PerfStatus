@@ -1,0 +1,12 @@
++GetComplexPattern
+(\d+)[//:](\d+)[//:](\d+)
+1->Stage 1
+2->Stage 2
+3->Stage 3
++GetPercent
+(\d+)[ (]+(\d+[\.]*\d*)[%)]+
+1->StageVal
+2->StagePerc
++GetVal
+(\d+)
+1->StageVal

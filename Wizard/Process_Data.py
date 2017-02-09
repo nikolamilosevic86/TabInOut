@@ -488,6 +488,14 @@ def ProcessDataBase(project_name,rules):
                                     selectCell = False
 
                 if selectCell:
+                    if((not rule.data_in_stub) and cell.isStub):
+                        continue
+                    if((not rule.data_in_data) and cell.isData):
+                        continue
+                    if((not rule.data_in_header) and cell.isHeader):
+                        continue
+                    if((not rule.data_in_super) and cell.isSuperRow):
+                        continue
                     FoundSemantics = False
                     AllSemSaved = False
                     # Iterate trought all the patterns
@@ -537,7 +545,7 @@ def ProcessDataBase(project_name,rules):
                                 # Get unit
                                 SubClass = ''
                                 if rule.RuleType == 'Categorical':
-                                    SubClass = posSubClass
+                                    SubClass = cell.Stub
                                 Unit = CheckUnits(cell.Header, cell.Stub, cell.Super_row, cell.Content, rule.DefaultUnit, rule.PossibleUnits)
                                 #Save the value to the database
                                 db.SaveExtracted(cell.idArticle,cell.idTable,cell.tableOrder,cell.idPMC,rule.ClassName,semValue,value,Unit,Source,rule.RuleName,syn_rule_name,SubClass)

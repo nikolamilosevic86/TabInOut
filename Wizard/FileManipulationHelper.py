@@ -116,7 +116,7 @@ def MakeRuleCFGFile(rule_path,vClsIn,vDefUnit,vPosUnit,pragVar,vRuleType,vLexSem
     f = open(rule_path+'/Rule.cfg','w')
     f.write("Class:"+str(vClsIn.get().replace('\n',''))+'\n')
     f.write("RuleType:"+str(vRuleType.get().replace('\n',''))+'\n')
-    if(vRuleType.get()=="Numeric"):
+    if(vRuleType.get()=="Numeric" or vRuleType.get()=="Categorical"):
         f.write("DefUnit:"+str(vDefUnit.get().replace('\n',''))+'\n')
         f.write("PosUnit:"+str(vPosUnit.get().replace('\n',''))+'\n')
     #if(vRuleType.get()=="Categorical"):

@@ -123,7 +123,7 @@ def EditRule(project_name,Lb1):
     ClassInput.grid(row=4,sticky='w')
     vDefUnit = StringVar()
     vPosUnit = StringVar()
-    if ruleType =='Numeric':
+    if ruleType =='Numeric' or ruleType=="Categorical":
         DefUnitLabel = Label(itemsFrame,text="Default unit")
         DefUnitLabel.grid(row=5,column=0,sticky='w')
         vDefUnit = StringVar()
@@ -133,10 +133,6 @@ def EditRule(project_name,Lb1):
         PosUnitLabel.grid(row=7,column=0,sticky='w')
         PosUnInput = Entry(itemsFrame,textvariable=vPosUnit)
         PosUnInput.grid(row=8,sticky='w')
-    if ruleType == 'Categorical':
-        PosUnitLabel = Label(itemsFrame,text="Possible categories (comma separated)").grid(row=7,column=0,sticky='w')
-        vPosUnit = StringVar()
-        PosUnInput = Entry(itemsFrame,textvariable=vPosUnit).grid(row=8,sticky='w')
     ruleMech = cfg['RuleCreationMech'].replace('\n','')
     where_to_look = Label(itemsFrame,text="Where to look for data?").grid(row=2,column=1,sticky='w')
     wl_look_head = IntVar()
@@ -179,11 +175,9 @@ def EditRule(project_name,Lb1):
     pragVar = StringVar()
     pragVar.set(cfg['PragClass'])
     
-    if ruleType == 'Numeric':
+    if ruleType == 'Numeric' or ruleType == 'Categorical':
         vDefUnit.set(cfg['DefUnit'])
         vPosUnit.set(cfg['PosUnit'])
-    if ruleType == 'Categorical':
-        vPosUnit.set(cfg['Categories'])
     vClsIn.set(cfg['Class'])
     PragLabel = Label(itemsFrame,text="Table type (pragmatics)").grid(row=7,column=1,sticky='w')
     drop = OptionMenu(itemsFrame,pragVar,*prags)

@@ -42,12 +42,12 @@ def LoadRulesCfGMainScreen(project_name,rule_name):
     #SetLexRules.withdraw()
     #top.protocol("WM_DELETE_WINDOW", on_closing)
     processing_rules = RuleClasses_LoadRulesForProcessingClass.LoadRulesForProcessing(project_name,True)
-    for rule in processing_rules:
-        if rule.RuleName == rule_name:
-            if(rule.RuleType == "Categorical"):
-                skip_val = IntVar()
-                skip_val.set(0)
-                return
+    #for rule in processing_rules:
+        #if rule.RuleName == rule_name:
+            #if(rule.RuleType == "Categorical"):
+                #skip_val = IntVar()
+                #skip_val.set(0)
+                #return
     top = Toplevel()
     top.title("Set up rules")
     top.geometry('{}x{}'.format(500, 300))
@@ -143,7 +143,7 @@ def MakeChangesToSyntacticRules(project_name,rule_name):
         i=i+1
     skip_val = IntVar()
     skip_val.set(0)
-    saveButton = Button(frame,text="Next",bg="green",fg="black",command=lambda:SaveSintacticRules(rulelist.get("1.0",END),top,project_name,rule_name,skip_val)).grid(row=2,sticky='w')
+    saveButton = Button(frame,text="Next",bg="green",fg="black",command=lambda:SaveSintacticRules(rulelist.get("1.0",END),top,project_name,rule_name)).grid(row=2,sticky='w')
     pass
 
 

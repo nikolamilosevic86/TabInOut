@@ -151,9 +151,9 @@ def LoadRulesForProcessing(project_name,before_syntactic = False):
             if afterWordList == True:
                 rule.BlackList.append(w)
         rule.RuleType = cfg['RuleType'].replace('\n','')
-        if(rule.RuleType == "Numeric"):
+        if(rule.RuleType == "Numeric" or rule.RuleType == "Categorical"):
             rule.DefaultUnit = cfg['DefUnit']
-        if(rule.RuleType == "Numeric"):
+        if(rule.RuleType == "Numeric"  or rule.RuleType == "Categorical"):
             rule.PossibleUnits = cfg['PosUnit'].split(',')
         rule.PragmaticClass = cfg['PragClass']
         rule.ClassName = cfg['Class']

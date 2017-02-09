@@ -7,6 +7,12 @@
 (\d+)[ (]+(\d+[\.]*\d*)[%)]+
 1->StageVal
 2->StagePerc
++GetPercValue
+(\d+[\.]*\d*)[ ]*%
+1->StagePerc
 +GetVal
 (\d+)
 1->StageVal
++GetPerc
+(\d+[\.]\d+)
+1->StagePerc

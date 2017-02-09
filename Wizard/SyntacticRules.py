@@ -27,8 +27,11 @@ def RefreshDatabaseData(ListBox,project_name):
 
 
 def ProcessDataV(project_name,processing_rules,window,extracted):
-    extracted = IntVar()
-    extracted.set(0)
+    try:
+        extracted = IntVar()
+        extracted.set(0)
+    except:
+        print "Exception occured on that IntVAR in ProcessDataV method"
     Process_Data.ProcessDataBase(project_name,processing_rules)
     
     

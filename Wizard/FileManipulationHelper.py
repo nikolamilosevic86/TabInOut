@@ -139,11 +139,14 @@ def loadWhiteList(project_name,rule_name):
     f = open(Rule_path,'r')
     whitelist = f.readlines()
     return whitelist
+
 def loadBlackList(project_name,rule_name):
     Rule_path = "Projects/"+project_name+'/'+rule_name+'/'+rule_name+'_BlackList.lst'
     f = open(Rule_path,'r')
     blacklist = f.readlines()
     return blacklist
+
+
 def loadRuleConfig(project_name,rule_name):
     Rule_path = "Projects/"+project_name+'/'+rule_name+'/Rule.cfg'
     f = open(Rule_path,'r')

@@ -279,7 +279,7 @@ def WhiteListWindow(project_name,rule_name):
     namerule_label2 = Tix.Label(itemsFrame,text="List of terms in blacklist").grid(row=3,sticky='w')
     blacklist = Tix.Text(itemsFrame,height=5,width=50)
     blacklist.grid(row=4,sticky='w')
-    saveButton = Tix.Button(itemsFrame,text="Save",fg="black",command=lambda:SaveWhiteList(whitelist.get("1.0",Tix.END),blacklist.get("1.0",Tix.END),typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data,WhiteListWindow,project_name,rule_name)).grid(row=4,sticky='w')
+    saveButton = Tix.Button(itemsFrame,text="Save",fg="black",command=lambda:SaveWhiteList(whitelist.get("1.0",Tix.END),blacklist.get("1.0",Tix.END),typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data,WhiteListWindow,project_name,rule_name)).grid(row=5,sticky='w')
 
     
 def WhiteListWindowEdit(project_name,rule_name):

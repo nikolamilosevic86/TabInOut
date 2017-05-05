@@ -579,12 +579,29 @@ class QueryDBCalss:
         cursor.execute(sql)
         results = cursor.fetchall()
         return results
-    
+    def getTableCellsWithTableArticleData(self,tableID):
+        cursor = self.db.cursor()
+        sql = "select * from cell inner join arttable on arttable.idTable=cell.Table_idTable inner join article on arttable.Article_idArticle=article.idArticle where Table_idTable='%d'" % tableID
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        return results
+    def GetCellRole(self,idCell):
+        cursor = self.db.cursor()
+        sql = "SELECT CellRole_idCellRole FROM table_db.cellroles where Cell_idCell='"+idCell+"'"
+        cursor.execute(sql)
+        self.db.commit()
+        # 1- header, 2-stub,3-data, 4- super-row
+    def getCellAnnotation(self,idCell):
+        cursor = self.db.cursor()
+        sql = "SELECT idAnnotation, Content,`Start`,`End`,AnnotationID,AnnotationDescription,AgentName,AgentType,AnnotationURL FROM table_db.annotation where Cell_idCell='"+str(idCell)+"'"
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        return results
     def CreateAdditionalDDITables(self):
         cursor = self.db.cursor()
         sql = "Drop table if exists  DDIInfo"
         cursor.execute(sql)
-        sql = "Create table if not exists DDIInfo (id int NOT NULL AUTO_INCREMENT,documentId INT, SpecId varchar(255),idTable int,TableName varchar(200),Drug1 varchar(255),Drug2 varchar(255),CueRule varchar(255),isGroup int, PRIMARY KEY (id))"
+        sql = "Create table if not exists DDIInfo (id int NOT NULL AUTO_INCREMENT,documentId INT, SpecId varchar(255),idTable int,TableName varchar(200),Drug1 varchar(255),Drug2 varchar(255),Effect varchar(1000),CueRule varchar(255),isGroup int, PRIMARY KEY (id))"
         cursor.execute(sql)
     
     def CreateAdditionalTables(self):

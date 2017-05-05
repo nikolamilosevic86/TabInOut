@@ -744,7 +744,7 @@ class QueryDBCalss:
             sql=sql+" annotation.AnnotationDescription like '%"+word+"%' or"
         sql =sql[0:-3]
         sql = sql + ")"
-        if PragmaticClass!= "None":
+        if PragmaticClass!= "None" and PragmaticClass!= "None\n" and PragmaticClass!= "Any" and PragmaticClass!= "Any\n":
             sql = sql + " and SpecPragmatic='"+PragmaticClass.replace('\n','')+"'"
         #sql = sql + " and Article_idArticle=4495"
         cursor.execute(sql)

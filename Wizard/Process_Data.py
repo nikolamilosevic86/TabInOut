@@ -539,16 +539,24 @@ def ProcessDataBase(project_name,rules):
                                 syn_rule_name = syn_rule.name
                                 # Be a bit smart for generating Source
                                 if(CueFoundInHeader and rule.data_in_data):
-                                    Source = cell.Stub
+                                    if cell.Super_row!=None:
+                                        Source = cell.Super_row + cell.Stub
+                                    else:
+                                        Source = cell.Stub
+                                    ClassDetails = cell.Header
                                 else:
                                     Source = cell.Header
+                                    if cell.Super_row!=None:
+                                        ClassDetails = cell.Super_row + cell.Stub
+                                    else:
+                                        ClassDetails = cell.Stub
                                 # Get unit
                                 SubClass = ''
                                 if rule.RuleType == 'Categorical':
                                     SubClass = cell.Stub
                                 Unit = CheckUnits(cell.Header, cell.Stub, cell.Super_row, cell.Content, rule.DefaultUnit, rule.PossibleUnits)
                                 #Save the value to the database
-                                db.SaveExtracted(cell.idArticle,cell.idTable,cell.tableOrder,cell.idPMC,rule.ClassName,semValue,value,Unit,Source,rule.RuleName,syn_rule_name,SubClass)
+                                db.SaveExtracted(cell.idArticle,cell.idTable,cell.tableOrder,cell.idPMC,rule.ClassName,semValue,value,Unit,Source,ClassDetails,rule.RuleName,syn_rule_name,SubClass)
                                 savedSomething = True
                                 last_sem_extracted = sem.position
                                 FoundSemantics = False

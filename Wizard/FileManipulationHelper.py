@@ -129,26 +129,31 @@ def MakeRuleCFGFile(rule_path,vClsIn,vDefUnit,vPosUnit,pragVar,vRuleType,vLexSem
     f.write("DataInData:"+str(wl_look_data.get())+'\n')
     f.close()
 
-def loadRules(project_name):
+def loadVariables(project_name):
     project_folder = 'Projects/'+project_name+'/'
     projects = [os.path.join("",o) for o in os.listdir(project_folder) if os.path.isdir(os.path.join(project_folder,o))]
     return projects
+
+def loadRules(project_name,var_name):
+    project_folder = 'Projects/'+project_name+'/'+var_name+'/'
+    projects = [os.path.join("",o) for o in os.listdir(project_folder) if os.path.isdir(os.path.join(project_folder,o))]
+    return projects
     
-def loadWhiteList(project_name,rule_name):
-    Rule_path = "Projects/"+project_name+'/'+rule_name+'/'+rule_name+'_WhiteList.lst'
+def loadWhiteList(project_name,rule_name,variable):
+    Rule_path = "Projects/" + project_name + '/' + variable + '/' + rule_name + '/' + rule_name +'_WhiteList.lst'
     f = open(Rule_path,'r')
     whitelist = f.readlines()
     return whitelist
 
-def loadBlackList(project_name,rule_name):
-    Rule_path = "Projects/"+project_name+'/'+rule_name+'/'+rule_name+'_BlackList.lst'
+def loadBlackList(project_name,rule_name,variable):
+    Rule_path = "Projects/"+project_name+'/'+variable+'/'+rule_name+'/'+rule_name+'_BlackList.lst'
     f = open(Rule_path,'r')
     blacklist = f.readlines()
     return blacklist
 
 
-def loadRuleConfig(project_name,rule_name):
-    Rule_path = "Projects/"+project_name+'/'+rule_name+'/Rule.cfg'
+def loadRuleConfig(project_name,rule_name,variable):
+    Rule_path = "Projects/"+project_name+'/'+variable+'/'+rule_name+'/Rule.cfg'
     f = open(Rule_path,'r')
     config = f.readlines()
     conf = {}
@@ -183,8 +188,8 @@ def LoadRules(path):
     rules = f.readlines()
     return rules
 
-def SaveSyntacticRules(rules,project_name,rule_name):
-    Rule_path = "Projects/"+project_name+'/'+rule_name+'/SyntacticRules.sin'
+def SaveSyntacticRules(rules,project_name,rule_name,variable_name):
+    Rule_path = "Projects/"+project_name+'/'+variable_name+'/'+rule_name+'/SyntacticRules.sin'
     f = open(Rule_path,'w')
     f.write(rules)
     f.close()

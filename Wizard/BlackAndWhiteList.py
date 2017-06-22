@@ -29,7 +29,8 @@ def BlackListWindow(project_name,rule_name):
     list.grid(row=1,sticky='w')
     saveButton = Tix.Button(itemsFrame,text="Save",fg="black",command=lambda:SaveBlackList(list.get("1.0",Tix.END),BlackListWindow)).grid(row=2,sticky='w')
     
-def SemanticListWindow(project_name,rule_name):#
+def SemanticListWindow(project_name,rule_name,vClsIn):#
+
     WhiteListWindow =Tix.Toplevel()
     WhiteListWindow.title("Edit Cue List")
     WhiteListWindow.geometry('{}x{}'.format(550, 400))
@@ -71,7 +72,7 @@ def SemanticListWindow(project_name,rule_name):#
     namerule_label2 = Tix.Label(itemsFrame,text="List of terms in blacklist").grid(row=2,sticky='w')
     blacklist = Tix.Text(itemsFrame,height=5,width=50)
     blacklist.grid(row=3,sticky='w')
-    saveButton = Tix.Button(itemsFrame,text="Save",fg="black",command=lambda:SaveWhiteListSemantic(whitelist,blacklist.get("1.0",Tix.END),typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data,WhiteListWindow,project_name,rule_name)).grid(row=4,sticky='w')
+    saveButton = Tix.Button(itemsFrame,text="Save",fg="black",command=lambda:SaveWhiteListSemantic(whitelist,blacklist.get("1.0",Tix.END),typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data,WhiteListWindow,project_name,rule_name,vClsIn)).grid(row=4,sticky='w')
 
     pass
 
@@ -124,7 +125,7 @@ def createSemanticWhiteList(whitelist):
         whitelist.hlist.add(item,text = item.split('.')[-1])
         whitelist.setstatus(item,"off")
 
-def SemanticListWindowEdit(project_name,rule_name):#
+def SemanticListWindowEdit(project_name,rule_name,variable_name):#
     WhiteListWindow =Tix.Toplevel()
     WhiteListWindow.title("Edit Cue List")
     WhiteListWindow.geometry('{}x{}'.format(550, 400))
@@ -168,8 +169,8 @@ def SemanticListWindowEdit(project_name,rule_name):#
     blacklist.grid(row=3,sticky='w')
     
     
-    whitelist_list = FileManipulationHelper.loadWhiteList(project_name, rule_name)
-    blacklist_list = FileManipulationHelper.loadBlackList(project_name, rule_name)
+    whitelist_list = FileManipulationHelper.loadWhiteList(project_name, rule_name,variable_name)
+    blacklist_list = FileManipulationHelper.loadBlackList(project_name, rule_name,variable_name)
     
     
     i = 1
@@ -239,7 +240,7 @@ def SemanticListWindowEdit(project_name,rule_name):#
 #def selectItem(whitelist,item):
 #    print item, whitelist.getstatus(item)
 
-def WhiteListWindow(project_name,rule_name):
+def WhiteListWindow(project_name,rule_name,vClsIn):
     WhiteListWindow =Tix.Toplevel()
     WhiteListWindow.title("Edit Cue List")
     WhiteListWindow.geometry('{}x{}'.format(550, 550))
@@ -279,7 +280,7 @@ def WhiteListWindow(project_name,rule_name):
     namerule_label2 = Tix.Label(itemsFrame,text="List of terms in blacklist").grid(row=3,sticky='w')
     blacklist = Tix.Text(itemsFrame,height=5,width=50)
     blacklist.grid(row=4,sticky='w')
-    saveButton = Tix.Button(itemsFrame,text="Save",fg="black",command=lambda:SaveWhiteList(whitelist.get("1.0",Tix.END),blacklist.get("1.0",Tix.END),typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data,WhiteListWindow,project_name,rule_name)).grid(row=5,sticky='w')
+    saveButton = Tix.Button(itemsFrame,text="Save",fg="black",command=lambda:SaveWhiteList(whitelist.get("1.0",Tix.END),blacklist.get("1.0",Tix.END),typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data,WhiteListWindow,project_name,rule_name,vClsIn)).grid(row=5,sticky='w')
 
     
 def WhiteListWindowEdit(project_name,rule_name):
@@ -383,7 +384,7 @@ def WhiteListWindowEdit(project_name,rule_name):
                             
                                                                                                                        
 
-def SaveWhiteListSemantic(listWL,listBL,typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data,WhiteListWindow,project_name,rule_name):
+def SaveWhiteListSemantic(listWL,listBL,typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data,WhiteListWindow,project_name,rule_name,vClsIn):
     global currentWhiteList
     global currentBlackList
     global semanticTypes
@@ -395,15 +396,15 @@ def SaveWhiteListSemantic(listWL,listBL,typeVar,wl_look_head,wl_look_stub,wl_loo
     currentWhiteList = selected
     currentBlackList = []
     currentBlackList = listBL.split('\n')
-    rule_path = "Projects/"+project_name+"/"+rule_name
+    rule_path = "Projects/"+project_name+"/"+vClsIn.get()+"/"+rule_name
     FileManipulationHelper.CreateFoderIfNotExist(rule_path)
     semType = True
     FileManipulationHelper.SaveCueListSem(rule_path,rule_name, currentWhiteList,currentBlackList,typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data)
     #FileManipulationHelper.MakeRuleCFGFile(rule_path, look_head, look_stub, look_super, look_data, look_all,vClsIn,vDefUnit,vPosUnit,pragVar) 
     WhiteListWindow.withdraw()
-    LoadRulesCfGMainScreen(project_name,rule_name)
+    LoadRulesCfGMainScreen(project_name,rule_name,vClsIn.get())
 
-def SaveWhiteListSemanticEdit(listWL,listBL,typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data,WhiteListWindow,project_name,rule_name):
+def SaveWhiteListSemanticEdit(listWL,listBL,typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data,WhiteListWindow,project_name,rule_name,vClsIn):
     global currentWhiteList
     global currentBlackList
     global semanticTypes
@@ -415,14 +416,14 @@ def SaveWhiteListSemanticEdit(listWL,listBL,typeVar,wl_look_head,wl_look_stub,wl
     currentWhiteList = selected
     currentBlackList = []
     currentBlackList = listBL.split('\n')
-    rule_path = "Projects/"+project_name+"/"+rule_name
+    rule_path = "Projects/"+project_name+"/"+vClsIn.get()+"/"+rule_name
     FileManipulationHelper.CreateFoderIfNotExist(rule_path)
     semType = True
     FileManipulationHelper.SaveCueListSem(rule_path,rule_name, currentWhiteList,currentBlackList,typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data)
     #FileManipulationHelper.MakeRuleCFGFile(rule_path, look_head, look_stub, look_super, look_data, look_all,vClsIn,vDefUnit,vPosUnit,pragVar) 
     WhiteListWindow.withdraw()
 
-def SaveWhiteList(listWL,listBL,typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data,WhiteListWindow,project_name,rule_name):
+def SaveWhiteList(listWL,listBL,typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data,WhiteListWindow,project_name,rule_name,vClsIn):
     global currentWhiteList
     global currentBlackList
     listWL
@@ -430,14 +431,14 @@ def SaveWhiteList(listWL,listBL,typeVar,wl_look_head,wl_look_stub,wl_look_super,
     currentBlackList = []
     currentWhiteList = listWL.split('\n')
     currentBlackList = listBL.split('\n')
-    rule_path = "Projects/"+project_name+"/"+rule_name
+    rule_path = "Projects/"+project_name+"/"+vClsIn.get()+"/"+rule_name
     FileManipulationHelper.CreateFoderIfNotExist(rule_path)
     FileManipulationHelper.SaveCueList(rule_path,rule_name, currentWhiteList,currentBlackList,typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data)
     #FileManipulationHelper.MakeRuleCFGFile(rule_path, look_head, look_stub, look_super, look_data, look_all,vClsIn,vDefUnit,vPosUnit,pragVar) 
     WhiteListWindow.withdraw()
-    LoadRulesCfGMainScreen(project_name,rule_name)
+    LoadRulesCfGMainScreen(project_name,rule_name,vClsIn.get())
     
-def SaveWhiteListEdit(listWL,listBL,typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data,WhiteListWindow,project_name,rule_name):
+def SaveWhiteListEdit(listWL,listBL,typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data,WhiteListWindow,project_name,rule_name,vClsIn):
     global currentWhiteList
     global currentBlackList
     listWL
@@ -445,7 +446,7 @@ def SaveWhiteListEdit(listWL,listBL,typeVar,wl_look_head,wl_look_stub,wl_look_su
     currentBlackList = []
     currentWhiteList = listWL.split('\n')
     currentBlackList = listBL.split('\n')
-    rule_path = "Projects/"+project_name+"/"+rule_name
+    rule_path = "Projects/"+project_name+"/"+vClsIn.get()+"/"+rule_name
     FileManipulationHelper.CreateFoderIfNotExist(rule_path)
     FileManipulationHelper.SaveCueList(rule_path,rule_name, currentWhiteList,currentBlackList,typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data)
     #FileManipulationHelper.MakeRuleCFGFile(rule_path, look_head, look_stub, look_super, look_data, look_all,vClsIn,vDefUnit,vPosUnit,pragVar) 

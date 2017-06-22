@@ -8,7 +8,6 @@ Licence GNU/GPL 3.0
 '''
 import shutil 
 from Tkinter import *
-from EditRule import AddEditRule
 import FileManipulationHelper
 
 def EnableLB(Lb3,E2):
@@ -65,22 +64,44 @@ def MoveRuleDown(Lb1):
     
 def SetRuleName(project_name,RulesListBox):
     RuleNameView = Toplevel()
-    RuleNameView.title("Set rule name") 
-    RuleNameLabel = Label(RuleNameView,text="Name of the rule").grid(row=0,sticky='w')
+    RuleNameView.title("Set variable name")
+    RuleNameLabel = Label(RuleNameView,text="Name of the variable").grid(row=0,sticky='w')
     vRuleName = StringVar()
     RuleNameEntry = Entry(RuleNameView,textvariable=vRuleName).grid(row=1,sticky='w')
     vRuleType = StringVar()
-    RuleNameLabel = Label(RuleNameView,text="Value type of the rule").grid(row=2,sticky='w')
+    RuleNameLabel = Label(RuleNameView,text="Value type of the variable").grid(row=2,sticky='w')
     vRuleType.set("Numeric")
     Radiobutton(RuleNameView, text="Numeric", variable=vRuleType, value="Numeric").grid(row=3,sticky='w')
     Radiobutton(RuleNameView, text="Categorical", variable=vRuleType, value="Categorical").grid(row=4,sticky='w')
     Radiobutton(RuleNameView, text="String", variable=vRuleType, value="String").grid(row=5,sticky='w')
-    RuleNameButton = Button(RuleNameView,text="Next ->>",command=lambda:AddEditRule(project_name,vRuleName,vRuleType,RuleNameView,RulesListBox)).grid(row=6,sticky='w')
+    RuleNameButton = Button(RuleNameView,text="Next ->>",command=lambda:AddEditVariable(project_name,vRuleName,vRuleType,RuleNameView,RulesListBox)).grid(row=6,sticky='w')
 
+def AddEditVariable(project_name,vRuleName,vRuleType,RuleNameView,RulesListBox):
+    RuleNameView.withdraw()
+    rule_path = "Projects/" + project_name + "/" + vRuleName.get().replace('\n', '')
+    FileManipulationHelper.CreateFoderIfNotExist(rule_path)
+    f = open(rule_path +'/var_config.cfg', 'w')
+    f.write("VariableName:" + str(vRuleName.get().replace('\n', '')) + '\n')
+    f.write("VariableType:" + str(vRuleType.get().replace('\n', '')) + '\n')
+    f.close()
+    RulesListBox.insert('', 'end', vRuleName.get(), text=vRuleName.get())
+
+def loadVariableConfig(project_name,variable_name):
+    Rule_path = "Projects/"+project_name+'/'+variable_name+'/var_config.cfg'
+    f = open(Rule_path,'r')
+    config = f.readlines()
+    conf = {}
+    for cfg in config:
+        sp = cfg.split(':')
+        if sp[0]=='VariableName':
+            conf['VariableName']=sp[1].replace('\n','')
+        if sp[0]=='VariableType':
+            conf['VariableType']=sp[1].replace('\n','')
+    return conf
 
     
 
-def AddRule(project_name,RulesListBox):
+def AddVariable(project_name,RulesListBox):
     SetRuleName(project_name,RulesListBox)
 
 

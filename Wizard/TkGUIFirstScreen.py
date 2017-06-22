@@ -7,14 +7,16 @@ Created at the University of Manchester, School of Computer Science
 Licence GNU/GPL 3.0
 '''
 import Tix
+from threading import Thread
+import Tkinter
+import ttk
 
 import FileManipulationHelper
 from DatabaseSettings import ConfigureDatabaseScreen,ClearDBTables
-from EditRule import EditRule
-from threading import Thread
-from SimpleRuleOps import MoveRuleDown,MoveRuleUp,RemoveRule,AddRule,EnableLEntity,EnableLB
-from SyntacticRules import ProcessDataV,RefreshDatabaseData
+from EditRule import EditRule, AddEditRule
 from  RuleClasses_LoadRulesForProcessingClass import LoadRulesForProcessing
+from SimpleRuleOps import MoveRuleDown,MoveRuleUp,RemoveRule,EnableLEntity,EnableLB, AddVariable
+from SyntacticRules import ProcessDataV,RefreshDatabaseData
 
 Lb1 = None
 Lb3 = None   
@@ -52,14 +54,22 @@ def LoadFirstCfGScreen(project_name):
     ConfigureDB.pack( side = Tix.LEFT)
     clearTable = Tix.Button(frame, text="Clear DB Table", fg="black",command = lambda: ClearDBTables(project_name))
     clearTable.pack( side = Tix.LEFT)
-    rules = FileManipulationHelper.loadRules(project_name)
-    Lb1 = Tix.Listbox(middleframe,width=80,height=20)
+    vars = FileManipulationHelper.loadVariables(project_name)
+    Lb1 = ttk.Treeview(middleframe,columns=40,height=19)
+
     Lb1.pack()
     size = Lb1.size()
-    for rule in rules:
-        Lb1.insert(size,rule)
+    for var in vars:
+        Lb1.insert('', 'end', var, text=var)
+        rules = FileManipulationHelper.loadRules(project_name,var)
+        for rule in rules:
+            Lb1.insert(var, 'end', text=rule)
+        #Lb1.insert(size,rule)
         size = Lb1.size()
-    AddRules = Tix.Button(bottomframe, text="Add Rule", fg="black",command=lambda:AddRule(project_name,Lb1))
+    AddVariables = Tix.Button(bottomframe, text="Add Variable", fg="black", command=lambda:AddVariable(project_name, Lb1))
+    AddVariables.pack(side=Tix.LEFT)
+
+    AddRules = Tix.Button(bottomframe, text="Add Rule", fg="black",command=lambda:AddEditRule(project_name,Lb1))
     AddRules.pack( side = Tix.LEFT)
     DeleteRule = Tix.Button(bottomframe, text="Delete Rule", fg="black",command=lambda:RemoveRule(Lb1,project_name))
     DeleteRule.pack( side = Tix.LEFT)

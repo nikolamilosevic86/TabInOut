@@ -140,13 +140,13 @@ def loadRules(project_name,var_name):
     return projects
     
 def loadWhiteList(project_name,rule_name,variable):
-    Rule_path = "Projects/" + project_name + '/' + variable + '/' + rule_name + '/' + rule_name +'_WhiteList.lst'
+    Rule_path = "Projects/" + project_name + '/' + variable.replace('\n','') + '/' + rule_name + '/' + rule_name +'_WhiteList.lst'
     f = open(Rule_path,'r')
     whitelist = f.readlines()
     return whitelist
 
 def loadBlackList(project_name,rule_name,variable):
-    Rule_path = "Projects/"+project_name+'/'+variable+'/'+rule_name+'/'+rule_name+'_BlackList.lst'
+    Rule_path = "Projects/"+project_name+'/'+variable.replace('\n','')+'/'+rule_name+'/'+rule_name+'_BlackList.lst'
     f = open(Rule_path,'r')
     blacklist = f.readlines()
     return blacklist

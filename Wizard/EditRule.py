@@ -80,7 +80,7 @@ def AddEditRule(project_name,RulesListBox):
 def SaveRuleEdit(project_name,rule_name,add,vClsIn,vDefUnit,vPosUnit,pragVar,ruleType,ruleMech,wl_look_head,wl_look_stub,wl_look_super,wl_look_data):
     global currentWhiteList
     global currentBlackList
-    rule_path = "Projects/"+project_name+"/"+rule_name
+    rule_path = "Projects/"+project_name+"/"+vClsIn.get().replace('\n','')+"/"+rule_name
     FileManipulationHelper.CreateFoderIfNotExist(rule_path)
     vRuleType = StringVar()
     vLexSemRule = StringVar()
@@ -121,15 +121,16 @@ def EditRule(project_name,Lb1):
     itemsFrame.pack()
     vRuleName = StringVar()
     # Obtain rule/vaiable properly. The following won't work
-    pos = Lb1.curselection()[0]
-    vRuleName.set(Lb1.get(pos))
+    pos = Lb1.selection()[0]
+    vRuleName.set(Lb1.item(pos)['text'])
+    vClsIn = StringVar()
+    vClsIn.set(Lb1.parent(pos).replace('\n',''))
     namerule_label = Label(itemsFrame,text="Name of the rule").grid(row=0,column=0,sticky='w')
     rulename_entry = Entry(itemsFrame,textvariable=vRuleName,state=DISABLED).grid(row=0,column=1,sticky='w')
     rule_name = vRuleName.get()
-    cfg = FileManipulationHelper.loadRuleConfig(project_name, rule_name)
+    cfg = FileManipulationHelper.loadRuleConfig(project_name, rule_name,vClsIn.get())
     ruleType = cfg['RuleType'].replace('\n','')
-    ClassLabel = Label(itemsFrame,text="Class name of result").grid(row=2,column=0,sticky='w')
-    vClsIn = StringVar()
+    ClassLabel = Label(itemsFrame,text="Class name of result",state=DISABLED).grid(row=2,column=0,sticky='w')
     ClassInput = Entry(itemsFrame,textvariable=vClsIn)
     ClassInput.grid(row=3,sticky='w')
     vDefUnit = StringVar()
@@ -171,11 +172,11 @@ def EditRule(project_name,Lb1):
         wl_look_data.set(0)
     WLDataCB = Checkbutton(itemsFrame,text="Data",variable = wl_look_data).grid(row=6,column=1,sticky='w')
     if ruleMech == 'Lexical':
-        editWhiteList = Button(itemsFrame,text="Edit Sem/Lexical Cue List",command=lambda:WhiteListWindowEdit(project_name,rule_name)).grid(row=8,column=0,sticky='w')
+        editWhiteList = Button(itemsFrame,text="Edit Sem/Lexical Cue List",command=lambda:WhiteListWindowEdit(project_name,rule_name,vClsIn.get().replace('\n',''))).grid(row=8,column=0,sticky='w')
     else:
-        editWhiteList = Button(itemsFrame,text="Edit Semantic Cue List",command=lambda:SemanticListWindowEdit(project_name,rule_name)).grid(row=8,column=0,sticky='w')
+        editWhiteList = Button(itemsFrame,text="Edit Semantic Cue List",command=lambda:SemanticListWindowEdit(project_name,rule_name,vClsIn.get().replace('\n',''))).grid(row=8,column=0,sticky='w')
     if ruleType != "String":
-        SyntacticRules = Button(itemsFrame,text="Edit Syntactic rules",command=lambda:MakeChangesToSyntacticRules(project_name,rule_name)).grid(row=9,column=0,sticky='w')
+        SyntacticRules = Button(itemsFrame,text="Edit Syntactic rules",command=lambda:MakeChangesToSyntacticRules(project_name,rule_name,vClsIn.get().replace('\n',''))).grid(row=9,column=0,sticky='w')
     #editBlackList = Button(itemsFrame,text="Edit Black Cue List",command=lambda:BlackListWindowEdit(project_name,rule_name)).grid(row=2,column=0,sticky='w')
     text_of_where_to_look = StringVar()
     
@@ -189,7 +190,7 @@ def EditRule(project_name,Lb1):
     if ruleType == 'Numeric' or ruleType == 'Categorical':
         vDefUnit.set(cfg['DefUnit'])
         vPosUnit.set(cfg['PosUnit'])
-    vClsIn.set(cfg['Class'])
+    vClsIn.set(cfg['Class'].replace('\n',''))
     PragLabel = Label(itemsFrame,text="Table type (pragmatics)").grid(row=7,column=1,sticky='w')
     drop = OptionMenu(itemsFrame,pragVar,*prags)
     drop.grid(row=8,column=1,sticky='w')

@@ -283,7 +283,7 @@ def WhiteListWindow(project_name,rule_name,vClsIn):
     saveButton = Tix.Button(itemsFrame,text="Save",fg="black",command=lambda:SaveWhiteList(whitelist.get("1.0",Tix.END),blacklist.get("1.0",Tix.END),typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data,WhiteListWindow,project_name,rule_name,vClsIn)).grid(row=5,sticky='w')
 
     
-def WhiteListWindowEdit(project_name,rule_name):
+def WhiteListWindowEdit(project_name,rule_name,variable):
     typeVar =Tix.StringVar() 
     WhiteListWindow =Tix.Toplevel()
     WhiteListWindow.title("Edit White Cue List")
@@ -320,12 +320,12 @@ def WhiteListWindowEdit(project_name,rule_name):
     namerule_label = Tix.Label(itemsFrame,text="List of terms in whitelsit").grid(row=1,sticky='w')
     WhiteListText = Tix.Text(itemsFrame,height=10,width=50)
     WhiteListText.grid(row=2,sticky='w')
-    whitelist = FileManipulationHelper.loadWhiteList(project_name, rule_name)
+    whitelist = FileManipulationHelper.loadWhiteList(project_name, rule_name,variable)
     
     namerule_label2 = Tix.Label(itemsFrame,text="List of terms in blacklsit").grid(row=3,sticky='w')
     BlackListText = Tix.Text(itemsFrame,height=10,width=50)
     BlackListText.grid(row=4,sticky='w')
-    blacklist = FileManipulationHelper.loadBlackList(project_name, rule_name)
+    blacklist = FileManipulationHelper.loadBlackList(project_name, rule_name,variable)
     i = 1
     afterWordList = False
     for w in whitelist:
@@ -380,7 +380,9 @@ def WhiteListWindowEdit(project_name,rule_name):
         if afterWordList == True:
             BlackListText.insert(str(i)+'.0',w+'\n')
             i=i+1
-    saveButton = Tix.Button(itemsFrame,text="Save",fg="black",command=lambda:SaveWhiteListEdit(WhiteListText.get("1.0",Tix.END),BlackListText.get("1.0",Tix.END),typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data,WhiteListWindow,project_name,rule_name)).grid(row=12,column=0,sticky='w')
+    ClsVar = Tix.StringVar()
+    ClsVar.set(variable)
+    saveButton = Tix.Button(itemsFrame,text="Save",fg="black",command=lambda:SaveWhiteListEdit(WhiteListText.get("1.0",Tix.END),BlackListText.get("1.0",Tix.END),typeVar,wl_look_head,wl_look_stub,wl_look_super,wl_look_data,bl_look_head,bl_look_stub,bl_look_super,bl_look_data,WhiteListWindow,project_name,rule_name,ClsVar)).grid(row=12,column=0,sticky='w')
                             
                                                                                                                        
 

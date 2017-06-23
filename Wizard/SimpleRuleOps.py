@@ -29,9 +29,10 @@ def EnableLEntity(E2,Lb3):
 def RemoveRule(Lb1,project_name):
     try:
         # get selected line index
-        index = Lb1.curselection()[0]
-        rule = Lb1.get(index)
-        shutil.rmtree('Projects/'+project_name+'/'+rule)
+        index = Lb1.selection()[0]
+        rule = Lb1.item(index)
+        variable = Lb1.parent(index)
+        shutil.rmtree('Projects/'+project_name+'/'+variable+'/'+rule['text'])
         Lb1.delete(index)
     except IndexError:
         pass

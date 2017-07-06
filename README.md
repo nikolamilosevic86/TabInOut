@@ -4,7 +4,9 @@ TabInOut is a framework for information extraction from tables and a GUI tool fo
 
 We are currently working on a paper that will present the methodology of TabInOut, however, it is based on case study and a hybrid approach already presented at BIOSTEC and BelBi conference. You can see and read relevant papers we published bellow. 
 
-The project is part of my PhD project funded by EPRSC and AstraZeneca.  
+The project is part of my PhD project funded by EPRSC and AstraZeneca.
+
+The main application (Wizard) is located under Wizard folder. You can run it by starting TkGUIFirstScreen.py file. Alternatively you can start TableInOut wizard by running TableInOutStarter.sh from the main directory.
 
 
 ## Relevant publications:

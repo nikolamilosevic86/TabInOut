@@ -22,10 +22,6 @@ def EnableLEntity(E2,Lb3):
     Lb3.configure(state=DISABLED)
     Lb3.configure(exportselection=False)
 
-
-    
-
-
 def RemoveRule(Lb1,project_name):
     try:
         # get selected line index

@@ -2,7 +2,14 @@
 
 TabInOut is a framework for information extraction from tables and a GUI tool for generating information extraction rules from the tables in literature. The tool is dependent on [TableDisentangler](https://github.com/nikolamilosevic86/TableAnnotator) and actually presents the second step in the extraction pipeline. Firstly, tables are processed, disentangled and annotated using Tabledisentangler tool. TabInOut uses database created by TableAnnotator, uses all the functional and structural annotation performed by TableDisentangler in order to extract information from the tables. It also creates additional table in the mySQL database where it stores the extracted information.
 
-We are currently working on a paper that will present the methodology of TabInOut, however, it is based on case study and a hybrid approach already presented at BIOSTEC and BelBi conference. You can see and read relevant papers we published bellow. 
+The framework consists of:
+- Methodology and recipe for information extraction from tables
+- Language for describing syntactics of the cell content and assigning values to the cell content parts
+- A GUI wizard that makes describing information extraction task description easy
+
+For more information view project's GitHub Wiki.
+
+We are currently working on a paper that will present the methodology of TabInOut, however, it is based on case study and a hybrid approach already presented at BIOSTEC and BelBi conference. You can see and read relevant papers we published bellow.
 
 The project is part of my PhD project funded by EPRSC and AstraZeneca.
 

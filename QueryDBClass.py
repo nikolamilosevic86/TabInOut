@@ -6,6 +6,7 @@ Created on 29 Feb 2016
 Created at the University of Manchester, School of Computer Science
 Licence GNU/GPL 3.0
 '''
+
 import MySQLdb
 
 class QueryDBCalss:
@@ -78,6 +79,13 @@ class QueryDBCalss:
     def getCellsInRow(self,tableID,RowN):
         cursor = self.db.cursor()
         sql = "SELECT * FROM cell inner join cellroles on idCell=Cell_idCell where Table_idTable='%d' and RowN='%d'" % (tableID,RowN)
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        return results
+
+    def getCellsInColumn(self,tableID,ColumnN):
+        cursor = self.db.cursor()
+        sql = "SELECT * FROM cell inner join cellroles on idCell=Cell_idCell where Table_idTable='%d' and ColumnN='%d'" % (tableID,ColumnN)
         cursor.execute(sql)
         results = cursor.fetchall()
         return results
@@ -586,7 +594,28 @@ class QueryDBCalss:
         cursor.execute(sql)
         #sql = "Create table if not exists AdverseEventNames (id int NOT NULL AUTO_INCREMENT,idArticle int, PMC varchar(255),TableName varchar(255), idTable int, EventName varchar(255), AnnotationFlag int, PRIMARY KEY (id))"
         #cursor.execute(sql)
-        
+
+        def CreateAdditionalTablesESG(self):
+            cursor = self.db.cursor()
+            sql = "Create table if not exists IEAttribute (id int NOT NULL AUTO_INCREMENT,documentId INT, PMC varchar(255),idTable int,TableName varchar(200),Class varchar(255),SubClass varchar(255),VOption varchar(255),Head varchar(255), Stub varchar(255),StringValue varchar(255),IntValue DOUBLE, Unit varchar(255),CueRule varchar(255),SynRule varchar(255), PRIMARY KEY (id))"
+            cursor.execute(sql)
+            # sql = "Create table if not exists AdverseEventNames (id int NOT NULL AUTO_INCREMENT,idArticle int, PMC varchar(255),TableName varchar(255), idTable int, EventName varchar(255), AnnotationFlag int, PRIMARY KEY (id))"
+            # cursor.execute(sql)
+
+        def SaveAttributeESG(self, documentID, Option, tableId, TableName, PMC, AttributeName, AttributeSubClass,
+                          AttributeValue, Unit, Head,Stub):
+            cursor = self.db.cursor()
+            intValue = -999
+            try:
+                intValue = float(AttributeValue)
+            except:
+                intValue = None
+            sql = "INSERT into IEAttribute (documentId, PMC,idTable,TableName,Class,SubClass,VOption,Head,Stub StringValue,IntValue, Unit) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+            cursor.execute(sql, (
+            documentID, PMC, tableId, TableName, AttributeName, AttributeSubClass, Option, Head,Stub, AttributeValue,
+            intValue, Unit))
+            self.db.commit()
+            return cursor.lastrowid
     
     def SaveAnnotation(self,idArticle,tableName, tableId,Event,AnnotationFlag):
         cursor = self.db.cursor()

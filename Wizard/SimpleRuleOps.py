@@ -35,20 +35,20 @@ def RemoveRule(Lb1,project_name):
 
 def MoveRuleUp(Lb1):
     try:
-        pos = Lb1.curselection()[0]
+        pos = Lb1.selection()[0]
         # get selected line index
         if pos == 0:
             return
 
-        text = Lb1.get(pos)
+       # text = Lb1.get(pos)
         Lb1.delete(pos)
-        Lb1.insert(pos-1, text)
+        Lb1.insert(pos-1, pos)
     except IndexError:
         pass
 
 def MoveRuleDown(Lb1):
     try:
-        pos = Lb1.curselection()[0]
+        pos = Lb1.selection()[0]
         # get selected line index
         if pos == Lb1.size():
             return

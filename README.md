@@ -23,3 +23,6 @@ The main application (Wizard) is located under Wizard folder. You can run it by 
 * Milosevic, N. (2016). [Marvin: Semantic annotation using multiple knowledge sources.](http://arxiv.org/abs/1602.00515) arXiv preprint arXiv:1602.00515.
 
 
+# User guide
+
+For more information about how to use and run TabInOut, please check our [User Guide](https://github.com/nikolamilosevic86/TabInOut/wiki/2.-TabInOut-(TableInOut)-User-Guide)

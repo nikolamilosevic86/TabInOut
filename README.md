@@ -17,6 +17,7 @@ The main application (Wizard) is located under Wizard folder. You can run it by 
 
 
 ## Relevant publications:
+* Milosevic, N., Gregson, C., Hernandez, R. Nenadic, G. International Journal on Document Analysis and Recognition (2019). https://doi.org/10.1007/s10032-019-00317-0
 * Milosevic,N; Gregson, C; Hernandez, R; Nenadic, G. (2016, June). [Disentangling the Structure of Tables in Scientific Literature](http://link.springer.com/chapter/10.1007%2F978-3-319-41754-7_14). In Natural Language Processing and Information Systems: 21st International Conference on Applications of Natural Language to Information Systems, NLDB 2016, Salford, UK, June 22-24, 2016, Proceedings (Vol. 9612, p. 162). Springer.
 * Milosevic, N., Gregson, C., Hernandez, R., & Nenadic, G. (2016). [Extracting patient data from tables in clinical literature: Case study on extraction of BMI, weight and number of patients.](http://www.scitepress.org/DigitalLibrary/PublicationsDetail.aspx?ID=/O16myWhsP4=&t=1). In Proceedings of the 9th International Joint Conference on Biomedical Engineering Systems and Technologies ISBN 978-989-758-170-0, pages 223-228. DOI: 10.5220/0005660102230228
 * Milosevic, N., Gregson, C., Hernandez, R., & Nenadic, G. [Hybrid methodology for information extraction from tables in the biomedical literature](https://www.academia.edu/26499404/Hybrid_methodology_for_information_extraction_from_tables_in_the_biomedical_literature). In Proceedings of the Belgrade Bioinformatics Conference (BelBi2016) 
